@@ -79,15 +79,15 @@
 
 
 
-<meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta name="description" content="Ubuntu18.04: no wifi adapter found 解决方案重要的事说在前面 很重要！很重要！很重要！ 以下教程仅适用于intel系列无线网卡,至于其他例如broadcom等，只能提供一个参考思路。  Problem Descriptionterminal中输入lspci,得到类似如下结果 1234~$ lspci00:14.3 Network controller: Intel">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="http://yoursite.com/2020/07/02/hello-world/index.html">
+<meta property="og:title" content="Ubuntu18.04 no wifi adapter found 解决方案">
+<meta property="og:url" content="http://yoursite.com/2020/07/04/Ubuntu18.04%20no%20wifi%20adapter%20found%20%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta property="og:description" content="Ubuntu18.04: no wifi adapter found 解决方案重要的事说在前面 很重要！很重要！很重要！ 以下教程仅适用于intel系列无线网卡,至于其他例如broadcom等，只能提供一个参考思路。  Problem Descriptionterminal中输入lspci,得到类似如下结果 1234~$ lspci00:14.3 Network controller: Intel">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2020-07-02T08:18:10.121Z">
-<meta property="article:modified_time" content="2020-07-02T08:18:10.121Z">
+<meta property="article:published_time" content="2020-07-04T02:26:25.960Z">
+<meta property="article:modified_time" content="2020-02-03T03:13:44.882Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
 
@@ -119,13 +119,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2020/07/02/hello-world/"/>
+  <link rel="canonical" href="http://yoursite.com/2020/07/04/Ubuntu18.04 no wifi adapter found 解决方案/"/>
 
 
 
 
 
-  <title>Hello World | Hexo</title>
+  <title>Ubuntu18.04 no wifi adapter found 解决方案 | Hexo</title>
   
 
 
@@ -232,7 +232,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/02/hello-world/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/04/Ubuntu18.04%20no%20wifi%20adapter%20found%20%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="John Doe">
@@ -249,7 +249,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Hello World</h1>
+          <h1 class="post-title" itemprop="name headline">Ubuntu18.04 no wifi adapter found 解决方案</h1>
         
 
         <div class="post-meta">
@@ -261,8 +261,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-07-02T16:18:10+08:00">
-                2020-07-02
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-07-04T10:26:25+08:00">
+                2020-07-04
               </time>
             
 
@@ -299,19 +299,44 @@
       
 
       
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
+        <h1 id="Ubuntu18-04-no-wifi-adapter-found-解决方案"><a href="#Ubuntu18-04-no-wifi-adapter-found-解决方案" class="headerlink" title="Ubuntu18.04: no wifi adapter found 解决方案"></a>Ubuntu18.04: no wifi adapter found 解决方案</h1><p><strong>重要的事说在前面</strong></p>
+<p><strong>很重要！很重要！很重要！</strong></p>
+<p><strong>以下教程仅适用于<u>intel</u>系列无线网卡,至于其他例如broadcom等，只能提供一个参考思路。</strong></p>
+<hr>
+<h2 id="Problem-Description"><a href="#Problem-Description" class="headerlink" title="Problem Description"></a>Problem Description</h2><p>terminal中输入<code>lspci</code>,得到类似如下结果</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">~$ lspci</span><br><span class="line">00:14.3 Network controller: Intel Corporation Device 02f0</span><br><span class="line">00:15.0 Serial bus controller [0c80]: Intel Corporation Device 02e8</span><br><span class="line">……</span><br></pre></td></tr></table></figure>
 
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+<p>其中Network controller本不应该对应笔记本的无线网卡，但是ubuntu系统和intel系列网卡兼容性一言难尽，导致系统误把网卡作为了controller。</p>
+<h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2><ol>
+<li><p><strong>升级系统内核(optional)</strong></p>
+<p>具体可以参见这篇<a href="https://www.jianshu.com/p/0c2e7a530cfe" target="_blank" rel="noopener">博客</a>，写的很好。</p>
+<p>虽然这一步是选择性的，但还是建议内核版本5.3以下的朋友升级到最新版本，<del>少点bug不吃亏</del>。</p>
+<p><strong>还有，intel官网上写的驱动的kernel版本要求似乎有点问题，笔者5.0.0内核版本亲测：必须要升级到5.3+后才能识别<u>“写着4.14+以上均适用”</u>网卡驱动。</strong></p>
+<p>总而言之，建议大家尽量还是选择升级内核版本。</p>
+</li>
+<li><p><strong>安装网卡驱动</strong></p>
+<ul>
+<li><p>首先是确认网卡型号</p>
+<p>建议在windows下按照这篇<a href="https://blog.csdn.net/myuhua/article/details/99446855" target="_blank" rel="noopener">博客</a>进行操作</p>
+</li>
+<li><p>登陆intel<a href="https://wireless.wiki.kernel.org/en/users/drivers/iwlwifi" target="_blank" rel="noopener">驱动官网</a>:<a href="https://wireless.wiki.kernel.org/en/users/drivers/iwlwifi![image-20200203110455667](/home/silence/.config/Typora/typora-user-images/image-20200203110455667.png)" target="_blank" rel="noopener">https://wireless.wiki.kernel.org/en/users/drivers/iwlwifi![image-20200203110455667](/home/silence/.config/Typora/typora-user-images/image-20200203110455667.png)</a></p>
+</li>
+<li><p>查找到对应的型号后下载.tgz文件</p>
+</li>
+<li><p>解压文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar  -zxvf  下载的驱动的名字.tgz</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>安装驱动</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cp iwlwifi-*.ucode &#x2F;lib&#x2F;firmware</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>重启</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo reboot</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>和wifi愉快拥抱吧～</p>
+</li>
+</ul>
+</li>
+</ol>
 
       
     </div>
@@ -336,15 +361,15 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2020/07/02/test-my-site/" rel="next" title="test_my_site">
+                <i class="fa fa-chevron-left"></i> test_my_site
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2020/07/02/test-my-site/" rel="prev" title="test_my_site">
-                test_my_site <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -458,7 +483,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Quick-Start"><span class="nav-number">1.</span> <span class="nav-text">Quick Start</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Create-a-new-post"><span class="nav-number">1.1.</span> <span class="nav-text">Create a new post</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Run-server"><span class="nav-number">1.2.</span> <span class="nav-text">Run server</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Generate-static-files"><span class="nav-number">1.3.</span> <span class="nav-text">Generate static files</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Deploy-to-remote-sites"><span class="nav-number">1.4.</span> <span class="nav-text">Deploy to remote sites</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Ubuntu18-04-no-wifi-adapter-found-解决方案"><span class="nav-number">1.</span> <span class="nav-text">Ubuntu18.04: no wifi adapter found 解决方案</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Problem-Description"><span class="nav-number">1.1.</span> <span class="nav-text">Problem Description</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Solution"><span class="nav-number">1.2.</span> <span class="nav-text">Solution</span></a></li></ol></li></ol></div>
             
 
           </div>
