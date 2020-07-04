@@ -281,6 +281,20 @@
             </span>
 
           
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2020/07/04/Chapter0-1-%E7%B3%BB%E7%BB%9F%E5%BC%95%E5%AF%BC/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/07/04/Chapter0-1-%E7%B3%BB%E7%BB%9F%E5%BC%95%E5%AF%BC/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
 
         </div>
       </header>
@@ -431,8 +445,8 @@
       <i class="fa fa-chevron-left"></i> Chapter0-操作系统引论
     </a></div>
       <div class="post-nav-item">
-    <a href="/2020/07/04/Chapter1-%E7%A8%8B%E5%BA%8F%E3%80%81%E8%BF%9B%E7%A8%8B%E5%92%8C%E7%BA%BF%E7%A8%8B/" rel="next" title="Chapter1-程序、进程和线程">
-      Chapter1-程序、进程和线程 <i class="fa fa-chevron-right"></i>
+    <a href="/2020/07/04/Chpater6-%E7%A7%BB%E5%8A%A8%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" rel="next" title="Chpater6-移动操作系统">
+      Chpater6-移动操作系统 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -446,6 +460,7 @@
 
         </div>
         
+    <div class="comments" id="valine-comments"></div>
 
 <script>
   window.addEventListener('tabs:register', () => {
@@ -536,6 +551,19 @@
   
 
   
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/valine@1/dist/Valine.min.js', () => {
+    new Valine(Object.assign({
+      el  : '#valine-comments',
+      path: location.pathname,
+    }, {"enable":true,"appId":"GMneVEFPu4TwpvejAPqllWGc-gzGzoHsz","appKey":"5eNvc7SV1dxRT000WSXjRDuD","placeholder":"Just write what you'd like to write.","avatar":"mm","meta":["nick","mail"],"pageSize":10,"language":"en","visitor":false,"comment_count":true,"recordIP":false,"serverURLs":null}
+    ));
+  }, window.Valine);
+});
+</script>
 
 </body>
 </html>
