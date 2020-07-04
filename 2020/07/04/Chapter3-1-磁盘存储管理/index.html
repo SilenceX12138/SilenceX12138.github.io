@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  
+  <link rel="stylesheet" href="/lib/animate-css/animate.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Muse","version":"8.0.0-rc.4","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}}};
+  </script>
+
+  <meta name="description" content="全文共1685字，推荐阅读时间10~15分钟。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Chapter3-1-磁盘存储管理">
+<meta property="og:url" content="http://yoursite.com/2020/07/04/Chapter3-1-%E7%A3%81%E7%9B%98%E5%AD%98%E5%82%A8%E7%AE%A1%E7%90%86/index.html">
+<meta property="og:site_name" content="Silence">
+<meta property="og:description" content="全文共1685字，推荐阅读时间10~15分钟。">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://i.loli.net/2020/05/29/vFmTgfOlLBrwxUp.png">
+<meta property="og:image" content="https://i.loli.net/2020/05/29/j31kOvPZKDVX9e8.png">
+<meta property="article:published_time" content="2020-07-04T08:05:30.916Z">
+<meta property="article:modified_time" content="2020-07-04T08:10:40.161Z">
+<meta property="article:author" content="Silence">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.loli.net/2020/05/29/vFmTgfOlLBrwxUp.png">
+
+<link rel="canonical" href="http://yoursite.com/2020/07/04/Chapter3-1-%E7%A3%81%E7%9B%98%E5%AD%98%E5%82%A8%E7%AE%A1%E7%90%86/">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>Chapter3-1-磁盘存储管理 | Silence</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <main class="main">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+        <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+        <span class="toggle-line toggle-line-first"></span>
+        <span class="toggle-line toggle-line-middle"></span>
+        <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">Silence</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-lover">
+
+    <a href="/lover/" rel="section"><i class="fa fa-heart fa-fw"></i>lover</a>
+
+  </li>
+        <li class="menu-item menu-item-schedule">
+
+    <a href="/schedule/" rel="section"><i class="fa fa-calendar fa-fw"></i>Schedule</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <section class="post-toc-wrap sidebar-panel">
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#概述"><span class="nav-number">1.</span> <span class="nav-text">概述</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#基本概念"><span class="nav-number">1.1.</span> <span class="nav-text">基本概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#组织"><span class="nav-number">1.2.</span> <span class="nav-text">组织</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#扇区"><span class="nav-number">1.2.1.</span> <span class="nav-text">扇区</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#I-O性能"><span class="nav-number">2.</span> <span class="nav-text">I&#x2F;O性能</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#访问时间"><span class="nav-number">2.1.</span> <span class="nav-text">访问时间</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#调度算法"><span class="nav-number">2.2.</span> <span class="nav-text">调度算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#主要途径"><span class="nav-number">2.3.</span> <span class="nav-text">主要途径</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Flash-Disk-闪存盘"><span class="nav-number">3.</span> <span class="nav-text">Flash Disk 闪存盘</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#NAND"><span class="nav-number">3.1.</span> <span class="nav-text">NAND</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#NOR"><span class="nav-number">3.2.</span> <span class="nav-text">NOR</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#特点"><span class="nav-number">3.3.</span> <span class="nav-text">特点</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#可靠性"><span class="nav-number">4.</span> <span class="nav-text">可靠性</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#组织-1"><span class="nav-number">4.1.</span> <span class="nav-text">组织</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#优点"><span class="nav-number">4.2.</span> <span class="nav-text">优点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#级别"><span class="nav-number">4.3.</span> <span class="nav-text">级别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#XOR恢复数据"><span class="nav-number">4.4.</span> <span class="nav-text">XOR恢复数据</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#原理"><span class="nav-number">4.4.1.</span> <span class="nav-text">原理</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#特点-1"><span class="nav-number">4.5.</span> <span class="nav-text">特点</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reference"><span class="nav-number">5.</span> <span class="nav-text">Reference</span></a></li></ol></div>
+      </section>
+      <!--/noindex-->
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Silence</p>
+  <div class="site-description" itemprop="description">A personal blog of Silence.</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">14</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/SilenceX12138" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;SilenceX12138" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.instagram.com/silencejiang12138" title="Instagram → https:&#x2F;&#x2F;www.instagram.com&#x2F;silencejiang12138" rel="noopener" target="_blank"><i class="fab fa-instagram fa-fw"></i>Instagram</a>
+      </span>
+  </div>
+
+
+
+      </section>
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </header>
+
+      
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div id="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+      <div class="main-inner">
+        
+
+        <div class="content post posts-expand">
+          
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/04/Chapter3-1-%E7%A3%81%E7%9B%98%E5%AD%98%E5%82%A8%E7%AE%A1%E7%90%86/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Silence">
+      <meta itemprop="description" content="A personal blog of Silence.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Silence">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Chapter3-1-磁盘存储管理
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2020-07-04 16:05:30 / Modified: 16:10:40" itemprop="dateCreated datePublished" datetime="2020-07-04T16:05:30+08:00">2020-07-04</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Operating-System/" itemprop="url" rel="index"><span itemprop="name">Operating System</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>全文共<code>1685</code>字，推荐阅读时间<code>10~15</code>分钟。</p>
+<a id="more"></a>
+
+<h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><h3 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h3><ul>
+<li><p>扇区(sector)：磁道中的<strong>小扇形段</strong>（<strong>一个</strong>磁道上有<strong>多个</strong>扇区，<strong>不同</strong>磁道的扇区数可以<strong>不等</strong>）</p>
+</li>
+<li><p>磁道(tract)：同心<strong>环</strong></p>
+</li>
+<li><p>柱面(cylinder)：不同盘片<strong>相同半径</strong>的磁道组成的圆柱</p>
+</li>
+<li><p>磁盘分为软盘和硬盘</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">graph LR</span><br><span class="line"></span><br><span class="line">磁盘--&gt;硬盘</span><br><span class="line">磁盘--&gt;软盘</span><br><span class="line"></span><br><span class="line">硬盘--&gt;机械硬盘</span><br><span class="line">硬盘--&gt;闪存实现的固态硬盘</span><br><span class="line">硬盘--&gt;...</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h3 id="组织"><a href="#组织" class="headerlink" title="组织"></a>组织</h3><p>读取一个扇区需要柱面，磁头，磁道三个参数，通常以<code>(x,y,z)</code>传入。</p>
+<ul>
+<li>x：定位柱面</li>
+<li>y：定位磁道</li>
+<li>z：定位扇区</li>
+</ul>
+<blockquote>
+<p>对于IBM PC而言，最大参数一般是<code>(65536,16,63)</code>，因为一个扇区512字节，因此需要使用<code>16+4+6+9=35</code>位地址来进行访问，但是因为<code>z</code>是63，因此磁盘的最大容量是<code>31.5GB</code>.</p>
+</blockquote>
+<h4 id="扇区"><a href="#扇区" class="headerlink" title="扇区"></a>扇区</h4><ul>
+<li><p>将磁盘所有扇区看作一个<strong>一维的</strong>逻辑块数组（突破IBM PC遗留的内存限制）</p>
+</li>
+<li><p><strong>数组排序</strong>：扇区-&gt;磁道-&gt;柱面<strong>（从外到内）</strong></p>
+<p>先按照<strong>磁道内</strong>的<strong>扇区顺序</strong>排序，然后按照<strong>柱面内</strong>的<strong>磁道顺序</strong>排序，最后按<strong>从外到内</strong>的<strong>柱面顺序</strong>来排序。</p>
+</li>
+</ul>
+<h2 id="I-O性能"><a href="#I-O性能" class="headerlink" title="I/O性能"></a>I/O性能</h2><h3 id="访问时间"><a href="#访问时间" class="headerlink" title="访问时间"></a>访问时间</h3><ul>
+<li><p>寻道时间：<strong>启动</strong>时间<code>s</code>与磁头<strong>移动<code>n</code>条磁道</strong>花费的时间之和</p>
+<p>$T_s = m*n+s\ (m = const)$</p>
+<blockquote>
+<p><code>m</code>是移动一条磁道花费的时间</p>
+</blockquote>
+</li>
+<li><p>旋转延迟时间</p>
+<p>$T_r=\frac{1}{2*r}(r=RPS\ r/s)$</p>
+<blockquote>
+<ul>
+<li><code>r</code>是转速，并且单位是秒。</li>
+<li>公式的意思：旋转<strong>一周</strong>需要的<strong>平均</strong>时间</li>
+</ul>
+</blockquote>
+<ul>
+<li>硬盘</li>
+<li>软盘</li>
+</ul>
+</li>
+<li><p>传输时间：和每次所读写的字节数<code>b</code>,旋转速度<code>r</code>以及磁道上<strong>单位长度</strong>的字节数<code>N</code>有关</p>
+<p>$T_t=\frac{b}{r*N}$</p>
+<blockquote>
+<p><code>r*N</code>是单位时间内磁盘可以读写的字节数（<strong>传输速率</strong>），所以公式就是求如果需要读写<code>b</code>字节，那么需要多少个单位时间。</p>
+</blockquote>
+</li>
+</ul>
+<p>$ResponseTime=Queue+DiskServiceTime \tag{1}$</p>
+<blockquote>
+<p>磁盘延迟 = 设备驱动排队时间 + 磁盘服务时间</p>
+</blockquote>
+<p>$DiskServiceTime=SeekTime+RotateTime+TransferTime \tag{2}$</p>
+<blockquote>
+<p>磁盘服务时间 = 寻道时间 + 旋转延迟时间 + 传输时间</p>
+</blockquote>
+<h3 id="调度算法"><a href="#调度算法" class="headerlink" title="调度算法"></a>调度算法</h3><p>注意，和电梯不同的是，磁头移动到目标位置即算作服务完成。</p>
+<ul>
+<li><p>FCFS</p>
+</li>
+<li><p>SSTF</p>
+</li>
+<li><p>SCAN：对两侧磁道不公平</p>
+</li>
+<li><p>CSCAN：走到一头后直接返回（返回过程中不处理请求）</p>
+<blockquote>
+<p>CSCAN消除了SCAN对两端磁道的不公平现象</p>
+</blockquote>
+</li>
+<li><p>LOOK/CLOOK：分别是对SCAN/CSCAN<strong>调头条件</strong>的改进</p>
+</li>
+</ul>
+<h3 id="主要途径"><a href="#主要途径" class="headerlink" title="主要途径"></a>主要途径</h3><ul>
+<li>磁盘性能</li>
+<li>并行化</li>
+<li>调度算法</li>
+<li>设置缓冲区<ul>
+<li>独立缓存：大小<strong>固定</strong></li>
+<li>使用内存作为磁盘的缓存：大小<strong>可变</strong></li>
+<li>周期性写回</li>
+</ul>
+</li>
+<li>优化物理块分布，例如将文件和其所需数据放在一起。</li>
+<li>优化索引节点分布，将索引节点统一管理。</li>
+</ul>
+<blockquote>
+<p>其他方法：</p>
+<ul>
+<li>提前读</li>
+<li>延迟写</li>
+<li>虚拟盘</li>
+</ul>
+</blockquote>
+<h2 id="Flash-Disk-闪存盘"><a href="#Flash-Disk-闪存盘" class="headerlink" title="Flash Disk 闪存盘"></a>Flash Disk 闪存盘</h2><p>闪存是固态硬盘，属于硬盘的一种，因此也算是磁盘。</p>
+<h3 id="NAND"><a href="#NAND" class="headerlink" title="NAND"></a>NAND</h3><ul>
+<li>地址分为块号、块内页号、页内字节号，因此访存需要寻址三次，读写速度慢。</li>
+</ul>
+<h3 id="NOR"><a href="#NOR" class="headerlink" title="NOR"></a>NOR</h3><ul>
+<li>使用大量地址线实现一次性直接<strong>字节</strong>寻址</li>
+</ul>
+<blockquote>
+<p>速度高于NAND,成本也高于NAND.</p>
+</blockquote>
+<h3 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h3><ul>
+<li><p>擦除影响寿命</p>
+<p>使用磨损均衡化技术解决(Wear Leveling)</p>
+</li>
+<li><p>功耗低</p>
+</li>
+<li><p>速度快</p>
+</li>
+</ul>
+<h2 id="可靠性"><a href="#可靠性" class="headerlink" title="可靠性"></a>可靠性</h2><p>RAID：廉价冗余磁盘阵列</p>
+<ul>
+<li>利用冗余信息恢复丢失数据</li>
+</ul>
+<h3 id="组织-1"><a href="#组织-1" class="headerlink" title="组织"></a>组织</h3><p>把多块独立的硬盘（<strong>物理</strong>硬盘）按照不同方式组合起来形成一个硬盘组（<strong>逻辑</strong>硬盘）</p>
+<h3 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h3><ul>
+<li><p>价格低</p>
+</li>
+<li><p>可以让多个硬盘<strong>并行传输</strong></p>
+<p>将数据分段，例如将一个文件数据分为多个<strong>条带</strong>，然后放在<strong>多个硬盘</strong>上。</p>
+</li>
+<li><p>容错带来的更高的安全性</p>
+</li>
+</ul>
+<h3 id="级别"><a href="#级别" class="headerlink" title="级别"></a>级别</h3><ul>
+<li><p>RAID0：<strong>仅提供</strong>并行交叉存取，<strong>没有冗余</strong>校验功能。（<strong>不能提高</strong>可靠性）</p>
+<ul>
+<li>磁盘容量<strong>线形叠加</strong></li>
+<li>对大量数据的请求<strong>效率最高</strong></li>
+</ul>
+</li>
+<li><p>RAID1：镜像磁盘冗余阵列，在<strong>两个盘</strong>上存储一样的数据，有效容量下降一半。</p>
+<ul>
+<li>磁盘容量只有<strong>一半</strong>，成本高，但是可靠性好。</li>
+<li>读性能好</li>
+<li>写性能取决于两者中较低的那一块盘</li>
+</ul>
+</li>
+<li><p>RAID0+1：先<strong>分块</strong>后<strong>镜像</strong></p>
+<img src="https://i.loli.net/2020/05/29/vFmTgfOlLBrwxUp.png" style="zoom:67%;" />
+
+<ul>
+<li>相当于是两组完全相同的RAID0</li>
+<li>并行体现在组内</li>
+</ul>
+</li>
+<li><p>RAID1+0：先<strong>镜像</strong>后<strong>分块</strong></p>
+<img src="https://i.loli.net/2020/05/29/j31kOvPZKDVX9e8.png" style="zoom:67%;" />
+
+<ul>
+<li>同组的两块盘是完全相同的</li>
+<li>并行体现在组层次上</li>
+</ul>
+<blockquote>
+<p>可靠性比0+1更高</p>
+<ul>
+<li>RAID0+1如果坏一块盘，不会引起数据丢失，但是该盘所在的<strong>条带</strong>会失效。</li>
+<li>坏2块盘时引起磁盘故障的概率<ul>
+<li>RAID0+1：n/(2n-2)</li>
+<li>RAID1+0：1/(n-1)</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+</li>
+<li><p>RAID2：<strong>按位条带化</strong>，将奇偶校验位插入数据中（海明码：多重<strong>奇偶校验</strong>）</p>
+<p>利用$2^P&gt;=P+D+1$确定海明码的位数</p>
+<ul>
+<li>P是海明码位数</li>
+<li>D是数据位数</li>
+</ul>
+<blockquote>
+<p><strong>一个</strong>海明码只能够校验或者恢复<strong>一位</strong>的数据错误</p>
+</blockquote>
+</li>
+<li><p>RAID3：RAID2的简化版本，一组数据只用一个校验盘，将校验码（奇偶校验）和数据分开存储。</p>
+<blockquote>
+<p>不能直接定位出错的盘，可以使用“出错离线”方式进行判断。</p>
+</blockquote>
+</li>
+<li><p>RAID4：<strong>数据块交叉存储</strong>，和RAID0类似，将条带分开存储，同一行使用一块校验盘。</p>
+</li>
+<li><p>RAID5：在RAID4基础上，将校验块和和数据位进行<strong>混合</strong>存放，没有单独的奇偶校验驱动器。</p>
+</li>
+<li><p>RAID6：<code>单个数据:冗余 = 1:2</code>，例如<strong>A0对应0校验码和A校验码</strong>，可以容<strong>两块</strong>盘的错。</p>
+<blockquote>
+<p>整体比例<strong>不是</strong><code>1:2</code></p>
+</blockquote>
+</li>
+</ul>
+<h3 id="XOR恢复数据"><a href="#XOR恢复数据" class="headerlink" title="XOR恢复数据"></a>XOR恢复数据</h3><h4 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h4><ul>
+<li><p>结合律</p>
+<p>$({a}\bigoplus{b})\bigoplus{c}={a}\bigoplus({b}\bigoplus{c})$</p>
+</li>
+<li><p>循环对称性</p>
+<p>当${a}\bigoplus{b}\bigoplus{c}=d$时，</p>
+<ul>
+<li>$a={b}\bigoplus{c}\bigoplus{d}$</li>
+<li>$b={a}\bigoplus{c}\bigoplus{d}$</li>
+<li>$c={a}\bigoplus{b}\bigoplus{d}$ </li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>把a,b,c,d看作磁盘上的四个数据，其中三个是真正的数据，最后一个最为校验数据块，则可以进行数据恢复。</p>
+</blockquote>
+<h3 id="特点-1"><a href="#特点-1" class="headerlink" title="特点"></a>特点</h3><ul>
+<li>条带化：一个字节块可能放在多个数据盘上</li>
+<li>镜像：数据完全拷贝</li>
+<li>校验：冗余代价介于前两者之间</li>
+</ul>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ul>
+<li>Modern Operating System, Fourth Edition.</li>
+<li>BUAA OS Lecture, Spring Of 2020.</li>
+<li>Wikipedia</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/07/04/Chapter3-%E8%AE%BE%E5%A4%87%E7%AE%A1%E7%90%86/" rel="prev" title="Chapter3-设备管理">
+      <i class="fa fa-chevron-left"></i> Chapter3-设备管理
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/07/04/Chapter2-1-%E5%88%86%E9%A1%B5%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86%E5%8F%8A%E8%AE%BE%E8%AE%A1/" rel="next" title="Chapter2-1-分页系统管理及设计">
+      Chapter2-1-分页系统管理及设计 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+        </div>
+        
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Silence</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

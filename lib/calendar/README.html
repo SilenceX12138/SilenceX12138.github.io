@@ -1,0 +1,31 @@
+<h1 id="theme-next-calendar"><a href="#theme-next-calendar" class="headerlink" title="theme-next-calendar"></a>theme-next-calendar</h1><p>简洁的hexo-next日历云插件, 在日历上显示提交标记</p>
+<p><img src="example.png" alt=""></p>
+<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><ol>
+<li>首先安装hexo插件</li>
+</ol>
+<pre><code class="shell">npm install --save git://github.com/icecory/theme-next-calendar#hexo
+git clone --depth=1 git@github.com/icecory/theme-next-calendar themes/next/source/lib/calendar</code></pre>
+<ol start="2">
+<li>配置<br>把sidebar.swig, calendar.styl放到${root}/source/_data目录下</li>
+</ol>
+<p>在<code>themes/next/layout/_layout.swig</code>最后加入<code>{% include &#39;../source/lib/calendar/calendar.swig&#39; %}</code></p>
+<ol start="4">
+<li>在next主题配置文件<code>_config.yml</code>配置<pre><code class="ymal">custom_file_path:
+sidebar: source/_data/sidebar.swig
+styles: source/_data/calendar.styl
+</code></pre>
+</li>
+</ol>
+<p>CloudCalendar:<br>  enable: true<br>  language: zh-CN<br>  single: true<br>  root: /calendar/</p>
+<pre><code>
+### 渲染日历
+
+默认是在边栏中渲染, 当然也可以在任何位置显示, 只要移动`sidebar.swig`中的代码即可
+
+### 自定义日历颜色
+
+日历插件内各元素的颜色都是可定制的, 可以通过修改`calendar.styl`文件来达到更好的效果.
+
+### 说明
+
+提取自`Landscape-F`主题, 修改后适配theme-next</code></pre>

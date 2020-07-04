@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  
+  <link rel="stylesheet" href="/lib/animate-css/animate.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Muse","version":"8.0.0-rc.4","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}}};
+  </script>
+
+  <meta name="description" content="全文共964字，推荐阅读时间7~10分钟">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Chapter4-1-inode解析">
+<meta property="og:url" content="http://yoursite.com/2020/07/04/Chapter4-1-inode%E8%A7%A3%E6%9E%90/index.html">
+<meta property="og:site_name" content="Silence">
+<meta property="og:description" content="全文共964字，推荐阅读时间7~10分钟">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-07-04T08:05:30.916Z">
+<meta property="article:modified_time" content="2020-07-04T08:11:38.623Z">
+<meta property="article:author" content="Silence">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://yoursite.com/2020/07/04/Chapter4-1-inode%E8%A7%A3%E6%9E%90/">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>Chapter4-1-inode解析 | Silence</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <main class="main">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+        <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+        <span class="toggle-line toggle-line-first"></span>
+        <span class="toggle-line toggle-line-middle"></span>
+        <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">Silence</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-lover">
+
+    <a href="/lover/" rel="section"><i class="fa fa-heart fa-fw"></i>lover</a>
+
+  </li>
+        <li class="menu-item menu-item-schedule">
+
+    <a href="/schedule/" rel="section"><i class="fa fa-calendar fa-fw"></i>Schedule</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <section class="post-toc-wrap sidebar-panel">
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#背景"><span class="nav-number">1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#内容"><span class="nav-number">2.</span> <span class="nav-text">内容</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#inode的大小"><span class="nav-number">3.</span> <span class="nav-text">inode的大小</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#inode号码"><span class="nav-number">4.</span> <span class="nav-text">inode号码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#目录文件"><span class="nav-number">5.</span> <span class="nav-text">目录文件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#定义"><span class="nav-number">5.1.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#构成"><span class="nav-number">5.2.</span> <span class="nav-text">构成</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#硬链接"><span class="nav-number">6.</span> <span class="nav-text">硬链接</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#背景-1"><span class="nav-number">6.1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#定义-1"><span class="nav-number">6.2.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#计数"><span class="nav-number">6.3.</span> <span class="nav-text">计数</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#软链接"><span class="nav-number">7.</span> <span class="nav-text">软链接</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#定义-2"><span class="nav-number">7.1.</span> <span class="nav-text">定义</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#特殊作用"><span class="nav-number">8.</span> <span class="nav-text">特殊作用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reference"><span class="nav-number">9.</span> <span class="nav-text">Reference</span></a></li></ol></div>
+      </section>
+      <!--/noindex-->
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Silence</p>
+  <div class="site-description" itemprop="description">A personal blog of Silence.</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">14</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/SilenceX12138" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;SilenceX12138" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.instagram.com/silencejiang12138" title="Instagram → https:&#x2F;&#x2F;www.instagram.com&#x2F;silencejiang12138" rel="noopener" target="_blank"><i class="fab fa-instagram fa-fw"></i>Instagram</a>
+      </span>
+  </div>
+
+
+
+      </section>
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </header>
+
+      
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div id="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+      <div class="main-inner">
+        
+
+        <div class="content post posts-expand">
+          
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/04/Chapter4-1-inode%E8%A7%A3%E6%9E%90/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Silence">
+      <meta itemprop="description" content="A personal blog of Silence.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Silence">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Chapter4-1-inode解析
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2020-07-04 16:05:30 / Modified: 16:11:38" itemprop="dateCreated datePublished" datetime="2020-07-04T16:05:30+08:00">2020-07-04</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Operating-System/" itemprop="url" rel="index"><span itemprop="name">Operating System</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>全文共<code>964</code>字，推荐阅读时间<code>7~10</code>分钟</p>
+<a id="more"></a>
+
+<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><ul>
+<li>文件存储<strong>以块为单位</strong>存储在硬盘上</li>
+<li>文件的元信息（<strong>不是</strong>文件内容）存储在inode中</li>
+<li>inode中文译名：索引节点</li>
+<li><strong>每个</strong>文件都对应了<strong>一个</strong>inode</li>
+</ul>
+<h2 id="内容"><a href="#内容" class="headerlink" title="内容"></a>内容</h2><ul>
+<li>文件大小</li>
+<li>拥有者ID</li>
+<li>Group ID</li>
+<li>读、写、执行权限</li>
+<li>文件的时间戳<ul>
+<li><code>ctime</code>:inode上一次变动的时间</li>
+<li><code>mtime</code>:文件内容上一次变动的时间</li>
+<li><code>atime</code>:文件上一次打开的时间</li>
+</ul>
+</li>
+<li>连接数：有多少个文件名指向这个inode</li>
+<li>文件数据的块地址</li>
+</ul>
+<blockquote>
+<ul>
+<li><code>stat</code>命令可以查看<code>inode</code>信息</li>
+<li><strong>除了文件名</strong>以外的信息，都存储在inode之中。</li>
+</ul>
+</blockquote>
+<h2 id="inode的大小"><a href="#inode的大小" class="headerlink" title="inode的大小"></a>inode的大小</h2><ul>
+<li>硬盘格式化时，OS会将硬盘分成两个区域，一个是数据区，一个是<code>inode</code>区。</li>
+<li><code>inode</code>大小一般是128或256字节，并且<strong>总数</strong>在格式化时就确定，一般是每$1KB$或每$2KB$就设置一个<code>inode</code>.</li>
+</ul>
+<blockquote>
+<ul>
+<li><code>df -i</code>：查看<code>inode</code>总数和已经使用的数量</li>
+<li><code>sudo dumpe2fs -h /dev/hda | grep &quot;Inode size&quot;</code>：查看每个<code>inode</code>结点的大小</li>
+<li>发生<code>inode</code>用光但是硬盘未存满的情况时，<strong>无法</strong>在硬盘上继续创建新文件。</li>
+</ul>
+</blockquote>
+<h2 id="inode号码"><a href="#inode号码" class="headerlink" title="inode号码"></a>inode号码</h2><p>系统内部不通过文件名进行文件相关操作，而是均通过<code>inode</code>号码来完成文件操作。</p>
+<blockquote>
+<p><code>ls -i example.txt</code>：查看文件的<code>inode</code>号码</p>
+</blockquote>
+<h2 id="目录文件"><a href="#目录文件" class="headerlink" title="目录文件"></a>目录文件</h2><h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><p>目录也是一种文件，所以称为目录文件。</p>
+<h3 id="构成"><a href="#构成" class="headerlink" title="构成"></a>构成</h3><p>目录文件就是<strong>目录项的列表</strong></p>
+<ul>
+<li><p>目录项 = 文件名 + <code>inode</code>号码</p>
+<blockquote>
+<p>目录文件下的<code>inode</code>号码<strong>不止一个</strong></p>
+</blockquote>
+</li>
+</ul>
+<h2 id="硬链接"><a href="#硬链接" class="headerlink" title="硬链接"></a>硬链接</h2><h3 id="背景-1"><a href="#背景-1" class="headerlink" title="背景"></a>背景</h3><ul>
+<li>一般情况下，文件名和<code>inode</code>号码一一对应。</li>
+<li>特殊情况下，可能存在<strong>多个文件名</strong>指向<strong>同一个</strong><code>inode</code>号码的情况。</li>
+</ul>
+<h3 id="定义-1"><a href="#定义-1" class="headerlink" title="定义"></a>定义</h3><ul>
+<li>可以使用不同的文件名访问同样的内容、对文件内容进行修改。（会影响到所有的文件名）</li>
+<li>删除一个文件名，<strong>不影响</strong>其他文件名的访问。</li>
+<li>目录项中的<code>inode</code>号就是文件数据的<code>inode</code>号</li>
+</ul>
+<blockquote>
+<p><code>ln src det</code>：可以创建<strong>硬链接</strong></p>
+</blockquote>
+<h3 id="计数"><a href="#计数" class="headerlink" title="计数"></a>计数</h3><p>对<strong>目录</strong>而言，创建目录时，默认会生成两个目录项<code>.</code>和<code>..</code>,其中<code>.</code>指向当前目录，<code>..</code>指向父目录。</p>
+<blockquote>
+<p>目录文件的<strong>硬链接</strong>总数 = 1 + 1 + 子目录总数（含隐藏目录）</p>
+<ul>
+<li>1：该文件本身的名字对应的目录项</li>
+<li>1：<code>.</code></li>
+</ul>
+</blockquote>
+<h2 id="软链接"><a href="#软链接" class="headerlink" title="软链接"></a>软链接</h2><h3 id="定义-2"><a href="#定义-2" class="headerlink" title="定义"></a>定义</h3><ul>
+<li>文件A和文件B是不同的文件（<code>inode</code>号码不同），但是文件A的内容是文件B的<strong>路径</strong>（文件名）。因此读取文件A时，系统会自动将访问者导向B.因此，<strong>无论打开哪一个文件</strong>，最终读取的都是文件B.此时，<strong>文件A就称为文件B的软链接</strong>（又称<strong>符号</strong>链接）。</li>
+<li>目录项中的<code>inode</code>号是软链接文件A的<code>inode</code>号，A的数据块中存放有B的路径。</li>
+</ul>
+<blockquote>
+<ul>
+<li>文件A依赖于文件B,如果B被删除或者路径发生变化，那么打开A就会报错。</li>
+<li>文件A指向文件B的<strong>文件名</strong>，而不是<code>inode</code>号码，因此B的<code>inode</code>链接数不会发生变化。</li>
+<li><code>ln -s src dst</code>：创建软链接</li>
+</ul>
+</blockquote>
+<h2 id="特殊作用"><a href="#特殊作用" class="headerlink" title="特殊作用"></a>特殊作用</h2><ul>
+<li>删除<code>inode</code>来删除名字<strong>包含特殊字符</strong>的文件</li>
+<li>移动文件或重命名文件时，<strong>只改变</strong>文件名，<strong>不改变</strong><code>inode</code>号码。</li>
+<li>系统通常无法从<code>inode</code>号码获取文件名</li>
+<li>打开文件后，系统对该文件的操作和文件名就无关了，均以<code>inode</code>号码指代。</li>
+</ul>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ul>
+<li><a href="https://www.ruanyifeng.com/blog/2011/12/inode.html" target="_blank" rel="noopener">https://www.ruanyifeng.com/blog/2011/12/inode.html</a></li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/07/04/Ubuntu18.04%20no%20wifi%20adapter%20found%20%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/" rel="prev" title="Ubuntu18.04 no wifi adapter found 解决方案">
+      <i class="fa fa-chevron-left"></i> Ubuntu18.04 no wifi adapter found 解决方案
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/07/04/Chapter3-%E8%AE%BE%E5%A4%87%E7%AE%A1%E7%90%86/" rel="next" title="Chapter3-设备管理">
+      Chapter3-设备管理 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+        </div>
+        
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Silence</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

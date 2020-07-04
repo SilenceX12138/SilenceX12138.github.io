@@ -22,19 +22,19 @@
     var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Muse","version":"8.0.0-rc.4","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}}};
   </script>
 
-  <meta name="description" content="重要的事说在前面 很重要！很重要！很重要！ 以下教程仅适用于intel系列无线网卡,至于其他例如broadcom等，只能提供一个参考思路。">
+  <meta name="description" content="全文共752字，推荐阅读时间5~10分钟。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Ubuntu18.04 no wifi adapter found 解决方案">
-<meta property="og:url" content="http://yoursite.com/2020/07/04/Ubuntu18.04%20no%20wifi%20adapter%20found%20%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/index.html">
+<meta property="og:title" content="Chapter0-1-系统引导">
+<meta property="og:url" content="http://yoursite.com/2020/07/04/Chapter0-1-%E7%B3%BB%E7%BB%9F%E5%BC%95%E5%AF%BC/index.html">
 <meta property="og:site_name" content="Silence">
-<meta property="og:description" content="重要的事说在前面 很重要！很重要！很重要！ 以下教程仅适用于intel系列无线网卡,至于其他例如broadcom等，只能提供一个参考思路。">
+<meta property="og:description" content="全文共752字，推荐阅读时间5~10分钟。">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2020-07-04T02:26:25.960Z">
-<meta property="article:modified_time" content="2020-07-04T07:52:26.039Z">
+<meta property="article:published_time" content="2020-07-04T08:05:30.916Z">
+<meta property="article:modified_time" content="2020-07-04T08:09:37.970Z">
 <meta property="article:author" content="Silence">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://yoursite.com/2020/07/04/Ubuntu18.04%20no%20wifi%20adapter%20found%20%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/">
+<link rel="canonical" href="http://yoursite.com/2020/07/04/Chapter0-1-%E7%B3%BB%E7%BB%9F%E5%BC%95%E5%AF%BC/">
 
 
 <script class="page-configurations">
@@ -47,7 +47,7 @@
   };
 </script>
 
-  <title>Ubuntu18.04 no wifi adapter found 解决方案 | Silence</title>
+  <title>Chapter0-1-系统引导 | Silence</title>
   
 
 
@@ -175,7 +175,7 @@
 
       <!--noindex-->
       <section class="post-toc-wrap sidebar-panel">
-          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Problem-Description"><span class="nav-number">1.</span> <span class="nav-text">Problem Description</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Solution"><span class="nav-number">2.</span> <span class="nav-text">Solution</span></a></li></ol></div>
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Bootloader"><span class="nav-number">1.</span> <span class="nav-text">Bootloader</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#定义"><span class="nav-number">1.1.</span> <span class="nav-text">定义</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#启动及引导"><span class="nav-number">2.</span> <span class="nav-text">启动及引导</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#MIPS-U-Boot"><span class="nav-number">2.1.</span> <span class="nav-text">MIPS(U-Boot)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#启动流程"><span class="nav-number">2.1.1.</span> <span class="nav-text">启动流程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#MIPS基本地址空间"><span class="nav-number">2.1.2.</span> <span class="nav-text">MIPS基本地址空间</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#MIPS-ROM-Flash启动地址"><span class="nav-number">2.1.3.</span> <span class="nav-text">MIPS ROM&#x2F;Flash启动地址</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#OS引导过程"><span class="nav-number">2.1.4.</span> <span class="nav-text">OS引导过程</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#X86"><span class="nav-number">2.2.</span> <span class="nav-text">X86</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#启动过程（与OS无关）"><span class="nav-number">2.2.1.</span> <span class="nav-text">启动过程（与OS无关）</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#第一步-启动BIOS"><span class="nav-number">2.2.1.1.</span> <span class="nav-text">第一步 启动BIOS</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#第二步-读取MBR"><span class="nav-number">2.2.1.2.</span> <span class="nav-text">第二步 读取MBR</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#第三步-BIOS将控制权交给OS-BootLoader"><span class="nav-number">2.2.1.3.</span> <span class="nav-text">第三步 BIOS将控制权交给OS BootLoader</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#OS引导过程-1"><span class="nav-number">2.2.2.</span> <span class="nav-text">OS引导过程</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reference"><span class="nav-number">3.</span> <span class="nav-text">Reference</span></a></li></ol></div>
       </section>
       <!--/noindex-->
 
@@ -240,7 +240,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/04/Ubuntu18.04%20no%20wifi%20adapter%20found%20%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/04/Chapter0-1-%E7%B3%BB%E7%BB%9F%E5%BC%95%E5%AF%BC/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -253,7 +253,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Ubuntu18.04 no wifi adapter found 解决方案
+          Chapter0-1-系统引导
         </h1>
 
         <div class="post-meta">
@@ -264,7 +264,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2020-07-04 10:26:25 / Modified: 15:52:26" itemprop="dateCreated datePublished" datetime="2020-07-04T10:26:25+08:00">2020-07-04</time>
+              <time title="Created: 2020-07-04 16:05:30 / Modified: 16:09:37" itemprop="dateCreated datePublished" datetime="2020-07-04T16:05:30+08:00">2020-07-04</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -273,6 +273,10 @@
               <span class="post-meta-item-text">In</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Operating-System/" itemprop="url" rel="index"><span itemprop="name">Operating System</span></a>
                 </span>
             </span>
 
@@ -287,46 +291,127 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p><strong>重要的事说在前面</strong></p>
-<p><strong>很重要！很重要！很重要！</strong></p>
-<p><strong>以下教程仅适用于<u>intel</u>系列无线网卡,至于其他例如broadcom等，只能提供一个参考思路。</strong></p>
+        <p>全文共<code>752</code>字，推荐阅读时间<code>5~10</code>分钟。</p>
 <a id="more"></a>
 
-<hr>
-<h2 id="Problem-Description"><a href="#Problem-Description" class="headerlink" title="Problem Description"></a>Problem Description</h2><p>terminal中输入<code>lspci</code>,得到类似如下结果</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">~$ lspci</span><br><span class="line">00:14.3 Network controller: Intel Corporation Device 02f0</span><br><span class="line">00:15.0 Serial bus controller [0c80]: Intel Corporation Device 02e8</span><br><span class="line">……</span><br></pre></td></tr></table></figure>
-
-<p>其中Network controller本不应该对应笔记本的无线网卡，但是ubuntu系统和intel系列网卡兼容性一言难尽，导致系统误把网卡作为了controller。</p>
-<h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2><ol>
-<li><p><strong>升级系统内核(optional)</strong></p>
-<p>具体可以参见这篇<a href="https://www.jianshu.com/p/0c2e7a530cfe" target="_blank" rel="noopener">博客</a>，写的很好。</p>
-<p>虽然这一步是选择性的，但还是建议内核版本5.3以下的朋友升级到最新版本，<del>少点bug不吃亏</del>。</p>
-<p><strong>还有，intel官网上写的驱动的kernel版本要求似乎有点问题，笔者5.0.0内核版本亲测：必须要升级到5.3+后才能识别<u>“写着4.14+以上均适用”</u>网卡驱动。</strong></p>
-<p>总而言之，建议大家尽量还是选择升级内核版本。</p>
+<h2 id="Bootloader"><a href="#Bootloader" class="headerlink" title="Bootloader"></a>Bootloader</h2><h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><ul>
+<li><p>系统加电后运行的第一个程序，在内核之<strong>前</strong></p>
 </li>
-<li><p><strong>安装网卡驱动</strong></p>
+<li><p><code>Bootloader = Booter + Loader</code></p>
 <ul>
-<li><p>首先是确认网卡型号</p>
-<p>建议在windows下按照这篇<a href="https://blog.csdn.net/myuhua/article/details/99446855" target="_blank" rel="noopener">博客</a>进行操作</p>
-</li>
-<li><p>登陆intel<a href="https://wireless.wiki.kernel.org/en/users/drivers/iwlwifi" target="_blank" rel="noopener">驱动官网</a>:<a href="https://wireless.wiki.kernel.org/en/users/drivers/iwlwifi![image-20200203110455667](/home/silence/.config/Typora/typora-user-images/image-20200203110455667.png)" target="_blank" rel="noopener">https://wireless.wiki.kernel.org/en/users/drivers/iwlwifi![image-20200203110455667](/home/silence/.config/Typora/typora-user-images/image-20200203110455667.png)</a></p>
-</li>
-<li><p>查找到对应的型号后下载.tgz文件</p>
-</li>
-<li><p>解压文件</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar  -zxvf  下载的驱动的名字.tgz</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>安装驱动</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cp iwlwifi-*.ucode &#x2F;lib&#x2F;firmware</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>重启</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo reboot</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>和wifi愉快拥抱吧～</p>
-</li>
+<li>Booter负责初始化系统硬件，使其<strong>部分</strong>运行。</li>
+<li>Loader将OS镜像加载到内存中，并跳转到OS的代码开始运行。</li>
 </ul>
 </li>
-</ol>
+<li><p>可以帮助OS和硬件分离</p>
+</li>
+</ul>
+<blockquote>
+<p>MIPS:U-Boot</p>
+<p>X86:LILO/GRUB</p>
+</blockquote>
+<h2 id="启动及引导"><a href="#启动及引导" class="headerlink" title="启动及引导"></a>启动及引导</h2><h3 id="MIPS-U-Boot"><a href="#MIPS-U-Boot" class="headerlink" title="MIPS(U-Boot)"></a>MIPS(U-Boot)</h3><h4 id="启动流程"><a href="#启动流程" class="headerlink" title="启动流程"></a>启动流程</h4><ul>
+<li><p>Stage1:和体系结构相关，常为<strong>汇编</strong>语言。</p>
+</li>
+<li><p>Stage2:为了可移植性，常为<strong>C</strong>语言。</p>
+</li>
+</ul>
+<h4 id="MIPS基本地址空间"><a href="#MIPS基本地址空间" class="headerlink" title="MIPS基本地址空间"></a>MIPS基本地址空间</h4><ul>
+<li><p><code>0x0000_0000-0x7FFF_FFFF(2GB)</code>:kuseg，需要<strong>MMU</strong>才可使用。</p>
+</li>
+<li><p><code>0x8000_0000-0x9FFF_FFFF(512MB)</code>:Unmapped cached(kseg0)，最高位清零则是物理地址，没有MMU也可以使用。</p>
+<ul>
+<li>无MMU:放置程序和数据</li>
+<li>有MMU:操作系统<code>kernel</code>(0x80010000)</li>
+</ul>
+<blockquote>
+<p>这段地址的存取几乎一定会经过cache,所以在cache设置好之前，不能随意访问。</p>
+</blockquote>
+</li>
+<li><p><code>0xA000_0000-0xBFFF_FFFF(512MB)</code>:Unmapped uncached(kseg1)，<strong>高三位</strong>清零是物理地址。</p>
+<ul>
+<li>不用通过cache存取，通常用于访问外部设备。</li>
+</ul>
+</li>
+<li><p><code>0xC000_0000-0xFFFF_FFFF(1GB)</code>:Mapped(kseg2),MMU支持。</p>
+</li>
+</ul>
+<h4 id="MIPS-ROM-Flash启动地址"><a href="#MIPS-ROM-Flash启动地址" class="headerlink" title="MIPS ROM/Flash启动地址"></a>MIPS ROM/Flash启动地址</h4><ul>
+<li>在kseg0中选择</li>
+<li>0xBFC0_0000</li>
+</ul>
+<h4 id="OS引导过程"><a href="#OS引导过程" class="headerlink" title="OS引导过程"></a>OS引导过程</h4><ul>
+<li>Head.s<ul>
+<li>完成内核堆栈初始化</li>
+<li>将未初始化段清零(bss)</li>
+<li><code>start_kernel()</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="X86"><a href="#X86" class="headerlink" title="X86"></a>X86</h3><h4 id="启动过程（与OS无关）"><a href="#启动过程（与OS无关）" class="headerlink" title="启动过程（与OS无关）"></a>启动过程（与OS无关）</h4><h5 id="第一步-启动BIOS"><a href="#第一步-启动BIOS" class="headerlink" title="第一步 启动BIOS"></a>第一步 启动BIOS</h5><ul>
+<li>turn on</li>
+<li>BIOS（固化在ROM中的程序）<ul>
+<li>放在<code>0xF_FFF0</code></li>
+</ul>
+</li>
+<li>加电自检(POST)</li>
+</ul>
+<blockquote>
+<p> UEFI</p>
+<ul>
+<li>支持大硬盘引导</li>
+<li>可移植性好</li>
+</ul>
+</blockquote>
+<h5 id="第二步-读取MBR"><a href="#第二步-读取MBR" class="headerlink" title="第二步 读取MBR"></a>第二步 读取MBR</h5><p>MBR(Master Boot Record)：主引导记录，位于<strong>第0磁头的第0磁道的第1个扇区</strong>，大小是512字节。存放了启动信息、分区表信息。</p>
+<blockquote>
+<p>扇区(sector)</p>
+<ul>
+<li>磁道上的弧段</li>
+</ul>
+<p>磁道(track)</p>
+<ul>
+<li>盘片上的同心圆</li>
+</ul>
+<p>柱面(cylinder)</p>
+<ul>
+<li>不同盘片同半径的磁道构成的柱面</li>
+</ul>
+<p>磁头(head)</p>
+<ul>
+<li>每个磁盘有两个面，每个面都有一个磁头。</li>
+</ul>
+</blockquote>
+<ul>
+<li>寻找可启动的设备（硬盘扇区）</li>
+<li>把MBR加载进内存</li>
+</ul>
+<blockquote>
+<p>MBR = 启动代码 + 数据 + 分区表(DPT,Disk Partition Table) + 幻数(Magic Number)</p>
+<p>启动代码 + 数据：0-446字节，存放<em>bootloader</em>.</p>
+<p>分区表：447-510字节，四个分区项，各分区有16字节。</p>
+<ul>
+<li>第1字节：引导标志，80H表示活动分区，00H表示非活动。（装系统时用于激活）</li>
+</ul>
+<p>幻数：511-512字节，固定装入<code>AA</code>和<code>55</code>,如果MBR没有这两个幻数，则是没有被分区（安装了OS）的硬盘。</p>
+</blockquote>
+<h5 id="第三步-BIOS将控制权交给OS-BootLoader"><a href="#第三步-BIOS将控制权交给OS-BootLoader" class="headerlink" title="第三步 BIOS将控制权交给OS BootLoader"></a>第三步 BIOS将控制权交给<code>OS BootLoader</code></h5><ul>
+<li>初始化硬件，所以Bootloder十分依赖硬件。</li>
+<li>建立内存映射</li>
+<li>准备调用系统内核<ul>
+<li>GRUB和LILO是<code>Linux</code>加载器，也可以加载<code>Windows</code>.</li>
+<li>GRUB和LILO可以放在MBR中，也可以放在活动分区的第一个扇区内（推荐）。</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>内核镜像(Kernel Image) = 引导代码 + 启动代码 + 压缩的OS代码</p>
+</blockquote>
+<h4 id="OS引导过程-1"><a href="#OS引导过程-1" class="headerlink" title="OS引导过程"></a>OS引导过程</h4><p>bootloader-&gt;kernel-&gt;init</p>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ul>
+<li>Modern Operating System, Fourth Edition.</li>
+<li>BUAA OS Lecture, Spring Of 2020.</li>
+</ul>
 
     </div>
 
@@ -341,10 +426,13 @@
 
         
     <div class="post-nav">
-      <div class="post-nav-item"></div>
       <div class="post-nav-item">
-    <a href="/2020/07/04/Chapter4-1-inode%E8%A7%A3%E6%9E%90/" rel="next" title="Chapter4-1-inode解析">
-      Chapter4-1-inode解析 <i class="fa fa-chevron-right"></i>
+    <a href="/2020/07/04/Chapter0-%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%BC%95%E8%AE%BA/" rel="prev" title="Chapter0-操作系统引论">
+      <i class="fa fa-chevron-left"></i> Chapter0-操作系统引论
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/07/04/Chapter1-%E7%A8%8B%E5%BA%8F%E3%80%81%E8%BF%9B%E7%A8%8B%E5%92%8C%E7%BA%BF%E7%A8%8B/" rel="next" title="Chapter1-程序、进程和线程">
+      Chapter1-程序、进程和线程 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
