@@ -90,6 +90,8 @@
   </style>
 </noscript>
 
+<link rel="alternate" href="/atom.xml" title="Silence" type="application/atom+xml">
+<link rel="alternate" href="/rss2.xml" title="Silence" type="application/rss+xml">
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
@@ -181,8 +183,10 @@
 
       <section class="site-overview-wrap sidebar-panel">
         <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Silence"
+      src="https://i.loli.net/2020/07/05/Ml7X4UshoCJgn52.jpg">
   <p class="site-author-name" itemprop="name">Silence</p>
-  <div class="site-description" itemprop="description">A personal blog of Silence.</div>
+  <div class="site-description" itemprop="description">I'm right here waiting for you.</div>
 </div>
 <div class="site-state-wrap animated">
   <nav class="site-state">
@@ -243,9 +247,9 @@
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/04/Chapter5-%E5%AE%89%E5%85%A8/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="https://i.loli.net/2020/07/05/Ml7X4UshoCJgn52.jpg">
       <meta itemprop="name" content="Silence">
-      <meta itemprop="description" content="A personal blog of Silence.">
+      <meta itemprop="description" content="I'm right here waiting for you.">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -455,6 +459,25 @@
     
     
     
+        
+
+  <div class="followme">
+    <p>Welcome to my other publishing channels</p>
+
+    <div class="social-list">
+
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="/atom.xml">
+            <span class="icon">
+              <i class="fa fa-rss"></i>
+            </span>
+
+            <span class="label">RSS</span>
+          </a>
+        </div>
+    </div>
+  </div>
+
 
       <footer class="post-footer">
 
@@ -464,12 +487,12 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2020/07/04/Chapter0-1-%E7%B3%BB%E7%BB%9F%E5%BC%95%E5%AF%BC/" rel="prev" title="Chapter0-1-系统引导">
-      <i class="fa fa-chevron-left"></i> Chapter0-1-系统引导
+    <a href="/2020/07/04/Chpater6-%E7%A7%BB%E5%8A%A8%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" rel="prev" title="Chpater6-移动操作系统">
+      <i class="fa fa-chevron-left"></i> Chpater6-移动操作系统
     </a></div>
       <div class="post-nav-item">
-    <a href="/2020/07/04/Chpater6-%E7%A7%BB%E5%8A%A8%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" rel="next" title="Chpater6-移动操作系统">
-      Chpater6-移动操作系统 <i class="fa fa-chevron-right"></i>
+    <a href="/2020/07/04/Chapter4-%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F/" rel="next" title="Chapter4-文件系统">
+      Chapter4-文件系统 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -516,6 +539,7 @@
 
         
 
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 <div class="copyright">
   
   &copy; 
@@ -525,7 +549,18 @@
   </span>
   <span class="author" itemprop="copyrightHolder">Silence</span>
 </div>
-  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
+
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  Visitors: <span id="busuanzi_value_site_pv"></span>
+</span>
+</div>
+
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">|   total: 32.7k words</span>
+</div>
+  <div class="powered-by">
   </div>
 
         
@@ -569,6 +604,19 @@
 
 
 
+<script>
+if (document.querySelectorAll('pre.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
+    mermaid.initialize({
+      theme    : 'forest',
+      logLevel : 3,
+      flowchart: { curve     : 'linear' },
+      gantt    : { axisFormat: '%m/%d/%Y' },
+      sequence : { actorMargin: 50 }
+    });
+  }, window.mermaid);
+}
+</script>
 
 
   

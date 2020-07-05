@@ -90,6 +90,8 @@
   </style>
 </noscript>
 
+<link rel="alternate" href="/atom.xml" title="Silence" type="application/atom+xml">
+<link rel="alternate" href="/rss2.xml" title="Silence" type="application/rss+xml">
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
@@ -181,8 +183,10 @@
 
       <section class="site-overview-wrap sidebar-panel">
         <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Silence"
+      src="https://i.loli.net/2020/07/05/Ml7X4UshoCJgn52.jpg">
   <p class="site-author-name" itemprop="name">Silence</p>
-  <div class="site-description" itemprop="description">A personal blog of Silence.</div>
+  <div class="site-description" itemprop="description">I'm right here waiting for you.</div>
 </div>
 <div class="site-state-wrap animated">
   <nav class="site-state">
@@ -243,9 +247,9 @@
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/04/Chapter3-%E8%AE%BE%E5%A4%87%E7%AE%A1%E7%90%86/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="https://i.loli.net/2020/07/05/Ml7X4UshoCJgn52.jpg">
       <meta itemprop="name" content="Silence">
-      <meta itemprop="description" content="A personal blog of Silence.">
+      <meta itemprop="description" content="I'm right here waiting for you.">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -767,6 +771,25 @@
     
     
     
+        
+
+  <div class="followme">
+    <p>Welcome to my other publishing channels</p>
+
+    <div class="social-list">
+
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="/atom.xml">
+            <span class="icon">
+              <i class="fa fa-rss"></i>
+            </span>
+
+            <span class="label">RSS</span>
+          </a>
+        </div>
+    </div>
+  </div>
+
 
       <footer class="post-footer">
 
@@ -776,8 +799,8 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2020/07/04/Chapter2-1-%E5%88%86%E9%A1%B5%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86%E5%8F%8A%E8%AE%BE%E8%AE%A1/" rel="prev" title="Chapter2-1-分页系统管理及设计">
-      <i class="fa fa-chevron-left"></i> Chapter2-1-分页系统管理及设计
+    <a href="/2020/07/04/Chapter4-1-inode%E8%A7%A3%E6%9E%90/" rel="prev" title="Chapter4-1-inode解析">
+      <i class="fa fa-chevron-left"></i> Chapter4-1-inode解析
     </a></div>
       <div class="post-nav-item">
     <a href="/2020/07/04/Chapter3-1-%E7%A3%81%E7%9B%98%E5%AD%98%E5%82%A8%E7%AE%A1%E7%90%86/" rel="next" title="Chapter3-1-磁盘存储管理">
@@ -828,6 +851,7 @@
 
         
 
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 <div class="copyright">
   
   &copy; 
@@ -837,7 +861,18 @@
   </span>
   <span class="author" itemprop="copyrightHolder">Silence</span>
 </div>
-  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
+
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  Visitors: <span id="busuanzi_value_site_pv"></span>
+</span>
+</div>
+
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">|   total: 32.7k words</span>
+</div>
+  <div class="powered-by">
   </div>
 
         
@@ -881,6 +916,19 @@
 
 
 
+<script>
+if (document.querySelectorAll('pre.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
+    mermaid.initialize({
+      theme    : 'forest',
+      logLevel : 3,
+      flowchart: { curve     : 'linear' },
+      gantt    : { axisFormat: '%m/%d/%Y' },
+      sequence : { actorMargin: 50 }
+    });
+  }, window.mermaid);
+}
+</script>
 
 
   

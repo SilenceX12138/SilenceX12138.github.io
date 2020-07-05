@@ -1,0 +1,336 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Silence</title>
+  <icon>http://yoursite.com/icon.png</icon>
+  
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="http://yoursite.com/"/>
+  <updated>2020-07-05T04:10:56.373Z</updated>
+  <id>http://yoursite.com/</id>
+  
+  <author>
+    <name>Silence</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>JavaScript-Chapter0基础</title>
+    <link href="http://yoursite.com/2020/07/05/JavaScript-Chapter0%E5%9F%BA%E7%A1%80/"/>
+    <id>http://yoursite.com/2020/07/05/JavaScript-Chapter0%E5%9F%BA%E7%A1%80/</id>
+    <published>2020-07-05T03:54:22.805Z</published>
+    <updated>2020-07-05T04:10:56.373Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;全文共&lt;code&gt;2099&lt;/code&gt;字，推荐阅读时间&lt;code&gt;10~15&lt;/code&gt;分钟。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="JavaScript" scheme="http://yoursite.com/categories/JavaScript/"/>
+    
+      <category term="Web" scheme="http://yoursite.com/categories/Web/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Chapter4-文件系统</title>
+    <link href="http://yoursite.com/2020/07/04/Chapter4-%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F/"/>
+    <id>http://yoursite.com/2020/07/04/Chapter4-%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F/</id>
+    <published>2020-07-04T08:05:30.932Z</published>
+    <updated>2020-07-04T08:11:46.444Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;全文共&lt;code&gt;3454&lt;/code&gt;字，推荐阅读时间&lt;code&gt;15~20&lt;/code&gt;分钟&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="Linux" scheme="http://yoursite.com/categories/Linux/"/>
+    
+      <category term="Operating System" scheme="http://yoursite.com/categories/Operating-System/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Chapter5-安全</title>
+    <link href="http://yoursite.com/2020/07/04/Chapter5-%E5%AE%89%E5%85%A8/"/>
+    <id>http://yoursite.com/2020/07/04/Chapter5-%E5%AE%89%E5%85%A8/</id>
+    <published>2020-07-04T08:05:30.932Z</published>
+    <updated>2020-07-04T08:10:50.948Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;全文共&lt;code&gt;1172&lt;/code&gt;字，推荐阅读时间&lt;code&gt;7~10&lt;/code&gt;分钟。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="Linux" scheme="http://yoursite.com/categories/Linux/"/>
+    
+      <category term="Operating System" scheme="http://yoursite.com/categories/Operating-System/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Chpater6-移动操作系统</title>
+    <link href="http://yoursite.com/2020/07/04/Chpater6-%E7%A7%BB%E5%8A%A8%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"/>
+    <id>http://yoursite.com/2020/07/04/Chpater6-%E7%A7%BB%E5%8A%A8%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/</id>
+    <published>2020-07-04T08:05:30.932Z</published>
+    <updated>2020-07-04T08:11:56.974Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;全文共&lt;code&gt;505&lt;/code&gt;字，推荐阅读时间&lt;code&gt;5~7&lt;/code&gt;分钟。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="Linux" scheme="http://yoursite.com/categories/Linux/"/>
+    
+      <category term="Operating System" scheme="http://yoursite.com/categories/Operating-System/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Chapter0-1-系统引导</title>
+    <link href="http://yoursite.com/2020/07/04/Chapter0-1-%E7%B3%BB%E7%BB%9F%E5%BC%95%E5%AF%BC/"/>
+    <id>http://yoursite.com/2020/07/04/Chapter0-1-%E7%B3%BB%E7%BB%9F%E5%BC%95%E5%AF%BC/</id>
+    <published>2020-07-04T08:05:30.916Z</published>
+    <updated>2020-07-04T08:09:37.970Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;全文共&lt;code&gt;752&lt;/code&gt;字，推荐阅读时间&lt;code&gt;5~10&lt;/code&gt;分钟。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="Linux" scheme="http://yoursite.com/categories/Linux/"/>
+    
+      <category term="Operating System" scheme="http://yoursite.com/categories/Operating-System/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Chapter0-操作系统引论</title>
+    <link href="http://yoursite.com/2020/07/04/Chapter0-%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%BC%95%E8%AE%BA/"/>
+    <id>http://yoursite.com/2020/07/04/Chapter0-%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%BC%95%E8%AE%BA/</id>
+    <published>2020-07-04T08:05:30.916Z</published>
+    <updated>2020-07-04T08:10:00.484Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;strong&gt;全文共&lt;code&gt;2443&lt;/code&gt;字，推荐阅读时间&lt;code&gt;10~15&lt;/code&gt;分钟。&lt;/strong&gt;&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="Linux" scheme="http://yoursite.com/categories/Linux/"/>
+    
+      <category term="Operating System" scheme="http://yoursite.com/categories/Operating-System/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Chapter1-1-进程、线程与并发</title>
+    <link href="http://yoursite.com/2020/07/04/Chapter1-1-%E8%BF%9B%E7%A8%8B%E3%80%81%E7%BA%BF%E7%A8%8B%E4%B8%8E%E5%B9%B6%E5%8F%91/"/>
+    <id>http://yoursite.com/2020/07/04/Chapter1-1-%E8%BF%9B%E7%A8%8B%E3%80%81%E7%BA%BF%E7%A8%8B%E4%B8%8E%E5%B9%B6%E5%8F%91/</id>
+    <published>2020-07-04T08:05:30.916Z</published>
+    <updated>2020-07-04T08:10:07.763Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;全文共&lt;code&gt;3661&lt;/code&gt;字，推荐阅读时间&lt;code&gt;15~30&lt;/code&gt;分钟。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="Linux" scheme="http://yoursite.com/categories/Linux/"/>
+    
+      <category term="Operating System" scheme="http://yoursite.com/categories/Operating-System/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Chapter1-2-进程同步</title>
+    <link href="http://yoursite.com/2020/07/04/Chapter1-2-%E8%BF%9B%E7%A8%8B%E5%90%8C%E6%AD%A5/"/>
+    <id>http://yoursite.com/2020/07/04/Chapter1-2-%E8%BF%9B%E7%A8%8B%E5%90%8C%E6%AD%A5/</id>
+    <published>2020-07-04T08:05:30.916Z</published>
+    <updated>2020-07-04T08:10:16.049Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;全文共&lt;code&gt;6329&lt;/code&gt;字，推荐阅读时间&lt;code&gt;30~45&lt;/code&gt;分钟。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="Linux" scheme="http://yoursite.com/categories/Linux/"/>
+    
+      <category term="Operating System" scheme="http://yoursite.com/categories/Operating-System/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Chapter2-1-分页系统管理及设计</title>
+    <link href="http://yoursite.com/2020/07/04/Chapter2-1-%E5%88%86%E9%A1%B5%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86%E5%8F%8A%E8%AE%BE%E8%AE%A1/"/>
+    <id>http://yoursite.com/2020/07/04/Chapter2-1-%E5%88%86%E9%A1%B5%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86%E5%8F%8A%E8%AE%BE%E8%AE%A1/</id>
+    <published>2020-07-04T08:05:30.916Z</published>
+    <updated>2020-07-04T08:10:27.445Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;全文共&lt;code&gt;3463&lt;/code&gt;字，推荐阅读时间&lt;code&gt;15~20&lt;/code&gt;分钟。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="Linux" scheme="http://yoursite.com/categories/Linux/"/>
+    
+      <category term="Operating System" scheme="http://yoursite.com/categories/Operating-System/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Chapter2-内存管理</title>
+    <link href="http://yoursite.com/2020/07/04/Chapter2-%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/"/>
+    <id>http://yoursite.com/2020/07/04/Chapter2-%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/</id>
+    <published>2020-07-04T08:05:30.916Z</published>
+    <updated>2020-07-04T08:10:32.244Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;全文共&lt;code&gt;1684&lt;/code&gt;字，推荐阅读时间&lt;code&gt;7~10&lt;/code&gt;分钟。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="Linux" scheme="http://yoursite.com/categories/Linux/"/>
+    
+      <category term="Operating System" scheme="http://yoursite.com/categories/Operating-System/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Chapter1-程序、进程和线程</title>
+    <link href="http://yoursite.com/2020/07/04/Chapter1-%E7%A8%8B%E5%BA%8F%E3%80%81%E8%BF%9B%E7%A8%8B%E5%92%8C%E7%BA%BF%E7%A8%8B/"/>
+    <id>http://yoursite.com/2020/07/04/Chapter1-%E7%A8%8B%E5%BA%8F%E3%80%81%E8%BF%9B%E7%A8%8B%E5%92%8C%E7%BA%BF%E7%A8%8B/</id>
+    <published>2020-07-04T08:05:30.916Z</published>
+    <updated>2020-07-04T08:10:22.106Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;strong&gt;全文共&lt;code&gt;1327&lt;/code&gt;字，推荐阅读时间&lt;code&gt;7~10&lt;/code&gt;分钟。&lt;/strong&gt;&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="Linux" scheme="http://yoursite.com/categories/Linux/"/>
+    
+      <category term="Operating System" scheme="http://yoursite.com/categories/Operating-System/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Chapter3-1-磁盘存储管理</title>
+    <link href="http://yoursite.com/2020/07/04/Chapter3-1-%E7%A3%81%E7%9B%98%E5%AD%98%E5%82%A8%E7%AE%A1%E7%90%86/"/>
+    <id>http://yoursite.com/2020/07/04/Chapter3-1-%E7%A3%81%E7%9B%98%E5%AD%98%E5%82%A8%E7%AE%A1%E7%90%86/</id>
+    <published>2020-07-04T08:05:30.916Z</published>
+    <updated>2020-07-04T08:10:40.161Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;全文共&lt;code&gt;1685&lt;/code&gt;字，推荐阅读时间&lt;code&gt;10~15&lt;/code&gt;分钟。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="Linux" scheme="http://yoursite.com/categories/Linux/"/>
+    
+      <category term="Operating System" scheme="http://yoursite.com/categories/Operating-System/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Chapter3-设备管理</title>
+    <link href="http://yoursite.com/2020/07/04/Chapter3-%E8%AE%BE%E5%A4%87%E7%AE%A1%E7%90%86/"/>
+    <id>http://yoursite.com/2020/07/04/Chapter3-%E8%AE%BE%E5%A4%87%E7%AE%A1%E7%90%86/</id>
+    <published>2020-07-04T08:05:30.916Z</published>
+    <updated>2020-07-04T08:11:24.952Z</updated>
+    
+    <summary type="html">
+    
+      &lt;ul&gt;
+&lt;li&gt;全文共&lt;code&gt;4275&lt;/code&gt;字，推荐阅读时间&lt;code&gt;15~20&lt;/code&gt;分钟&lt;/li&gt;
+&lt;/ul&gt;
+    
+    </summary>
+    
+    
+      <category term="Linux" scheme="http://yoursite.com/categories/Linux/"/>
+    
+      <category term="Operating System" scheme="http://yoursite.com/categories/Operating-System/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Chapter4-1-inode解析</title>
+    <link href="http://yoursite.com/2020/07/04/Chapter4-1-inode%E8%A7%A3%E6%9E%90/"/>
+    <id>http://yoursite.com/2020/07/04/Chapter4-1-inode%E8%A7%A3%E6%9E%90/</id>
+    <published>2020-07-04T08:05:30.916Z</published>
+    <updated>2020-07-04T08:11:38.623Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;全文共&lt;code&gt;964&lt;/code&gt;字，推荐阅读时间&lt;code&gt;7~10&lt;/code&gt;分钟&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="Linux" scheme="http://yoursite.com/categories/Linux/"/>
+    
+      <category term="Operating System" scheme="http://yoursite.com/categories/Operating-System/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Ubuntu18.04 no wifi adapter found 解决方案</title>
+    <link href="http://yoursite.com/2020/07/04/Ubuntu18.04%20no%20wifi%20adapter%20found%20%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/"/>
+    <id>http://yoursite.com/2020/07/04/Ubuntu18.04%20no%20wifi%20adapter%20found%20%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/</id>
+    <published>2020-07-04T02:26:25.960Z</published>
+    <updated>2020-07-04T07:52:26.039Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;strong&gt;重要的事说在前面&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;很重要！很重要！很重要！&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;以下教程仅适用于&lt;u&gt;intel&lt;/u&gt;系列无线网卡,至于其他例如broadcom等，只能提供一个参考思路。&lt;/strong&gt;&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="Linux" scheme="http://yoursite.com/categories/Linux/"/>
+    
+    
+  </entry>
+  
+</feed>
