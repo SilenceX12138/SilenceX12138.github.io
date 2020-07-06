@@ -310,7 +310,6 @@
       
         <p>全文共<code>3463</code>字，推荐阅读时间<code>15~20</code>分钟。</p>
 <a id="more"></a>
-
 <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><ul>
 <li>发生缺页中断时，OS必须在内存中选择一个页面将其换出内存，以便为即将调入的页面腾出空间。</li>
 <li>置换算法存在于许多领域<ul>
@@ -473,8 +472,7 @@
 <li>当工作集基本稳定之后，当程序<strong>重新开始</strong>时，就有可能根据上次<strong>结束</strong>时的工作集进行一个推测，从而在本次程序开始运行前进行<strong>预调页</strong>操作。</li>
 </ul>
 </li>
-<li><p>若每执行几条指令就发生一次缺页中断，则称这个程序发生了<strong>颠簸</strong>。</p>
-</li>
+<li>若每执行几条指令就发生一次缺页中断，则称这个程序发生了<strong>颠簸</strong>。</li>
 </ul>
 <h3 id="实现-8"><a href="#实现-8" class="headerlink" title="实现"></a>实现</h3><ul>
 <li>设置一个时间窗口<code>t</code>，每个<strong>页框</strong>在原有基础上增加对<strong>上次使用时间</strong>的记录。</li>
@@ -559,6 +557,7 @@
 <li><p>全局</p>
 </li>
 </ul>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -566,7 +565,8 @@
 <th>全局</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>每个进程有固定的内存片段</td>
 <td>各个进程的页框数随时间变化</td>
 </tr>
@@ -578,7 +578,9 @@
 <td>基于工作集的算法<strong>只有</strong>在局部策略下才有意义</td>
 <td>/</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <h3 id="缺页中断率算法-PFF"><a href="#缺页中断率算法-PFF" class="headerlink" title="缺页中断率算法(PFF)"></a>缺页中断率算法(PFF)</h3><h4 id="背景-1"><a href="#背景-1" class="headerlink" title="背景"></a>背景</h4><ul>
 <li>缺页中断率 = <strong>每秒</strong>的缺页中断数</li>
 </ul>
@@ -666,12 +668,12 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2020/07/04/Chapter3-1-%E7%A3%81%E7%9B%98%E5%AD%98%E5%82%A8%E7%AE%A1%E7%90%86/" rel="prev" title="Chapter3-1-磁盘存储管理">
-      <i class="fa fa-chevron-left"></i> Chapter3-1-磁盘存储管理
+    <a href="/2020/07/04/Chapter0-%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%BC%95%E8%AE%BA/" rel="prev" title="Chapter0-操作系统引论">
+      <i class="fa fa-chevron-left"></i> Chapter0-操作系统引论
     </a></div>
       <div class="post-nav-item">
-    <a href="/2020/07/04/Chapter1-1-%E8%BF%9B%E7%A8%8B%E3%80%81%E7%BA%BF%E7%A8%8B%E4%B8%8E%E5%B9%B6%E5%8F%91/" rel="next" title="Chapter1-1-进程、线程与并发">
-      Chapter1-1-进程、线程与并发 <i class="fa fa-chevron-right"></i>
+    <a href="/2020/07/04/Chapter0-1-%E7%B3%BB%E7%BB%9F%E5%BC%95%E5%AF%BC/" rel="next" title="Chapter0-1-系统引导">
+      Chapter0-1-系统引导 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -797,6 +799,8 @@ if (document.querySelectorAll('pre.mermaid').length) {
 }
 </script>
 
+
+  
 
   
 

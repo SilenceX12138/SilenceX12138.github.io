@@ -312,7 +312,6 @@
 <li>全文共<code>4275</code>字，推荐阅读时间<code>15~20</code>分钟</li>
 </ul>
 <a id="more"></a>
-
 <ul>
 <li>若没有特殊说明，本文中I/O与IO等价。</li>
 <li>有输入输出功能的设备都叫做I/O设备，没有特殊说明时，设备等价于I/O设备。</li>
@@ -519,7 +518,6 @@
 </blockquote>
 <h2 id="I-O软件组成"><a href="#I-O软件组成" class="headerlink" title="I/O软件组成"></a>I/O软件组成</h2><p>分层设计</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">graph TD</span><br><span class="line"></span><br><span class="line">用户进程--&gt;与设备无关的软件</span><br><span class="line">与设备无关的软件--&gt;设备驱动程序</span><br><span class="line">设备驱动程序--&gt;硬件</span><br><span class="line"></span><br><span class="line">硬件--&gt;中断处理程序</span><br><span class="line">中断处理程序--&gt;设备驱动程序</span><br><span class="line">设备驱动程序--&gt;与设备无关的软件</span><br><span class="line">与设备无关的软件--&gt;用户进程</span><br></pre></td></tr></table></figure>
-
 <blockquote>
 <p>中断处理程序其实应该在硬件和设备驱动程序之间</p>
 </blockquote>
@@ -592,7 +590,7 @@
 <li>传送时间(M)：缓冲区-&gt;工作区</li>
 <li>处理时间(C)</li>
 <li><strong>一块数据平均</strong>处理时间：$max(T,C)+M$</li>
-<li>总运行时间 = 块数 * 平均处理时间 <strong>+ C</strong>（最后一块数据的处理没有和任何的IO设备输出并行）</li>
+<li>总运行时间 = 块数 <em> 平均处理时间 <em>*+ C</em></em>（最后一块数据的处理没有和任何的IO设备输出并行）</li>
 </ul>
 <blockquote>
 <p><strong>输出</strong>和<strong>处理</strong>可以并行</p>
@@ -698,7 +696,6 @@
 </li>
 <li><p>输入进程SPi和输出进程SPo</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">graph LR</span><br><span class="line"></span><br><span class="line">输入进程--&gt;输入井</span><br><span class="line">输入井--&gt;内存</span><br><span class="line"></span><br><span class="line">输出进程--&gt;内存</span><br><span class="line">内存--&gt;输出井</span><br><span class="line">输出井--&gt;内存</span><br><span class="line">内存--&gt;输出设备</span><br></pre></td></tr></table></figure>
-
 </li>
 </ul>
 <h4 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h4><ul>
@@ -750,9 +747,6 @@
 <li><p>I/O的五种实现方式和之前提到的<strong>设备中断处理程序</strong>之间有关系吗</p>
 <p>除了名字相同之外<strong>没有关系</strong></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">graph TD</span><br><span class="line">process--&gt;kernel</span><br><span class="line">kernel--&gt;peripheral</span><br></pre></td></tr></table></figure>
-
-
-
 </li>
 </ul>
 <ul>
@@ -910,6 +904,8 @@ if (document.querySelectorAll('pre.mermaid').length) {
 }
 </script>
 
+
+  
 
   
 

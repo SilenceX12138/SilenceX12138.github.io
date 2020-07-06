@@ -308,11 +308,9 @@
 <p><strong>很重要！很重要！很重要！</strong></p>
 <p><strong>以下教程仅适用于<u>intel</u>系列无线网卡,至于其他例如broadcom等，只能提供一个参考思路。</strong></p>
 <a id="more"></a>
-
 <hr>
 <h2 id="Problem-Description"><a href="#Problem-Description" class="headerlink" title="Problem Description"></a>Problem Description</h2><p>terminal中输入<code>lspci</code>,得到类似如下结果</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">~$ lspci</span><br><span class="line">00:14.3 Network controller: Intel Corporation Device 02f0</span><br><span class="line">00:15.0 Serial bus controller [0c80]: Intel Corporation Device 02e8</span><br><span class="line">……</span><br></pre></td></tr></table></figure>
-
 <p>其中Network controller本不应该对应笔记本的无线网卡，但是ubuntu系统和intel系列网卡兼容性一言难尽，导致系统误把网卡作为了controller。</p>
 <h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2><ol>
 <li><p><strong>升级系统内核(optional)</strong></p>
@@ -326,7 +324,7 @@
 <li><p>首先是确认网卡型号</p>
 <p>建议在windows下按照这篇<a href="https://blog.csdn.net/myuhua/article/details/99446855" target="_blank" rel="noopener">博客</a>进行操作</p>
 </li>
-<li><p>登陆intel<a href="https://wireless.wiki.kernel.org/en/users/drivers/iwlwifi" target="_blank" rel="noopener">驱动官网</a>:<a href="https://wireless.wiki.kernel.org/en/users/drivers/iwlwifi![image-20200203110455667](/home/silence/.config/Typora/typora-user-images/image-20200203110455667.png)" target="_blank" rel="noopener">https://wireless.wiki.kernel.org/en/users/drivers/iwlwifi![image-20200203110455667](/home/silence/.config/Typora/typora-user-images/image-20200203110455667.png)</a></p>
+<li><p>登陆intel<a href="https://wireless.wiki.kernel.org/en/users/drivers/iwlwifi" target="_blank" rel="noopener">驱动官网</a>:<a href="https://wireless.wiki.kernel.org/en/users/drivers/iwlwifi![image-20200203110455667](/home/silence/.config/Typora/typora-user-images/image-20200203110455667.png" target="_blank" rel="noopener">https://wireless.wiki.kernel.org/en/users/drivers/iwlwifi![image-20200203110455667](/home/silence/.config/Typora/typora-user-images/image-20200203110455667.png</a>)</p>
 </li>
 <li><p>查找到对应的型号后下载.tgz文件</p>
 </li>
@@ -487,6 +485,8 @@ if (document.querySelectorAll('pre.mermaid').length) {
 }
 </script>
 
+
+  
 
   
 

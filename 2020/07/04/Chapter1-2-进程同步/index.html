@@ -310,7 +310,6 @@
       
         <p>全文共<code>6329</code>字，推荐阅读时间<code>30~45</code>分钟。</p>
 <a id="more"></a>
-
 <h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><ul>
 <li><p>制约</p>
 <ul>
@@ -488,11 +487,9 @@
 <li>信号量初值设置为1</li>
 </ul>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">semaphore mutex = <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// p1</span></span><br><span class="line">P(mutex)</span><br><span class="line">a();</span><br><span class="line">V(mutex);</span><br><span class="line"></span><br><span class="line"><span class="comment">// p2</span></span><br><span class="line">P(mutex);</span><br><span class="line">b();</span><br><span class="line">V(mutex);</span><br></pre></td></tr></table></figure>
-
 <h4 id="汇合-Rendezvous"><a href="#汇合-Rendezvous" class="headerlink" title="汇合(Rendezvous)"></a>汇合(Rendezvous)</h4><ul>
 <li><p>两个进程的同步，使得a1永远在b2之前，b1永远在a2之前</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">semaphore aArrived = <span class="number">0</span>; <span class="comment">// not 1</span></span><br><span class="line">semaphore bArrived = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// P1</span></span><br><span class="line">a1();</span><br><span class="line">V(aArrived);</span><br><span class="line">P(bArrived);</span><br><span class="line">a2();</span><br><span class="line"></span><br><span class="line"><span class="comment">// P2</span></span><br><span class="line">b1();</span><br><span class="line">V(bArrived);</span><br><span class="line">P(aArrived);</span><br><span class="line">b2();</span><br></pre></td></tr></table></figure>
-
 </li>
 </ul>
 <h4 id="多路复用-Multiplex"><a href="#多路复用-Multiplex" class="headerlink" title="多路复用(Multiplex)"></a>多路复用(Multiplex)</h4><ul>
@@ -505,7 +502,6 @@
 </li>
 </ul>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">n = the number of threads</span><br><span class="line">count = <span class="number">0</span> <span class="comment"># threads arrive at barrier</span></span><br><span class="line">semaphore mutex = <span class="number">1</span> <span class="comment"># protect count</span></span><br><span class="line">semaphore barrier = <span class="number">0</span></span><br><span class="line"></span><br><span class="line">P(mutex)</span><br><span class="line">count = count + <span class="number">1</span></span><br><span class="line">V(mutex)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> count == n:</span><br><span class="line">    V(barrier)</span><br><span class="line">P(barrier)</span><br><span class="line">V(barrier)</span><br></pre></td></tr></table></figure>
-
 <blockquote>
 <p>注意在<code>count==n</code>时地进程也需要执行尾部的一对PV操作</p>
 </blockquote>
@@ -513,7 +509,6 @@
 <li>当出现多个临界资源时（多个对不同信号量的P操作），不正确的PV顺序可能会导致死锁。</li>
 </ul>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// p1</span></span><br><span class="line">P(mutex1); <span class="comment">// step 1</span></span><br><span class="line">P(mutex2); <span class="comment">// wait</span></span><br><span class="line">V(mutex2); <span class="comment">// cannot execute</span></span><br><span class="line">V(mutex1);</span><br><span class="line"></span><br><span class="line"><span class="comment">// p2</span></span><br><span class="line">P(mutex2); <span class="comment">// step 2</span></span><br><span class="line">P(mutex1); <span class="comment">// wait</span></span><br><span class="line">V(mutex1); <span class="comment">// cannot execute</span></span><br><span class="line">V(mutex2);</span><br></pre></td></tr></table></figure>
-
 <h4 id="AND型信号量集"><a href="#AND型信号量集" class="headerlink" title="AND型信号量集"></a>AND型信号量集</h4><ul>
 <li>同时需要<strong>多个</strong>资源且每种占用<strong>一个</strong>资源</li>
 <li>基本思想：将几个进程需要的所有资源一次性分配给其中一个进程，等它使用完它需要的资源后再释放。</li>
@@ -565,8 +560,7 @@
 </ul>
 </blockquote>
 <h3 id="进程通信-IPC-方法"><a href="#进程通信-IPC-方法" class="headerlink" title="进程通信(IPC)方法"></a>进程通信(IPC)方法</h3><h4 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h4><ul>
-<li><p>低级通信：只能传递<strong>状态和整数值</strong>（控制信息）</p>
-<ul>
+<li>低级通信：只能传递<strong>状态和整数值</strong>（控制信息）<ul>
 <li>进程互斥/同步采用的信号量和管程机制</li>
 </ul>
 </li>
@@ -583,8 +577,7 @@
 <li>只能用于<strong>父子</strong>进程/<strong>兄弟</strong>进程</li>
 </ul>
 </li>
-<li><p>有名管道：使用<code>mkfifo()</code>创建</p>
-</li>
+<li>有名管道：使用<code>mkfifo()</code>创建</li>
 </ul>
 <h4 id="消息传递"><a href="#消息传递" class="headerlink" title="消息传递"></a>消息传递</h4><ul>
 <li><p>通信原语</p>
@@ -603,7 +596,6 @@
 </li>
 <li><p>实现</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">semaphore buf_empty = N;</span><br><span class="line">semaphore buf_full = <span class="number">0</span>;</span><br><span class="line">semaphore mutex1 = <span class="number">1</span>; <span class="comment">// mem</span></span><br><span class="line">semaphore mutex2 = <span class="number">1</span>; <span class="comment">// PCB queue</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// send</span></span><br><span class="line">P(buf_empty);</span><br><span class="line">P(mutex1);</span><br><span class="line">dup_to_mem();</span><br><span class="line">V(mutex1);</span><br><span class="line"></span><br><span class="line">P(mutex2);</span><br><span class="line">add_to_queue();</span><br><span class="line">V(mutex2);</span><br><span class="line">V(buf_full);</span><br><span class="line"></span><br><span class="line"><span class="comment">// reveive</span></span><br><span class="line">P(buf_full);</span><br><span class="line">P(mutex1);</span><br><span class="line">dup_to_proc();</span><br><span class="line">V(mutex1);</span><br><span class="line"></span><br><span class="line">P(mutex2);</span><br><span class="line">del_from_queue();</span><br><span class="line">V(mutex2);</span><br><span class="line">V(buf_empty);</span><br></pre></td></tr></table></figure>
-
 <blockquote>
 <p>本质上也是一个生产者-消费者模型</p>
 <ul>
@@ -636,7 +628,6 @@
 <ul>
 <li><p>一般信号量集机制</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">semaphore readers = N;</span><br><span class="line">semaphore mutex = <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">cobegin&#123;</span><br><span class="line">    <span class="built_in">Process</span> Writer</span><br><span class="line">    SP(mutex,<span class="number">1</span>,<span class="number">1</span>;readers,N,<span class="number">0</span>);</span><br><span class="line">    <span class="built_in">write</span>();</span><br><span class="line">    SV(mutex,<span class="number">1</span>);</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">Process</span> Reader</span><br><span class="line">    SP(mutex,<span class="number">1</span>,<span class="number">0</span>;readers,<span class="number">1</span>,<span class="number">1</span>);</span><br><span class="line">    <span class="built_in">read</span>();</span><br><span class="line">    SV(readers,<span class="number">1</span>);</span><br><span class="line">&#125;coend</span><br></pre></td></tr></table></figure>
-
 <blockquote>
 <p>在写者中维护<code>mutex</code>，在读者中维护<code>readers</code>.</p>
 </blockquote>
@@ -667,7 +658,6 @@
 </li>
 </ul>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">int readers = <span class="number">0</span></span><br><span class="line">Semaphore mutex = <span class="number">1</span>		<span class="comment"># mutually exclusively access readers</span></span><br><span class="line">Semaphore roomEmpty = <span class="number">1</span></span><br><span class="line">Semaphore turnstile = <span class="number">1</span> <span class="comment"># use turnstile as a barrier to make it fair</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Reader</span></span><br><span class="line">P(turnstile)</span><br><span class="line">V(turnstile)</span><br><span class="line"></span><br><span class="line">P(mutex)</span><br><span class="line">readers += <span class="number">1</span></span><br><span class="line"><span class="keyword">if</span> (readers == <span class="number">1</span>):</span><br><span class="line">    P(roomEmpty) <span class="comment"># the first reader will lock the room</span></span><br><span class="line">V(mutex)</span><br><span class="line"></span><br><span class="line">read_in_critical_region()</span><br><span class="line"></span><br><span class="line">P(mutex)</span><br><span class="line">reader -= <span class="number">1</span></span><br><span class="line"><span class="keyword">if</span>(readers == <span class="number">0</span>):</span><br><span class="line">    V(roomEmpty) <span class="comment"># the last reader will unlock the room</span></span><br><span class="line">V(mutex)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Writer</span></span><br><span class="line">P(turnstile) <span class="comment"># wait in line of turnstile</span></span><br><span class="line">P(roomEmpty) <span class="comment"># wait in line of roomEmpty</span></span><br><span class="line"></span><br><span class="line">write_in_critical_region()</span><br><span class="line"></span><br><span class="line">V(roomEmpty) <span class="comment"># after writing, unlock the room.</span></span><br><span class="line">V(turnstile) <span class="comment"># after writing, reopen the turnstile.</span></span><br></pre></td></tr></table></figure>
-
 <blockquote>
 <p>在两个进程最开始都是获得<code>turnsile</code>，不会出现写者获得<code>turnsile</code>并且<code>roomEmpty</code>被锁定时的同时没有任何<strong>读进程</strong>在执行的死锁情况。（一定先有读进程获得了<code>turnsile</code>才会获得<code>roomEmpty</code>.</p>
 </blockquote>
@@ -694,7 +684,6 @@
 </li>
 </ul>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> CHAIRS 10</span></span><br><span class="line"><span class="keyword">int</span> waiting = <span class="number">0</span>;</span><br><span class="line">semaphore mutex = <span class="number">1</span>;</span><br><span class="line">semaphore clients = <span class="number">0</span>;</span><br><span class="line">semaphore barber = <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">cobegin&#123;</span><br><span class="line">    Barber</span><br><span class="line">    P(clients);</span><br><span class="line">    </span><br><span class="line">    P(mutex);</span><br><span class="line">    waiting -= <span class="number">1</span>;</span><br><span class="line">    V(mutex);</span><br><span class="line">    </span><br><span class="line">    cut();</span><br><span class="line">    V(barber);</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">Client</span></span><br><span class="line">    P(mutex);</span><br><span class="line">    <span class="keyword">if</span>(waiting == CHAIRS)</span><br><span class="line">    &#123;</span><br><span class="line">        V(mutex);</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    waiting += <span class="number">1</span>;</span><br><span class="line">    V(mutex)</span><br><span class="line">    </span><br><span class="line">    V(clients);</span><br><span class="line">    P(barber);</span><br><span class="line">    get_cut();</span><br><span class="line">&#125;coend</span><br></pre></td></tr></table></figure>
-
 <blockquote>
 <ul>
 <li><code>P</code>操作就是在排队，相当于是一个<code>while(conditionNotSatisfied);</code>阻塞。</li>
@@ -713,7 +702,6 @@
 </li>
 </ul>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> clients = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">int</span> next_id = <span class="number">0</span>;</span><br><span class="line">semaphore mutex = <span class="number">1</span>;</span><br><span class="line">semaphore next_mutex = <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">cobegin&#123;</span><br><span class="line">    Stuff</span><br><span class="line">    <span class="keyword">while</span>(<span class="number">1</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        P(mutex);</span><br><span class="line">        P(next_mutex);</span><br><span class="line">        <span class="keyword">if</span>(next_id == clients)</span><br><span class="line">        &#123;</span><br><span class="line">            V(next_mutex);</span><br><span class="line">            V(mutex);</span><br><span class="line">            <span class="keyword">continue</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        next_id += <span class="number">1</span>;</span><br><span class="line">        V(next_mutex);</span><br><span class="line">        V(mutex);</span><br><span class="line"></span><br><span class="line">        serve(next_id);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">Client</span></span><br><span class="line">    <span class="keyword">int</span> id;</span><br><span class="line">    P(mutex);</span><br><span class="line">    clients += <span class="number">1</span>;</span><br><span class="line">    id = clients;</span><br><span class="line">	V(mutex);</span><br><span class="line">    </span><br><span class="line">&#125;coend</span><br></pre></td></tr></table></figure>
-
 <blockquote>
 <ul>
 <li>此时人员不用<strong>唤醒柜台</strong>（柜台没有睡觉），柜台会自动进行服务，所以能够简化<code>stuff</code>信号量。</li>
@@ -728,7 +716,6 @@
 </li>
 </ul>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> a = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">int</span> b = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">semaphore sa = N; <span class="comment">// A - B</span></span><br><span class="line">semaphore sb = M; <span class="comment">// B - A</span></span><br><span class="line"></span><br><span class="line">cobegin</span><br><span class="line">&#123;</span><br><span class="line">	A</span><br><span class="line">    P(sa);</span><br><span class="line">   	a += <span class="number">1</span>;</span><br><span class="line">    V(sb);</span><br><span class="line">    </span><br><span class="line">    B</span><br><span class="line">    P(sb);</span><br><span class="line">    b += <span class="number">1</span>;</span><br><span class="line">    V(sa);</span><br><span class="line">&#125;coend</span><br></pre></td></tr></table></figure>
-
 <blockquote>
 <ul>
 <li>如果仓库容量有限，可以在两个进程的最前面加一个判断。</li>
@@ -740,7 +727,6 @@
 </ul>
 </blockquote>
 <h3 id="构建水分子-H2O"><a href="#构建水分子-H2O" class="headerlink" title="构建水分子(H2O)"></a>构建水分子(H<sub>2</sub>O)</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">oxygen = <span class="number">0</span></span><br><span class="line">hydrogen = <span class="number">0</span></span><br><span class="line">Semaphore mutex = <span class="number">1</span> <span class="comment"># only oxygen or hydrogen can be modified at a time</span></span><br><span class="line">Barrier barrier(<span class="number">3</span>)  <span class="comment"># after wait for three times, process can go on.</span></span><br><span class="line">Semaphore oxyQueue = <span class="number">0</span></span><br><span class="line">Semaphore hydroQueue = <span class="number">0</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># oxygen atom</span></span><br><span class="line">P(mutex)</span><br><span class="line">oxygen += <span class="number">1</span></span><br><span class="line"><span class="keyword">if</span> (hydrogen &gt;= <span class="number">2</span>):</span><br><span class="line">    V(hydrogenQueue)</span><br><span class="line">    V(hydrogenQueue)</span><br><span class="line">    hydrogen -= <span class="number">2</span></span><br><span class="line">    V(oxygenQueue)</span><br><span class="line">    oxygen -= <span class="number">1</span></span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    V(mutex)</span><br><span class="line">P(oxygenQueue)</span><br><span class="line">bond()</span><br><span class="line">barrier.wait()</span><br><span class="line">V(mutex) <span class="comment"># only oxygen thread has this V operation</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># hydrogen atom</span></span><br><span class="line">P(mutex)</span><br><span class="line">hydrogen += <span class="number">1</span></span><br><span class="line"><span class="keyword">if</span> (hydrogen &gt;= <span class="number">2</span> <span class="keyword">and</span> oxygen &gt;= <span class="number">1</span>):</span><br><span class="line">    V(hydrogenQueue)</span><br><span class="line">    V(hydrogenQueue)</span><br><span class="line">    hydrogen -= <span class="number">2</span></span><br><span class="line">    V(oxygenQueue)</span><br><span class="line">    oxygen -= <span class="number">1</span></span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    V(mutex)</span><br><span class="line">P(hydrogenQueue)</span><br><span class="line">bond()</span><br><span class="line">barrier.wait()</span><br></pre></td></tr></table></figure>
-
 <blockquote>
 <ul>
 <li>分子中有<strong>几个原子</strong>就开<strong>几个线程</strong></li>
@@ -900,7 +886,6 @@
 <li>每次只允许4个哲学家竞争餐具，则总有一个哲学家可以进餐完毕。（破除<strong>循环等待</strong>）</li>
 </ul>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">Semaphore dinners = <span class="number">4</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_forks</span><span class="params">(i)</span>:</span></span><br><span class="line">    dinners.wait()</span><br><span class="line">    </span><br><span class="line">    forks[right[i]].wait()</span><br><span class="line">    forks[left[i]].wait()</span><br><span class="line">    </span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">put_forks</span><span class="params">()</span>:</span></span><br><span class="line">    forks[right[i]].signal()</span><br><span class="line">    forks[left[i]].signal()</span><br><span class="line">    </span><br><span class="line">    dinners.signal()</span><br></pre></td></tr></table></figure>
-
 <ul>
 <li><p>假如至少一个左撇子和一个右撇子，则不会发生死锁。（反证法）（破除<strong>循环等待</strong>）</p>
 </li>
@@ -936,8 +921,6 @@
 <li><p>不安全状态：<strong>不存在</strong>安全序列使进程可以运行完毕</p>
 <blockquote>
 <p>系统进入不安全状态也<strong>不一定</strong>会产生死锁；但是产生死锁后，<strong>一定处于</strong>不安全状态。</p>
-</blockquote>
-<blockquote>
 <p>Q：为什么不安全状态不一定产生死锁</p>
 <p>A：不安全状态是由<strong>最大需求</strong>推导出的，但是实际上，可能在进程下一次真正申请资源时，资源条件已经得到满足，从而<strong>不产生</strong>死锁。</p>
 </blockquote>
@@ -1024,12 +1007,12 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2020/07/04/Chapter1-1-%E8%BF%9B%E7%A8%8B%E3%80%81%E7%BA%BF%E7%A8%8B%E4%B8%8E%E5%B9%B6%E5%8F%91/" rel="prev" title="Chapter1-1-进程、线程与并发">
-      <i class="fa fa-chevron-left"></i> Chapter1-1-进程、线程与并发
+    <a href="/2020/07/04/Chapter3-1-%E7%A3%81%E7%9B%98%E5%AD%98%E5%82%A8%E7%AE%A1%E7%90%86/" rel="prev" title="Chapter3-1-磁盘存储管理">
+      <i class="fa fa-chevron-left"></i> Chapter3-1-磁盘存储管理
     </a></div>
       <div class="post-nav-item">
-    <a href="/2020/07/04/Chapter0-%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%BC%95%E8%AE%BA/" rel="next" title="Chapter0-操作系统引论">
-      Chapter0-操作系统引论 <i class="fa fa-chevron-right"></i>
+    <a href="/2020/07/04/Chapter2-%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/" rel="next" title="Chapter2-内存管理">
+      Chapter2-内存管理 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -1155,6 +1138,8 @@ if (document.querySelectorAll('pre.mermaid').length) {
 }
 </script>
 
+
+  
 
   
 
