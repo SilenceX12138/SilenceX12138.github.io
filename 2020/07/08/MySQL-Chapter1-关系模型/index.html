@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  
+  <link rel="stylesheet" href="/lib/animate-css/animate.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Muse","version":"8.0.0-rc.4","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}}};
+  </script>
+
+  <meta name="description" content="关系模型全文共1315字，推荐阅读时间7~10分钟。 概述 关系数据库是建立在关系模型上的 关系模型本质上就是若干个存储数据的二维表（看作很多Excel表） 表的每一行称为记录(Record)，记录是一个逻辑意义上的数据。 表的每一列称为字段(Column)，同一个表的每一行记录都拥有相同类型的若干字段（列）。 字段定义数据类型 字段定义数据是否可以为NULL，NULL表示数据不存在，不是0&#x2F;空串">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MySQL-Chapter1-关系模型">
+<meta property="og:url" content="http://yoursite.com/2020/07/08/MySQL-Chapter1-%E5%85%B3%E7%B3%BB%E6%A8%A1%E5%9E%8B/index.html">
+<meta property="og:site_name" content="Silence">
+<meta property="og:description" content="关系模型全文共1315字，推荐阅读时间7~10分钟。 概述 关系数据库是建立在关系模型上的 关系模型本质上就是若干个存储数据的二维表（看作很多Excel表） 表的每一行称为记录(Record)，记录是一个逻辑意义上的数据。 表的每一列称为字段(Column)，同一个表的每一行记录都拥有相同类型的若干字段（列）。 字段定义数据类型 字段定义数据是否可以为NULL，NULL表示数据不存在，不是0&#x2F;空串">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-07-08T07:53:34.385Z">
+<meta property="article:modified_time" content="2020-07-08T07:51:59.816Z">
+<meta property="article:author" content="Silence">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://yoursite.com/2020/07/08/MySQL-Chapter1-%E5%85%B3%E7%B3%BB%E6%A8%A1%E5%9E%8B/">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>MySQL-Chapter1-关系模型 | Silence</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="Silence" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <main class="main">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+        <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+        <span class="toggle-line toggle-line-first"></span>
+        <span class="toggle-line toggle-line-middle"></span>
+        <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">Silence</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-lover">
+
+    <a href="/lover/" rel="section"><i class="fa fa-heart fa-fw"></i>lover</a>
+
+  </li>
+        <li class="menu-item menu-item-schedule">
+
+    <a href="/schedule/" rel="section"><i class="fa fa-calendar fa-fw"></i>Schedule</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <section class="post-toc-wrap sidebar-panel">
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#关系模型"><span class="nav-number">1.</span> <span class="nav-text">关系模型</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#概述"><span class="nav-number">1.1.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#主键"><span class="nav-number">1.2.</span> <span class="nav-text">主键</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#背景"><span class="nav-number">1.2.1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#定义"><span class="nav-number">1.2.2.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#应用"><span class="nav-number">1.2.3.</span> <span class="nav-text">应用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#联合主键"><span class="nav-number">1.2.4.</span> <span class="nav-text">联合主键</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#外键"><span class="nav-number">1.3.</span> <span class="nav-text">外键</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#定义-1"><span class="nav-number">1.3.1.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#一对多"><span class="nav-number">1.3.2.</span> <span class="nav-text">一对多</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#多对多"><span class="nav-number">1.3.3.</span> <span class="nav-text">多对多</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#一对一"><span class="nav-number">1.3.4.</span> <span class="nav-text">一对一</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#索引"><span class="nav-number">1.4.</span> <span class="nav-text">索引</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#定义-2"><span class="nav-number">1.4.1.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#创建"><span class="nav-number">1.4.2.</span> <span class="nav-text">创建</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#唯一索引"><span class="nav-number">1.4.3.</span> <span class="nav-text">唯一索引</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#意义"><span class="nav-number">1.4.4.</span> <span class="nav-text">意义</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reference"><span class="nav-number">1.5.</span> <span class="nav-text">Reference</span></a></li></ol></li></ol></div>
+      </section>
+      <!--/noindex-->
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Silence"
+      src="https://i.loli.net/2020/07/05/Ml7X4UshoCJgn52.jpg">
+  <p class="site-author-name" itemprop="name">Silence</p>
+  <div class="site-description" itemprop="description">I'm right here waiting for you.</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">21</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/SilenceX12138" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;SilenceX12138" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.instagram.com/silencejiang12138" title="Instagram → https:&#x2F;&#x2F;www.instagram.com&#x2F;silencejiang12138" rel="noopener" target="_blank"><i class="fab fa-instagram fa-fw"></i>Instagram</a>
+      </span>
+  </div>
+
+
+
+      </section>
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </header>
+
+      
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div id="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+      <div class="main-inner">
+        
+
+        <div class="content post posts-expand">
+          
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/08/MySQL-Chapter1-%E5%85%B3%E7%B3%BB%E6%A8%A1%E5%9E%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://i.loli.net/2020/07/05/Ml7X4UshoCJgn52.jpg">
+      <meta itemprop="name" content="Silence">
+      <meta itemprop="description" content="I'm right here waiting for you.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Silence">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          MySQL-Chapter1-关系模型
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2020-07-08 15:53:34 / Modified: 15:51:59" itemprop="dateCreated datePublished" datetime="2020-07-08T15:53:34+08:00">2020-07-08</time>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2020/07/08/MySQL-Chapter1-%E5%85%B3%E7%B3%BB%E6%A8%A1%E5%9E%8B/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/07/08/MySQL-Chapter1-%E5%85%B3%E7%B3%BB%E6%A8%A1%E5%9E%8B/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="关系模型"><a href="#关系模型" class="headerlink" title="关系模型"></a>关系模型</h1><p>全文共<code>1315</code>字，推荐阅读时间<code>7~10</code>分钟。</p>
+<h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><ul>
+<li>关系数据库是建立在关系模型上的</li>
+<li>关系模型本质上就是<strong>若干个</strong>存储数据的<strong>二维表</strong>（看作很多Excel表）</li>
+<li>表的<strong>每一行</strong>称为<strong>记录</strong>(Record)，记录是一个<strong>逻辑意义</strong>上的数据。</li>
+<li>表的<strong>每一列</strong>称为<strong>字段</strong>(Column)，同一个表的<strong>每一行</strong>记录都拥有<strong>相同类型</strong>的若干<strong>字段（列）</strong>。<ul>
+<li>字段定义数据类型</li>
+<li>字段定义数据是否可以为<code>NULL</code>，<code>NULL</code>表示数据<strong>不存在</strong>，<strong>不是</strong>0/空串。</li>
+</ul>
+</li>
+</ul>
+<h2 id="主键"><a href="#主键" class="headerlink" title="主键"></a>主键</h2><h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><ul>
+<li>记录需要一个<strong>唯一</strong>的标识来进行区分</li>
+<li>所有的记录的<strong>主键</strong>一定是不同的</li>
+</ul>
+<h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><ul>
+<li>主键是一个<strong>字段</strong></li>
+<li>主键是用来区分记录的，各个记录的主键字段值<strong>不能相同</strong>。</li>
+</ul>
+<blockquote>
+<p>主键在建立起字段后最后<strong>不要</strong>再进行修改</p>
+</blockquote>
+<h3 id="应用"><a href="#应用" class="headerlink" title="应用"></a>应用</h3><ul>
+<li><p>不能用业务相关的字段作为主键</p>
+<blockquote>
+<p>业务相关：变更不可控，例如身份证号的位数可能会发生<strong>变更</strong>。</p>
+</blockquote>
+</li>
+<li><p>不应该允许NULL</p>
+</li>
+<li><p>主键常命名为id</p>
+<ul>
+<li><p>自增整数类型(<code>BIGINT NOT_NULL AUTO_INCREMENT</code>)</p>
+<p>数据库会在插入数据时<strong>自动</strong>为每一条记录分配一个自增整数</p>
+</li>
+<li><p>全局唯一GUID类型</p>
+<p>使用一种全局唯一的字符串作为主键，类似<code>8f55d96b-8acc-4636-8cb8-76bf8abc2f57</code>。</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="联合主键"><a href="#联合主键" class="headerlink" title="联合主键"></a>联合主键</h3><ul>
+<li>关系数据库实际上还允许通过<strong>多个字段唯一标识记录</strong>，即<strong>两个或更多的字段</strong>都设置为主键，这种主键被称为联合主键。</li>
+</ul>
+<h2 id="外键"><a href="#外键" class="headerlink" title="外键"></a>外键</h2><h3 id="定义-1"><a href="#定义-1" class="headerlink" title="定义"></a>定义</h3><ul>
+<li><p>在表1中增加表2的主键id，命名为<code>table2_id</code>，即可在<strong>表一</strong>中查找到记录在<strong>表二</strong>中相关字段的索引。</p>
+<blockquote>
+<p>通常用来实现实现<strong>一对多</strong>关系：例如一个班级（<strong>表2</strong>）对应多个学生（<strong>表1</strong>）。</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="一对多"><a href="#一对多" class="headerlink" title="一对多"></a>一对多</h3><ul>
+<li><p><strong>正规外键</strong>不是通过新增字段实现的，而是通过定义外键约束实现的。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ALTER TABLE students</span><br><span class="line">ADD CONSTRAINT fk_class_id</span><br><span class="line">FOREIGN KEY (class_id)</span><br><span class="line">REFERENCES classes (id);</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>fk_class_id</code>：外键约束的名称，可以任意。</li>
+<li><code>FOREIGN KEY (class_id)</code>：指定<code>class_id</code>是<strong>外键</strong></li>
+<li><code>REFERENCES classes (id)</code>：指定将<code>class_id</code>这个外键关联到<code>classes</code>的<code>id</code><strong>主键</strong>上</li>
+</ul>
+</li>
+<li><p>通过定义外键约束，关系数据库可以保证<strong>无法插入</strong>无效的数据。即如果<code>classes</code>表<strong>不存在</strong><code>id=99</code>的记录，<code>students</code>表就<strong>无法</strong>插入<code>class_id=99</code>的记录。</p>
+</li>
+<li><p>由于外键约束会<strong>降低</strong>数据库的性能，可以采用变种外键，即<code>class_id</code>仅仅是一个<strong>普通的列</strong>，只是它<strong>起到了</strong>外键的作用而已。</p>
+</li>
+<li><p>删除外键约束</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ALTER TABLE students</span><br><span class="line">DROP FOREIGN KEY fk_class_id;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>删除外键约束<strong>并没有</strong>删除外键这一列。<strong>删除列</strong>是通过<code>DROP COLUMN ...</code>实现的。</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="多对多"><a href="#多对多" class="headerlink" title="多对多"></a>多对多</h3><ul>
+<li><p>通过两个一对多关系实现</p>
+<ul>
+<li><p>通过一张中间表，关联两个一对多关系。</p>
+<p>| id   | teacher_id | class_id |<br>| —— | ————— | ———— |<br>| 1    | 1          | 1        |<br>| 2    | 1          | 2        |<br>| 3    | 2          | 1        |<br>| 4    | 3          | 1        |</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="一对一"><a href="#一对一" class="headerlink" title="一对一"></a>一对一</h3><ul>
+<li>一个表的记录对应到另一个表的<strong>唯一一个</strong>记录</li>
+</ul>
+<blockquote>
+<p>一对一表理论上可以合并为一个表，但是一些应用会把一个大表拆成两个一对一的表，目的是把经常读取和不经常读取的字段分开，以获得<strong>更高的性能</strong>。</p>
+</blockquote>
+<h2 id="索引"><a href="#索引" class="headerlink" title="索引"></a>索引</h2><h3 id="定义-2"><a href="#定义-2" class="headerlink" title="定义"></a>定义</h3><ul>
+<li>为了在大数据库中取得较高的查找速度提出的方法</li>
+<li>索引是关系数据库中对<strong>某一列</strong>或<strong>多个列</strong>的<strong>值</strong>进行<strong>预排序</strong>的数据结构（本质是为了缩小查找的范围）</li>
+</ul>
+<h3 id="创建"><a href="#创建" class="headerlink" title="创建"></a>创建</h3><p>情景：经常根据列表的<code>score</code>字段进行查询</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ALTER TABLE students</span><br><span class="line">ADD INDEX idx_score (score);</span><br></pre></td></tr></table></figure>
+<p>索引名称是任意的，索引如果有多列，可以在括号里依次写上</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ALTER TABLE students</span><br><span class="line">ADD INDEX idx_name_score (name, score);</span><br></pre></td></tr></table></figure>
+<blockquote>
+<ul>
+<li>如果记录的列存在大量<strong>相同</strong>的值，例如<code>gender</code>列，大约一半的记录值是<code>M</code>，另一半是<code>F</code>，此时对该列创建索引就<strong>没有意义</strong>。</li>
+<li>索引越<strong>多</strong>，插入、更新和删除记录的速度就越<strong>慢</strong>。</li>
+<li>对于<strong>主键</strong>，关系数据库会<strong>自动</strong>对其创建主键索引。使用主键索引的效率是<strong>最高</strong>的，因为主键会保证绝对唯一。</li>
+</ul>
+</blockquote>
+<h3 id="唯一索引"><a href="#唯一索引" class="headerlink" title="唯一索引"></a>唯一索引</h3><ul>
+<li><p>当记录的该字段不会发生重复时，就可以为该列增加唯一索引。</p>
+<p>例如不重名时</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ALTER TABLE students</span><br><span class="line">ADD UNIQUE INDEX uni_name (name);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>唯一索引<strong>不是</strong>主键，例如身份证号，就算位数变化，也不影响唯一性，但是会影响主键的查找。</p>
+</li>
+</ul>
+<h3 id="意义"><a href="#意义" class="headerlink" title="意义"></a>意义</h3><p>当我们在数据库中查询时，如果有相应的索引可用，数据库系统就会<strong>自动使用索引</strong>来提高查询效率，如果没有索引，查询也能正常执行，只是速度会变慢。因此，索引可以在使用数据库的过程中<strong>逐步优化</strong>。</p>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ul>
+<li><a href="https://www.liaoxuefeng.com/" target="_blank" rel="noopener">https://www.liaoxuefeng.com/</a></li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/07/08/MySQL-Chapter2-%E6%95%B0%E6%8D%AE%E6%9F%A5%E8%AF%A2/" rel="prev" title="MySQL-Chapter2-数据查询">
+      <i class="fa fa-chevron-left"></i> MySQL-Chapter2-数据查询
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+        </div>
+        
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Silence</span>
+</div>
+
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  Visitors: <span id="busuanzi_value_site_pv"></span>
+</span>
+</div>
+
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">|   total: 41.4k words</span>
+</div>
+  <div class="powered-by">
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+if (document.querySelectorAll('pre.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
+    mermaid.initialize({
+      theme    : 'forest',
+      logLevel : 3,
+      flowchart: { curve     : 'linear' },
+      gantt    : { axisFormat: '%m/%d/%Y' },
+      sequence : { actorMargin: 50 }
+    });
+  }, window.mermaid);
+}
+</script>
+
+
+  
+
+  
+
+  
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/valine@1/dist/Valine.min.js', () => {
+    new Valine(Object.assign({
+      el  : '#valine-comments',
+      path: location.pathname,
+    }, {"enable":true,"appId":"GMneVEFPu4TwpvejAPqllWGc-gzGzoHsz","appKey":"5eNvc7SV1dxRT000WSXjRDuD","placeholder":"Just write what you'd like to write.","avatar":"mm","meta":["nick","mail"],"pageSize":10,"language":"en","visitor":false,"comment_count":true,"recordIP":false,"serverURLs":null}
+    ));
+  }, window.Valine);
+});
+</script>
+
+</body>
+</html>
