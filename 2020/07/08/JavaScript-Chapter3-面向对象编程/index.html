@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  
+  <link rel="stylesheet" href="/lib/animate-css/animate.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Muse","version":"8.0.0-rc.4","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}}};
+  </script>
+
+  <meta name="description" content="全文共1107字，推荐阅读时间7~10分钟。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaScript-Chapter3-面向对象编程">
+<meta property="og:url" content="http://yoursite.com/2020/07/08/JavaScript-Chapter3-%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%BC%96%E7%A8%8B/index.html">
+<meta property="og:site_name" content="Silence">
+<meta property="og:description" content="全文共1107字，推荐阅读时间7~10分钟。">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://static.liaoxuefeng.com/files/attachments/1024698721053600/l">
+<meta property="og:image" content="https://static.liaoxuefeng.com/files/attachments/1034288859918112/l">
+<meta property="article:published_time" content="2020-07-08T03:58:19.068Z">
+<meta property="article:modified_time" content="2020-07-08T03:59:13.050Z">
+<meta property="article:author" content="Silence">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://static.liaoxuefeng.com/files/attachments/1024698721053600/l">
+
+<link rel="canonical" href="http://yoursite.com/2020/07/08/JavaScript-Chapter3-%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%BC%96%E7%A8%8B/">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>JavaScript-Chapter3-面向对象编程 | Silence</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="Silence" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <main class="main">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+        <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+        <span class="toggle-line toggle-line-first"></span>
+        <span class="toggle-line toggle-line-middle"></span>
+        <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">Silence</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-lover">
+
+    <a href="/lover/" rel="section"><i class="fa fa-heart fa-fw"></i>lover</a>
+
+  </li>
+        <li class="menu-item menu-item-schedule">
+
+    <a href="/schedule/" rel="section"><i class="fa fa-calendar fa-fw"></i>Schedule</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <section class="post-toc-wrap sidebar-panel">
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#概述"><span class="nav-number">1.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#创建对象"><span class="nav-number">2.</span> <span class="nav-text">创建对象</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#构造函数"><span class="nav-number">2.1.</span> <span class="nav-text">构造函数</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#原型继承"><span class="nav-number">3.</span> <span class="nav-text">原型继承</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#class继承"><span class="nav-number">4.</span> <span class="nav-text">class继承</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reference"><span class="nav-number">5.</span> <span class="nav-text">Reference</span></a></li></ol></div>
+      </section>
+      <!--/noindex-->
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Silence"
+      src="https://i.loli.net/2020/07/05/Ml7X4UshoCJgn52.jpg">
+  <p class="site-author-name" itemprop="name">Silence</p>
+  <div class="site-description" itemprop="description">I'm right here waiting for you.</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">18</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/SilenceX12138" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;SilenceX12138" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.instagram.com/silencejiang12138" title="Instagram → https:&#x2F;&#x2F;www.instagram.com&#x2F;silencejiang12138" rel="noopener" target="_blank"><i class="fab fa-instagram fa-fw"></i>Instagram</a>
+      </span>
+  </div>
+
+
+
+      </section>
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </header>
+
+      
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div id="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+      <div class="main-inner">
+        
+
+        <div class="content post posts-expand">
+          
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/08/JavaScript-Chapter3-%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%BC%96%E7%A8%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://i.loli.net/2020/07/05/Ml7X4UshoCJgn52.jpg">
+      <meta itemprop="name" content="Silence">
+      <meta itemprop="description" content="I'm right here waiting for you.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Silence">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          JavaScript-Chapter3-面向对象编程
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2020-07-08 11:58:19 / Modified: 11:59:13" itemprop="dateCreated datePublished" datetime="2020-07-08T11:58:19+08:00">2020-07-08</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/JavaScript/" itemprop="url" rel="index"><span itemprop="name">JavaScript</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Web/" itemprop="url" rel="index"><span itemprop="name">Web</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2020/07/08/JavaScript-Chapter3-%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%BC%96%E7%A8%8B/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/07/08/JavaScript-Chapter3-%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%BC%96%E7%A8%8B/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>全文共<code>1107</code>字，推荐阅读时间<code>7~10</code>分钟。</p>
+<a id="more"></a>
+<h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>不同于Java，JavaScript的OO中没有Class和实例的概念。</p>
+<ul>
+<li><p>在JavaScript中，通过<strong>原型</strong>实现OO编程。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> Student = &#123;</span><br><span class="line">    name: <span class="string">'Robot'</span>,</span><br><span class="line">    height: <span class="number">1.2</span>,</span><br><span class="line">    run: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="keyword">this</span>.name + <span class="string">' is running...'</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> xiaoming = &#123;</span><br><span class="line">    name: <span class="string">'小明'</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">xiaoming.__proto__ = Student;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>定义一个模型变量<code>Student</code></p>
+</li>
+<li><p>通过修改对象的<code>__proto__</code>域可以实现对象的<strong>动态</strong>改变，但是在编程时<strong>不推荐</strong>使用这种方式创建对象。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> Bird = &#123;</span><br><span class="line">    fly: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="keyword">this</span>.name + <span class="string">' is flying...'</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">xiaoming.__proto__ = Bird;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>此时<code>xiaoming</code>就<strong>没有</strong><code>run</code>方法了</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li><p>JavaScript中所有对象<strong>都是实例</strong></p>
+</li>
+<li><p>使用封装好的<code>Object.create()</code>方法改变对象继承的原型</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> Student = &#123;</span><br><span class="line">    name: <span class="string">'Robot'</span>,</span><br><span class="line">    height: <span class="number">1.2</span>,</span><br><span class="line">    run: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="keyword">this</span>.name + <span class="string">'is running...'</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">createStudent</span>(<span class="params">name</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> s = <span class="built_in">Object</span>.create(Student);</span><br><span class="line">    s.name = name;</span><br><span class="line">    <span class="keyword">return</span> s;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> xiaoming = createStudent(<span class="string">'xiaoming'</span>);</span><br><span class="line">xiaoming.run();</span><br><span class="line">xiaoming.__proto___ === Student; <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="创建对象"><a href="#创建对象" class="headerlink" title="创建对象"></a>创建对象</h2><p>所有原型最后都会回到<code>null</code></p>
+<h3 id="构造函数"><a href="#构造函数" class="headerlink" title="构造函数"></a>构造函数</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Student</span>(<span class="params">name</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.name = name;</span><br><span class="line">    <span class="keyword">this</span>.hello = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        alert(<span class="string">'Hello, '</span> + <span class="keyword">this</span>.name + <span class="string">'!'</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> xiaoming = <span class="keyword">new</span> Student(<span class="string">'xiaoming'</span>);</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>如果不写<code>new</code>，则<code>Student</code>函数就是一个普通函数；如果写了<code>new</code>，则<code>Student</code>就是一个构造函数，它<strong>根据原型对象</strong>创建一个<strong>新对象</strong>并把<code>this</code>指向它，同时<strong>不需要</strong>显式<code>return</code>.</p>
+</li>
+<li><p><code>xiaoming</code><strong>从新对象</strong>得到了一个<code>constructor</code>属性，指向函数<code>Student</code>.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">xiaoming.constructor === Student.prototype.constructor; <span class="comment">// true</span></span><br><span class="line">Student === Student.prototype.constructor; <span class="comment">// true</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">Object</span>.getPrototypeOf(xiaoming) === Student.prototype; <span class="comment">// true</span></span><br><span class="line"></span><br><span class="line">xiaoming <span class="keyword">instanceof</span> Student; <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>关系示意图<br><img src="https://static.liaoxuefeng.com/files/attachments/1024698721053600/l"  /></p>
+<ul>
+<li>某个对象即构造函数对应的<strong>唯一的原型对象</strong></li>
+</ul>
+</li>
+<li><p>不同对象尽管由同一个原型对象创建得到，但是其中的属性除了<code>constructor</code>之外都是<strong>独立的</strong>。（但是访问<code>constructor</code>直接<code>xxx.constructor</code>，<strong>而不是</strong>使用<code>xxx.prototype.constructor</code>.）</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">xiaoming.name; <span class="comment">// '小明'</span></span><br><span class="line">xiaohong.name; <span class="comment">// '小红'</span></span><br><span class="line">xiaoming.hello; <span class="comment">// function: Student.hello()</span></span><br><span class="line">xiaohong.hello; <span class="comment">// function: Student.hello()</span></span><br><span class="line">xiaoming.hello === xiaohong.hello; <span class="comment">// false</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>对于可共享函数，可以采用直接对<strong>原型对象域</strong>操作的办法进行设置。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Student</span>(<span class="params">name</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.name = name;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Student.prototype.hello = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    alert(<span class="string">'Hello, '</span> + <span class="keyword">this</span>.name + <span class="string">'!'</span>);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>此时所有的<code>Student</code>对象共享同一个<code>hello</code></p>
+<blockquote>
+<p>构造函数中的属性都是独立的，直接在<code>prototype</code>中修改的就是共享的。</p>
+</blockquote>
+</li>
+<li><p>此时<code>this</code>指向调用<strong>该方法</strong>的对象</p>
+</li>
+<li><p><code>prototype</code>这个属性只有构造函数有，对象只有<code>__proto__</code>.</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>普通函数的首字母小写，构造函数的<strong>首字母大写</strong>。</p>
+</li>
+<li><p>为了省略显示<code>new</code>操作，可以进行封装。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Student</span>(<span class="params">props</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.name = props.name || <span class="string">'匿名'</span>; <span class="comment">// 默认值为'匿名'</span></span><br><span class="line">    <span class="keyword">this</span>.grade = props.grade || <span class="number">1</span>; <span class="comment">// 默认值为1</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Student.prototype.hello = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    alert(<span class="string">'Hello, '</span> + <span class="keyword">this</span>.name + <span class="string">'!'</span>);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">createStudent</span>(<span class="params">props</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> Student(props || &#123;&#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> xiaoming = createStudent(&#123;</span><br><span class="line">    name: <span class="string">'xiaoming'</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<ul>
+<li>使用<code>||</code>实现默认值操作</li>
+<li>注意传入的参数是<strong>对象</strong></li>
+</ul>
+</li>
+</ul>
+<h2 id="原型继承"><a href="#原型继承" class="headerlink" title="原型继承"></a>原型继承</h2><ul>
+<li><p>定义新的构造函数，并在内部调用被继承的函数，并绑定<code>this</code>.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">PrimaryStudent</span>(<span class="params">props</span>) </span>&#123;</span><br><span class="line">    <span class="comment">// 调用Student构造函数，绑定this变量:</span></span><br><span class="line">    Student.call(<span class="keyword">this</span>, props);</span><br><span class="line">    <span class="keyword">this</span>.grade = props.grade || <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>借助中间函数<code>F</code>实现原型链继承</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// PrimaryStudent构造函数:</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">PrimaryStudent</span>(<span class="params">props</span>) </span>&#123;</span><br><span class="line">    Student.call(<span class="keyword">this</span>, props);</span><br><span class="line">    <span class="keyword">this</span>.grade = props.grade || <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 空函数F:</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">F</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 把F的原型指向Student.prototype:</span></span><br><span class="line">F.prototype = Student.prototype;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 把PrimaryStudent的原型指向一个新的F对象，F对象的原型正好指向Student.prototype:</span></span><br><span class="line">PrimaryStudent.prototype = <span class="keyword">new</span> F();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 把PrimaryStudent原型的构造函数修复为PrimaryStudent:</span></span><br><span class="line">PrimaryStudent.prototype.constructor = PrimaryStudent;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 继续在PrimaryStudent原型（就是new F()对象）上定义方法：</span></span><br><span class="line">PrimaryStudent.prototype.getGrade = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.grade;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 创建xiaoming:</span></span><br><span class="line"><span class="keyword">var</span> xiaoming = <span class="keyword">new</span> PrimaryStudent(&#123;</span><br><span class="line">    name: <span class="string">'小明'</span>,</span><br><span class="line">    grade: <span class="number">2</span></span><br><span class="line">&#125;);</span><br><span class="line">xiaoming.name; <span class="comment">// '小明'</span></span><br><span class="line">xiaoming.grade; <span class="comment">// 2</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 验证原型:</span></span><br><span class="line">xiaoming.__proto__ === PrimaryStudent.prototype; <span class="comment">// true</span></span><br><span class="line">xiaoming.__proto__.__proto__ === Student.prototype; <span class="comment">// true</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 验证继承关系:</span></span><br><span class="line">xiaoming <span class="keyword">instanceof</span> PrimaryStudent; <span class="comment">// true</span></span><br><span class="line">xiaoming <span class="keyword">instanceof</span> Student; <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>一个函数本身就算不是构造函数，加了<code>new</code>也能正常执行。</p>
+</blockquote>
+<ul>
+<li><p>关系图</p>
+<p><img src="https://static.liaoxuefeng.com/files/attachments/1034288859918112/l" alt=""></p>
+</li>
+<li><p>为了简化，可以把继承封装为一个函数。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">inherits</span>(<span class="params">Child, Parent</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> F = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;&#125;;</span><br><span class="line">    F.prototype = Parent.prototype;</span><br><span class="line">    Child.prototype = <span class="keyword">new</span> F();</span><br><span class="line">    Child.prototype.constructor = Child;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>在新的构造函数的原型上定义新方法</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Student</span>(<span class="params">props</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.name = props.name || <span class="string">'Unnamed'</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Student.prototype.hello = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    alert(<span class="string">'Hello, '</span> + <span class="keyword">this</span>.name + <span class="string">'!'</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">PrimaryStudent</span>(<span class="params">props</span>) </span>&#123;</span><br><span class="line">    Student.call(<span class="keyword">this</span>, props);</span><br><span class="line">    <span class="keyword">this</span>.grade = props.grade || <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 实现原型继承链:</span></span><br><span class="line">inherits(PrimaryStudent, Student);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 绑定其他方法到PrimaryStudent原型:</span></span><br><span class="line">PrimaryStudent.prototype.getGrade = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.grade;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="class继承"><a href="#class继承" class="headerlink" title="class继承"></a>class继承</h2><p>为了简化原型继承提出了新关键字<code>class</code></p>
+<ul>
+<li><p>使用<code>class</code>直接编写类</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Student</span> </span>&#123;</span><br><span class="line">    <span class="keyword">constructor</span>(name) &#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    hello() &#123;</span><br><span class="line">        alert(<span class="string">'Hello, '</span> + <span class="keyword">this</span>.name + <span class="string">'!'</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>定义方法<strong>不需要</strong><code>function</code>关键字</li>
+</ul>
+</li>
+<li><p>继承实现</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">PrimaryStudent</span> <span class="keyword">extends</span> <span class="title">Student</span> </span>&#123;</span><br><span class="line">    <span class="keyword">constructor</span>(name, grade) &#123;</span><br><span class="line">        <span class="keyword">super</span>(name);</span><br><span class="line">        <span class="keyword">this</span>.grade = grade;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    myGrade() &#123;</span><br><span class="line">        alert(<span class="string">'I am at grade '</span> + <span class="keyword">this</span>.grade);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>class继承就是为了简化原型继承，但是可能会碰到不兼容的情况，可以使用<code>Babel</code>工具进行<code>class</code>继承到传统原型继承的转换。</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ul>
+<li><a href="https://www.liaoxuefeng.com/" target="_blank" rel="noopener">https://www.liaoxuefeng.com/</a></li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/07/07/JavaScript-Chapter2-%E6%A0%87%E5%87%86%E5%AF%B9%E8%B1%A1/" rel="prev" title="JavaScript-Chapter2-标准对象">
+      <i class="fa fa-chevron-left"></i> JavaScript-Chapter2-标准对象
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+        </div>
+        
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Silence</span>
+</div>
+
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  Visitors: <span id="busuanzi_value_site_pv"></span>
+</span>
+</div>
+
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">|   total: 38.6k words</span>
+</div>
+  <div class="powered-by">
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+if (document.querySelectorAll('pre.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
+    mermaid.initialize({
+      theme    : 'forest',
+      logLevel : 3,
+      flowchart: { curve     : 'linear' },
+      gantt    : { axisFormat: '%m/%d/%Y' },
+      sequence : { actorMargin: 50 }
+    });
+  }, window.mermaid);
+}
+</script>
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/valine@1/dist/Valine.min.js', () => {
+    new Valine(Object.assign({
+      el  : '#valine-comments',
+      path: location.pathname,
+    }, {"enable":true,"appId":"GMneVEFPu4TwpvejAPqllWGc-gzGzoHsz","appKey":"5eNvc7SV1dxRT000WSXjRDuD","placeholder":"Just write what you'd like to write.","avatar":"mm","meta":["nick","mail"],"pageSize":10,"language":"en","visitor":false,"comment_count":true,"recordIP":false,"serverURLs":null}
+    ));
+  }, window.Valine);
+});
+</script>
+
+</body>
+</html>
