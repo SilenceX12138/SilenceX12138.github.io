@@ -30,7 +30,7 @@
 <meta property="og:description" content="全文共3463字，推荐阅读时间15~20分钟。">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-07-04T08:05:30.916Z">
-<meta property="article:modified_time" content="2020-07-04T08:10:27.445Z">
+<meta property="article:modified_time" content="2020-07-10T12:52:31.023Z">
 <meta property="article:author" content="Silence">
 <meta name="twitter:card" content="summary">
 
@@ -265,10 +265,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
-              
 
-              <time title="Created: 2020-07-04 16:05:30 / Modified: 16:10:27" itemprop="dateCreated datePublished" datetime="2020-07-04T16:05:30+08:00">2020-07-04</time>
+              <time title="Created: 2020-07-04 16:05:30" itemprop="dateCreated datePublished" datetime="2020-07-04T16:05:30+08:00">2020-07-04</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-07-10 20:52:31" itemprop="dateModified" datetime="2020-07-10T20:52:31+08:00">2020-07-10</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -668,12 +674,12 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2020/07/04/Chapter4-1-inode%E8%A7%A3%E6%9E%90/" rel="prev" title="Chapter4-1-inode解析">
-      <i class="fa fa-chevron-left"></i> Chapter4-1-inode解析
+    <a href="/2020/07/04/Chapter3-%E8%AE%BE%E5%A4%87%E7%AE%A1%E7%90%86/" rel="prev" title="Chapter3-设备管理">
+      <i class="fa fa-chevron-left"></i> Chapter3-设备管理
     </a></div>
       <div class="post-nav-item">
-    <a href="/2020/07/04/Chapter1-1-%E8%BF%9B%E7%A8%8B%E3%80%81%E7%BA%BF%E7%A8%8B%E4%B8%8E%E5%B9%B6%E5%8F%91/" rel="next" title="Chapter1-1-进程、线程与并发">
-      Chapter1-1-进程、线程与并发 <i class="fa fa-chevron-right"></i>
+    <a href="/2020/07/04/Chapter3-1-%E7%A3%81%E7%9B%98%E5%AD%98%E5%82%A8%E7%AE%A1%E7%90%86/" rel="next" title="Chapter3-1-磁盘存储管理">
+      Chapter3-1-磁盘存储管理 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -803,6 +809,59 @@ if (document.querySelectorAll('pre.mermaid').length) {
   
 
   
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
 
   
 
