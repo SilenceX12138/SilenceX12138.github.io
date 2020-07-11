@@ -191,7 +191,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives">
-          <span class="site-state-item-count">23</span>
+          <span class="site-state-item-count">24</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -316,7 +316,7 @@
 <a id="more"></a>
 <hr>
 <h2 id="Problem-Description"><a href="#Problem-Description" class="headerlink" title="Problem Description"></a>Problem Description</h2><p>terminal中输入<code>lspci</code>,得到类似如下结果</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">~$ lspci</span><br><span class="line">00:14.3 Network controller: Intel Corporation Device 02f0</span><br><span class="line">00:15.0 Serial bus controller [0c80]: Intel Corporation Device 02e8</span><br><span class="line">……</span><br></pre></td></tr></table></figure>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">~$ lspci</span><br><span class="line">00:14.3<span class="built_in"> Network </span>controller: Intel Corporation Device 02f0</span><br><span class="line">00:15.0 Serial bus controller [0c80]: Intel Corporation Device 02e8</span><br><span class="line">……</span><br></pre></td></tr></table></figure>
 <p>其中Network controller本不应该对应笔记本的无线网卡，但是ubuntu系统和intel系列网卡兼容性一言难尽，导致系统误把网卡作为了controller。</p>
 <h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2><ol>
 <li><p><strong>升级系统内核(optional)</strong></p>
@@ -335,13 +335,13 @@
 <li><p>查找到对应的型号后下载.tgz文件</p>
 </li>
 <li><p>解压文件</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar  -zxvf  下载的驱动的名字.tgz</span><br></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">tar</span>  <span class="selector-tag">-zxvf</span>  下载的驱动的名字<span class="selector-class">.tgz</span></span><br></pre></td></tr></table></figure>
 </li>
 <li><p>安装驱动</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cp iwlwifi-*.ucode &#x2F;lib&#x2F;firmware</span><br></pre></td></tr></table></figure>
+<figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cp iwlwifi-*.ucode /<span class="class"><span class="keyword">lib</span>/<span class="title">firmware</span></span></span><br></pre></td></tr></table></figure>
 </li>
 <li><p>重启</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo reboot</span><br></pre></td></tr></table></figure>
+<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">sudo reboot</span></span><br></pre></td></tr></table></figure>
 </li>
 <li><p>和wifi愉快拥抱吧～</p>
 </li>
@@ -431,7 +431,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">|   total: 52.6k words</span>
+  <span class="post-count">|   total: 53.2k words</span>
 </div>
   <div class="powered-by">
   </div>
