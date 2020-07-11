@@ -22,19 +22,19 @@
     var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Muse","version":"8.0.0-rc.4","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}}};
   </script>
 
-  <meta name="description" content="全文共1684字，推荐阅读时间7~10分钟。">
+  <meta name="description" content="全文共664字，推荐阅读时间7~10分钟。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Chapter2-内存管理">
-<meta property="og:url" content="http://yoursite.com/2020/07/04/Chapter2-%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/index.html">
+<meta property="og:title" content="MySQL-Chapter4-MySQL操作">
+<meta property="og:url" content="http://yoursite.com/2020/07/11/MySQL-Chapter4-MySQL%E6%93%8D%E4%BD%9C/index.html">
 <meta property="og:site_name" content="Silence">
-<meta property="og:description" content="全文共1684字，推荐阅读时间7~10分钟。">
+<meta property="og:description" content="全文共664字，推荐阅读时间7~10分钟。">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2020-07-04T08:05:30.916Z">
-<meta property="article:modified_time" content="2020-07-10T12:52:33.433Z">
+<meta property="article:published_time" content="2020-07-11T07:32:26.255Z">
+<meta property="article:modified_time" content="2020-07-11T07:33:22.124Z">
 <meta property="article:author" content="Silence">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://yoursite.com/2020/07/04/Chapter2-%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/">
+<link rel="canonical" href="http://yoursite.com/2020/07/11/MySQL-Chapter4-MySQL%E6%93%8D%E4%BD%9C/">
 
 
 <script class="page-configurations">
@@ -47,7 +47,7 @@
   };
 </script>
 
-  <title>Chapter2-内存管理 | Silence</title>
+  <title>MySQL-Chapter4-MySQL操作 | Silence</title>
   
 
 
@@ -176,7 +176,7 @@
 
       <!--noindex-->
       <section class="post-toc-wrap sidebar-panel">
-          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#存储器硬件"><span class="nav-number">1.</span> <span class="nav-text">存储器硬件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基本需求"><span class="nav-number">2.</span> <span class="nav-text">基本需求</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#功能"><span class="nav-number">3.</span> <span class="nav-text">功能</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#内存分配"><span class="nav-number">4.</span> <span class="nav-text">内存分配</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#碎片处理"><span class="nav-number">5.</span> <span class="nav-text">碎片处理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#内碎片"><span class="nav-number">5.1.</span> <span class="nav-text">内碎片</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#外碎片"><span class="nav-number">5.2.</span> <span class="nav-text">外碎片</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#内存扩充"><span class="nav-number">6.</span> <span class="nav-text">内存扩充</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#覆盖-Overlay"><span class="nav-number">6.1.</span> <span class="nav-text">覆盖(Overlay)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#交换-Swapping"><span class="nav-number">6.2.</span> <span class="nav-text">交换(Swapping)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#FAQ"><span class="nav-number">7.</span> <span class="nav-text">FAQ</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Modern-OS-Extract"><span class="nav-number">8.</span> <span class="nav-text">Modern OS Extract</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reference"><span class="nav-number">9.</span> <span class="nav-text">Reference</span></a></li></ol></div>
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#概述"><span class="nav-number">1.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#管理MySQL"><span class="nav-number">2.</span> <span class="nav-text">管理MySQL</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#数据库"><span class="nav-number">2.1.</span> <span class="nav-text">数据库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#表"><span class="nav-number">2.2.</span> <span class="nav-text">表</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实用语句"><span class="nav-number">3.</span> <span class="nav-text">实用语句</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#插入或替换"><span class="nav-number">3.1.</span> <span class="nav-text">插入或替换</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#插入或更新"><span class="nav-number">3.2.</span> <span class="nav-text">插入或更新</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#插入或忽略"><span class="nav-number">3.3.</span> <span class="nav-text">插入或忽略</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#快照"><span class="nav-number">3.4.</span> <span class="nav-text">快照</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#写入查询结果集"><span class="nav-number">3.5.</span> <span class="nav-text">写入查询结果集</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#强制使用指定索引"><span class="nav-number">3.6.</span> <span class="nav-text">强制使用指定索引</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reference"><span class="nav-number">4.</span> <span class="nav-text">Reference</span></a></li></ol></div>
       </section>
       <!--/noindex-->
 
@@ -243,7 +243,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/04/Chapter2-%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/11/MySQL-Chapter4-MySQL%E6%93%8D%E4%BD%9C/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="https://i.loli.net/2020/07/05/Ml7X4UshoCJgn52.jpg">
@@ -256,7 +256,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Chapter2-内存管理
+          MySQL-Chapter4-MySQL操作
         </h1>
 
         <div class="post-meta">
@@ -265,27 +265,21 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
+              
 
-              <time title="Created: 2020-07-04 16:05:30" itemprop="dateCreated datePublished" datetime="2020-07-04T16:05:30+08:00">2020-07-04</time>
+              <time title="Created: 2020-07-11 15:32:26 / Modified: 15:33:22" itemprop="dateCreated datePublished" datetime="2020-07-11T15:32:26+08:00">2020-07-11</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-07-10 20:52:33" itemprop="dateModified" datetime="2020-07-10T20:52:33+08:00">2020-07-10</time>
-              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
               </span>
               <span class="post-meta-item-text">In</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a>
+                  <a href="/categories/Web/" itemprop="url" rel="index"><span itemprop="name">Web</span></a>
                 </span>
                   , 
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Operating-System/" itemprop="url" rel="index"><span itemprop="name">Operating System</span></a>
+                  <a href="/categories/MySQL/" itemprop="url" rel="index"><span itemprop="name">MySQL</span></a>
                 </span>
             </span>
 
@@ -298,8 +292,8 @@
       </span>
       <span class="post-meta-item-text">Valine: </span>
     
-    <a title="valine" href="/2020/07/04/Chapter2-%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2020/07/04/Chapter2-%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/" itemprop="commentCount"></span>
+    <a title="valine" href="/2020/07/11/MySQL-Chapter4-MySQL%E6%93%8D%E4%BD%9C/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/07/11/MySQL-Chapter4-MySQL%E6%93%8D%E4%BD%9C/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -314,147 +308,85 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>全文共<code>1684</code>字，推荐阅读时间<code>7~10</code>分钟。</p>
+        <p>全文共<code>664</code>字，推荐阅读时间<code>7~10</code>分钟。</p>
 <a id="more"></a>
-<h2 id="存储器硬件"><a href="#存储器硬件" class="headerlink" title="存储器硬件"></a>存储器硬件</h2><ul>
-<li>RAM<ul>
-<li>SRAM：常用于制作高速缓存</li>
-<li>DRAM：常用于制作主存</li>
-<li>SDRAM、DDR SDRAM：常用于制作主存</li>
-</ul>
+<h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><ul>
+<li><p><code>MySQL Client</code>是一个<strong>命令行</strong>客户端，对应的可执行程序是mysql.</p>
 </li>
-<li>ROM<ul>
-<li>PROM、EPROM、EEPROM</li>
-</ul>
+<li><p><code>MySQL Server</code>是真正的MySQL<strong>服务器</strong>，对应的可执行程序是mysqld.</p>
 </li>
-<li>FLASH<ul>
-<li>NOR</li>
-<li>NAND</li>
-</ul>
+<li><p>Client通过TCP连接发送到Server，默认端口是3306，如果发送到本机的服务器，地址为<code>127.0.0.1:3306</code>.</p>
 </li>
-<li>DISK</li>
-<li>Tape</li>
+<li><p>连接到远程Server</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql -h IP_addr_of_distant_server -u root -p</span><br></pre></td></tr></table></figure>
+</li>
 </ul>
-<blockquote>
+<h2 id="管理MySQL"><a href="#管理MySQL" class="headerlink" title="管理MySQL"></a>管理MySQL</h2><h3 id="数据库"><a href="#数据库" class="headerlink" title="数据库"></a>数据库</h3><ul>
+<li>显示：<code>SHOW DATABASES;</code></li>
+<li><code>information_schema</code>/<code>mysql</code>/<code>performance_schema</code>/<code>sys</code>是系统库，不能改动，</li>
+<li>创建：<code>CREATE DATABASE test;</code></li>
+<li>删除：<code>DROP DATABASE test;</code></li>
+<li>切换：<code>USE test;</code></li>
+</ul>
+<h3 id="表"><a href="#表" class="headerlink" title="表"></a>表</h3><ul>
+<li><p>创建：<code>CREATE TABLE students(...);</code></p>
 <ul>
-<li>RAM是易失性存储，ROM是非易失性存储。</li>
-<li>RAM和ROM是内存（reg+cache+主存）</li>
-<li>ROM只读，FLASH可写容量小，RAM可读写容量大。</li>
-</ul>
-</blockquote>
-<h2 id="基本需求"><a href="#基本需求" class="headerlink" title="基本需求"></a>基本需求</h2><ul>
-<li>独立性：程序发出的地址和物理地址不相关</li>
-<li>保护性：一个程序不能访问另一个程序的地址空间</li>
-</ul>
-<h2 id="功能"><a href="#功能" class="headerlink" title="功能"></a>功能</h2><ul>
-<li>主要内容：存储分配和回收</li>
-<li>地址变换<ul>
-<li>可执行文件<strong>生成</strong>时的<strong>链接</strong>技术</li>
-<li>程序<strong>加载</strong>时的<strong>重定位</strong>技术</li>
-<li>进程<strong>运行</strong>时硬件和软件地址<strong>变换</strong>技术</li>
+<li>至少有一列，并且需要使用<code>PRIMARY KEY (xxx)</code>指定为主键列。</li>
 </ul>
 </li>
-</ul>
-<h2 id="内存分配"><a href="#内存分配" class="headerlink" title="内存分配"></a>内存分配</h2><ul>
-<li>分配原则：多退少补，但是退的太少时就不退了。</li>
-<li><p>空闲分区合并：注意取哪个分区的首地址</p>
+<li><p>删除：<code>DROP TABLE students;</code></p>
 </li>
-<li><p>分配算法</p>
+<li><p>显示：<code>SHOW TABLES;</code></p>
+</li>
+<li><p>查看结构：<code>DESC students;</code>/<code>SHOW CREATE TABLE students;</code></p>
+</li>
+<li><p>修改</p>
 <ul>
-<li>下次适应算法：尽管一个分区没有分配完，但是再次寻找时还是会跳转到下一个分区。</li>
-</ul>
+<li><p>新增列<code>birth</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ALTER TABLE students ADD COLUMN birth VARCHAR(10) NOT NULL;</span><br></pre></td></tr></table></figure>
 </li>
-</ul>
-<h2 id="碎片处理"><a href="#碎片处理" class="headerlink" title="碎片处理"></a>碎片处理</h2><h3 id="内碎片"><a href="#内碎片" class="headerlink" title="内碎片"></a>内碎片</h3><ul>
-<li><strong>只能</strong>等待释放</li>
-</ul>
-<h3 id="外碎片"><a href="#外碎片" class="headerlink" title="外碎片"></a>外碎片</h3><ul>
-<li><p>紧凑技术(Compaction)：将多个空闲分区拼接</p>
-<p>技术支撑：动态重定位（<strong>不同于</strong>装载）-&gt;移动作业时，内存位置会发生变化。</p>
-</li>
-</ul>
-<h2 id="内存扩充"><a href="#内存扩充" class="headerlink" title="内存扩充"></a>内存扩充</h2><h3 id="覆盖-Overlay"><a href="#覆盖-Overlay" class="headerlink" title="覆盖(Overlay)"></a>覆盖(Overlay)</h3><ul>
-<li>将程序分成多个<strong>独立</strong>的程序段，利用时间差共享同一块<strong>小内存</strong>区域。</li>
-</ul>
-<blockquote>
-<p>分段需要程序员进行，增加了负担。</p>
-</blockquote>
-<h3 id="交换-Swapping"><a href="#交换-Swapping" class="headerlink" title="交换(Swapping)"></a>交换(Swapping)</h3><ul>
-<li>以程序为单位进行主存与辅存间的交换</li>
-</ul>
-<h2 id="FAQ"><a href="#FAQ" class="headerlink" title="FAQ"></a>FAQ</h2><ul>
-<li>x86保护模式下段式访存不能禁止，但是页式访存可以启用和禁止。</li>
-<li>多级页表页目录所在地址的计算（按照抽象层级的方法计算）</li>
-</ul>
-<h2 id="Modern-OS-Extract"><a href="#Modern-OS-Extract" class="headerlink" title="Modern OS Extract"></a>Modern OS Extract</h2><ul>
-<li><p>当一个进程运行时，程序的<strong>起始物理地址</strong>装载到<strong>基址寄存器</strong>中，<strong>程序的长度</strong>装载到<strong>界限寄存器</strong>中。</p>
-</li>
-<li><p>对每个进程都使用基址寄存器和界限寄存器的缺点就是每次访问内存都需要进行加法和比较运算</p>
-</li>
-<li><p>在决定把一个占<code>k</code>个分配单元的进程调入内存时，存储管理器必须搜索位图，在位图中找到有<code>k</code>个<strong>连续0</strong>的串。查找位图中指定长度的<code>0</code>串时耗时的操作，因为串可能跨越了<strong>最小分配单元</strong>。</p>
-</li>
-<li><p><strong>下次适配算法</strong>每次在<strong>上一次</strong>结束的地方开始搜索，而不是像首次适配算法、最佳适配算法那样<strong>从头开始</strong>搜索。</p>
-<blockquote>
-<p>下次适配的性能略<strong>低于</strong>首次适配算法</p>
-</blockquote>
-</li>
-<li><p>为进程和空闲区设置独立的链表，即<strong>进程链表</strong>和<strong>空闲区链表</strong>分离，可以提高算法的速度。</p>
-</li>
-<li><p>空闲区链表可以合并进空闲区本身——例如空闲区第一个字是空闲区大小，第二个字指向下一个空闲区。</p>
-</li>
-<li><p>覆盖技术是指一个程序的若干程序段，或者<strong>几个程序</strong>的某些部分共享某一个存储空间。</p>
-<blockquote>
-<p>由程序员将程序分割成多个片段</p>
-</blockquote>
-</li>
-<li><p>页表的目的式把虚拟页面映射为页框。从数学角度说，页表是一个函数，它的参数是<strong>虚拟页号</strong>，结果是<strong>物理页框号</strong>。</p>
-</li>
-<li><p>对于IO映射到内存中的设备而言，需要在页表中设置<strong>高速缓存禁止位</strong>，但是对于独立的IO空间和不使用内存映射IO的设备则不需要。</p>
-</li>
-<li><p>发生缺页中断时，操作系统需要调入的页面的磁盘地址等信息保存在操作系统内部的<strong>软件表格</strong>中，硬件(MMU)<strong>不需要它</strong>。</p>
-</li>
-<li><p>地址放入MMU进行转换时，硬件首先通过将虚拟页号和TLB中<strong>所有表项并行</strong>进行匹配，判断虚拟页面是否在其中。</p>
-</li>
-<li><p>当一个页面访问在内存中而不再TLB中时，产生<strong>软失效</strong>；当页面本身不在内存中时（当然也不在TLB中），将产生<strong>硬失效</strong>。</p>
-</li>
-<li><p>在反置页表中，实际内存中的每个<strong>物理页框</strong>对应一个表项。</p>
-</li>
-<li><p>在反置页表中，当进程访问虚拟页面时，必须搜索<strong>整个</strong>反置页表来查找某个页表项。</p>
-<blockquote>
-<p>可以使用Hash加速</p>
-</blockquote>
-</li>
-<li><p>引入多级页表的原因是避免把全部页表一直保存在内存中，特别是某些从来都不会用到的页表。</p>
-<blockquote>
-<p>当只有单级页表时，因为需要直接使用虚拟地址访问到对应的页表项，所以需要用<strong>页表始址寄存器</strong>保存页表的起始物理地址。由于这个寄存器的个数限制（只有一个），所有的页表只能被放在固定的地址上，因此单级页表需要一块<strong>连续</strong>的<strong>物理</strong>内存空间用来存放页表。</p>
-<p>但是对于多级页表，只需要用这个寄存器存储一级页表的物理始址，之后查找的高级页表就可以是不连续的了。</p>
-</blockquote>
-</li>
-<li><p>当调度一个进程执行时，<strong>必须</strong>为新进程<strong>重置</strong>MMU，<strong>刷新</strong>TLB，以清楚以前的进程遗留的痕迹。</p>
-</li>
-<li><p>如果分页算法是全局算法，包含IO缓冲区的页面也<strong>有很小的可能</strong>会被换出内存。此时如果一个IO设备正处在对该页面的DMA传输过程中，则传输的数据一部分在换出前的缓冲区页面中，一部分在新装入的页面中。</p>
-<blockquote>
-<p>解决方法一般有两种：</p>
+<li><p>修改列名为<code>birthday</code>，并修改数据类型。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ALTER TABLE students CHANGE COLUMN birth birthday VARCHAR(20) NOT NULL;</span><br></pre></td></tr></table></figure>
 <ul>
-<li>将此类页面设置为<strong>不可换出</strong>的</li>
-<li>在<strong>内核缓冲区</strong>中完成IO操作后再将数据复制到<strong>用户页面</strong></li>
+<li><code>VARCHAR(xx) NOT NULL</code>：数据类型以及约束<strong>不能</strong>被省略</li>
 </ul>
-</blockquote>
 </li>
-<li><p>由于程序正文通常是只读的，当内存资源紧张、程序页不得移出内存时，尽管丢弃它们，再需要的时候再从可执行文件读入即可。</p>
-<blockquote>
-<p><strong>共享库</strong>正是使用这个方式工作</p>
-</blockquote>
+<li><p>删除列</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ALTER TABLE students DROP COLUMN birthday;</span><br></pre></td></tr></table></figure>
 </li>
-<li><p><strong>每个</strong>段由一个从<strong>0到最大的线性地址序列</strong>构成，不同的段的长度可以不同，并且在运行期间可以动态改变。</p>
-<blockquote>
-<p>堆栈段的长度再数据被压入时会增长，在数据弹出时又会减小。</p>
-</blockquote>
+</ul>
 </li>
+</ul>
+<h2 id="实用语句"><a href="#实用语句" class="headerlink" title="实用语句"></a>实用语句</h2><h3 id="插入或替换"><a href="#插入或替换" class="headerlink" title="插入或替换"></a>插入或替换</h3><p>插入记录时，<strong>如果</strong>需要对重复元素进行替换，直接使用<code>REPLACE</code>语句可以省略手动查询的过程。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">REPLACE INTO students (id, class_id, name, gender, score) VALUES (1, 1, &#39;C&#39;, &#39;F&#39;, 99);</span><br></pre></td></tr></table></figure>
+<ul>
+<li>当<code>id=1</code>的记录不存在时会直接插入，如果存在则会删除后再插入。</li>
+</ul>
+<h3 id="插入或更新"><a href="#插入或更新" class="headerlink" title="插入或更新"></a>插入或更新</h3><p>插入记录时，<strong>如果</strong>记录已经存在，则对记录进行<strong>选择性</strong>更新，否则直接插入。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">INSERT INTO students (id, class_id, name, gender, score) VALUES (1, 1, &#39;小明&#39;, &#39;F&#39;, 99) ON DUPLICATE KEY UPDATE name&#x3D;&#39;小明&#39;, gender&#x3D;&#39;F&#39;, score&#x3D;99;</span><br></pre></td></tr></table></figure>
+<h3 id="插入或忽略"><a href="#插入或忽略" class="headerlink" title="插入或忽略"></a>插入或忽略</h3><p>插入记录时，<strong>如果</strong>记录已经存在，则不进行任何操作，否则直接插入。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">INSERT IGNORE INTO students (id, class_id, name, gender, score) VALUES (1, 1, &#39;小明&#39;, &#39;F&#39;, 99);</span><br></pre></td></tr></table></figure>
+<h3 id="快照"><a href="#快照" class="headerlink" title="快照"></a>快照</h3><p>进行数据复制并创建新表</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CREATE TABLE students_of_class1 SELECT * FROM students WHERE class_id&#x3D;1;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>新表的结构和原表<strong>一致</strong></li>
+</ul>
+<h3 id="写入查询结果集"><a href="#写入查询结果集" class="headerlink" title="写入查询结果集"></a>写入查询结果集</h3><p>建立成绩统计表</p>
+<ul>
+<li><p>创建存储结果集的表</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">CREATE TABLE statistics (</span><br><span class="line">	id BIGINT NOT NULL AUTO_INCREMENT,</span><br><span class="line">    class_id BIGINT NOT NULL,</span><br><span class="line">    average DOUBLE NOT NULL,</span><br><span class="line">    PRIMARY KEY (id)</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>写入各班平均成绩</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">INSERT INTO statistics (class_id, average) SELECT class_id, AVG(acore) FROM students GROUP BY class_id;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="强制使用指定索引"><a href="#强制使用指定索引" class="headerlink" title="强制使用指定索引"></a>强制使用指定索引</h3><p>解决数据库查询的索引<strong>不是</strong>最优解的情况</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT * FROM students FORCE INDEX (idx_class_id) WHERE class_id&#x3D;1 ORDER BY id DESC;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>idx_class_id</code>必须存在<strong>才能够</strong>使用强制索引</li>
 </ul>
 <h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ul>
-<li>Modern Operating System, Fourth Edition.</li>
-<li>BUAA OS Lecture, Spring Of 2020.</li>
+<li><a href="https://www.liaoxuefeng.com/" target="_blank" rel="noopener">https://www.liaoxuefeng.com/</a></li>
 </ul>
 
     </div>
@@ -471,13 +403,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2020/07/04/Chapter3-%E8%AE%BE%E5%A4%87%E7%AE%A1%E7%90%86/" rel="prev" title="Chapter3-设备管理">
-      <i class="fa fa-chevron-left"></i> Chapter3-设备管理
+    <a href="/2020/07/11/MySQL-Chapter3-%E4%BF%AE%E6%94%B9%E6%95%B0%E6%8D%AE/" rel="prev" title="MySQL-Chapter3-修改数据">
+      <i class="fa fa-chevron-left"></i> MySQL-Chapter3-修改数据
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2020/07/04/Chapter2-1-%E5%88%86%E9%A1%B5%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86%E5%8F%8A%E8%AE%BE%E8%AE%A1/" rel="next" title="Chapter2-1-分页系统管理及设计">
-      Chapter2-1-分页系统管理及设计 <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
