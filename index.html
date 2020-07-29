@@ -188,7 +188,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives">
-          <span class="site-state-item-count">27</span>
+          <span class="site-state-item-count">28</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -235,6 +235,235 @@
 
         <div class="content index posts-expand">
           
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/29/Protocol-Chapter0-%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://i.loli.net/2020/07/05/Ml7X4UshoCJgn52.jpg">
+      <meta itemprop="name" content="Silence">
+      <meta itemprop="description" content="I'm right here waiting for you.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Silence">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/07/29/Protocol-Chapter0-%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" class="post-title-link" itemprop="url">Protocol-Chapter0-网络编程</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2020-07-29 20:27:15 / Modified: 20:25:33" itemprop="dateCreated datePublished" datetime="2020-07-29T20:27:15+08:00">2020-07-29</time>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2020/07/29/Protocol-Chapter0-%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/07/29/Protocol-Chapter0-%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="网络编程"><a href="#网络编程" class="headerlink" title="网络编程"></a>网络编程</h1><p>全文共<code>1275</code>字，推荐阅读时间<code>10~15</code>分钟。</p>
+<h2 id="TCP-IP"><a href="#TCP-IP" class="headerlink" title="TCP/IP"></a>TCP/IP</h2><h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><h4 id="IP"><a href="#IP" class="headerlink" title="IP"></a>IP</h4><ul>
+<li><p>互联网上每个计算机的<strong>唯一标识</strong>就是IP地址，类似<code>123.123.123.123</code>.</p>
+</li>
+<li><p>当一台计算机同时接到<strong>多个</strong>网络时，就会有多个IP地址。</p>
+<blockquote>
+<p>IP地址对应的实际上是计算机的网络接口，通常是网卡。</p>
+</blockquote>
+</li>
+<li><p>IP协议负责把数据从一台计算机通过网络发送到另一台计算机</p>
+<ul>
+<li>将数据分成块，通过IP包发送。</li>
+<li>IP包<strong>不保证</strong>能到达，也<strong>不保证</strong>顺序到达。</li>
+</ul>
+</li>
+<li><p>IP地址实际上是一个<strong>32</strong>位整数（称为IPv4）</p>
+<ul>
+<li><code>192.168.0.1</code>实际上是把32位整数<strong>按8位</strong>分组后的数字表示</li>
+<li>IPv6是一个<strong>128</strong>位整数，<strong>按16位</strong>分组，例如<code>2001:0db8:85a3:0042:1000:8a2e:0370:7334</code>.</li>
+</ul>
+</li>
+</ul>
+<h4 id="TCP"><a href="#TCP" class="headerlink" title="TCP"></a>TCP</h4><ul>
+<li>TCP是建立在IP协议之上，负责在两台计算机之间<strong>建立可靠连接</strong>，并且保证数据包<strong>按顺序</strong>到达的协议。</li>
+<li>TCP传输过程中如果出现丢包则<strong>自动重发</strong></li>
+<li>TCP协议是许多高级协议的基础，<strong>例如HTTP协议、发送邮件的SMTP协议。</strong></li>
+<li>TCP报文=数据+源IP地址+目标IP地址+源端口+目标端口</li>
+<li>一个进程可能同时和多个计算机建立链接，因此可能会申请很多端口。</li>
+</ul>
+<h2 id="TCP编程"><a href="#TCP编程" class="headerlink" title="TCP编程"></a>TCP编程</h2><h3 id="概述-1"><a href="#概述-1" class="headerlink" title="概述"></a>概述</h3><ul>
+<li><p>Socket表示“打开了一个网络链接”</p>
+<blockquote>
+<p>需要知道目标计算机的IP地址和端口号，并指定<strong>协议类型</strong>。</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="客户端"><a href="#客户端" class="headerlink" title="客户端"></a>客户端</h3><ul>
+<li><p>创建TCP链接时，主动发起链接的叫<strong>客户端</strong>，被动响应链接的叫<strong>服务器</strong>。</p>
+</li>
+<li><p>创建基于TCP的Socket</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> socket</span><br><span class="line"></span><br><span class="line">s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)</span><br><span class="line">s.connect((<span class="string">'www.sina.com.cn'</span>, <span class="number">80</span>))</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p><code>AF_INET</code>指定使用IPv4，<code>AF_INET6</code>指定<code>IPv6</code>.</p>
+</li>
+<li><p><code>SOCK_STREAM</code>指定使用面向流的TCP协议</p>
+</li>
+<li><p><code>connect</code>负责主动发起TCP连接，需要指定IP地址和端口号。</p>
+<ul>
+<li><p>新浪网址可以自动转换为IP地址</p>
+</li>
+<li><p><code>80</code>端口是<strong>网页服务</strong>的标准端口</p>
+<blockquote>
+<ul>
+<li><code>SMTP</code>是<code>25</code>端口，<code>FTP</code>是<code>21</code>端口。</li>
+<li>端口号小于1024是标准服务的端口（固定），大于1024的<strong>可以任意</strong>使用。</li>
+</ul>
+</blockquote>
+</li>
+<li><p>参数是一个<code>tuple</code></p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>发送请求</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">s.send(<span class="string">b'GET / HTTP/1.1\r\nHost: www.sina.com.cn\r\nConnection: close\r\n\r\n'</span>)</span><br></pre></td></tr></table></figure>
+<ul>
+<li>要求返回首页的内容</li>
+<li>TCP建立的是<strong>双向</strong>通道，发送数据的顺序由具体的协议确定。例如HTTP规定客户端必须<strong>先</strong>向服务器发送请求，<strong>之后</strong>服务器才能发送数据给客户端。</li>
+</ul>
+</li>
+<li><p>接收数据</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">buffer = []</span><br><span class="line"><span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">    d = s.recv(<span class="number">1024</span>)</span><br><span class="line">    <span class="keyword">if</span> d:</span><br><span class="line">        buffer.append(d)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">data = <span class="string">b''</span>.join(buffer)</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>recv(max)</code>指定一次<strong>最多</strong>接收的<strong>字节数</strong></li>
+</ul>
+</li>
+<li><p>关闭Socket</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">s.close()</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>处理数据</p>
+<p>接收到的数据包括<strong>HTTP头和网页本身</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">header, html = data.split(<span class="string">b'\r\n\r\n'</span>, <span class="number">1</span>)</span><br><span class="line">print(header.decode(<span class="string">'utf-8'</span>))</span><br><span class="line"><span class="keyword">with</span> open(<span class="string">'sina.html'</span>, <span class="string">'wb'</span>) <span class="keyword">as</span> f:</span><br><span class="line">    f.write(html)</span><br></pre></td></tr></table></figure>
+<ul>
+<li>在浏览器打开<code>sina.html</code>就可以看到新浪的首页</li>
+</ul>
+</li>
+</ul>
+<h3 id="服务器"><a href="#服务器" class="headerlink" title="服务器"></a>服务器</h3><ul>
+<li><p>服务器会打开固定的端口（例如80）监听客户端的请求，为了区分不同客户端的请求，<strong>服务器</strong>创建的Socket需要<strong>服务器地址、服务器端口、客户端地址、客户端端口</strong>来进行辨别。</p>
+</li>
+<li><p>为了同时响应多个客户端的需求，每个连接都需要一个进程/线程来处理。</p>
+</li>
+<li><p>创建一个Socket</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>绑定<strong>监听的</strong>地址和端口</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">s.bind((<span class="string">'127.0.0.1'</span>, <span class="number">9999</span>))</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p><code>0.0.0.0</code>表示<strong>所有的</strong>网络地址</p>
+</li>
+<li><p><code>127.0.0.1</code>表示<strong>本机地址</strong></p>
+<blockquote>
+<p>当绑定到本机地址时，客户端必须在<strong>本地</strong>运行。</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li><p>开始监听</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">s.listen(<span class="number">5</span>)</span><br><span class="line">print(<span class="string">"Waiting for connection..."</span>)</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>listen(max)</code>：指定等待连接的<strong>最大</strong>数量</li>
+</ul>
+</li>
+<li><p>建立连接</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">    sock, addr = s.accept()</span><br><span class="line">    t = threading.Thread(target=tcplink, args=(sock, addr))</span><br><span class="line">    t.start()</span><br><span class="line">    </span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">tcplink</span><span class="params">(sock, addr)</span>:</span></span><br><span class="line">    print(<span class="string">"Accept new connection from %s:%s..."</span> % addr)</span><br><span class="line">    sock.send(<span class="string">b"Welcome!"</span>)</span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        data = sock.recv(<span class="number">1024</span>)</span><br><span class="line">        time.sleep(<span class="number">1</span>)</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> data <span class="keyword">or</span> data.decode(<span class="string">'utf-8'</span>) == <span class="string">'exit'</span>:</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">        sock.send((<span class="string">"Hello, %s|"</span> % data.decode(<span class="string">'utf-8'</span>)).encode(<span class="string">'utf-8'</span>))</span><br><span class="line">    sock.close()</span><br><span class="line">    print(<span class="string">"Connection form %s:%s closed."</span> % addr)</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>addr</code>是一个元组，例如<code>(&#39;127.0.0.1&#39;, 62456)</code>.</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>服务器测试程序</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)</span><br><span class="line">s.connect((<span class="string">'127.0.0.1'</span>, <span class="number">9999</span>))</span><br><span class="line">print(s.recv(<span class="number">1024</span>).decode(<span class="string">'utf-8'</span>))</span><br><span class="line"><span class="keyword">for</span> data <span class="keyword">in</span> [<span class="string">b'Michael'</span>, <span class="string">b'Tracy'</span>, <span class="string">b'Sarah'</span>]:</span><br><span class="line">    s.send(data)</span><br><span class="line">    print(s.recv(<span class="number">1024</span>).decode(<span class="string">'utf-8'</span>))</span><br><span class="line">s.send(<span class="string">b'exit'</span>)</span><br><span class="line">s.close()</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="UDP编程"><a href="#UDP编程" class="headerlink" title="UDP编程"></a>UDP编程</h2><h3 id="概述-2"><a href="#概述-2" class="headerlink" title="概述"></a>概述</h3><ul>
+<li>相对于TCP，UDP是面向<strong>无连接</strong>的协议。</li>
+<li>使用UDP时，<strong>不需要建立连接</strong>，只需要知道<strong>IP地址和端口号</strong>就可以直接发送数据包。（不保证能到达）</li>
+<li>相比于TCP，UDP的数据传输速度<strong>更快</strong>。</li>
+</ul>
+<h3 id="客户端-1"><a href="#客户端-1" class="headerlink" title="客户端"></a>客户端</h3><ul>
+<li><p>创建socket</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>发送数据<strong>（不需要connect）</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> data <span class="keyword">in</span> [<span class="string">b'Michael'</span>, <span class="string">b'Tracy'</span>, <span class="string">b'Sarah'</span>]:</span><br><span class="line">    s.sendto(data, (<span class="string">'127.0.0.1'</span>, <span class="number">9999</span>))</span><br><span class="line">    print(s.recv(<span class="number">1024</span>).decode(<span class="string">'utf-8'</span>))</span><br><span class="line">s.close()</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="服务器-1"><a href="#服务器-1" class="headerlink" title="服务器"></a>服务器</h3><ul>
+<li><p>绑定端口</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)</span><br><span class="line">s.bind((<span class="string">'127.0.0.1'</span>, <span class="number">9999</span>))</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>SOCK_DGRAM</code>指定了Socket类型是UDP</li>
+<li>UDP和TCP的端口<strong>不冲突</strong>，即9999在两种连接中可以重复使用，但是<strong>相互独立</strong>。</li>
+</ul>
+</li>
+<li><p>接收数据</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">print(<span class="string">'Bind UDP on 9999...'</span>)</span><br><span class="line"><span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">    data, addr = s.recvfrom(<span class="number">1024</span>)</span><br><span class="line">    print(<span class="string">'Received from %s:%s.'</span> % addr)</span><br><span class="line">    s.sendto(<span class="string">b'Hello, %s!'</span> % data, addr)</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>recvfrom()</code>返回客户端的地址和端口</li>
+</ul>
+</li>
+</ul>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ul>
+<li><a href="https://www.liaoxuefeng.com/" target="_blank" rel="noopener">https://www.liaoxuefeng.com/</a></li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
       
   
   
@@ -890,99 +1119,6 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/08/MySQL-Chapter2-%E6%95%B0%E6%8D%AE%E6%9F%A5%E8%AF%A2/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://i.loli.net/2020/07/05/Ml7X4UshoCJgn52.jpg">
-      <meta itemprop="name" content="Silence">
-      <meta itemprop="description" content="I'm right here waiting for you.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Silence">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/07/08/MySQL-Chapter2-%E6%95%B0%E6%8D%AE%E6%9F%A5%E8%AF%A2/" class="post-title-link" itemprop="url">MySQL-Chapter2-数据查询</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2020-07-08 15:53:34 / Modified: 15:56:07" itemprop="dateCreated datePublished" datetime="2020-07-08T15:53:34+08:00">2020-07-08</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MySQL/" itemprop="url" rel="index"><span itemprop="name">MySQL</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Web/" itemprop="url" rel="index"><span itemprop="name">Web</span></a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine: </span>
-    
-    <a title="valine" href="/2020/07/08/MySQL-Chapter2-%E6%95%B0%E6%8D%AE%E6%9F%A5%E8%AF%A2/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2020/07/08/MySQL-Chapter2-%E6%95%B0%E6%8D%AE%E6%9F%A5%E8%AF%A2/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>全文共<code>1349</code>字，推荐阅读时间<code>7~10</code>分钟。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/07/08/MySQL-Chapter2-%E6%95%B0%E6%8D%AE%E6%9F%A5%E8%AF%A2/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/08/MySQL-Chapter1-%E5%85%B3%E7%B3%BB%E6%A8%A1%E5%9E%8B/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1076,7 +1212,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/08/JavaScript-Chapter3-%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%BC%96%E7%A8%8B/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/08/MySQL-Chapter2-%E6%95%B0%E6%8D%AE%E6%9F%A5%E8%AF%A2/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="https://i.loli.net/2020/07/05/Ml7X4UshoCJgn52.jpg">
@@ -1090,7 +1226,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2020/07/08/JavaScript-Chapter3-%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%BC%96%E7%A8%8B/" class="post-title-link" itemprop="url">JavaScript-Chapter3-面向对象编程</a>
+            <a href="/2020/07/08/MySQL-Chapter2-%E6%95%B0%E6%8D%AE%E6%9F%A5%E8%AF%A2/" class="post-title-link" itemprop="url">MySQL-Chapter2-数据查询</a>
         </h2>
 
         <div class="post-meta">
@@ -1101,7 +1237,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2020-07-08 11:58:19 / Modified: 11:59:13" itemprop="dateCreated datePublished" datetime="2020-07-08T11:58:19+08:00">2020-07-08</time>
+              <time title="Created: 2020-07-08 15:53:34 / Modified: 15:56:07" itemprop="dateCreated datePublished" datetime="2020-07-08T15:53:34+08:00">2020-07-08</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1109,7 +1245,7 @@
               </span>
               <span class="post-meta-item-text">In</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/JavaScript/" itemprop="url" rel="index"><span itemprop="name">JavaScript</span></a>
+                  <a href="/categories/MySQL/" itemprop="url" rel="index"><span itemprop="name">MySQL</span></a>
                 </span>
                   , 
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
@@ -1126,8 +1262,8 @@
       </span>
       <span class="post-meta-item-text">Valine: </span>
     
-    <a title="valine" href="/2020/07/08/JavaScript-Chapter3-%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%BC%96%E7%A8%8B/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2020/07/08/JavaScript-Chapter3-%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%BC%96%E7%A8%8B/" itemprop="commentCount"></span>
+    <a title="valine" href="/2020/07/08/MySQL-Chapter2-%E6%95%B0%E6%8D%AE%E6%9F%A5%E8%AF%A2/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/07/08/MySQL-Chapter2-%E6%95%B0%E6%8D%AE%E6%9F%A5%E8%AF%A2/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -1142,10 +1278,10 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>全文共<code>1107</code>字，推荐阅读时间<code>7~10</code>分钟。</p>
+          <p>全文共<code>1349</code>字，推荐阅读时间<code>7~10</code>分钟。</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2020/07/08/JavaScript-Chapter3-%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%BC%96%E7%A8%8B/#more" rel="contents">
+              <a class="btn" href="/2020/07/08/MySQL-Chapter2-%E6%95%B0%E6%8D%AE%E6%9F%A5%E8%AF%A2/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>
@@ -1226,7 +1362,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">|   total: 56.1k words</span>
+  <span class="post-count">|   total: 57.4k words</span>
 </div>
   <div class="powered-by">
   </div>
