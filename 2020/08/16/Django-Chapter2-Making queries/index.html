@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  
+  <link rel="stylesheet" href="/lib/animate-css/animate.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Muse","version":"8.0.0-rc.4","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}}};
+  </script>
+
+  <meta name="description" content="全文共2291字，推荐阅读时间20~25分钟">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Django-Chapter2-Making queries">
+<meta property="og:url" content="http://yoursite.com/2020/08/16/Django-Chapter2-Making%20queries/index.html">
+<meta property="og:site_name" content="Silence">
+<meta property="og:description" content="全文共2291字，推荐阅读时间20~25分钟">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-08-16T01:38:54.400Z">
+<meta property="article:modified_time" content="2020-08-16T01:39:25.675Z">
+<meta property="article:author" content="Silence">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://yoursite.com/2020/08/16/Django-Chapter2-Making%20queries/">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>Django-Chapter2-Making queries | Silence</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="Silence" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <main class="main">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+        <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+        <span class="toggle-line toggle-line-first"></span>
+        <span class="toggle-line toggle-line-middle"></span>
+        <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">Silence</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-lover">
+
+    <a href="/lover/" rel="section"><i class="fa fa-heart fa-fw"></i>lover</a>
+
+  </li>
+        <li class="menu-item menu-item-schedule">
+
+    <a href="/schedule/" rel="section"><i class="fa fa-calendar fa-fw"></i>Schedule</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <section class="post-toc-wrap sidebar-panel">
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#概述"><span class="nav-number">1.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#创建"><span class="nav-number">2.</span> <span class="nav-text">创建</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#修改对象"><span class="nav-number">2.1.</span> <span class="nav-text">修改对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#修改关系"><span class="nav-number">2.2.</span> <span class="nav-text">修改关系</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#检索"><span class="nav-number">3.</span> <span class="nav-text">检索</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#关系索引"><span class="nav-number">3.1.</span> <span class="nav-text">关系索引</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#属性索引"><span class="nav-number">3.2.</span> <span class="nav-text">属性索引</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JSON查询"><span class="nav-number">3.3.</span> <span class="nav-text">JSON查询</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#关键字查询"><span class="nav-number">3.4.</span> <span class="nav-text">关键字查询</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#比较"><span class="nav-number">4.</span> <span class="nav-text">比较</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#删除"><span class="nav-number">5.</span> <span class="nav-text">删除</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#复制"><span class="nav-number">6.</span> <span class="nav-text">复制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#更新"><span class="nav-number">7.</span> <span class="nav-text">更新</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#外键关系"><span class="nav-number">8.</span> <span class="nav-text">外键关系</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#多对一"><span class="nav-number">8.1.</span> <span class="nav-text">多对一</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#多对多"><span class="nav-number">8.2.</span> <span class="nav-text">多对多</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#一对一"><span class="nav-number">8.3.</span> <span class="nav-text">一对一</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reference"><span class="nav-number">9.</span> <span class="nav-text">Reference</span></a></li></ol></div>
+      </section>
+      <!--/noindex-->
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Silence"
+      src="https://i.loli.net/2020/07/05/Ml7X4UshoCJgn52.jpg">
+  <p class="site-author-name" itemprop="name">Silence</p>
+  <div class="site-description" itemprop="description">I'm right here waiting for you.</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">31</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/SilenceX12138" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;SilenceX12138" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.instagram.com/silencejiang12138" title="Instagram → https:&#x2F;&#x2F;www.instagram.com&#x2F;silencejiang12138" rel="noopener" target="_blank"><i class="fab fa-instagram fa-fw"></i>Instagram</a>
+      </span>
+  </div>
+
+
+
+      </section>
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </header>
+
+      
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div id="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+      <div class="main-inner">
+        
+
+        <div class="content post posts-expand">
+          
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/08/16/Django-Chapter2-Making%20queries/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://i.loli.net/2020/07/05/Ml7X4UshoCJgn52.jpg">
+      <meta itemprop="name" content="Silence">
+      <meta itemprop="description" content="I'm right here waiting for you.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Silence">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Django-Chapter2-Making queries
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2020-08-16 09:38:54 / Modified: 09:39:25" itemprop="dateCreated datePublished" datetime="2020-08-16T09:38:54+08:00">2020-08-16</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Web/" itemprop="url" rel="index"><span itemprop="name">Web</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Django/" itemprop="url" rel="index"><span itemprop="name">Django</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2020/08/16/Django-Chapter2-Making%20queries/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/08/16/Django-Chapter2-Making%20queries/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <ul>
+<li>全文共<code>2291</code>字，推荐阅读时间<code>20~25</code>分钟</li>
+</ul>
+<a id="more"></a>
+<h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><ul>
+<li><p>本节的查询都建立在如下模型上</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.db <span class="keyword">import</span> models</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Blog</span><span class="params">(models.Model)</span>:</span></span><br><span class="line">    name = models.CharField(max_length=<span class="number">100</span>)</span><br><span class="line">    tagline = models.TextField()</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__str__</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> self.name</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Author</span><span class="params">(models.Model)</span>:</span></span><br><span class="line">    name = models.CharField(max_length=<span class="number">200</span>)</span><br><span class="line">    email = models.EmailField()</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__str__</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> self.name</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Entry</span><span class="params">(models.Model)</span>:</span></span><br><span class="line">    blog = models.ForeignKey(Blog, on_delete=models.CASCADE)</span><br><span class="line">    headline = models.CharField(max_length=<span class="number">255</span>)</span><br><span class="line">    body_text = models.TextField()</span><br><span class="line">    pub_date = models.DateField()</span><br><span class="line">    mod_date = models.DateField()</span><br><span class="line">    authors = models.ManyToManyField(Author)</span><br><span class="line">    number_of_comments = models.IntegerField()</span><br><span class="line">    number_of_pingbacks = models.IntegerField()</span><br><span class="line">    rating = models.IntegerField()</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__str__</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> self.headline</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="创建"><a href="#创建" class="headerlink" title="创建"></a>创建</h2><ul>
+<li>使用关键词参数创建实例</li>
+<li>调用<code>save()</code>操作（<strong>没有</strong>返回值）</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">from</span> blog.models <span class="keyword">import</span> Blog</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>b = Blog(name=<span class="string">'Beatles Blog'</span>, tagline=<span class="string">'All the latest Beatles news.'</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>b.save()</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>使用<code>create()</code>可以合并上述两步</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">p = Person.objects.create(first_name=<span class="string">"Bruce"</span>, last_name=<span class="string">"Springsteen"</span>)</span><br></pre></td></tr></table></figure>
+</blockquote>
+<h3 id="修改对象"><a href="#修改对象" class="headerlink" title="修改对象"></a>修改对象</h3><ul>
+<li>修改</li>
+<li>调用<code>save()</code>操作（<strong>没有</strong>返回值）</li>
+</ul>
+<h3 id="修改关系"><a href="#修改关系" class="headerlink" title="修改关系"></a>修改关系</h3><ul>
+<li><p><code>ForeignKey</code></p>
+  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">from</span> blog.models <span class="keyword">import</span> Blog, Entry</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>entry = Entry.objects.get(pk=<span class="number">1</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>cheese_blog = Blog.objects.get(name=<span class="string">"Cheddar Talk"</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>entry.blog = cheese_blog</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>entry.save()</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>ManyToManyField</code></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">from</span> blog.models <span class="keyword">import</span> Author</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>joe = Author.objects.create(name=<span class="string">"Joe"</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>entry.authors.add(joe)</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>可以一次性添加多个关系</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>john = Author.objects.create(name=<span class="string">"John"</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>paul = Author.objects.create(name=<span class="string">"Paul"</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>george = Author.objects.create(name=<span class="string">"George"</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>ringo = Author.objects.create(name=<span class="string">"Ringo"</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>entry.authors.add(john, paul, george, ringo)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>修改关系直接影响数据库，因此<code>add()</code>会<strong>自动</strong>保存。</p>
+</li>
+<li><p>在修改关系之前，必须<strong>先保存</strong>数据库。（因为关系会用一张表单独存）</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="检索"><a href="#检索" class="headerlink" title="检索"></a>检索</h2><ul>
+<li><p><strong>通过<code>Manager</code>创建<code>QuerySet</code>进行检索</strong></p>
+</li>
+<li><p>通过<strong>类（不是实例）的</strong><code>objects</code>属性获取<code>Manager</code></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;</span><span class="bash">&gt;&gt; Blog.objects</span></span><br><span class="line">&lt;django.db.models.manager.Manager object at ...&gt;</span><br><span class="line"><span class="meta">&gt;</span><span class="bash">&gt;&gt; b = Blog(name=<span class="string">'Foo'</span>, tagline=<span class="string">'Bar'</span>)</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash">&gt;&gt; b.objects</span></span><br><span class="line">Traceback:</span><br><span class="line">    ...</span><br><span class="line">AttributeError: "Manager isn't accessible via Blog instances."</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>获取所有实例</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>all_entries = Entry.objects.all()</span><br></pre></td></tr></table></figure>
+<ul>
+<li>返回一个含有所有实例的<code>QuerySet</code></li>
+</ul>
+</li>
+<li><p>获取特定实例</p>
+<ul>
+<li><p><code>filter</code>：返回<strong>符合</strong>筛选条件的实例组成的<code>QuerySet</code></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Entry.objects.filter(pub_date__year=<span class="number">2006</span>)</span><br><span class="line"><span class="comment"># equals</span></span><br><span class="line">Entry.objects.all().filter(pub_date__year=<span class="number">2006</span>)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>exclude</code>：返回<strong>不符合</strong>筛选条件的实例组成的<code>QuerySet</code></p>
+</li>
+<li><p>链式调用</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>Entry.objects.filter(</span><br><span class="line"><span class="meta">... </span>    headline__startswith=<span class="string">'What'</span></span><br><span class="line"><span class="meta">... </span>).exclude(</span><br><span class="line"><span class="meta">... </span>    pub_date__gte=datetime.date.today()</span><br><span class="line"><span class="meta">... </span>).filter(</span><br><span class="line"><span class="meta">... </span>    pub_date__gte=datetime.date(<span class="number">2005</span>, <span class="number">1</span>, <span class="number">30</span>)</span><br><span class="line"><span class="meta">... </span>)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>每一次过滤得到的<code>QuerySet</code>都是<strong>崭新的</strong></p>
+</li>
+</ul>
+</li>
+<li><p>获取<strong>某个</strong>特定实例</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>one_entry = Entry.objects.get(pk=<span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+<ul>
+<li>与<code>filter</code>返回空<code>QuerySet</code>不同，<code>get</code>方法在实例不存在时会抛出<code>DoseNotExist</code>异常。</li>
+<li>当多个元素满足条件时，<code>get</code>会抛出<code>MultipleObjectsReturned</code>异常。</li>
+</ul>
+</li>
+<li><p>限制个数</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>Entry.objects.all()[:<span class="number">5</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>Entry.objects.all()[<span class="number">5</span>:<span class="number">10</span>]</span><br><span class="line"><span class="comment"># Entry.objects.all()[-1] is not supported</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>取首元素</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>Entry.objects.order_by(<span class="string">'headline'</span>)[<span class="number">0</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>Entry.objects.order_by(<span class="string">'headline'</span>)[<span class="number">0</span>:<span class="number">1</span>].get()</span><br></pre></td></tr></table></figure>
+<blockquote>
+<ul>
+<li>数组索引语法对<code>QuerySet</code>是<strong>基本适用</strong>的</li>
+<li><code>get()</code>在<code>QuerySet</code>只有一个元素时可以<strong>不传参</strong>直接获取该元素</li>
+<li><code>list(QuerySet)</code>可以直接转换为实例列表</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+</li>
+<li><p><code>Field lookups</code>：属性域查询</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># SELECT * FROM blog_entry WHERE pub_date &lt;= '2006-01-01';</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>Entry.objects.filter(pub_date__lte=<span class="string">'2006-01-01'</span>)</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>域通常都有<strong>双下划线</strong>引出，但是<code>_id</code>例外。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>Entry.objects.filter(blog_id=<span class="number">4</span>)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>exact</code>：全字段匹配</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>Entry.objects.get(headline__exact=<span class="string">"Cat bites dog"</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>Blog.objects.get(id__exact=<span class="number">14</span>)  <span class="comment"># Explicit form</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>Blog.objects.get(id=<span class="number">14</span>)         <span class="comment"># __exact is implied</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>exact</code>会被<strong>默认</strong>指定</li>
+</ul>
+</li>
+<li><p><code>iexact</code>：忽略大小写匹配</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>Blog.objects.get(name__iexact=<span class="string">"beatles blog"</span>)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>contains</code>：大小写<strong>敏感</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Entry.objects.get(headline__contains=<span class="string">'Lennon'</span>)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>icontains</code>：忽略大小写</p>
+</li>
+<li><p><code>startswith</code>/<code>istartswith</code>/<code>endswith</code>/<code>iendswith</code></p>
+</li>
+</ul>
+</li>
+<li><p>主键查询</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>Blog.objects.get(id__exact=<span class="number">14</span>) <span class="comment"># Explicit form</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>Blog.objects.get(id=<span class="number">14</span>) <span class="comment"># __exact is implied</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>Blog.objects.get(pk=<span class="number">14</span>) <span class="comment"># pk implies id__exact</span></span><br><span class="line"><span class="comment"># Get blogs entries with id 1, 4 and 7</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>Blog.objects.filter(pk__in=[<span class="number">1</span>,<span class="number">4</span>,<span class="number">7</span>])</span><br><span class="line"><span class="comment"># Get all blog entries with id &gt; 14</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>Blog.objects.filter(pk__gt=<span class="number">14</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>Entry.objects.filter(blog__id__exact=<span class="number">3</span>) <span class="comment"># Explicit form</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>Entry.objects.filter(blog__id=<span class="number">3</span>)        <span class="comment"># __exact is implied</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>Entry.objects.filter(blog__pk=<span class="number">3</span>)        <span class="comment"># __pk implies __id__exact</span></span><br></pre></td></tr></table></figure>
+<h3 id="关系索引"><a href="#关系索引" class="headerlink" title="关系索引"></a>关系索引</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># filter one</span></span><br><span class="line">Blog.objects.filter(entry__headline__contains=<span class="string">'Lennon'</span>, entry__pub_date__year=<span class="number">2008</span>)</span><br><span class="line"><span class="comment"># filter two</span></span><br><span class="line">Blog.objects.filter(entry__headline__contains=<span class="string">'Lennon'</span>).filter(entry__pub_date__year=<span class="number">2008</span>)</span><br></pre></td></tr></table></figure>
+<ul>
+<li>第一个索引只能找到<strong>含有两个条件同时满足的Entry</strong>的Blog对象</li>
+<li>第二个索引可以找到含有Entry<strong>分别满足两个条件之一</strong>的Blog对象</li>
+</ul>
+<blockquote>
+<p><code>filter()</code>和<code>exclude()</code>的<strong>区别</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Blog.objects.exclude(</span><br><span class="line">    entry__headline__contains=<span class="string">'Lennon'</span>,</span><br><span class="line">    entry__pub_date__year=<span class="number">2008</span>,</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<ul>
+<li>排除的是含有<strong>两者满足至少一个</strong>的Entry的Blog</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Blog.objects.exclude(</span><br><span class="line">    entry__in=Entry.objects.filter(</span><br><span class="line">        headline__contains=<span class="string">'Lennon'</span>,</span><br><span class="line">        pub_date__year=<span class="number">2008</span>,</span><br><span class="line">    ),</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<ul>
+<li>排除的是含有<strong>两个条件都满足</strong>的Entry的Blog</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+<h3 id="属性索引"><a href="#属性索引" class="headerlink" title="属性索引"></a>属性索引</h3><ul>
+<li><p>使用<code>F()</code>将Model的不同属性之间的比较作为筛选条件</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">from</span> django.db.models <span class="keyword">import</span> F</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>Entry.objects.filter(number_of_comments__gt=F(<span class="string">'number_of_pingbacks'</span>))</span><br><span class="line"><span class="comment"># mult</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>Entry.objects.filter(number_of_comments__gt=F(<span class="string">'number_of_pingbacks'</span>) * <span class="number">2</span>)</span><br><span class="line"><span class="comment"># add</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>Entry.objects.filter(rating__lt=F(<span class="string">'number_of_comments'</span>) + F(<span class="string">'number_of_pingbacks'</span>))</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>域关系扩展</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>Entry.objects.filter(authors__name=F(<span class="string">'blog__name'</span>))</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>日期查询</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">from</span> datetime <span class="keyword">import</span> timedelta</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>Entry.objects.filter(mod_date__gt=F(<span class="string">'pub_date'</span>) + timedelta(days=<span class="number">3</span>))</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>位运算</p>
+<ul>
+<li><p><code>bitand()</code>/<code>bitor()</code>/<code>bitxor()</code>/<code>bitrightshift()</code>/<code>bitleftshift()</code></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>F(<span class="string">'somefield'</span>).bitand(<span class="number">16</span>)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="JSON查询"><a href="#JSON查询" class="headerlink" title="JSON查询"></a>JSON查询</h3><ul>
+<li><p>JSON的查询和其他域不同，取以下Model为例。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.db <span class="keyword">import</span> models</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Dog</span><span class="params">(models.Model)</span>:</span></span><br><span class="line">    name = models.CharField(max_length=<span class="number">200</span>)</span><br><span class="line">    data = models.JSONField(null=<span class="literal">True</span>)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__str__</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> self.name</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>查询<code>None</code>（在SQL中存储为<code>NULL</code>，JSON中存储为<code>null</code>）</p>
+<ul>
+<li><p>在<strong>查询</strong>时，<code>None</code>会被解释为JSON的<code>null</code>，SQL中<code>NULL</code>的判断应该使用<code>isnull</code>.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>Dog.objects.create(name=<span class="string">'Max'</span>, data=<span class="literal">None</span>)  <span class="comment"># SQL NULL.</span></span><br><span class="line">&lt;Dog: Max&gt;</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>Dog.objects.create(name=<span class="string">'Archie'</span>, data=Value(<span class="string">'null'</span>))  <span class="comment"># JSON null.</span></span><br><span class="line">&lt;Dog: Archie&gt;</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>Dog.objects.filter(data=<span class="literal">None</span>)</span><br><span class="line">&lt;QuerySet [&lt;Dog: Archie&gt;]&gt;</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>Dog.objects.filter(data=Value(<span class="string">'null'</span>))</span><br><span class="line">&lt;QuerySet [&lt;Dog: Archie&gt;]&gt;</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>Dog.objects.filter(data__isnull=<span class="literal">True</span>)</span><br><span class="line">&lt;QuerySet [&lt;Dog: Max&gt;]&gt;</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>Dog.objects.filter(data__isnull=<span class="literal">False</span>)</span><br><span class="line">&lt;QuerySet [&lt;Dog: Archie&gt;]&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在域中设置<code>null=False</code>可以限制SQL不能为<code>NULL</code>，但是JSON中<strong>依然可以</strong>有<code>null</code>.</p>
+</li>
+</ul>
+</li>
+<li><p>属性查询</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>Dog.objects.create(name=<span class="string">'Rufus'</span>, data=&#123;</span><br><span class="line"><span class="meta">... </span>    <span class="string">'breed'</span>: <span class="string">'labrador'</span>,</span><br><span class="line"><span class="meta">... </span>    <span class="string">'owner'</span>: &#123;</span><br><span class="line"><span class="meta">... </span>        <span class="string">'name'</span>: <span class="string">'Bob'</span>,</span><br><span class="line"><span class="meta">... </span>        <span class="string">'other_pets'</span>: [&#123;</span><br><span class="line"><span class="meta">... </span>            <span class="string">'name'</span>: <span class="string">'Fishy'</span>,</span><br><span class="line"><span class="meta">... </span>        &#125;],</span><br><span class="line"><span class="meta">... </span>    &#125;,</span><br><span class="line"><span class="meta">... </span>&#125;)</span><br><span class="line">&lt;Dog: Rufus&gt;</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>Dog.objects.create(name=<span class="string">'Meg'</span>, data=&#123;<span class="string">'breed'</span>: <span class="string">'collie'</span>, <span class="string">'owner'</span>: <span class="literal">None</span>&#125;)</span><br><span class="line">&lt;Dog: Meg&gt;</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>Dog.objects.filter(data__breed=<span class="string">'collie'</span>)</span><br><span class="line">&lt;QuerySet [&lt;Dog: Meg&gt;]&gt;</span><br><span class="line">&gt;&gt; Dog.objects.filter(data__owner__name=<span class="string">'Bob'</span>)</span><br><span class="line">&lt;QuerySet [&lt;Dog: Rufus&gt;]&gt;</span><br><span class="line"><span class="comment"># If the key is an integer, it will be interpreted as an index transform in an array.</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>Dog.objects.filter(data__owner__other_pets__0__name=<span class="string">'Fishy'</span>)</span><br><span class="line">&lt;QuerySet [&lt;Dog: Rufus&gt;]&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>包含查询</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>Dog.objects.create(name=<span class="string">'Rufus'</span>, data=&#123;<span class="string">'breed'</span>: <span class="string">'labrador'</span>, <span class="string">'owner'</span>: <span class="string">'Bob'</span>&#125;)</span><br><span class="line">&lt;Dog: Rufus&gt;</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>Dog.objects.create(name=<span class="string">'Meg'</span>, data=&#123;<span class="string">'breed'</span>: <span class="string">'collie'</span>, <span class="string">'owner'</span>: <span class="string">'Bob'</span>&#125;)</span><br><span class="line">&lt;Dog: Meg&gt;</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>Dog.objects.create(name=<span class="string">'Fred'</span>, data=&#123;&#125;)</span><br><span class="line">&lt;Dog: Fred&gt;</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>Dog.objects.filter(data__contains=&#123;<span class="string">'owner'</span>: <span class="string">'Bob'</span>&#125;)</span><br><span class="line">&lt;QuerySet [&lt;Dog: Rufus&gt;, &lt;Dog: Meg&gt;]&gt;</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>Dog.objects.filter(data__contains=&#123;<span class="string">'breed'</span>: <span class="string">'collie'</span>&#125;)</span><br><span class="line">&lt;QuerySet [&lt;Dog: Meg&gt;]&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>逆包含</strong>查询：查询的元素的属性是指定条件的<strong>子集</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>Dog.objects.create(name=<span class="string">'Rufus'</span>, data=&#123;<span class="string">'breed'</span>: <span class="string">'labrador'</span>, <span class="string">'owner'</span>: <span class="string">'Bob'</span>&#125;)</span><br><span class="line">&lt;Dog: Rufus&gt;</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>Dog.objects.create(name=<span class="string">'Meg'</span>, data=&#123;<span class="string">'breed'</span>: <span class="string">'collie'</span>, <span class="string">'owner'</span>: <span class="string">'Bob'</span>&#125;)</span><br><span class="line">&lt;Dog: Meg&gt;</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>Dog.objects.create(name=<span class="string">'Fred'</span>, data=&#123;&#125;)</span><br><span class="line">&lt;Dog: Fred&gt;</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>Dog.objects.filter(data__contained_by=&#123;<span class="string">'breed'</span>: <span class="string">'collie'</span>, <span class="string">'owner'</span>: <span class="string">'Bob'</span>&#125;)</span><br><span class="line">&lt;QuerySet [&lt;Dog: Meg&gt;, &lt;Dog: Fred&gt;]&gt;</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>Dog.objects.filter(data__contained_by=&#123;<span class="string">'breed'</span>: <span class="string">'collie'</span>&#125;)</span><br><span class="line">&lt;QuerySet [&lt;Dog: Fred&gt;]&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>键查询</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># has_key</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>Dog.objects.create(name=<span class="string">'Rufus'</span>, data=&#123;<span class="string">'breed'</span>: <span class="string">'labrador'</span>&#125;)</span><br><span class="line">&lt;Dog: Rufus&gt;</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>Dog.objects.create(name=<span class="string">'Meg'</span>, data=&#123;<span class="string">'breed'</span>: <span class="string">'collie'</span>, <span class="string">'owner'</span>: <span class="string">'Bob'</span>&#125;)</span><br><span class="line">&lt;Dog: Meg&gt;</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>Dog.objects.filter(data__has_key=<span class="string">'owner'</span>)</span><br><span class="line">&lt;QuerySet [&lt;Dog: Meg&gt;]&gt;</span><br><span class="line"><span class="comment"># has_keys</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>Dog.objects.create(name=<span class="string">'Rufus'</span>, data=&#123;<span class="string">'breed'</span>: <span class="string">'labrador'</span>&#125;)</span><br><span class="line">&lt;Dog: Rufus&gt;</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>Dog.objects.create(name=<span class="string">'Meg'</span>, data=&#123;<span class="string">'breed'</span>: <span class="string">'collie'</span>, <span class="string">'owner'</span>: <span class="string">'Bob'</span>&#125;)</span><br><span class="line">&lt;Dog: Meg&gt;</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>Dog.objects.filter(data__has_keys=[<span class="string">'breed'</span>, <span class="string">'owner'</span>])</span><br><span class="line">&lt;QuerySet [&lt;Dog: Meg&gt;]&gt;</span><br><span class="line"><span class="comment"># has_any_keys</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>Dog.objects.create(name=<span class="string">'Rufus'</span>, data=&#123;<span class="string">'breed'</span>: <span class="string">'labrador'</span>&#125;)</span><br><span class="line">&lt;Dog: Rufus&gt;</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>Dog.objects.create(name=<span class="string">'Meg'</span>, data=&#123;<span class="string">'owner'</span>: <span class="string">'Bob'</span>&#125;)</span><br><span class="line">&lt;Dog: Meg&gt;</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>Dog.objects.filter(data__has_any_keys=[<span class="string">'owner'</span>, <span class="string">'breed'</span>])</span><br><span class="line">&lt;QuerySet [&lt;Dog: Rufus&gt;, &lt;Dog: Meg&gt;]&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="关键字查询"><a href="#关键字查询" class="headerlink" title="关键字查询"></a>关键字查询</h3><ul>
+<li><p>使用<code>Q()</code>解决<code>filter</code>只能够组织<code>AND</code>关系的局限</p>
+</li>
+<li><p>创建查询条件</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.db.models <span class="keyword">import</span> Q</span><br><span class="line">Q(question__startswith=<span class="string">'What'</span>)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>组合查询条件</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Q(question__startswith=<span class="string">'Who'</span>) | Q(question__startswith=<span class="string">'What'</span>)</span><br><span class="line">Q(question__startswith=<span class="string">'Who'</span>) | ~Q(pub_date__year=<span class="number">2005</span>)</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>~</code>进行条件取反</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Poll.objects.get(</span><br><span class="line">    Q(question__startswith=<span class="string">'Who'</span>),</span><br><span class="line">    Q(pub_date=date(<span class="number">2005</span>, <span class="number">5</span>, <span class="number">2</span>)) | Q(pub_date=date(<span class="number">2005</span>, <span class="number">5</span>, <span class="number">6</span>))</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>,</code>相当于是<code>AND</code></li>
+</ul>
+</li>
+<li><p>Q查询和关键词查询可以混合，但是Q查询必须放在<strong>前面</strong>。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Poll.objects.get(</span><br><span class="line">    Q(pub_date=date(<span class="number">2005</span>, <span class="number">5</span>, <span class="number">2</span>)) | Q(pub_date=date(<span class="number">2005</span>, <span class="number">5</span>, <span class="number">6</span>)),</span><br><span class="line">    question__startswith=<span class="string">'Who'</span>,</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="比较"><a href="#比较" class="headerlink" title="比较"></a>比较</h2><ul>
+<li><p>使用<code>==</code>是比较两个实例的<strong>主键值</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>some_entry == other_entry</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>some_entry.id == other_entry.id</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><code>id</code>可以是任意的主键名</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="删除"><a href="#删除" class="headerlink" title="删除"></a>删除</h2><ul>
+<li><p><code>delete()</code>：返回删除的实例个数，以及连带删除的各个类型的实例的个数。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>e.delete()</span><br><span class="line">(<span class="number">1</span>, &#123;<span class="string">'weblog.Entry'</span>: <span class="number">1</span>&#125;)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>QuerySet</code>可以批量删除</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>Entry.objects.filter(pub_date__year=<span class="number">2005</span>).delete()</span><br><span class="line">(<span class="number">5</span>, &#123;<span class="string">'webapp.Entry'</span>: <span class="number">5</span>&#125;)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="复制"><a href="#复制" class="headerlink" title="复制"></a>复制</h2><ul>
+<li><p>重置<code>pk</code>再保存即可复制</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">blog = Blog(name=<span class="string">'My blog'</span>, tagline=<span class="string">'Blogging is easy'</span>)</span><br><span class="line">blog.save() <span class="comment"># blog.pk == 1</span></span><br><span class="line"></span><br><span class="line">blog.pk = <span class="literal">None</span></span><br><span class="line">blog.save() <span class="comment"># blog.pk == 2</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>子类需要<strong>同时重置</strong><code>pk</code>和<code>id</code></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ThemeBlog</span><span class="params">(Blog)</span>:</span></span><br><span class="line">    theme = models.CharField(max_length=<span class="number">200</span>)</span><br><span class="line"></span><br><span class="line">django_blog = ThemeBlog(name=<span class="string">'Django'</span>, tagline=<span class="string">'Django is easy'</span>, theme=<span class="string">'python'</span>)</span><br><span class="line">django_blog.save() <span class="comment"># django_blog.pk == 3</span></span><br><span class="line">django_blog.pk = <span class="literal">None</span></span><br><span class="line">django_blog.id = <span class="literal">None</span></span><br><span class="line">django_blog.save() <span class="comment"># django_blog.pk == 4</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>复制过程<strong>不会</strong>复制<strong>外键</strong>关系</p>
+</li>
+</ul>
+<h2 id="更新"><a href="#更新" class="headerlink" title="更新"></a>更新</h2><ul>
+<li><p>更新多个对象的<strong>非关系</strong>属性</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Update all the headlines with pub_date in 2007.</span></span><br><span class="line">Entry.objects.filter(pub_date__year=<span class="number">2007</span>).update(headline=<span class="string">'Everything is the same'</span>)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>更新<strong>关系</strong>属性</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>b = Blog.objects.get(pk=<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Change every Entry so that it belongs to this Blog.</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>Entry.objects.all().update(blog=b)</span><br></pre></td></tr></table></figure>
+<ul>
+<li>将关系属性置为<strong>对象实例</strong></li>
+</ul>
+</li>
+<li><p>更新<strong>不会</strong>自动保存，需要遍历<code>QuerySet</code>进行<code>save()</code>保存。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> item <span class="keyword">in</span> my_queryset:</span><br><span class="line">    item.save()</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>更新只能够对查询Model的<strong>主表</strong>进行操作，不能够跨表操作（区别于<code>filter</code>）。</p>
+</li>
+<li><p><code>update</code>中的<code>F</code><strong>不能够</strong>进行域扩展</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># This will raise a FieldError</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>Entry.objects.update(headline=F(<span class="string">'blog__name'</span>))</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="外键关系"><a href="#外键关系" class="headerlink" title="外键关系"></a>外键关系</h2><h3 id="多对一"><a href="#多对一" class="headerlink" title="多对一"></a>多对一</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>e = Entry.objects.get(id=<span class="number">2</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>e.blog <span class="comment"># Returns the related Blog object.</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>e = Entry.objects.get(id=<span class="number">2</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>e.blog = some_blog</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>e.save()</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>当外键关系允许<code>null</code>时(<code>null=True</code>)，可以通过<code>None</code>对关系进行删除</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>e = Entry.objects.get(id=<span class="number">2</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>e.blog = <span class="literal">None</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>e.save() <span class="comment"># "UPDATE blog_entry SET blog_id = NULL ...;"</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>逆向查询：<code>FOO_set</code>即<strong>“多”</strong>对象的<code>Manager</code></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>b = Blog.objects.get(id=<span class="number">1</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>b.entry_set.all() <span class="comment"># Returns all Entry objects related to Blog.</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># b.entry_set is a Manager that returns QuerySets.</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>b.entry_set.filter(headline__contains=<span class="string">'Lennon'</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>b.entry_set.count()</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p><code>FOO_set</code>的名字可以通过<code>related_name</code>设置</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># within Model Entry</span></span><br><span class="line">blog = ForeignKey(Blog, on_delete=models.CASCADE, related_name=<span class="string">'entries'</span>)</span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>b = Blog.objects.get(id=<span class="number">1</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>b.entries.all() <span class="comment"># Returns all Entry objects related to Blog.</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># b.entries is a Manager that returns QuerySets.</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>b.entries.filter(headline__contains=<span class="string">'Lennon'</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>b.entries.count()</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>其他操作</p>
+<ul>
+<li><p><code>add(obj1, obj2, ...)</code>：将多个对象和指定对象的外键域关联起来</p>
+</li>
+<li><p><code>create(**kwargs)</code>：创建并保存对象然后返回</p>
+</li>
+<li><p><code>remove(obj1, obj2, ...)</code>：<code>add</code>的逆操作</p>
+</li>
+<li><p><code>clear()</code>：清除<code>QuerySet</code>中的所有元素</p>
+</li>
+<li><p><code>set(objs)</code>：重置外键域</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">b = Blog.objects.get(id=<span class="number">1</span>)</span><br><span class="line">b.entry_set.set([e1, e2])</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<blockquote>
+<p>所有的<code>add</code>/<code>create</code>/<code>delete</code>操作都是直接作用于数据库的</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="多对多"><a href="#多对多" class="headerlink" title="多对多"></a>多对多</h3><ul>
+<li><p>逆向查询时的Manager依然是<code>FOO_name</code>，并且可以通过<code>related_name</code>指定。</p>
+</li>
+<li><p>和多对一不同的是，多对多可以使用<code>pk</code>进行增删操作。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># identical operations</span></span><br><span class="line">a = Author.objects.get(id=<span class="number">5</span>)</span><br><span class="line">a.entry_set.set([e1, e2])</span><br><span class="line">a.entry_set.set([e1.pk, e2.pk])</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="一对一"><a href="#一对一" class="headerlink" title="一对一"></a>一对一</h3><ul>
+<li>逆向查询时直接使用<code>Model</code>的<strong>小写</strong>名称</li>
+</ul>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ul>
+<li><a href="https://docs.djangoproject.com/en/dev/topics/db/queries/" target="_blank" rel="noopener">https://docs.djangoproject.com/en/dev/topics/db/queries/</a></li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/08/15/Django-Chapter0-Django%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" rel="prev" title="Django-Chapter0-Django学习笔记">
+      <i class="fa fa-chevron-left"></i> Django-Chapter0-Django学习笔记
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+        </div>
+        
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Silence</span>
+</div>
+
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  Visitors: <span id="busuanzi_value_site_pv"></span>
+</span>
+</div>
+
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">|   total: 63.9k words</span>
+</div>
+  <div class="powered-by">
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+if (document.querySelectorAll('pre.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
+    mermaid.initialize({
+      theme    : 'forest',
+      logLevel : 3,
+      flowchart: { curve     : 'linear' },
+      gantt    : { axisFormat: '%m/%d/%Y' },
+      sequence : { actorMargin: 50 }
+    });
+  }, window.mermaid);
+}
+</script>
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/valine@1/dist/Valine.min.js', () => {
+    new Valine(Object.assign({
+      el  : '#valine-comments',
+      path: location.pathname,
+    }, {"enable":true,"appId":"GMneVEFPu4TwpvejAPqllWGc-gzGzoHsz","appKey":"5eNvc7SV1dxRT000WSXjRDuD","placeholder":"Just write what you'd like to write.","avatar":"mm","meta":["nick","mail"],"pageSize":10,"language":"en","visitor":false,"comment_count":true,"recordIP":false,"serverURLs":null}
+    ));
+  }, window.Valine);
+});
+</script>
+
+</body>
+</html>
