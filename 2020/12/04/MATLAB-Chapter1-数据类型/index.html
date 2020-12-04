@@ -1,0 +1,892 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  
+  <link rel="stylesheet" href="/lib/animate-css/animate.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Muse","version":"8.0.0-rc.4","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}}};
+  </script>
+
+  <meta name="description" content="Chapter1 数据类型全文共1782字，推荐阅读时间15~20分钟。 概述 每一种类型都以数组为基础 默认类型为double，可以利用转化函数改变类型。 不用事先对变量的类型进行定义或说明  常量预定义的特殊变量  ans：未赋值运算结果自动赋值给ans eps：容差变量，小于该值时可认为是0. pi i,j：二者等价，虚数单位。 inf：正无穷大，0作除数时出现。 NaN：不合法数值，在$0">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MATLAB-Chapter1-数据类型">
+<meta property="og:url" content="http://yoursite.com/2020/12/04/MATLAB-Chapter1-%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/index.html">
+<meta property="og:site_name" content="Silence">
+<meta property="og:description" content="Chapter1 数据类型全文共1782字，推荐阅读时间15~20分钟。 概述 每一种类型都以数组为基础 默认类型为double，可以利用转化函数改变类型。 不用事先对变量的类型进行定义或说明  常量预定义的特殊变量  ans：未赋值运算结果自动赋值给ans eps：容差变量，小于该值时可认为是0. pi i,j：二者等价，虚数单位。 inf：正无穷大，0作除数时出现。 NaN：不合法数值，在$0">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-12-04T03:28:44.129Z">
+<meta property="article:modified_time" content="2020-12-04T03:30:09.684Z">
+<meta property="article:author" content="Silence">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://yoursite.com/2020/12/04/MATLAB-Chapter1-%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>MATLAB-Chapter1-数据类型 | Silence</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="Silence" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <main class="main">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+        <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+        <span class="toggle-line toggle-line-first"></span>
+        <span class="toggle-line toggle-line-middle"></span>
+        <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">Silence</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-lover">
+
+    <a href="/lover/" rel="section"><i class="fa fa-heart fa-fw"></i>lover</a>
+
+  </li>
+        <li class="menu-item menu-item-schedule">
+
+    <a href="/schedule/" rel="section"><i class="fa fa-calendar fa-fw"></i>Schedule</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <section class="post-toc-wrap sidebar-panel">
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Chapter1-数据类型"><span class="nav-number">1.</span> <span class="nav-text">Chapter1 数据类型</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#概述"><span class="nav-number">1.1.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常量"><span class="nav-number">1.2.</span> <span class="nav-text">常量</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#操作"><span class="nav-number">1.2.1.</span> <span class="nav-text">操作</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#变量"><span class="nav-number">1.3.</span> <span class="nav-text">变量</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#命名规则"><span class="nav-number">1.3.1.</span> <span class="nav-text">命名规则</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#基本操作"><span class="nav-number">1.3.2.</span> <span class="nav-text">基本操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#类型"><span class="nav-number">1.3.3.</span> <span class="nav-text">类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数值型"><span class="nav-number">1.3.4.</span> <span class="nav-text">数值型</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#类型转换"><span class="nav-number">1.3.4.1.</span> <span class="nav-text">类型转换</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#取整函数"><span class="nav-number">1.3.4.2.</span> <span class="nav-text">取整函数</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#复数"><span class="nav-number">1.3.5.</span> <span class="nav-text">复数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#逻辑型变量"><span class="nav-number">1.3.6.</span> <span class="nav-text">逻辑型变量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数组和矩阵"><span class="nav-number">1.3.7.</span> <span class="nav-text">数组和矩阵</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#创建"><span class="nav-number">1.3.7.1.</span> <span class="nav-text">创建</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#矩阵操作"><span class="nav-number">1.3.7.2.</span> <span class="nav-text">矩阵操作</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#字符串"><span class="nav-number">1.3.8.</span> <span class="nav-text">字符串</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#创建-1"><span class="nav-number">1.3.8.1.</span> <span class="nav-text">创建</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#转换"><span class="nav-number">1.3.8.2.</span> <span class="nav-text">转换</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#合并"><span class="nav-number">1.3.8.3.</span> <span class="nav-text">合并</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#类型判断"><span class="nav-number">1.3.8.4.</span> <span class="nav-text">类型判断</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#比较"><span class="nav-number">1.3.8.5.</span> <span class="nav-text">比较</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#内存占用"><span class="nav-number">1.3.8.6.</span> <span class="nav-text">内存占用</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#函数句柄"><span class="nav-number">1.3.9.</span> <span class="nav-text">函数句柄</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#创建-2"><span class="nav-number">1.3.9.1.</span> <span class="nav-text">创建</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#调用"><span class="nav-number">1.3.9.2.</span> <span class="nav-text">调用</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#元胞数组"><span class="nav-number">1.3.10.</span> <span class="nav-text">元胞数组</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#创建-3"><span class="nav-number">1.3.10.1.</span> <span class="nav-text">创建</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#操作-1"><span class="nav-number">1.3.10.2.</span> <span class="nav-text">操作</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#结构数组"><span class="nav-number">1.3.11.</span> <span class="nav-text">结构数组</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#创建-4"><span class="nav-number">1.3.11.1.</span> <span class="nav-text">创建</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#追加"><span class="nav-number">1.3.11.2.</span> <span class="nav-text">追加</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#访问"><span class="nav-number">1.3.11.3.</span> <span class="nav-text">访问</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#删除域"><span class="nav-number">1.3.11.4.</span> <span class="nav-text">删除域</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reference"><span class="nav-number">1.4.</span> <span class="nav-text">Reference</span></a></li></ol></li></ol></div>
+      </section>
+      <!--/noindex-->
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Silence"
+      src="https://i.loli.net/2020/07/05/Ml7X4UshoCJgn52.jpg">
+  <p class="site-author-name" itemprop="name">Silence</p>
+  <div class="site-description" itemprop="description">I'm right here waiting for you.</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">44</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/SilenceX12138" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;SilenceX12138" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.instagram.com/silencejiang12138" title="Instagram → https:&#x2F;&#x2F;www.instagram.com&#x2F;silencejiang12138" rel="noopener" target="_blank"><i class="fab fa-instagram fa-fw"></i>Instagram</a>
+      </span>
+  </div>
+
+
+
+      </section>
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </header>
+
+      
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div id="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+      <div class="main-inner">
+        
+
+        <div class="content post posts-expand">
+          
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/12/04/MATLAB-Chapter1-%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://i.loli.net/2020/07/05/Ml7X4UshoCJgn52.jpg">
+      <meta itemprop="name" content="Silence">
+      <meta itemprop="description" content="I'm right here waiting for you.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Silence">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          MATLAB-Chapter1-数据类型
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2020-12-04 11:28:44 / Modified: 11:30:09" itemprop="dateCreated datePublished" datetime="2020-12-04T11:28:44+08:00">2020-12-04</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/AI/" itemprop="url" rel="index"><span itemprop="name">AI</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MATLAB/" itemprop="url" rel="index"><span itemprop="name">MATLAB</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2020/12/04/MATLAB-Chapter1-%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/12/04/MATLAB-Chapter1-%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="Chapter1-数据类型"><a href="#Chapter1-数据类型" class="headerlink" title="Chapter1 数据类型"></a>Chapter1 数据类型</h1><p>全文共<code>1782</code>字，推荐阅读时间<code>15~20</code>分钟。</p>
+<h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><ul>
+<li>每一种类型都以<strong>数组</strong>为基础</li>
+<li>默认类型为<code>double</code>，可以利用转化函数改变类型。</li>
+<li><strong>不用</strong>事先对变量的类型进行定义或说明</li>
+</ul>
+<h2 id="常量"><a href="#常量" class="headerlink" title="常量"></a>常量</h2><p>预定义的特殊变量</p>
+<ul>
+<li><code>ans</code>：<strong>未赋值运算</strong>结果自动赋值给<code>ans</code></li>
+<li><code>eps</code>：容差变量，小于该值时可认为是0.</li>
+<li><code>pi</code></li>
+<li><code>i,j</code>：二者等价，虚数单位。</li>
+<li><code>inf</code>：正无穷大，0作<strong>除数</strong>时出现。</li>
+<li><code>NaN</code>：不合法数值，在$0*∞,0/0$等运算时产生。</li>
+<li><code>version</code></li>
+</ul>
+<h3 id="操作"><a href="#操作" class="headerlink" title="操作"></a>操作</h3><ul>
+<li><code>clear name1 name2 name3;</code>：清除用户自定义的变量<ul>
+<li><code>clear all;</code>：清除所有变量</li>
+</ul>
+</li>
+<li>特殊常量的值可以在当前程序中被<strong>临时改变</strong></li>
+</ul>
+<h2 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h2><ul>
+<li>MATLAB中所有变量都以<strong>数组或矩阵</strong>形式保存</li>
+</ul>
+<h3 id="命名规则"><a href="#命名规则" class="headerlink" title="命名规则"></a>命名规则</h3><ul>
+<li>和C一致</li>
+<li>对大小写敏感</li>
+</ul>
+<h3 id="基本操作"><a href="#基本操作" class="headerlink" title="基本操作"></a>基本操作</h3><ul>
+<li>变量查询<ul>
+<li><code>who</code>：列出所有的变量名</li>
+<li><code>whos</code>：给出所有变量及其大小、类别等性质。</li>
+</ul>
+</li>
+<li><code>clear</code>：删除<strong>自定义</strong>变量，并重置<strong>除<code>eps</code>之外</strong>的常量。<ul>
+<li><code>clear a*</code>：删除所有以<code>a</code>开头的变量</li>
+</ul>
+</li>
+<li><code>pack</code>：重组和压缩已分配的内存碎块，在不影响变量的情况下腾出空间。<ul>
+<li><code>pack filename</code>：自定义中间<code>mat</code>文件名（之后会被自动删掉）</li>
+</ul>
+</li>
+</ul>
+<h3 id="类型"><a href="#类型" class="headerlink" title="类型"></a>类型</h3><ul>
+<li><p>局部变量：函数内部定义的变量</p>
+</li>
+<li><p>全局变量：函数之间共享的变量</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">global</span> MAXLEN;MAXLEN=<span class="number">45</span>;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>永久变量：类似于<code>static</code>，在M文件中定义和使用，只在<code>clear</code>时被清除。</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">persistent</span> MAXLEN; MAXLEN=<span class="number">45</span>;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="数值型"><a href="#数值型" class="headerlink" title="数值型"></a>数值型</h3><ul>
+<li><p>整型：带符号&amp;无符号</p>
+</li>
+<li><p>浮点型：单精度(single)&amp;双精度(double)</p>
+<blockquote>
+<p>单精度<strong>不是</strong><code>float</code></p>
+</blockquote>
+</li>
+<li><p>比较</p>
+<ul>
+<li><code>~=</code></li>
+<li><code>==</code></li>
+</ul>
+</li>
+</ul>
+<h4 id="类型转换"><a href="#类型转换" class="headerlink" title="类型转换"></a>类型转换</h4><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">x1 = int8(<span class="number">11</span>); <span class="comment">% 11</span></span><br><span class="line">x2 = int8(<span class="number">15.49</span>); <span class="comment">% 15</span></span><br><span class="line">x3 = int8(<span class="number">15.5</span>); <span class="comment">% 16</span></span><br><span class="line">x4 = int8(<span class="number">130</span>); <span class="comment">% 127</span></span><br><span class="line">x5 = uint8(<span class="number">-1</span>); <span class="comment">% 0</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>浮点型转换为整型是<strong>四舍五入</strong></p>
+</li>
+<li><p>超过类型边界<strong>则取边界值</strong></p>
+</li>
+<li><p><code>intmax</code>/<code>intmin</code>：查询整型边界</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">intmax(<span class="string">'int8'</span>); <span class="comment">% 127</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>类型传入需要<strong>引号</strong></p>
+</blockquote>
+</li>
+<li><p><code>realmax</code>/<code>realmin</code>：查询浮点型边界</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">realmax</span>(<span class="string">'single'</span>);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>数值默认为双精度浮点数，需要手动转换为<code>single</code>或其它类型.</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">x = <span class="number">35</span>;</span><br><span class="line">y = single(X);</span><br><span class="line">class(x) <span class="comment">% double</span></span><br><span class="line">class(y) <span class="comment">% single</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>;</code>：变量后加<code>;</code>限制变量输出，不会打印到控制台，和C作用不同。</li>
+</ul>
+</li>
+</ul>
+<h4 id="取整函数"><a href="#取整函数" class="headerlink" title="取整函数"></a>取整函数</h4><ul>
+<li><code>round(x)</code>：四舍五入（负数可能<strong>向下</strong>五入）</li>
+<li><code>fix(x)</code>：向0取整</li>
+<li><code>floor(x)</code>：向<strong>下</strong>取整</li>
+<li><code>ceil(x)</code>：向<strong>上</strong>取整</li>
+</ul>
+<h3 id="复数"><a href="#复数" class="headerlink" title="复数"></a>复数</h3><ul>
+<li><p>创建</p>
+<ul>
+<li><p>直接输入</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">2</span><span class="number">-3</span><span class="built_in">i</span> <span class="comment">% ans = 2.0000-3.0000i</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><code>format</code>默认设置小数点后保留4位，当数字大于1000时，使用科学计数法。</p>
+</blockquote>
+</li>
+<li><p><code>complex(a, b)</code>：a是实部，b是虚部，且b不指定时默认为0.</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="逻辑型变量"><a href="#逻辑型变量" class="headerlink" title="逻辑型变量"></a>逻辑型变量</h3><ul>
+<li><p><code>true</code>对应1，<code>false</code>对应0.</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">y = [<span class="number">7</span>, <span class="number">2</span>, <span class="number">9</span>] &gt; <span class="number">5</span> <span class="comment">% y = [1, 0, 1]</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>logical</code>：数值转换为逻辑型</p>
+</li>
+<li><p><code>any</code>/<code>all</code>：矩阵传入一维真值矩阵</p>
+</li>
+<li><p><code>is*(isspace)</code>：测试运算</p>
+</li>
+<li><p>逻辑数组：利用逻辑运算构造矩阵</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">A = <span class="built_in">rand</span>(<span class="number">3</span>), A(A&lt;<span class="number">0.5</span>)=<span class="number">0</span> <span class="comment">% assign val &lt; 0.5 positions to zero</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="数组和矩阵"><a href="#数组和矩阵" class="headerlink" title="数组和矩阵"></a>数组和矩阵</h3><ul>
+<li>数组的运算都是<strong>点运算</strong>（逐个元素运算）</li>
+<li>矩阵的乘法、乘方、除法有特殊含义，其他和数组没有区别。</li>
+<li><strong>MATLAB的下标从1开始</strong></li>
+</ul>
+<h4 id="创建"><a href="#创建" class="headerlink" title="创建"></a>创建</h4><ul>
+<li><p>直接构造法</p>
+<ul>
+<li><code>[]</code></li>
+<li><code>,</code>：间隔<strong>行内</strong>元素，或者使用空格。</li>
+<li><code>;</code>：间隔<strong>行间</strong>元素，或者使用回车。</li>
+<li>元素可以为值/表达式</li>
+</ul>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">a = [<span class="number">2</span>, <span class="number">3.8</span>, <span class="number">1e-3</span>, <span class="built_in">sqrt</span>(<span class="number">2</span>)]</span><br><span class="line">b = [<span class="number">1</span> <span class="number">2</span> <span class="number">3</span>; <span class="number">4</span> <span class="number">5</span> <span class="number">6</span>; <span class="number">7</span> <span class="number">8</span> <span class="number">9</span>]</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>增量法</p>
+<ul>
+<li><p>利用冒号生成向量（包括<strong>右端点</strong>）</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">x = <span class="built_in">i</span>:<span class="built_in">j</span> <span class="comment">% [i,j] as an array(including j)</span></span><br><span class="line">x = <span class="built_in">i</span>:<span class="built_in">j</span>:k <span class="comment">% j is stride</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>linspace(a,b)</code>：生成等差向量</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">x = <span class="built_in">linspace</span>(<span class="number">2</span>, <span class="number">8</span>, <span class="number">10</span>) <span class="comment">% from 2 to 8 with 10 numbers(default to 100 numbers)</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>logspace(a,b)</code>：等比向量</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">x = logspace(2, 8) # default to produce 50 numbers</span><br><span class="line">y = <span class="built_in">logspace</span>(<span class="number">2</span>, <span class="number">8</span>, <span class="number">10</span>)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>利用小矩阵</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">A=[<span class="number">1</span> <span class="number">2</span> <span class="number">3</span>; <span class="number">4</span> <span class="number">5</span> <span class="number">6</span>; <span class="number">7</span> <span class="number">8</span> <span class="number">9</span>];</span><br><span class="line">C = [a, <span class="built_in">eye</span>(<span class="built_in">size</span>(A)); <span class="built_in">ones</span>(<span class="number">3</span>), A*<span class="number">2</span>]</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>size()</code>：返回行数和列数<ul>
+<li><code>length()</code>：返回行数和列数中的最大值</li>
+</ul>
+</li>
+<li><code>eye(size)</code>：返回单位矩阵</li>
+<li><code>ones(size)</code>：返回全一矩阵</li>
+</ul>
+</li>
+</ul>
+<h4 id="矩阵操作"><a href="#矩阵操作" class="headerlink" title="矩阵操作"></a>矩阵操作</h4><ul>
+<li><p>元素赋值</p>
+<ul>
+<li>超过边界时，内存会<strong>自动扩展</strong>。</li>
+</ul>
+</li>
+<li><p>运算</p>
+<ul>
+<li><code>*</code>：数学意义上的<strong>矩阵乘法</strong></li>
+<li><code>.*</code>：<strong>点运算</strong>的数组乘法，对应元素相乘。</li>
+</ul>
+<blockquote>
+<p><code>^</code>等运算符同上</p>
+</blockquote>
+</li>
+<li>拆分：利用冒号表达式获得子矩阵<ul>
+<li><code>A(r,c)</code>：(r,c)位置的元素</li>
+<li><code>A(r,:)</code>：A的第r行的所有元素</li>
+<li><code>A(:,c)</code>：A的第c列的所有元素</li>
+<li><code>A(:)</code>：<strong>列优先</strong>使A变为一维数组</li>
+<li><code>A(i)</code>：访问<code>A(:)</code>中的第<code>i</code>个元素</li>
+<li><code>A(r,c)=Sa</code>：元素赋值</li>
+<li><code>A(:)=D(:)</code></li>
+</ul>
+</li>
+<li><p>删除：利用<code>[]</code>赋值</p>
+<ul>
+<li><p>删除不是清零，而是<strong>改变</strong>矩阵结构。</p>
+<blockquote>
+<p><code>clear</code>后矩阵变量则消失，不能再通过变量名操作。</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li><p>其他</p>
+<ul>
+<li><p><code>diag</code>：提取矩阵对角线元素生成对角矩阵</p>
+</li>
+<li><p><code>flipud</code>：上下翻转</p>
+</li>
+<li><p><code>fliplr</code>：左右翻转</p>
+</li>
+<li><p><code>reshape(name, length, width)</code>：第一个参数是原矩阵，改变形状。</p>
+<ul>
+<li>注意矩阵<strong>列优先</strong></li>
+</ul>
+</li>
+<li><p><code>rot90</code>：<strong>逆时针</strong>旋转90度</p>
+</li>
+<li><p><code>det</code>：矩阵行列式的值</p>
+</li>
+<li><p><code>rank</code>：矩阵的秩</p>
+</li>
+<li><p><code>trace</code>：矩阵的迹</p>
+</li>
+<li><p><code>max</code>：包含<strong>每一列</strong>最大值的向量</p>
+</li>
+<li><p>数组逆序</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">A = A(<span class="keyword">end</span>:<span class="number">-1</span>:<span class="number">1</span>); <span class="comment">% end is a special symbol for iteration</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h3><ul>
+<li>一维字符数组</li>
+<li>用<strong>单引号</strong>括起</li>
+<li>字符串的<code>class</code>是<code>char</code></li>
+<li>索引访问时应该使用<code>()</code>而不是<code>[]</code></li>
+</ul>
+<h4 id="创建-1"><a href="#创建-1" class="headerlink" title="创建"></a>创建</h4><ul>
+<li><p>单引号赋值</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">c = <span class="string">'BUAA'</span>;</span><br><span class="line">b = c(<span class="number">1</span>);</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="转换"><a href="#转换" class="headerlink" title="转换"></a>转换</h4><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">c1 = char(<span class="number">97</span>) <span class="comment">% a</span></span><br><span class="line">c2 = num2str(<span class="number">97</span>) <span class="comment">% 97</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li><p><code>setstr</code>：将ASCII码转换成字符串</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">setstr(<span class="built_in">abs</span>(<span class="string">'c'</span>) + <span class="built_in">abs</span>(<span class="string">'a'</span>) - <span class="built_in">abs</span>(<span class="string">'A'</span>));</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>abs</code>：将字符串转换为ASCII码</p>
+</li>
+</ul>
+<h4 id="合并"><a href="#合并" class="headerlink" title="合并"></a>合并</h4><ul>
+<li><p>水平</p>
+  <figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">str = [<span class="string">'I '</span>, <span class="string">'Love '</span>, <span class="string">'Matlab!'</span>] <span class="comment">% str = I Love Matlab</span></span><br><span class="line">str2 = strcat(<span class="string">'I '</span>, <span class="string">'Love '</span>, <span class="string">'Matlab!'</span>) <span class="comment">% str = ILoveMatlab</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>strcat</code>会自动去掉<strong>结尾处</strong>的空格，头部的<strong>不会被</strong>去掉。</li>
+</ul>
+</li>
+<li><p>垂直</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">str = [<span class="string">'Matrix    '</span>;<span class="string">'Lab'</span>]</span><br><span class="line">str2 = strvcat(<span class="string">'Matrix    '</span>,<span class="string">'Lab'</span>)</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>strvcat</code>自动去掉<strong>结尾</strong>的空格</li>
+</ul>
+</li>
+</ul>
+<h4 id="类型判断"><a href="#类型判断" class="headerlink" title="类型判断"></a>类型判断</h4><ul>
+<li><p><code>isstrprop(str, &#39;category&#39;)</code></p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">isstrprop(pw, <span class="string">'alphanum'</span>);</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="比较"><a href="#比较" class="headerlink" title="比较"></a>比较</h4><ul>
+<li><code>strcmp</code>：相等返回1</li>
+<li><code>==</code>：逐个字符比较，返回一维数组，相等的位为1.</li>
+</ul>
+<h4 id="内存占用"><a href="#内存占用" class="headerlink" title="内存占用"></a>内存占用</h4><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>编码方式</th>
+<th>英文（单位：字节）</th>
+<th>中文（单位：字节）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ASCII</code></td>
+<td>1</td>
+<td>/</td>
+</tr>
+<tr>
+<td><code>UTF-8</code></td>
+<td>1</td>
+<td>3</td>
+</tr>
+<tr>
+<td><code>UTF-16</code></td>
+<td>2</td>
+<td>2/4</td>
+</tr>
+<tr>
+<td><code>UTF-32</code></td>
+<td>4</td>
+<td>4</td>
+</tr>
+<tr>
+<td><code>GBK</code></td>
+<td>1</td>
+<td>2</td>
+</tr>
+</tbody>
+</table>
+</div>
+<blockquote>
+<p>在<code>R202a</code>中测试，无论是英文还是中文均占用两个字节。</p>
+</blockquote>
+<h3 id="函数句柄"><a href="#函数句柄" class="headerlink" title="函数句柄"></a>函数句柄</h3><ul>
+<li>提供间接调用函数方法的数据类型</li>
+</ul>
+<h4 id="创建-2"><a href="#创建-2" class="headerlink" title="创建"></a>创建</h4><ul>
+<li><p>在已有函数名前加符号<code>@</code></p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">func1 = @funcname;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>提供匿名函数</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqr = @(x)x.^<span class="number">2</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="调用"><a href="#调用" class="headerlink" title="调用"></a>调用</h4><ul>
+<li>将函数句柄看作函数名，和函数调用相同。</li>
+</ul>
+<h3 id="元胞数组"><a href="#元胞数组" class="headerlink" title="元胞数组"></a>元胞数组</h3><ul>
+<li>其中的元素类型、尺寸可以不相同</li>
+<li>创建、访问时用<code>{}</code>表示索引</li>
+</ul>
+<h4 id="创建-3"><a href="#创建-3" class="headerlink" title="创建"></a>创建</h4><ul>
+<li><p><code>cell</code></p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a=cell(<span class="number">3</span>,<span class="number">3</span>)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="操作-1"><a href="#操作-1" class="headerlink" title="操作"></a>操作</h4><ul>
+<li><p><code>deal</code>：<strong>列优先</strong>查看内容，返回一个长向量进行解析。</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[a,b] = deal(a&#123;:&#125;)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>[]</code>：赋值，删除元素。</p>
+</li>
+<li><p><code>num2cell</code>/<code>mat2cell</code>：数组、矩阵和元胞的转换。</p>
+</li>
+<li><p><code>celldisp</code>：逐个显示元胞数组内容</p>
+</li>
+</ul>
+<h3 id="结构数组"><a href="#结构数组" class="headerlink" title="结构数组"></a>结构数组</h3><h4 id="创建-4"><a href="#创建-4" class="headerlink" title="创建"></a>创建</h4><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt; stu = struct(<span class="string">'username'</span>, &#123;&#125;, <span class="string">'password'</span>, &#123;&#125;, <span class="string">'name'</span>, &#123;&#125;, <span class="string">'gender'</span>, &#123;&#125;); <span class="comment">% an empty struct array</span></span><br><span class="line">&gt;&gt; stu(<span class="number">1</span>).name=<span class="string">'Silence'</span>;</span><br><span class="line">&gt;&gt; stu(<span class="number">1</span>).course=[<span class="number">1</span> <span class="number">2</span> <span class="number">3</span>]</span><br><span class="line"></span><br><span class="line">stu = </span><br><span class="line"></span><br><span class="line">  struct with fields:</span><br><span class="line"></span><br><span class="line">      name: <span class="string">'Silence'</span></span><br><span class="line">    course: [<span class="number">1</span> <span class="number">2</span> <span class="number">3</span>]</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>使用<code>struct</code>函数</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt; student(<span class="number">3</span>)=struct(<span class="string">'name'</span>,<span class="string">'Lex'</span>,<span class="string">'course'</span>,[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>])</span><br><span class="line"></span><br><span class="line">student = </span><br><span class="line"></span><br><span class="line">  <span class="number">1</span>×<span class="number">3</span> struct array with fields:</span><br><span class="line"></span><br><span class="line">    name</span><br><span class="line">    course</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="追加"><a href="#追加" class="headerlink" title="追加"></a>追加</h4><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt; stu(<span class="number">2</span>).name=<span class="string">'Anita'</span></span><br><span class="line"></span><br><span class="line">stu = </span><br><span class="line"></span><br><span class="line">  <span class="number">1</span>×<span class="number">2</span> struct array with fields:</span><br><span class="line"></span><br><span class="line">    name</span><br><span class="line">    course</span><br></pre></td></tr></table></figure>
+<h4 id="访问"><a href="#访问" class="headerlink" title="访问"></a>访问</h4><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">stu(<span class="number">2</span>).name</span><br></pre></td></tr></table></figure>
+<h4 id="删除域"><a href="#删除域" class="headerlink" title="删除域"></a>删除域</h4><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt; rmfield(stu,&#123;<span class="string">'course'</span>&#125;)</span><br><span class="line"></span><br><span class="line"><span class="built_in">ans</span> = </span><br><span class="line"></span><br><span class="line">  <span class="number">1</span>×<span class="number">2</span> struct array with fields:</span><br><span class="line"></span><br><span class="line">    name</span><br><span class="line"></span><br><span class="line">&gt;&gt; stu</span><br><span class="line"></span><br><span class="line">stu = </span><br><span class="line"></span><br><span class="line">  <span class="number">1</span>×<span class="number">2</span> struct array with fields:</span><br><span class="line"></span><br><span class="line">    name</span><br><span class="line">    course</span><br><span class="line"></span><br><span class="line">&gt;&gt;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><strong>不改变</strong>本来的结构数组</li>
+</ul>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ul>
+<li>BUAA MATLAB Lecture, Autumn of 2020.</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/12/04/MATLAB-Chapter0-%E6%A6%82%E8%AE%BA/" rel="prev" title="MATLAB-Chapter0-概论">
+      <i class="fa fa-chevron-left"></i> MATLAB-Chapter0-概论
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/12/04/MATLAB-Chapter2-%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/" rel="next" title="MATLAB-Chapter2-程序设计">
+      MATLAB-Chapter2-程序设计 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+        </div>
+        
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Silence</span>
+</div>
+
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  Visitors: <span id="busuanzi_value_site_pv"></span>
+</span>
+</div>
+
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">|   total: 86.5k words</span>
+</div>
+  <div class="powered-by">
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+if (document.querySelectorAll('pre.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
+    mermaid.initialize({
+      theme    : 'forest',
+      logLevel : 3,
+      flowchart: { curve     : 'linear' },
+      gantt    : { axisFormat: '%m/%d/%Y' },
+      sequence : { actorMargin: 50 }
+    });
+  }, window.mermaid);
+}
+</script>
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/valine@1/dist/Valine.min.js', () => {
+    new Valine(Object.assign({
+      el  : '#valine-comments',
+      path: location.pathname,
+    }, {"enable":true,"appId":"GMneVEFPu4TwpvejAPqllWGc-gzGzoHsz","appKey":"5eNvc7SV1dxRT000WSXjRDuD","placeholder":"Just write what you'd like to write.","avatar":"mm","meta":["nick","mail"],"pageSize":10,"language":"en","visitor":false,"comment_count":true,"recordIP":false,"serverURLs":null}
+    ));
+  }, window.Valine);
+});
+</script>
+
+</body>
+</html>
