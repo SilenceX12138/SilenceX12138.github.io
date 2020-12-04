@@ -159,13 +159,13 @@
     <link href="http://yoursite.com/2020/12/04/MATLAB-Chapter0-%E6%A6%82%E8%AE%BA/"/>
     <id>http://yoursite.com/2020/12/04/MATLAB-Chapter0-%E6%A6%82%E8%AE%BA/</id>
     <published>2020-12-04T03:28:44.116Z</published>
-    <updated>2020-12-04T03:35:16.635Z</updated>
+    <updated>2020-12-04T03:39:50.126Z</updated>
     
-    <content type="html"><![CDATA[<h1 id="Chapter0-概论"><a href="#Chapter0-概论" class="headerlink" title="Chapter0 概论"></a>Chapter0 概论</h1><a id="more"></a><h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><ul><li>MATLAB<strong>最初</strong>强调矩阵的运算</li></ul><h2 id="文件格式"><a href="#文件格式" class="headerlink" title="文件格式"></a>文件格式</h2><ul><li><p><code>.m</code>：M文件</p><ul><li>命令文件：主程序/主函数</li><li>函数文件：子程序/被调函数</li></ul><blockquote><p>工具箱中所有的文件基本上是<strong>函数文件</strong></p></blockquote></li><li><p><code>.mat</code>：数据文件，保存了workspace中的变量数据</p></li><li><p><code>.fig</code>：图形文件，依然<strong>可以</strong>被修改。</p></li><li><p><code>.mex</code>/<code>.dll</code>：MATLAB的可执行文件</p></li><li><p><code>.mdl</code>：模型和仿真文件</p></li></ul>]]></content>
+    <content type="html"><![CDATA[<h1 id="Chapter0-概论"><a href="#Chapter0-概论" class="headerlink" title="Chapter0 概论"></a>Chapter0 概论</h1><p>全文<code>135</code>字，推荐阅读时间<code>3~5</code>分钟。</p><a id="more"></a><h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><ul><li>MATLAB<strong>最初</strong>强调矩阵的运算</li></ul><h2 id="文件格式"><a href="#文件格式" class="headerlink" title="文件格式"></a>文件格式</h2><ul><li><p><code>.m</code>：M文件</p><ul><li>命令文件：主程序/主函数</li><li>函数文件：子程序/被调函数</li></ul><blockquote><p>工具箱中所有的文件基本上是<strong>函数文件</strong></p></blockquote></li><li><p><code>.mat</code>：数据文件，保存了workspace中的变量数据</p></li><li><p><code>.fig</code>：图形文件，依然<strong>可以</strong>被修改。</p></li><li><p><code>.mex</code>/<code>.dll</code>：MATLAB的可执行文件</p></li><li><p><code>.mdl</code>：模型和仿真文件</p></li></ul><h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ul><li>BUAA MATLAB Lecture, Autumn of 2020.</li></ul>]]></content>
     
     <summary type="html">
     
-      &lt;h1 id=&quot;Chapter0-概论&quot;&gt;&lt;a href=&quot;#Chapter0-概论&quot; class=&quot;headerlink&quot; title=&quot;Chapter0 概论&quot;&gt;&lt;/a&gt;Chapter0 概论&lt;/h1&gt;
+      &lt;h1 id=&quot;Chapter0-概论&quot;&gt;&lt;a href=&quot;#Chapter0-概论&quot; class=&quot;headerlink&quot; title=&quot;Chapter0 概论&quot;&gt;&lt;/a&gt;Chapter0 概论&lt;/h1&gt;&lt;p&gt;全文&lt;code&gt;135&lt;/code&gt;字，推荐阅读时间&lt;code&gt;3~5&lt;/code&gt;分钟。&lt;/p&gt;
     
     </summary>
     
