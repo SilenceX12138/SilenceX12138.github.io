@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  
+  <link rel="stylesheet" href="/lib/animate-css/animate.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Muse","version":"8.0.0-rc.4","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}}};
+  </script>
+
+  <meta name="description" content="Total Count: 559 words Preferred Reading Time: 10~15 minutes">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Algorithm-Chapter2-Divide and Conquer">
+<meta property="og:url" content="http://yoursite.com/2021/01/03/Algorithm-Chapter2-Divide%20and%20Conquer/index.html">
+<meta property="og:site_name" content="Silence">
+<meta property="og:description" content="Total Count: 559 words Preferred Reading Time: 10~15 minutes">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2021-01-03T10:58:25.100Z">
+<meta property="article:modified_time" content="2021-01-03T11:00:12.004Z">
+<meta property="article:author" content="Silence">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://yoursite.com/2021/01/03/Algorithm-Chapter2-Divide%20and%20Conquer/">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>Algorithm-Chapter2-Divide and Conquer | Silence</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="Silence" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <main class="main">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+        <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+        <span class="toggle-line toggle-line-first"></span>
+        <span class="toggle-line toggle-line-middle"></span>
+        <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">Silence</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-lover">
+
+    <a href="/lover/" rel="section"><i class="fa fa-heart fa-fw"></i>lover</a>
+
+  </li>
+        <li class="menu-item menu-item-schedule">
+
+    <a href="/schedule/" rel="section"><i class="fa fa-calendar fa-fw"></i>Schedule</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <section class="post-toc-wrap sidebar-panel">
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#MCS"><span class="nav-number">1.</span> <span class="nav-text">MCS</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Exhaustive-Search"><span class="nav-number">1.1.</span> <span class="nav-text">Exhaustive Search</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Data-Reuse"><span class="nav-number">1.2.</span> <span class="nav-text">Data-Reuse</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Divide-and-Conquer"><span class="nav-number">1.3.</span> <span class="nav-text">Divide and Conquer</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Greedy"><span class="nav-number">1.4.</span> <span class="nav-text">Greedy</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Counting-inversions"><span class="nav-number">2.</span> <span class="nav-text">Counting inversions</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Brute-Force"><span class="nav-number">2.1.</span> <span class="nav-text">Brute Force</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Merge-Sort-Idea"><span class="nav-number">2.2.</span> <span class="nav-text">Merge Sort Idea</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Polynomial-Multiplication"><span class="nav-number">3.</span> <span class="nav-text">Polynomial Multiplication</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Brute-Force-1"><span class="nav-number">3.1.</span> <span class="nav-text">Brute Force</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Divide-and-Conquer-1"><span class="nav-number">3.2.</span> <span class="nav-text">Divide and Conquer</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Improve"><span class="nav-number">3.2.1.</span> <span class="nav-text">Improve</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Quicksort"><span class="nav-number">4.</span> <span class="nav-text">Quicksort</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Improve-1"><span class="nav-number">4.1.</span> <span class="nav-text">Improve</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Expected-Case"><span class="nav-number">4.1.1.</span> <span class="nav-text">Expected Case</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reference"><span class="nav-number">5.</span> <span class="nav-text">Reference</span></a></li></ol></div>
+      </section>
+      <!--/noindex-->
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Silence"
+      src="https://i.loli.net/2020/07/05/Ml7X4UshoCJgn52.jpg">
+  <p class="site-author-name" itemprop="name">Silence</p>
+  <div class="site-description" itemprop="description">I'm right here waiting for you.</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">58</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/SilenceX12138" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;SilenceX12138" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.instagram.com/silencejiang12138" title="Instagram → https:&#x2F;&#x2F;www.instagram.com&#x2F;silencejiang12138" rel="noopener" target="_blank"><i class="fab fa-instagram fa-fw"></i>Instagram</a>
+      </span>
+  </div>
+
+
+
+      </section>
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </header>
+
+      
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div id="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+      <div class="main-inner">
+        
+
+        <div class="content post posts-expand">
+          
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/01/03/Algorithm-Chapter2-Divide%20and%20Conquer/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://i.loli.net/2020/07/05/Ml7X4UshoCJgn52.jpg">
+      <meta itemprop="name" content="Silence">
+      <meta itemprop="description" content="I'm right here waiting for you.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Silence">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Algorithm-Chapter2-Divide and Conquer
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2021-01-03 18:58:25 / Modified: 19:00:12" itemprop="dateCreated datePublished" datetime="2021-01-03T18:58:25+08:00">2021-01-03</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Algorithm/" itemprop="url" rel="index"><span itemprop="name">Algorithm</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2021/01/03/Algorithm-Chapter2-Divide%20and%20Conquer/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/01/03/Algorithm-Chapter2-Divide%20and%20Conquer/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>Total Count: <code>559</code> words</p>
+<p>Preferred Reading Time: <code>10~15</code> minutes</p>
+<a id="more"></a>
+<h2 id="MCS"><a href="#MCS" class="headerlink" title="MCS"></a>MCS</h2><ul>
+<li>Maximum Contiguous Subarray<ul>
+<li>Find the span of years in which the company earned most</li>
+</ul>
+</li>
+</ul>
+<h3 id="Exhaustive-Search"><a href="#Exhaustive-Search" class="headerlink" title="Exhaustive Search"></a>Exhaustive Search</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(n):</span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> range(i, n):</span><br><span class="line">        <span class="comment"># calculate V(i, j)</span></span><br><span class="line">        <span class="comment"># update max_Val</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>$O(n^3)$</li>
+</ul>
+<h3 id="Data-Reuse"><a href="#Data-Reuse" class="headerlink" title="Data-Reuse"></a>Data-Reuse</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(n):</span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> range(i, n):</span><br><span class="line">        <span class="comment"># calculate V(i, j)</span></span><br><span class="line">        <span class="comment"># update max_val</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>$V(i,j)=V(i,j-1)+A[j]$</li>
+<li>$O(n^2)$</li>
+</ul>
+<h3 id="Divide-and-Conquer"><a href="#Divide-and-Conquer" class="headerlink" title="Divide and Conquer"></a>Divide and Conquer</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># input A[s...t]</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> s == t:</span><br><span class="line">    retun A[s] <span class="comment"># O(1)</span></span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    MCS(A, s, mid) <span class="comment"># T(n/2)</span></span><br><span class="line">    MCS(A, mid, t) <span class="comment"># T(n/2)</span></span><br><span class="line">    <span class="comment"># find the max_val of cut position containing A[mid] and A[mid+1]</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>Be cautious the array may be at the cut position.</li>
+<li>When finding the <code>max_val</code> containing <code>A[mid]</code> and <code>A[mid+1]</code>, we can do it from <code>mid</code> to <code>0</code>.</li>
+<li>$T(n)=2T([n/2])+n$</li>
+<li>$O(nlogn)$</li>
+</ul>
+<h3 id="Greedy"><a href="#Greedy" class="headerlink" title="Greedy"></a>Greedy</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n, temp, ans, temp_sum;</span><br><span class="line">    <span class="built_in">cin</span> &gt;&gt; n &gt;&gt; ans;</span><br><span class="line">    temp_sum = ans;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; n; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// When temp_sum &lt; 0, it means last temp &lt; 0, and last temp has already been compared with ans to decide whether to update the start point of the sub-array.</span></span><br><span class="line">        temp_sum = max(<span class="number">0</span>, temp_sum); </span><br><span class="line">        <span class="built_in">cin</span> &gt;&gt; temp;</span><br><span class="line">        temp_sum += temp;</span><br><span class="line">        ans = max(temp_sum, ans);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; ans &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="Counting-inversions"><a href="#Counting-inversions" class="headerlink" title="Counting inversions"></a>Counting inversions</h2><h3 id="Brute-Force"><a href="#Brute-Force" class="headerlink" title="Brute Force"></a>Brute Force</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(n):</span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> range(i+<span class="number">1</span>, n):</span><br><span class="line">        <span class="comment"># count inversion</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>$O(n^2)$</li>
+</ul>
+<h3 id="Merge-Sort-Idea"><a href="#Merge-Sort-Idea" class="headerlink" title="Merge Sort Idea"></a>Merge Sort Idea</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> len(L) == <span class="number">0</span>:</span><br><span class="line">    reutrn <span class="number">0</span>, L</span><br><span class="line">cnt_a, A = sort_and_count(L[l, mid])</span><br><span class="line">cnt_b, B = sort_and_count(L[mid+<span class="number">1</span>, r])</span><br><span class="line">cnt_c, L = merge_and_count(L[l, mid], L[mid+<span class="number">1</span>, r])</span><br><span class="line"><span class="keyword">return</span> cnt_a + cnt_b + cnt_c, L</span><br></pre></td></tr></table></figure>
+<ul>
+<li>Increase inversion count when merging sorted two list.</li>
+<li>$O(nlogn)$</li>
+</ul>
+<h2 id="Polynomial-Multiplication"><a href="#Polynomial-Multiplication" class="headerlink" title="Polynomial Multiplication"></a>Polynomial Multiplication</h2><h3 id="Brute-Force-1"><a href="#Brute-Force-1" class="headerlink" title="Brute Force"></a>Brute Force</h3><ul>
+<li>compute all coefficients and merge them at last<ul>
+<li>multiplications:$O(n^2)$</li>
+<li>addition:$O(n^2)$</li>
+<li>complexity:$O(n^2)$</li>
+</ul>
+</li>
+</ul>
+<h3 id="Divide-and-Conquer-1"><a href="#Divide-and-Conquer-1" class="headerlink" title="Divide and Conquer"></a>Divide and Conquer</h3><ul>
+<li>extract $x^{\frac{n}{2}}$ to make size <code>n</code> problem into $2*2$ problem</li>
+<li>$O(n^2)$</li>
+</ul>
+<h4 id="Improve"><a href="#Improve" class="headerlink" title="Improve"></a>Improve</h4><ul>
+<li>We need $A_0B_1+A_1B_0$ instead of $A_0B_1$and$A_1B_0$.<ul>
+<li>$\begin{cases} U=A_0B_0 \\ V=A_0B_1 \\ W=A_1B_0 \\ Z=A_1B_1\end{cases}$</li>
+<li>Take $Y=(A_0+A_1)(B_0+B_1)$, then we can get $A_0B_1+A_1B_0=Y-U-Z$.</li>
+<li>$T(n)=\begin{cases} 3T(n/2) + n&amp;(n&gt;1) \\ 1&amp;(n=1) \end{cases}$</li>
+</ul>
+</li>
+</ul>
+<h2 id="Quicksort"><a href="#Quicksort" class="headerlink" title="Quicksort"></a>Quicksort</h2><ul>
+<li>partition with pivot as a benchmark</li>
+<li>place pivot into right place</li>
+<li>above can be a recursive process</li>
+<li>$O(nlogn)$: the average complexity</li>
+</ul>
+<h3 id="Improve-1"><a href="#Improve-1" class="headerlink" title="Improve"></a>Improve</h3><ul>
+<li><p>The normal complexity of quicksort is $O(n^2)$ because the array may be partially sorted.</p>
+<p>$T(n)=T(0)+T(n-1)+O(n)$</p>
+<blockquote>
+<ul>
+<li>The complexity of quick sort is $O(n^2)$ instead of $O(nlogn)$.</li>
+<li>$O(n)$ comes from the count of key comparisons.</li>
+</ul>
+</blockquote>
+</li>
+<li><p>Adopt random pivot to get randomized partition</p>
+<ul>
+<li>Swap random position with the last position for reuse the partition function</li>
+<li>This action can validly lower the probability to encounter unlucky array partition</li>
+</ul>
+</li>
+</ul>
+<h4 id="Expected-Case"><a href="#Expected-Case" class="headerlink" title="Expected Case"></a>Expected Case</h4><ul>
+<li>Analysis for randomization algorithm</li>
+</ul>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ul>
+<li>BUAA Algorithm Lecture, Autumn of 2020.</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/01/03/Algorithm-Chapter5-Greedy%20Algorithms/" rel="prev" title="Algorithm-Chapter5-Greedy Algorithms">
+      <i class="fa fa-chevron-left"></i> Algorithm-Chapter5-Greedy Algorithms
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2021/01/03/Algorithm-Chapter3-Dynamic%20Programming/" rel="next" title="Algorithm-Chapter3-Dynamic Programming">
+      Algorithm-Chapter3-Dynamic Programming <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+        </div>
+        
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Silence</span>
+</div>
+
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  Visitors: <span id="busuanzi_value_site_pv"></span>
+</span>
+</div>
+
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">|   total: 96.3k words</span>
+</div>
+  <div class="powered-by">
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+if (document.querySelectorAll('pre.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
+    mermaid.initialize({
+      theme    : 'forest',
+      logLevel : 3,
+      flowchart: { curve     : 'linear' },
+      gantt    : { axisFormat: '%m/%d/%Y' },
+      sequence : { actorMargin: 50 }
+    });
+  }, window.mermaid);
+}
+</script>
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/valine@1/dist/Valine.min.js', () => {
+    new Valine(Object.assign({
+      el  : '#valine-comments',
+      path: location.pathname,
+    }, {"enable":true,"appId":"GMneVEFPu4TwpvejAPqllWGc-gzGzoHsz","appKey":"5eNvc7SV1dxRT000WSXjRDuD","placeholder":"Just write what you'd like to write.","avatar":"mm","meta":["nick","mail"],"pageSize":10,"language":"en","visitor":false,"comment_count":true,"recordIP":false,"serverURLs":null}
+    ));
+  }, window.Valine);
+});
+</script>
+
+</body>
+</html>

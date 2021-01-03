@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  
+  <link rel="stylesheet" href="/lib/animate-css/animate.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Muse","version":"8.0.0-rc.4","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}}};
+  </script>
+
+  <meta name="description" content="Total Count: 413 words Preferred Reading Time: 15~20 minutes">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Algorithm-Chapter4-mid-term review">
+<meta property="og:url" content="http://yoursite.com/2021/01/03/Algorithm-Chapter4-mid-term%20review/index.html">
+<meta property="og:site_name" content="Silence">
+<meta property="og:description" content="Total Count: 413 words Preferred Reading Time: 15~20 minutes">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2021-01-03T10:58:25.100Z">
+<meta property="article:modified_time" content="2021-01-03T11:00:12.004Z">
+<meta property="article:author" content="Silence">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://yoursite.com/2021/01/03/Algorithm-Chapter4-mid-term%20review/">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>Algorithm-Chapter4-mid-term review | Silence</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="Silence" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <main class="main">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+        <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+        <span class="toggle-line toggle-line-first"></span>
+        <span class="toggle-line toggle-line-middle"></span>
+        <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">Silence</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-lover">
+
+    <a href="/lover/" rel="section"><i class="fa fa-heart fa-fw"></i>lover</a>
+
+  </li>
+        <li class="menu-item menu-item-schedule">
+
+    <a href="/schedule/" rel="section"><i class="fa fa-calendar fa-fw"></i>Schedule</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <section class="post-toc-wrap sidebar-panel">
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Counting-Sort"><span class="nav-number">1.</span> <span class="nav-text">Counting Sort</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Objective"><span class="nav-number">1.1.</span> <span class="nav-text">Objective</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Solution"><span class="nav-number">1.2.</span> <span class="nav-text">Solution</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Analysis"><span class="nav-number">1.3.</span> <span class="nav-text">Analysis</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Randomized-Selection-Problem"><span class="nav-number">2.</span> <span class="nav-text">Randomized Selection Problem</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Basic-Concepts"><span class="nav-number">2.1.</span> <span class="nav-text">Basic Concepts</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#brute-force"><span class="nav-number">2.2.</span> <span class="nav-text">brute force</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Partition-and-Selection"><span class="nav-number">2.3.</span> <span class="nav-text">Partition and Selection</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Analysis-1"><span class="nav-number">2.4.</span> <span class="nav-text">Analysis</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Optimal-Binary-Search-Tree"><span class="nav-number">3.</span> <span class="nav-text">Optimal Binary Search Tree</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Basic-Concepts-1"><span class="nav-number">3.1.</span> <span class="nav-text">Basic Concepts</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DP"><span class="nav-number">3.2.</span> <span class="nav-text">DP</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Analysis-2"><span class="nav-number">3.3.</span> <span class="nav-text">Analysis</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reference"><span class="nav-number">4.</span> <span class="nav-text">Reference</span></a></li></ol></div>
+      </section>
+      <!--/noindex-->
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Silence"
+      src="https://i.loli.net/2020/07/05/Ml7X4UshoCJgn52.jpg">
+  <p class="site-author-name" itemprop="name">Silence</p>
+  <div class="site-description" itemprop="description">I'm right here waiting for you.</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">58</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/SilenceX12138" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;SilenceX12138" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.instagram.com/silencejiang12138" title="Instagram → https:&#x2F;&#x2F;www.instagram.com&#x2F;silencejiang12138" rel="noopener" target="_blank"><i class="fab fa-instagram fa-fw"></i>Instagram</a>
+      </span>
+  </div>
+
+
+
+      </section>
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </header>
+
+      
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div id="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+      <div class="main-inner">
+        
+
+        <div class="content post posts-expand">
+          
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/01/03/Algorithm-Chapter4-mid-term%20review/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://i.loli.net/2020/07/05/Ml7X4UshoCJgn52.jpg">
+      <meta itemprop="name" content="Silence">
+      <meta itemprop="description" content="I'm right here waiting for you.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Silence">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Algorithm-Chapter4-mid-term review
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2021-01-03 18:58:25 / Modified: 19:00:12" itemprop="dateCreated datePublished" datetime="2021-01-03T18:58:25+08:00">2021-01-03</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Algorithm/" itemprop="url" rel="index"><span itemprop="name">Algorithm</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2021/01/03/Algorithm-Chapter4-mid-term%20review/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/01/03/Algorithm-Chapter4-mid-term%20review/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>Total Count: <code>413</code> words</p>
+<p>Preferred Reading Time: <code>15~20</code> minutes</p>
+<a id="more"></a>
+<h2 id="Counting-Sort"><a href="#Counting-Sort" class="headerlink" title="Counting Sort"></a>Counting Sort</h2><h3 id="Objective"><a href="#Objective" class="headerlink" title="Objective"></a>Objective</h3><ul>
+<li><p>Any comparison-based sorting algorithm requires $\Omega(nlogn)$ comparisons.</p>
+<blockquote>
+<p>proved by binary decision tree</p>
+</blockquote>
+</li>
+<li><p>Thus, in order to break the lower bound, we should take other methods except comparison.</p>
+</li>
+<li><p>counting sort isn’t based on comparison.</p>
+</li>
+</ul>
+<h3 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h3><ul>
+<li><p>When inputting numbers, count occurrences of all numbers.</p>
+<blockquote>
+<p>counting array’s length is based on boundary value of inputting array.</p>
+</blockquote>
+</li>
+<li><p>Fill sorted array with the counting array.</p>
+</li>
+</ul>
+<h3 id="Analysis"><a href="#Analysis" class="headerlink" title="Analysis"></a>Analysis</h3><ul>
+<li>time: $O(n)$</li>
+<li>counting sort is a <strong>stable</strong> sort as long as the final filling loop is from raw array’s <strong>end</strong> to its <strong>head</strong>.</li>
+</ul>
+<h2 id="Randomized-Selection-Problem"><a href="#Randomized-Selection-Problem" class="headerlink" title="Randomized Selection Problem"></a>Randomized Selection Problem</h2><h3 id="Basic-Concepts"><a href="#Basic-Concepts" class="headerlink" title="Basic Concepts"></a>Basic Concepts</h3><ul>
+<li>find the <code>i-th</code> smallest element in a given array</li>
+</ul>
+<h3 id="brute-force"><a href="#brute-force" class="headerlink" title="brute force"></a>brute force</h3><ul>
+<li>sort the array and index specific element</li>
+</ul>
+<h3 id="Partition-and-Selection"><a href="#Partition-and-Selection" class="headerlink" title="Partition and Selection"></a>Partition and Selection</h3><ul>
+<li>The same as quick sort, part the array into two subarrays, and then make sure the index of selected separator number.</li>
+<li>When the index is greater than <code>i</code>, handle another branch and abandon this one, vice versa.</li>
+</ul>
+<h3 id="Analysis-1"><a href="#Analysis-1" class="headerlink" title="Analysis"></a>Analysis</h3><ul>
+<li><p>time: $O(n)$</p>
+<blockquote>
+<p>Different from quick sort’s $O(nlogn)$, this algorithm only deals with one branch of subproblems, while quick sort handles both branches.</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="Optimal-Binary-Search-Tree"><a href="#Optimal-Binary-Search-Tree" class="headerlink" title="Optimal Binary Search Tree"></a>Optimal Binary Search Tree</h2><h3 id="Basic-Concepts-1"><a href="#Basic-Concepts-1" class="headerlink" title="Basic Concepts"></a>Basic Concepts</h3><ul>
+<li><p>construct a BST with smallest search cost</p>
+</li>
+<li><p>height</p>
+<ul>
+<li>$node_height=max(children_height + 1)$</li>
+<li>$leave_ height=0$</li>
+<li>$tree_height=root_height$</li>
+<li>$empty_tree_height = -1$</li>
+</ul>
+<blockquote>
+<p><code>root_height</code> is the <strong>biggest</strong> one.</p>
+</blockquote>
+</li>
+<li><p>$depth=H(root)-H(n)+1$</p>
+<ul>
+<li>$root_depth=1$</li>
+</ul>
+</li>
+<li><p>balanced binary tree: the height difference of two subtrees cannot go beyond 1.</p>
+<ul>
+<li>$balance_factor = H(right)-H(left)$</li>
+</ul>
+</li>
+<li><p>AVL tree: besides balanced binary tree, every node will store the height of two subtrees.</p>
+</li>
+</ul>
+<h3 id="DP"><a href="#DP" class="headerlink" title="DP"></a>DP</h3><ul>
+<li><p>subproblem: find an optimal BST containing $keys<a href="1 \leq i \leq j \leq n">i..j</a>$</p>
+</li>
+<li><p>$e[i,j]$: the expected search cost of a subtree with $k[i..j]$.</p>
+<ul>
+<li>$e[i, j] =\begin{cases} q_{i-1}, &amp;j=i-1 \\ min_{i\leq r\leq j}(e[i, r-1]+e[r+1, j]+w[i, j]), &amp;i\leq j\end{cases}$</li>
+<li>$w[i,j]=E_r=w[i,r-1]+p_r+w[r+1,j]=w[i,j-1]+p_j+q_j$</li>
+</ul>
+</li>
+<li><p>diagonal traverse template</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> l <span class="keyword">in</span> range(<span class="number">1</span>, n+<span class="number">1</span>): <span class="comment"># length of fixed diagnals</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>, n-l+<span class="number">1</span>):</span><br><span class="line">        j = i + l - <span class="number">1</span> <span class="comment"># (n-l+1, n) is always on f(i, j)</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>Due to $i\leq j$, then the traverse should be diagonal.</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="Analysis-2"><a href="#Analysis-2" class="headerlink" title="Analysis"></a>Analysis</h3><ul>
+<li>time: $O(n^3)$</li>
+<li>space: $O(n^2)$</li>
+</ul>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ul>
+<li>BUAA Algorithm Lecture, Autumn of 2020.</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/01/03/Algorithm-Chapter6-Graph%20Algorithms/" rel="prev" title="Algorithm-Chapter6-Graph Algorithms">
+      <i class="fa fa-chevron-left"></i> Algorithm-Chapter6-Graph Algorithms
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2021/01/03/Algorithm-Chapter5-Greedy%20Algorithms/" rel="next" title="Algorithm-Chapter5-Greedy Algorithms">
+      Algorithm-Chapter5-Greedy Algorithms <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+        </div>
+        
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Silence</span>
+</div>
+
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  Visitors: <span id="busuanzi_value_site_pv"></span>
+</span>
+</div>
+
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">|   total: 96.3k words</span>
+</div>
+  <div class="powered-by">
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+if (document.querySelectorAll('pre.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
+    mermaid.initialize({
+      theme    : 'forest',
+      logLevel : 3,
+      flowchart: { curve     : 'linear' },
+      gantt    : { axisFormat: '%m/%d/%Y' },
+      sequence : { actorMargin: 50 }
+    });
+  }, window.mermaid);
+}
+</script>
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/valine@1/dist/Valine.min.js', () => {
+    new Valine(Object.assign({
+      el  : '#valine-comments',
+      path: location.pathname,
+    }, {"enable":true,"appId":"GMneVEFPu4TwpvejAPqllWGc-gzGzoHsz","appKey":"5eNvc7SV1dxRT000WSXjRDuD","placeholder":"Just write what you'd like to write.","avatar":"mm","meta":["nick","mail"],"pageSize":10,"language":"en","visitor":false,"comment_count":true,"recordIP":false,"serverURLs":null}
+    ));
+  }, window.Valine);
+});
+</script>
+
+</body>
+</html>
