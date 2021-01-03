@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  
+  <link rel="stylesheet" href="/lib/animate-css/animate.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Muse","version":"8.0.0-rc.4","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}}};
+  </script>
+
+  <meta name="description" content="全文共752字，推荐阅读时间5~10分钟。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="OS-Chapter0-1-系统引导">
+<meta property="og:url" content="http://yoursite.com/2020/07/04/OS-Chapter0-1-%E7%B3%BB%E7%BB%9F%E5%BC%95%E5%AF%BC/index.html">
+<meta property="og:site_name" content="Silence">
+<meta property="og:description" content="全文共752字，推荐阅读时间5~10分钟。">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-07-04T08:05:30.916Z">
+<meta property="article:modified_time" content="2020-07-10T12:52:16.918Z">
+<meta property="article:author" content="Silence">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://yoursite.com/2020/07/04/OS-Chapter0-1-%E7%B3%BB%E7%BB%9F%E5%BC%95%E5%AF%BC/">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>OS-Chapter0-1-系统引导 | Silence</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="Silence" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <main class="main">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+        <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+        <span class="toggle-line toggle-line-first"></span>
+        <span class="toggle-line toggle-line-middle"></span>
+        <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">Silence</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-lover">
+
+    <a href="/lover/" rel="section"><i class="fa fa-heart fa-fw"></i>lover</a>
+
+  </li>
+        <li class="menu-item menu-item-schedule">
+
+    <a href="/schedule/" rel="section"><i class="fa fa-calendar fa-fw"></i>Schedule</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <section class="post-toc-wrap sidebar-panel">
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Bootloader"><span class="nav-number">1.</span> <span class="nav-text">Bootloader</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#定义"><span class="nav-number">1.1.</span> <span class="nav-text">定义</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#启动及引导"><span class="nav-number">2.</span> <span class="nav-text">启动及引导</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#MIPS-U-Boot"><span class="nav-number">2.1.</span> <span class="nav-text">MIPS(U-Boot)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#启动流程"><span class="nav-number">2.1.1.</span> <span class="nav-text">启动流程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#MIPS基本地址空间"><span class="nav-number">2.1.2.</span> <span class="nav-text">MIPS基本地址空间</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#MIPS-ROM-Flash启动地址"><span class="nav-number">2.1.3.</span> <span class="nav-text">MIPS ROM&#x2F;Flash启动地址</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#OS引导过程"><span class="nav-number">2.1.4.</span> <span class="nav-text">OS引导过程</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#X86"><span class="nav-number">2.2.</span> <span class="nav-text">X86</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#启动过程（与OS无关）"><span class="nav-number">2.2.1.</span> <span class="nav-text">启动过程（与OS无关）</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#第一步-启动BIOS"><span class="nav-number">2.2.1.1.</span> <span class="nav-text">第一步 启动BIOS</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#第二步-读取MBR"><span class="nav-number">2.2.1.2.</span> <span class="nav-text">第二步 读取MBR</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#第三步-BIOS将控制权交给OS-BootLoader"><span class="nav-number">2.2.1.3.</span> <span class="nav-text">第三步 BIOS将控制权交给OS BootLoader</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#OS引导过程-1"><span class="nav-number">2.2.2.</span> <span class="nav-text">OS引导过程</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reference"><span class="nav-number">3.</span> <span class="nav-text">Reference</span></a></li></ol></div>
+      </section>
+      <!--/noindex-->
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Silence"
+      src="https://i.loli.net/2020/07/05/Ml7X4UshoCJgn52.jpg">
+  <p class="site-author-name" itemprop="name">Silence</p>
+  <div class="site-description" itemprop="description">I'm right here waiting for you.</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">51</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/SilenceX12138" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;SilenceX12138" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.instagram.com/silencejiang12138" title="Instagram → https:&#x2F;&#x2F;www.instagram.com&#x2F;silencejiang12138" rel="noopener" target="_blank"><i class="fab fa-instagram fa-fw"></i>Instagram</a>
+      </span>
+  </div>
+
+
+
+      </section>
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </header>
+
+      
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div id="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+      <div class="main-inner">
+        
+
+        <div class="content post posts-expand">
+          
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/04/OS-Chapter0-1-%E7%B3%BB%E7%BB%9F%E5%BC%95%E5%AF%BC/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://i.loli.net/2020/07/05/Ml7X4UshoCJgn52.jpg">
+      <meta itemprop="name" content="Silence">
+      <meta itemprop="description" content="I'm right here waiting for you.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Silence">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          OS-Chapter0-1-系统引导
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-07-04 16:05:30" itemprop="dateCreated datePublished" datetime="2020-07-04T16:05:30+08:00">2020-07-04</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-07-10 20:52:16" itemprop="dateModified" datetime="2020-07-10T20:52:16+08:00">2020-07-10</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Operating-System/" itemprop="url" rel="index"><span itemprop="name">Operating System</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2020/07/04/OS-Chapter0-1-%E7%B3%BB%E7%BB%9F%E5%BC%95%E5%AF%BC/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/07/04/OS-Chapter0-1-%E7%B3%BB%E7%BB%9F%E5%BC%95%E5%AF%BC/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>全文共<code>752</code>字，推荐阅读时间<code>5~10</code>分钟。</p>
+<a id="more"></a>
+<h2 id="Bootloader"><a href="#Bootloader" class="headerlink" title="Bootloader"></a>Bootloader</h2><h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><ul>
+<li><p>系统加电后运行的第一个程序，在内核之<strong>前</strong></p>
+</li>
+<li><p><code>Bootloader = Booter + Loader</code></p>
+<ul>
+<li>Booter负责初始化系统硬件，使其<strong>部分</strong>运行。</li>
+<li>Loader将OS镜像加载到内存中，并跳转到OS的代码开始运行。</li>
+</ul>
+</li>
+<li>可以帮助OS和硬件分离</li>
+</ul>
+<blockquote>
+<p>MIPS:U-Boot</p>
+<p>X86:LILO/GRUB</p>
+</blockquote>
+<h2 id="启动及引导"><a href="#启动及引导" class="headerlink" title="启动及引导"></a>启动及引导</h2><h3 id="MIPS-U-Boot"><a href="#MIPS-U-Boot" class="headerlink" title="MIPS(U-Boot)"></a>MIPS(U-Boot)</h3><h4 id="启动流程"><a href="#启动流程" class="headerlink" title="启动流程"></a>启动流程</h4><ul>
+<li><p>Stage1:和体系结构相关，常为<strong>汇编</strong>语言。</p>
+</li>
+<li><p>Stage2:为了可移植性，常为<strong>C</strong>语言。</p>
+</li>
+</ul>
+<h4 id="MIPS基本地址空间"><a href="#MIPS基本地址空间" class="headerlink" title="MIPS基本地址空间"></a>MIPS基本地址空间</h4><ul>
+<li><p><code>0x0000_0000-0x7FFF_FFFF(2GB)</code>:kuseg，需要<strong>MMU</strong>才可使用。</p>
+</li>
+<li><p><code>0x8000_0000-0x9FFF_FFFF(512MB)</code>:Unmapped cached(kseg0)，最高位清零则是物理地址，没有MMU也可以使用。</p>
+<ul>
+<li>无MMU:放置程序和数据</li>
+<li>有MMU:操作系统<code>kernel</code>(0x80010000)</li>
+</ul>
+<blockquote>
+<p>这段地址的存取几乎一定会经过cache,所以在cache设置好之前，不能随意访问。</p>
+</blockquote>
+</li>
+<li><p><code>0xA000_0000-0xBFFF_FFFF(512MB)</code>:Unmapped uncached(kseg1)，<strong>高三位</strong>清零是物理地址。</p>
+<ul>
+<li>不用通过cache存取，通常用于访问外部设备。</li>
+</ul>
+</li>
+<li><p><code>0xC000_0000-0xFFFF_FFFF(1GB)</code>:Mapped(kseg2),MMU支持。</p>
+</li>
+</ul>
+<h4 id="MIPS-ROM-Flash启动地址"><a href="#MIPS-ROM-Flash启动地址" class="headerlink" title="MIPS ROM/Flash启动地址"></a>MIPS ROM/Flash启动地址</h4><ul>
+<li>在kseg0中选择</li>
+<li>0xBFC0_0000</li>
+</ul>
+<h4 id="OS引导过程"><a href="#OS引导过程" class="headerlink" title="OS引导过程"></a>OS引导过程</h4><ul>
+<li>Head.s<ul>
+<li>完成内核堆栈初始化</li>
+<li>将未初始化段清零(bss)</li>
+<li><code>start_kernel()</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="X86"><a href="#X86" class="headerlink" title="X86"></a>X86</h3><h4 id="启动过程（与OS无关）"><a href="#启动过程（与OS无关）" class="headerlink" title="启动过程（与OS无关）"></a>启动过程（与OS无关）</h4><h5 id="第一步-启动BIOS"><a href="#第一步-启动BIOS" class="headerlink" title="第一步 启动BIOS"></a>第一步 启动BIOS</h5><ul>
+<li>turn on</li>
+<li>BIOS（固化在ROM中的程序）<ul>
+<li>放在<code>0xF_FFF0</code></li>
+</ul>
+</li>
+<li>加电自检(POST)</li>
+</ul>
+<blockquote>
+<p> UEFI</p>
+<ul>
+<li>支持大硬盘引导</li>
+<li>可移植性好</li>
+</ul>
+</blockquote>
+<h5 id="第二步-读取MBR"><a href="#第二步-读取MBR" class="headerlink" title="第二步 读取MBR"></a>第二步 读取MBR</h5><p>MBR(Master Boot Record)：主引导记录，位于<strong>第0磁头的第0磁道的第1个扇区</strong>，大小是512字节。存放了启动信息、分区表信息。</p>
+<blockquote>
+<p>扇区(sector)</p>
+<ul>
+<li>磁道上的弧段</li>
+</ul>
+<p>磁道(track)</p>
+<ul>
+<li>盘片上的同心圆</li>
+</ul>
+<p>柱面(cylinder)</p>
+<ul>
+<li>不同盘片同半径的磁道构成的柱面</li>
+</ul>
+<p>磁头(head)</p>
+<ul>
+<li>每个磁盘有两个面，每个面都有一个磁头。</li>
+</ul>
+</blockquote>
+<ul>
+<li>寻找可启动的设备（硬盘扇区）</li>
+<li>把MBR加载进内存</li>
+</ul>
+<blockquote>
+<p>MBR = 启动代码 + 数据 + 分区表(DPT,Disk Partition Table) + 幻数(Magic Number)</p>
+<p>启动代码 + 数据：0-446字节，存放<em>bootloader</em>.</p>
+<p>分区表：447-510字节，四个分区项，各分区有16字节。</p>
+<ul>
+<li>第1字节：引导标志，80H表示活动分区，00H表示非活动。（装系统时用于激活）</li>
+</ul>
+<p>幻数：511-512字节，固定装入<code>AA</code>和<code>55</code>,如果MBR没有这两个幻数，则是没有被分区（安装了OS）的硬盘。</p>
+</blockquote>
+<h5 id="第三步-BIOS将控制权交给OS-BootLoader"><a href="#第三步-BIOS将控制权交给OS-BootLoader" class="headerlink" title="第三步 BIOS将控制权交给OS BootLoader"></a>第三步 BIOS将控制权交给<code>OS BootLoader</code></h5><ul>
+<li>初始化硬件，所以Bootloder十分依赖硬件。</li>
+<li>建立内存映射</li>
+<li>准备调用系统内核<ul>
+<li>GRUB和LILO是<code>Linux</code>加载器，也可以加载<code>Windows</code>.</li>
+<li>GRUB和LILO可以放在MBR中，也可以放在活动分区的第一个扇区内（推荐）。</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>内核镜像(Kernel Image) = 引导代码 + 启动代码 + 压缩的OS代码</p>
+</blockquote>
+<h4 id="OS引导过程-1"><a href="#OS引导过程-1" class="headerlink" title="OS引导过程"></a>OS引导过程</h4><p>bootloader-&gt;kernel-&gt;init</p>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ul>
+<li>Modern Operating System, Fourth Edition.</li>
+<li>BUAA OS Lecture, Spring Of 2020.</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/07/04/OS-Chapter0-%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%BC%95%E8%AE%BA/" rel="prev" title="OS-Chapter0-操作系统引论">
+      <i class="fa fa-chevron-left"></i> OS-Chapter0-操作系统引论
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/07/04/OS-Chapter5-%E5%AE%89%E5%85%A8/" rel="next" title="OS-Chapter5-安全">
+      OS-Chapter5-安全 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+        </div>
+        
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Silence</span>
+</div>
+
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  Visitors: <span id="busuanzi_value_site_pv"></span>
+</span>
+</div>
+
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">|   total: 91.6k words</span>
+</div>
+  <div class="powered-by">
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+if (document.querySelectorAll('pre.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
+    mermaid.initialize({
+      theme    : 'forest',
+      logLevel : 3,
+      flowchart: { curve     : 'linear' },
+      gantt    : { axisFormat: '%m/%d/%Y' },
+      sequence : { actorMargin: 50 }
+    });
+  }, window.mermaid);
+}
+</script>
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/valine@1/dist/Valine.min.js', () => {
+    new Valine(Object.assign({
+      el  : '#valine-comments',
+      path: location.pathname,
+    }, {"enable":true,"appId":"GMneVEFPu4TwpvejAPqllWGc-gzGzoHsz","appKey":"5eNvc7SV1dxRT000WSXjRDuD","placeholder":"Just write what you'd like to write.","avatar":"mm","meta":["nick","mail"],"pageSize":10,"language":"en","visitor":false,"comment_count":true,"recordIP":false,"serverURLs":null}
+    ));
+  }, window.Valine);
+});
+</script>
+
+</body>
+</html>
