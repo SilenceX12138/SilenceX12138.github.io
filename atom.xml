@@ -17,27 +17,6 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>Optimization-Chapter6-整数规划</title>
-    <link href="http://yoursite.com/2021/01/03/Optimization-Chapter6-%E6%95%B4%E6%95%B0%E8%A7%84%E5%88%92/"/>
-    <id>http://yoursite.com/2021/01/03/Optimization-Chapter6-%E6%95%B4%E6%95%B0%E8%A7%84%E5%88%92/</id>
-    <published>2021-01-03T10:46:53.760Z</published>
-    <updated>2021-01-03T10:51:40.632Z</updated>
-    
-    <content type="html"><![CDATA[<p>全文共<code>311</code>字，推荐阅读时间<code>3~5</code>分钟。</p><a id="more"></a><h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><ul><li>和普通规划模型不同，整数规划中的<strong>某些</strong>变量只能是整数。</li><li>纯整数规划：所有变量都是整数</li><li>混合整数规划：部分变量是整数</li><li>0-1规划：所有变量的取值只能为0或1<ul><li>常见模型：选择问题（投资项目）</li></ul></li><li>整数规划的最优解<strong>不一定</strong>出现在连续规划最优解的附近</li></ul><h2 id="分支限界法"><a href="#分支限界法" class="headerlink" title="分支限界法"></a>分支限界法</h2><ul><li>求出连续情况下的最优解，例如$x_1=3.75$.</li><li>对$x_1$进行分支限界，在原问题增加约束$x1\leq 3$或$x_1\geq 4$，分别再求一次可行解。</li><li>例如在$x_1\geq 4$的分支上$x_2$不能求出整数解，则对$x_2$进行分支限界。</li><li>在限界过程中<ul><li>出现无解则抛弃该分支</li><li>出现之前被限界的变量$x_1$可行解为小数的情况，则需要对$x_1$再次进行分支限界。</li></ul></li><li>迭代上述过程，直到求出所有的可行解。</li><li>比较所有可行解，确定最优解。</li></ul><h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ul><li>BUAA Optimization Lecture, Autumn of 2020.</li></ul>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;全文共&lt;code&gt;311&lt;/code&gt;字，推荐阅读时间&lt;code&gt;3~5&lt;/code&gt;分钟。&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="Optimization" scheme="http://yoursite.com/categories/Optimization/"/>
-    
-    
-  </entry>
-  
-  <entry>
     <title>Optimization-Chapter7-动态规划</title>
     <link href="http://yoursite.com/2021/01/03/Optimization-Chapter7-%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/"/>
     <id>http://yoursite.com/2021/01/03/Optimization-Chapter7-%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/</id>
@@ -59,17 +38,17 @@
   </entry>
   
   <entry>
-    <title>Optimization-Chapter2-单纯形算法</title>
-    <link href="http://yoursite.com/2021/01/03/Optimization-Chapter2-%E5%8D%95%E7%BA%AF%E5%BD%A2%E7%AE%97%E6%B3%95/"/>
-    <id>http://yoursite.com/2021/01/03/Optimization-Chapter2-%E5%8D%95%E7%BA%AF%E5%BD%A2%E7%AE%97%E6%B3%95/</id>
-    <published>2021-01-03T10:46:53.745Z</published>
+    <title>Optimization-Chapter6-整数规划</title>
+    <link href="http://yoursite.com/2021/01/03/Optimization-Chapter6-%E6%95%B4%E6%95%B0%E8%A7%84%E5%88%92/"/>
+    <id>http://yoursite.com/2021/01/03/Optimization-Chapter6-%E6%95%B4%E6%95%B0%E8%A7%84%E5%88%92/</id>
+    <published>2021-01-03T10:46:53.760Z</published>
     <updated>2021-01-03T10:51:40.632Z</updated>
     
-    <content type="html"><![CDATA[<p>全文共<code>2162</code>字，推荐阅读时间<code>15~20</code>分钟。</p><a id="more"></a><h2 id="等式形式"><a href="#等式形式" class="headerlink" title="等式形式"></a>等式形式</h2><ul><li>把约束全部转换为等式，且右端<strong>非负</strong>。</li><li>所有<strong>变量</strong>都是非负的（<strong>包括松弛变量</strong>）</li><li>解空间由<code>m</code>个同时成立的<strong>线性方程</strong>和<code>n</code>个<strong>非负变量</strong>表示</li></ul><h3 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h3><ul><li><p>将不等式转换为等式</p><ul><li><p>增加<strong>松弛变量</strong></p><p>$x+y\leq24\rightarrow x+y+s=24(s\geq0)$</p></li><li><p>将右端项变为<strong>非负</strong>的（同乘<code>-1</code>）</p><p>$x+y\leq-19 \rightarrow x+y+s=-19(s\geq0) \rightarrow -x-y-s=19(s\geq0)$</p></li></ul><blockquote><p>如果是<strong>大于等于</strong></p><ul><li>先转换为<strong>小于等于</strong>再进行转换，但是如果右端无法非负，则只能使用改进单纯形方法。</li><li>使用$-s$作为松弛项</li></ul></blockquote></li></ul><h2 id="图形解和代数解"><a href="#图形解和代数解" class="headerlink" title="图形解和代数解"></a>图形解和代数解</h2><h3 id="图形解"><a href="#图形解" class="headerlink" title="图形解"></a>图形解</h3><ul><li>二维：线性规划</li><li>解空间有无穷个<strong>可行点</strong>，最优解的候选解通常是有限的。</li></ul><h3 id="代数解"><a href="#代数解" class="headerlink" title="代数解"></a>代数解</h3><ul><li>方程组有无穷个<strong>可行解</strong>，最优解的候选解对应的基本可行解通常是有限的。</li></ul><h3 id="角点"><a href="#角点" class="headerlink" title="角点"></a>角点</h3><ul><li>基本解一定对应解空间的一个（<strong>可行或不可行</strong>）的角点<ul><li>基本解：在方程组中选<code>m</code>个变量为0求解其他变量的方程得到的解<ul><li>变量包括新增的<strong>松弛变量</strong></li><li>方程组<strong>不包括</strong>非负约束（只计算加入了松弛变量的<strong>等式方程</strong>）</li><li>通过非负约束条件判断基本解是否可行（有一些角点不在可行域内）</li></ul></li></ul></li><li>角点的最大数目：$C_n^m$</li></ul><h2 id="单纯形方法"><a href="#单纯形方法" class="headerlink" title="单纯形方法"></a>单纯形方法</h2><ul><li>利用一个智能的搜索过程找到最优解</li><li>在搜素过程中，只能在可行域的边缘上移动，不能够“抄近路”。</li><li><strong>单纯形方法中求出的基本解都是可行的</strong></li></ul><h3 id="步骤-1"><a href="#步骤-1" class="headerlink" title="步骤"></a>步骤</h3><p>以<strong>最大化</strong>问题为例</p><ul><li><p>从原点<code>(0,0,...,0)</code>开始，即除松弛变量<strong>之外</strong>都作为<strong>非基变量</strong>（值为0）。</p><blockquote><p>单纯形法的选出的非基变量的组数和角点的最大数目不同，因为单纯形方法中的基变量组<strong>都是可行的</strong>。</p></blockquote></li><li><p><strong>最优性条件</strong>：每次增加一个变量，选择<strong>系数更大</strong>的变量作为<strong>进基变量</strong>。</p><blockquote><p>选择总是理性的</p></blockquote></li><li><p><strong>可行性条件</strong>：将进基变量带入，找到使进基变量取得<strong>最小非负值</strong>的方程选择<strong>离基变量</strong>。</p><blockquote><ul><li>最小的非负值保证了求到的解一定是在可行域中的，其他点并不在可行域中。</li><li>不是最小值，是<strong>最小非负值</strong>。</li><li>相当于求方程在进基变量维度的<strong>截距</strong></li></ul></blockquote></li><li><p>在离基变量方程中将进基变量系数化为1，然后把其他方程中该进基变量的系数化为0，包括目标函数。</p></li><li><p>求出进基变量的值对目标函数进行优化</p></li><li><p>当近基变量不能再被优化时，依次选择下一个进基变量。</p></li><li><p>$z=ax+by+…$形式中系数为负的非基变量<strong>不会被</strong>优化</p></li></ul><blockquote><p>最小化问题</p><ul><li>最优性条件和最大化相反，即选择系数更小（为<strong>负</strong>）的变量进行优化。最后确定最优解的表也要求所有的非基变量系数为<strong>负</strong>，表示不能够再向小优化了。</li><li>可行性条件<strong>相同</strong></li><li>系数全为正且没有添加松弛变量时求最小值，此时可能出现初始值就是最优解的情况，即不需要再进行优化。</li></ul></blockquote><h3 id="单纯形表"><a href="#单纯形表" class="headerlink" title="单纯形表"></a>单纯形表</h3><p>Gauss-Jordan运算</p><ul><li>一张单纯形表对应一组基变量</li><li><strong>基变量矩阵</strong>需要维持是<code>0-1</code>对角矩阵<ul><li>此时右侧的解列才<strong>直接等于</strong>基变量的值</li></ul></li><li>基变量所在的其他行（包括目标函数行），全部都利用<strong>枢轴行</strong>置为0.</li><li>当非基变量<strong>在表中</strong>系数都为正（即不能够再进行<strong>最大</strong>优化）时，单纯形表对应最优解。</li><li>进基变量可能在<strong>下一个</strong>变量进基时<strong>改变原有值</strong></li></ul><h2 id="改进单纯形方法"><a href="#改进单纯形方法" class="headerlink" title="改进单纯形方法"></a>改进单纯形方法</h2><ul><li>朴素单纯形方法只能够解决全是<code>&lt;=</code>约束条件和非负右端项的线性规划，因为增加松弛变量后并不影响初始解，即$Z-ax-by-0s_0-0s_1=0$仍成立。</li><li>对于存在<code>&gt;=</code>和<code>=</code>约束的最优化问题，则不能够直接增加松弛变量。<ul><li><code>&gt;=</code>：在右端本来为负数时，可以直接乘<code>-1</code>进行转换。但是右端为正时，增加$-s$松弛变量只能够起到变为<code>=</code>号的作用，并不能保证解空间依然合法。</li><li><code>=</code>：<strong>不需要</strong>增加松弛变量</li></ul></li></ul><h3 id="大M方法"><a href="#大M方法" class="headerlink" title="大M方法"></a>大M方法</h3><ul><li><p>对于不满足朴素单纯形的的约束条件（不能增加松弛变量/加了松弛变量不能保证解空间合法），将<strong>人工变量</strong>$R_i$加入<strong>初始解（人工变量非负）</strong>。</p><p>$min\ Z=4x+3y=4x+3y+0s_1+0s_2+M_1R_1+M_2R_2$</p><ul><li>$4x+3y\geq 6 \Rightarrow 4x+3y-s+MR=6$</li></ul></li><li><p>在<strong>目标函数</strong>中，对人工变量施加高惩罚使它在求解过程中变为零。</p><ul><li>将$M_1,M_2$的值设置的非常大，通常是其他系数的两个数量级。</li><li>$M\geq0$恒成立，故$MR\geq0$恒成立。</li><li>$M$可以<strong>全部</strong>取同一个值，只要满足“大”即可。</li></ul></li><li><p>在加入人工变量后，选择人工变量和松弛变量组为基变量，目标函数初始解不一定得到0，需要重新进行计算，以保证“<strong>基变量在目标函数中的系数为0</strong>”。</p></li><li><p>最后的单纯形表中的<strong>基变量数量</strong>可能<strong>大于</strong>原有的变量数，例如<code>x</code>/<code>y</code>/<code>s0</code>都是基变量。但是<code>s0</code>不影响最优解，此时<code>x</code>，<code>y</code>的值就是取得最优解时的值。</p><blockquote><p>作为最终解的基变量中</p><ul><li>有松弛变量，则松弛变量可以为任意值。</li><li>有人工变量，则人工变量必须为0，否则说明约束条件有问题。</li></ul></blockquote></li><li><p><strong>如果可行解存在，人工变量最后一定会等于0.</strong></p><blockquote><p>基变量数是由秩决定的，相当于在高维空间求出了低维空间的目标函数的最小值，这个最小值在低维空间<strong>依然是</strong>成立的。</p></blockquote></li></ul><h3 id="两阶段方法"><a href="#两阶段方法" class="headerlink" title="两阶段方法"></a>两阶段方法</h3><ul><li><p>在计算机中，大M方法可能会造成计算精度误差。</p></li><li><p>两阶段法采用<strong>不引入</strong>常数$M$的办法消除误差</p><ul><li><p>阶段一</p><ul><li><p>以是<strong>人工变量之和取最小值</strong>($min\ r=R_1+R_2$)来进行规划问题求解</p></li><li><p>判断是否有解空间，没有的话就结束，否则将人工变量列去除后，进入阶段二。</p></li></ul></li></ul></li><li>阶段二：使用阶段一得到的可行解作为原始问题的初始可行解，然后使用朴素单纯形算法计算。<ul><li>即将阶段一单纯形表中的<code>R1</code>，<code>R2</code>两列去掉后直接作为新的单纯形表，<strong>根据目标函数的系数</strong>重新对解进行计算。</li><li>之后就是朴素单纯形法工作</li></ul></li></ul><h2 id="特殊情况"><a href="#特殊情况" class="headerlink" title="特殊情况"></a>特殊情况</h2><h3 id="退化"><a href="#退化" class="headerlink" title="退化"></a>退化</h3><ul><li>可行性条件中存在冗余（最小非负比循环出现），此时称新的基变量解为<strong>退化的</strong>。例如有一个约束条件的范围过大，没有对可行域起到任何限制作用。</li><li>表现：某个<strong>进基变量</strong>的<strong>最小非负比</strong>为0，对目标函数不能起到改善作用。</li></ul><h3 id="可选择最优解"><a href="#可选择最优解" class="headerlink" title="可选择最优解"></a>可选择最优解</h3><ul><li><p>目标函数平行于<strong>非冗余</strong>的紧约束，<strong>可能会</strong>有多个最优值。</p><blockquote><p>当变量是<strong>离散</strong>的时候，最优值可能只会有一个。</p></blockquote></li><li><p>表现：目标函数中<strong>非基变量</strong>的<strong>系数</strong>为0，对目标函数不能起到改善作用，但是会<strong>引起变量值的改变</strong>。</p></li><li><p>作用：从多个最优解中选择，但不会损害目标值。（现实意义大）</p></li></ul><h3 id="无界解"><a href="#无界解" class="headerlink" title="无界解"></a>无界解</h3><ul><li>某个变量可以无限大，但是<strong>不会</strong>影响约束条件。</li><li>表现：进基变量的最小非负比是无穷大</li></ul><h3 id="不可行解"><a href="#不可行解" class="headerlink" title="不可行解"></a>不可行解</h3><ul><li>具有不相容约束的线性规划模型没有可行解<ul><li><strong>人工变量不为零</strong>时取得最优解，说明原模型有问题。</li></ul></li></ul><h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ul><li>BUAA Optimization Lecture, Autumn of 2020.</li></ul>]]></content>
+    <content type="html"><![CDATA[<p>全文共<code>311</code>字，推荐阅读时间<code>3~5</code>分钟。</p><a id="more"></a><h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><ul><li>和普通规划模型不同，整数规划中的<strong>某些</strong>变量只能是整数。</li><li>纯整数规划：所有变量都是整数</li><li>混合整数规划：部分变量是整数</li><li>0-1规划：所有变量的取值只能为0或1<ul><li>常见模型：选择问题（投资项目）</li></ul></li><li>整数规划的最优解<strong>不一定</strong>出现在连续规划最优解的附近</li></ul><h2 id="分支限界法"><a href="#分支限界法" class="headerlink" title="分支限界法"></a>分支限界法</h2><ul><li>求出连续情况下的最优解，例如$x_1=3.75$.</li><li>对$x_1$进行分支限界，在原问题增加约束$x1\leq 3$或$x_1\geq 4$，分别再求一次可行解。</li><li>例如在$x_1\geq 4$的分支上$x_2$不能求出整数解，则对$x_2$进行分支限界。</li><li>在限界过程中<ul><li>出现无解则抛弃该分支</li><li>出现之前被限界的变量$x_1$可行解为小数的情况，则需要对$x_1$再次进行分支限界。</li></ul></li><li>迭代上述过程，直到求出所有的可行解。</li><li>比较所有可行解，确定最优解。</li></ul><h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ul><li>BUAA Optimization Lecture, Autumn of 2020.</li></ul>]]></content>
     
     <summary type="html">
     
-      &lt;p&gt;全文共&lt;code&gt;2162&lt;/code&gt;字，推荐阅读时间&lt;code&gt;15~20&lt;/code&gt;分钟。&lt;/p&gt;
+      &lt;p&gt;全文共&lt;code&gt;311&lt;/code&gt;字，推荐阅读时间&lt;code&gt;3~5&lt;/code&gt;分钟。&lt;/p&gt;
     
     </summary>
     
@@ -91,6 +70,48 @@
     <summary type="html">
     
       &lt;p&gt;全文共&lt;code&gt;363&lt;/code&gt;字，推荐阅读时间&lt;code&gt;3~5&lt;/code&gt;分钟。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="Optimization" scheme="http://yoursite.com/categories/Optimization/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Optimization-Chapter3-对偶理论与灵敏度分析</title>
+    <link href="http://yoursite.com/2021/01/03/Optimization-Chapter3-%E5%AF%B9%E5%81%B6%E7%90%86%E8%AE%BA%E4%B8%8E%E7%81%B5%E6%95%8F%E5%BA%A6%E5%88%86%E6%9E%90/"/>
+    <id>http://yoursite.com/2021/01/03/Optimization-Chapter3-%E5%AF%B9%E5%81%B6%E7%90%86%E8%AE%BA%E4%B8%8E%E7%81%B5%E6%95%8F%E5%BA%A6%E5%88%86%E6%9E%90/</id>
+    <published>2021-01-03T10:46:53.745Z</published>
+    <updated>2021-01-03T10:51:40.632Z</updated>
+    
+    <content type="html"><![CDATA[<p>全文共<code>820</code>字，推荐阅读时间<code>7~10</code>分钟。</p><a id="more"></a><h2 id="灵敏度分析"><a href="#灵敏度分析" class="headerlink" title="灵敏度分析"></a>灵敏度分析</h2><h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><ul><li>图形（二维）<ul><li>右端项（约束条件）变化：最优解对<strong>资源的可利用性</strong>的灵敏度<ul><li>改变约束条件的截距</li></ul></li><li>目标系数（目标函数）变化：最优解对<strong>单位利润和单位费用</strong>的灵敏度<ul><li>改变目标函数的斜率</li><li>最优性区域：改变斜率但是最优解<strong>不变</strong>的斜率取值范围</li></ul></li></ul></li><li>代数（高维）<ul><li>右端项变化</li><li>目标系数变化</li></ul></li></ul><h3 id="图形"><a href="#图形" class="headerlink" title="图形"></a>图形</h3><ul><li><strong>线性规划</strong>中目标函数改善的灵敏度是<strong>均匀的</strong></li></ul><h3 id="代数"><a href="#代数" class="headerlink" title="代数"></a>代数</h3><ul><li><p>对偶价格：松弛变量在最优方程中的系数（一定大于0，否则说明仍<strong>不是</strong>最优解）</p><ul><li>当系数大于0时，说明<strong>减小松弛变量</strong>就能带来收益，即增大原变量的左值，也即<strong>右端项</strong>的值。</li></ul></li><li><p>可行性区域：使对偶价格有效的区域，即对偶价格的变化的目标函数的影响<strong>保持线性</strong>的区域。</p><ul><li><strong>可行域</strong>对应的系数矩阵和<strong>松弛变量</strong>的系数矩阵相同，但是可行域在<strong>右端</strong>。</li><li>利用决策变量和松弛变量的约束条件反解可行域<ul><li>求解某个可行域时将其他可行域的值设为0</li></ul></li></ul></li><li><p>最优性区域：将改变松弛量加在目标函数系数上</p><p>$max\ z=(3+d1)x_1+(2+d_2)x_2+(5+d_3)x_3$</p></li></ul><h2 id="对偶理论"><a href="#对偶理论" class="headerlink" title="对偶理论"></a>对偶理论</h2><ul><li><p>将原模型转换为对偶模型后进行最优解计算，然后再对最优解进行<strong>特定矩阵操作</strong>即可得到原模型的最优解。</p><blockquote><p>对偶问题的解和原问题解需要特殊矩阵运算进行转化</p></blockquote></li></ul><h3 id="构造"><a href="#构造" class="headerlink" title="构造"></a>构造</h3><ul><li><p>约束$\Longleftrightarrow$变量（所有变量，包括剩余变量、松弛变量、人工变量）</p><ul><li><strong>一条</strong>约束对应<strong>一个</strong>对偶变量</li></ul></li><li><p>右端项$\Longleftrightarrow$决策系数</p></li><li><p>约束方向、求解目标（最大/最小）反向</p><p>| 原问题目标 | 对偶问题目标 | 对偶问题约束方向 |<br>| ————— | —————— | ———————— |<br>| 极大化     | 极小化       | <code>&gt;=</code>             |<br>| 极小化     | 极大化       | <code>&lt;=</code>             |</p><ul><li>不论原问题中的约束是什么方向，对偶问题中约束方向<strong>只和原问题的目标</strong>有关。</li></ul></li></ul><h3 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h3><ul><li>对于等式约束<strong>不需要</strong>增加松弛、人工变量（不需要求最优解，只要转换成等式形式即可）</li><li>为每个约束条件定义一个对偶变量</li><li>约束条件中的系数<strong>列</strong>$\Rightarrow$对偶约束条件系数<strong>行</strong></li><li>约束条件的目标函数系数$\Rightarrow$对偶约束的<strong>右端项</strong></li><li>约束条件的右端项$\Rightarrow$对偶目标函数系数</li></ul><h3 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h3><ul><li><p>对偶变量的最优值=最优原始基变量的原目标系数行向量*最优原始逆矩阵</p></li><li><p>对偶变量<strong>不一定</strong>满足非负条件，因此对偶问题<strong>不可以</strong>直接使用单纯形方法求解。</p><blockquote><p>对于不满足的情况，可以分类讨论，每次分类设置新变量满足非负条件。</p></blockquote></li></ul><h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ul><li>BUAA Optimization Lecture, Autumn of 2020.</li></ul>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;全文共&lt;code&gt;820&lt;/code&gt;字，推荐阅读时间&lt;code&gt;7~10&lt;/code&gt;分钟。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="Optimization" scheme="http://yoursite.com/categories/Optimization/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Optimization-Chapter2-单纯形算法</title>
+    <link href="http://yoursite.com/2021/01/03/Optimization-Chapter2-%E5%8D%95%E7%BA%AF%E5%BD%A2%E7%AE%97%E6%B3%95/"/>
+    <id>http://yoursite.com/2021/01/03/Optimization-Chapter2-%E5%8D%95%E7%BA%AF%E5%BD%A2%E7%AE%97%E6%B3%95/</id>
+    <published>2021-01-03T10:46:53.745Z</published>
+    <updated>2021-01-03T10:51:40.632Z</updated>
+    
+    <content type="html"><![CDATA[<p>全文共<code>2162</code>字，推荐阅读时间<code>15~20</code>分钟。</p><a id="more"></a><h2 id="等式形式"><a href="#等式形式" class="headerlink" title="等式形式"></a>等式形式</h2><ul><li>把约束全部转换为等式，且右端<strong>非负</strong>。</li><li>所有<strong>变量</strong>都是非负的（<strong>包括松弛变量</strong>）</li><li>解空间由<code>m</code>个同时成立的<strong>线性方程</strong>和<code>n</code>个<strong>非负变量</strong>表示</li></ul><h3 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h3><ul><li><p>将不等式转换为等式</p><ul><li><p>增加<strong>松弛变量</strong></p><p>$x+y\leq24\rightarrow x+y+s=24(s\geq0)$</p></li><li><p>将右端项变为<strong>非负</strong>的（同乘<code>-1</code>）</p><p>$x+y\leq-19 \rightarrow x+y+s=-19(s\geq0) \rightarrow -x-y-s=19(s\geq0)$</p></li></ul><blockquote><p>如果是<strong>大于等于</strong></p><ul><li>先转换为<strong>小于等于</strong>再进行转换，但是如果右端无法非负，则只能使用改进单纯形方法。</li><li>使用$-s$作为松弛项</li></ul></blockquote></li></ul><h2 id="图形解和代数解"><a href="#图形解和代数解" class="headerlink" title="图形解和代数解"></a>图形解和代数解</h2><h3 id="图形解"><a href="#图形解" class="headerlink" title="图形解"></a>图形解</h3><ul><li>二维：线性规划</li><li>解空间有无穷个<strong>可行点</strong>，最优解的候选解通常是有限的。</li></ul><h3 id="代数解"><a href="#代数解" class="headerlink" title="代数解"></a>代数解</h3><ul><li>方程组有无穷个<strong>可行解</strong>，最优解的候选解对应的基本可行解通常是有限的。</li></ul><h3 id="角点"><a href="#角点" class="headerlink" title="角点"></a>角点</h3><ul><li>基本解一定对应解空间的一个（<strong>可行或不可行</strong>）的角点<ul><li>基本解：在方程组中选<code>m</code>个变量为0求解其他变量的方程得到的解<ul><li>变量包括新增的<strong>松弛变量</strong></li><li>方程组<strong>不包括</strong>非负约束（只计算加入了松弛变量的<strong>等式方程</strong>）</li><li>通过非负约束条件判断基本解是否可行（有一些角点不在可行域内）</li></ul></li></ul></li><li>角点的最大数目：$C_n^m$</li></ul><h2 id="单纯形方法"><a href="#单纯形方法" class="headerlink" title="单纯形方法"></a>单纯形方法</h2><ul><li>利用一个智能的搜索过程找到最优解</li><li>在搜素过程中，只能在可行域的边缘上移动，不能够“抄近路”。</li><li><strong>单纯形方法中求出的基本解都是可行的</strong></li></ul><h3 id="步骤-1"><a href="#步骤-1" class="headerlink" title="步骤"></a>步骤</h3><p>以<strong>最大化</strong>问题为例</p><ul><li><p>从原点<code>(0,0,...,0)</code>开始，即除松弛变量<strong>之外</strong>都作为<strong>非基变量</strong>（值为0）。</p><blockquote><p>单纯形法的选出的非基变量的组数和角点的最大数目不同，因为单纯形方法中的基变量组<strong>都是可行的</strong>。</p></blockquote></li><li><p><strong>最优性条件</strong>：每次增加一个变量，选择<strong>系数更大</strong>的变量作为<strong>进基变量</strong>。</p><blockquote><p>选择总是理性的</p></blockquote></li><li><p><strong>可行性条件</strong>：将进基变量带入，找到使进基变量取得<strong>最小非负值</strong>的方程选择<strong>离基变量</strong>。</p><blockquote><ul><li>最小的非负值保证了求到的解一定是在可行域中的，其他点并不在可行域中。</li><li>不是最小值，是<strong>最小非负值</strong>。</li><li>相当于求方程在进基变量维度的<strong>截距</strong></li></ul></blockquote></li><li><p>在离基变量方程中将进基变量系数化为1，然后把其他方程中该进基变量的系数化为0，包括目标函数。</p></li><li><p>求出进基变量的值对目标函数进行优化</p></li><li><p>当近基变量不能再被优化时，依次选择下一个进基变量。</p></li><li><p>$z=ax+by+…$形式中系数为负的非基变量<strong>不会被</strong>优化</p></li></ul><blockquote><p>最小化问题</p><ul><li>最优性条件和最大化相反，即选择系数更小（为<strong>负</strong>）的变量进行优化。最后确定最优解的表也要求所有的非基变量系数为<strong>负</strong>，表示不能够再向小优化了。</li><li>可行性条件<strong>相同</strong></li><li>系数全为正且没有添加松弛变量时求最小值，此时可能出现初始值就是最优解的情况，即不需要再进行优化。</li></ul></blockquote><h3 id="单纯形表"><a href="#单纯形表" class="headerlink" title="单纯形表"></a>单纯形表</h3><p>Gauss-Jordan运算</p><ul><li>一张单纯形表对应一组基变量</li><li><strong>基变量矩阵</strong>需要维持是<code>0-1</code>对角矩阵<ul><li>此时右侧的解列才<strong>直接等于</strong>基变量的值</li></ul></li><li>基变量所在的其他行（包括目标函数行），全部都利用<strong>枢轴行</strong>置为0.</li><li>当非基变量<strong>在表中</strong>系数都为正（即不能够再进行<strong>最大</strong>优化）时，单纯形表对应最优解。</li><li>进基变量可能在<strong>下一个</strong>变量进基时<strong>改变原有值</strong></li></ul><h2 id="改进单纯形方法"><a href="#改进单纯形方法" class="headerlink" title="改进单纯形方法"></a>改进单纯形方法</h2><ul><li>朴素单纯形方法只能够解决全是<code>&lt;=</code>约束条件和非负右端项的线性规划，因为增加松弛变量后并不影响初始解，即$Z-ax-by-0s_0-0s_1=0$仍成立。</li><li>对于存在<code>&gt;=</code>和<code>=</code>约束的最优化问题，则不能够直接增加松弛变量。<ul><li><code>&gt;=</code>：在右端本来为负数时，可以直接乘<code>-1</code>进行转换。但是右端为正时，增加$-s$松弛变量只能够起到变为<code>=</code>号的作用，并不能保证解空间依然合法。</li><li><code>=</code>：<strong>不需要</strong>增加松弛变量</li></ul></li></ul><h3 id="大M方法"><a href="#大M方法" class="headerlink" title="大M方法"></a>大M方法</h3><ul><li><p>对于不满足朴素单纯形的的约束条件（不能增加松弛变量/加了松弛变量不能保证解空间合法），将<strong>人工变量</strong>$R_i$加入<strong>初始解（人工变量非负）</strong>。</p><p>$min\ Z=4x+3y=4x+3y+0s_1+0s_2+M_1R_1+M_2R_2$</p><ul><li>$4x+3y\geq 6 \Rightarrow 4x+3y-s+MR=6$</li></ul></li><li><p>在<strong>目标函数</strong>中，对人工变量施加高惩罚使它在求解过程中变为零。</p><ul><li>将$M_1,M_2$的值设置的非常大，通常是其他系数的两个数量级。</li><li>$M\geq0$恒成立，故$MR\geq0$恒成立。</li><li>$M$可以<strong>全部</strong>取同一个值，只要满足“大”即可。</li></ul></li><li><p>在加入人工变量后，选择人工变量和松弛变量组为基变量，目标函数初始解不一定得到0，需要重新进行计算，以保证“<strong>基变量在目标函数中的系数为0</strong>”。</p></li><li><p>最后的单纯形表中的<strong>基变量数量</strong>可能<strong>大于</strong>原有的变量数，例如<code>x</code>/<code>y</code>/<code>s0</code>都是基变量。但是<code>s0</code>不影响最优解，此时<code>x</code>，<code>y</code>的值就是取得最优解时的值。</p><blockquote><p>作为最终解的基变量中</p><ul><li>有松弛变量，则松弛变量可以为任意值。</li><li>有人工变量，则人工变量必须为0，否则说明约束条件有问题。</li></ul></blockquote></li><li><p><strong>如果可行解存在，人工变量最后一定会等于0.</strong></p><blockquote><p>基变量数是由秩决定的，相当于在高维空间求出了低维空间的目标函数的最小值，这个最小值在低维空间<strong>依然是</strong>成立的。</p></blockquote></li></ul><h3 id="两阶段方法"><a href="#两阶段方法" class="headerlink" title="两阶段方法"></a>两阶段方法</h3><ul><li><p>在计算机中，大M方法可能会造成计算精度误差。</p></li><li><p>两阶段法采用<strong>不引入</strong>常数$M$的办法消除误差</p><ul><li><p>阶段一</p><ul><li><p>以是<strong>人工变量之和取最小值</strong>($min\ r=R_1+R_2$)来进行规划问题求解</p></li><li><p>判断是否有解空间，没有的话就结束，否则将人工变量列去除后，进入阶段二。</p></li></ul></li></ul></li><li>阶段二：使用阶段一得到的可行解作为原始问题的初始可行解，然后使用朴素单纯形算法计算。<ul><li>即将阶段一单纯形表中的<code>R1</code>，<code>R2</code>两列去掉后直接作为新的单纯形表，<strong>根据目标函数的系数</strong>重新对解进行计算。</li><li>之后就是朴素单纯形法工作</li></ul></li></ul><h2 id="特殊情况"><a href="#特殊情况" class="headerlink" title="特殊情况"></a>特殊情况</h2><h3 id="退化"><a href="#退化" class="headerlink" title="退化"></a>退化</h3><ul><li>可行性条件中存在冗余（最小非负比循环出现），此时称新的基变量解为<strong>退化的</strong>。例如有一个约束条件的范围过大，没有对可行域起到任何限制作用。</li><li>表现：某个<strong>进基变量</strong>的<strong>最小非负比</strong>为0，对目标函数不能起到改善作用。</li></ul><h3 id="可选择最优解"><a href="#可选择最优解" class="headerlink" title="可选择最优解"></a>可选择最优解</h3><ul><li><p>目标函数平行于<strong>非冗余</strong>的紧约束，<strong>可能会</strong>有多个最优值。</p><blockquote><p>当变量是<strong>离散</strong>的时候，最优值可能只会有一个。</p></blockquote></li><li><p>表现：目标函数中<strong>非基变量</strong>的<strong>系数</strong>为0，对目标函数不能起到改善作用，但是会<strong>引起变量值的改变</strong>。</p></li><li><p>作用：从多个最优解中选择，但不会损害目标值。（现实意义大）</p></li></ul><h3 id="无界解"><a href="#无界解" class="headerlink" title="无界解"></a>无界解</h3><ul><li>某个变量可以无限大，但是<strong>不会</strong>影响约束条件。</li><li>表现：进基变量的最小非负比是无穷大</li></ul><h3 id="不可行解"><a href="#不可行解" class="headerlink" title="不可行解"></a>不可行解</h3><ul><li>具有不相容约束的线性规划模型没有可行解<ul><li><strong>人工变量不为零</strong>时取得最优解，说明原模型有问题。</li></ul></li></ul><h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ul><li>BUAA Optimization Lecture, Autumn of 2020.</li></ul>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;全文共&lt;code&gt;2162&lt;/code&gt;字，推荐阅读时间&lt;code&gt;15~20&lt;/code&gt;分钟。&lt;/p&gt;
     
     </summary>
     
@@ -133,27 +154,6 @@
     <summary type="html">
     
       &lt;p&gt;全文共&lt;code&gt;363&lt;/code&gt;字，推荐阅读时间&lt;code&gt;3~5&lt;/code&gt;分钟。&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="Optimization" scheme="http://yoursite.com/categories/Optimization/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Optimization-Chapter3-对偶理论与灵敏度分析</title>
-    <link href="http://yoursite.com/2021/01/03/Optimization-Chapter3-%E5%AF%B9%E5%81%B6%E7%90%86%E8%AE%BA%E4%B8%8E%E7%81%B5%E6%95%8F%E5%BA%A6%E5%88%86%E6%9E%90/"/>
-    <id>http://yoursite.com/2021/01/03/Optimization-Chapter3-%E5%AF%B9%E5%81%B6%E7%90%86%E8%AE%BA%E4%B8%8E%E7%81%B5%E6%95%8F%E5%BA%A6%E5%88%86%E6%9E%90/</id>
-    <published>2021-01-03T10:46:53.745Z</published>
-    <updated>2021-01-03T10:51:40.632Z</updated>
-    
-    <content type="html"><![CDATA[<p>全文共<code>820</code>字，推荐阅读时间<code>7~10</code>分钟。</p><a id="more"></a><h2 id="灵敏度分析"><a href="#灵敏度分析" class="headerlink" title="灵敏度分析"></a>灵敏度分析</h2><h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><ul><li>图形（二维）<ul><li>右端项（约束条件）变化：最优解对<strong>资源的可利用性</strong>的灵敏度<ul><li>改变约束条件的截距</li></ul></li><li>目标系数（目标函数）变化：最优解对<strong>单位利润和单位费用</strong>的灵敏度<ul><li>改变目标函数的斜率</li><li>最优性区域：改变斜率但是最优解<strong>不变</strong>的斜率取值范围</li></ul></li></ul></li><li>代数（高维）<ul><li>右端项变化</li><li>目标系数变化</li></ul></li></ul><h3 id="图形"><a href="#图形" class="headerlink" title="图形"></a>图形</h3><ul><li><strong>线性规划</strong>中目标函数改善的灵敏度是<strong>均匀的</strong></li></ul><h3 id="代数"><a href="#代数" class="headerlink" title="代数"></a>代数</h3><ul><li><p>对偶价格：松弛变量在最优方程中的系数（一定大于0，否则说明仍<strong>不是</strong>最优解）</p><ul><li>当系数大于0时，说明<strong>减小松弛变量</strong>就能带来收益，即增大原变量的左值，也即<strong>右端项</strong>的值。</li></ul></li><li><p>可行性区域：使对偶价格有效的区域，即对偶价格的变化的目标函数的影响<strong>保持线性</strong>的区域。</p><ul><li><strong>可行域</strong>对应的系数矩阵和<strong>松弛变量</strong>的系数矩阵相同，但是可行域在<strong>右端</strong>。</li><li>利用决策变量和松弛变量的约束条件反解可行域<ul><li>求解某个可行域时将其他可行域的值设为0</li></ul></li></ul></li><li><p>最优性区域：将改变松弛量加在目标函数系数上</p><p>$max\ z=(3+d1)x_1+(2+d_2)x_2+(5+d_3)x_3$</p></li></ul><h2 id="对偶理论"><a href="#对偶理论" class="headerlink" title="对偶理论"></a>对偶理论</h2><ul><li><p>将原模型转换为对偶模型后进行最优解计算，然后再对最优解进行<strong>特定矩阵操作</strong>即可得到原模型的最优解。</p><blockquote><p>对偶问题的解和原问题解需要特殊矩阵运算进行转化</p></blockquote></li></ul><h3 id="构造"><a href="#构造" class="headerlink" title="构造"></a>构造</h3><ul><li><p>约束$\Longleftrightarrow$变量（所有变量，包括剩余变量、松弛变量、人工变量）</p><ul><li><strong>一条</strong>约束对应<strong>一个</strong>对偶变量</li></ul></li><li><p>右端项$\Longleftrightarrow$决策系数</p></li><li><p>约束方向、求解目标（最大/最小）反向</p><p>| 原问题目标 | 对偶问题目标 | 对偶问题约束方向 |<br>| ————— | —————— | ———————— |<br>| 极大化     | 极小化       | <code>&gt;=</code>             |<br>| 极小化     | 极大化       | <code>&lt;=</code>             |</p><ul><li>不论原问题中的约束是什么方向，对偶问题中约束方向<strong>只和原问题的目标</strong>有关。</li></ul></li></ul><h3 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h3><ul><li>对于等式约束<strong>不需要</strong>增加松弛、人工变量（不需要求最优解，只要转换成等式形式即可）</li><li>为每个约束条件定义一个对偶变量</li><li>约束条件中的系数<strong>列</strong>$\Rightarrow$对偶约束条件系数<strong>行</strong></li><li>约束条件的目标函数系数$\Rightarrow$对偶约束的<strong>右端项</strong></li><li>约束条件的右端项$\Rightarrow$对偶目标函数系数</li></ul><h3 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h3><ul><li><p>对偶变量的最优值=最优原始基变量的原目标系数行向量*最优原始逆矩阵</p></li><li><p>对偶变量<strong>不一定</strong>满足非负条件，因此对偶问题<strong>不可以</strong>直接使用单纯形方法求解。</p><blockquote><p>对于不满足的情况，可以分类讨论，每次分类设置新变量满足非负条件。</p></blockquote></li></ul><h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ul><li>BUAA Optimization Lecture, Autumn of 2020.</li></ul>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;全文共&lt;code&gt;820&lt;/code&gt;字，推荐阅读时间&lt;code&gt;7~10&lt;/code&gt;分钟。&lt;/p&gt;
     
     </summary>
     
