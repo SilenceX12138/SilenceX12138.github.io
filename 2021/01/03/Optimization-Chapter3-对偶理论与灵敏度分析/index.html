@@ -22,15 +22,15 @@
     var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Muse","version":"8.0.0-rc.4","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}}};
   </script>
 
-  <meta name="description" content="Chapter3 对偶理论与灵敏度分析全文共820字，推荐阅读时间7~10分钟。 灵敏度分析概述 图形（二维） 右端项（约束条件）变化：最优解对资源的可利用性的灵敏度 改变约束条件的截距   目标系数（目标函数）变化：最优解对单位利润和单位费用的灵敏度 改变目标函数的斜率 最优性区域：改变斜率但是最优解不变的斜率取值范围     代数（高维） 右端项变化 目标系数变化    图形 线性规划中目标函">
+  <meta name="description" content="全文共820字，推荐阅读时间7~10分钟。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Optimization-Chapter3-对偶理论与灵敏度分析">
 <meta property="og:url" content="http://yoursite.com/2021/01/03/Optimization-Chapter3-%E5%AF%B9%E5%81%B6%E7%90%86%E8%AE%BA%E4%B8%8E%E7%81%B5%E6%95%8F%E5%BA%A6%E5%88%86%E6%9E%90/index.html">
 <meta property="og:site_name" content="Silence">
-<meta property="og:description" content="Chapter3 对偶理论与灵敏度分析全文共820字，推荐阅读时间7~10分钟。 灵敏度分析概述 图形（二维） 右端项（约束条件）变化：最优解对资源的可利用性的灵敏度 改变约束条件的截距   目标系数（目标函数）变化：最优解对单位利润和单位费用的灵敏度 改变目标函数的斜率 最优性区域：改变斜率但是最优解不变的斜率取值范围     代数（高维） 右端项变化 目标系数变化    图形 线性规划中目标函">
+<meta property="og:description" content="全文共820字，推荐阅读时间7~10分钟。">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2021-01-03T10:46:53.745Z">
-<meta property="article:modified_time" content="2020-11-16T00:05:24.938Z">
+<meta property="article:modified_time" content="2021-01-03T10:51:40.632Z">
 <meta property="article:author" content="Silence">
 <meta name="twitter:card" content="summary">
 
@@ -176,7 +176,7 @@
 
       <!--noindex-->
       <section class="post-toc-wrap sidebar-panel">
-          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Chapter3-对偶理论与灵敏度分析"><span class="nav-number">1.</span> <span class="nav-text">Chapter3 对偶理论与灵敏度分析</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#灵敏度分析"><span class="nav-number">1.1.</span> <span class="nav-text">灵敏度分析</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#概述"><span class="nav-number">1.1.1.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#图形"><span class="nav-number">1.1.2.</span> <span class="nav-text">图形</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代数"><span class="nav-number">1.1.3.</span> <span class="nav-text">代数</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#对偶理论"><span class="nav-number">1.2.</span> <span class="nav-text">对偶理论</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#构造"><span class="nav-number">1.2.1.</span> <span class="nav-text">构造</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实现"><span class="nav-number">1.2.2.</span> <span class="nav-text">实现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#结论"><span class="nav-number">1.2.3.</span> <span class="nav-text">结论</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reference"><span class="nav-number">1.3.</span> <span class="nav-text">Reference</span></a></li></ol></li></ol></div>
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#灵敏度分析"><span class="nav-number">1.</span> <span class="nav-text">灵敏度分析</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#概述"><span class="nav-number">1.1.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#图形"><span class="nav-number">1.2.</span> <span class="nav-text">图形</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代数"><span class="nav-number">1.3.</span> <span class="nav-text">代数</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#对偶理论"><span class="nav-number">2.</span> <span class="nav-text">对偶理论</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#构造"><span class="nav-number">2.1.</span> <span class="nav-text">构造</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实现"><span class="nav-number">2.2.</span> <span class="nav-text">实现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#结论"><span class="nav-number">2.3.</span> <span class="nav-text">结论</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reference"><span class="nav-number">3.</span> <span class="nav-text">Reference</span></a></li></ol></div>
       </section>
       <!--/noindex-->
 
@@ -198,7 +198,7 @@
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-count">12</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
   </nav>
@@ -265,16 +265,19 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
+              
 
-              <time title="Created: 2021-01-03 18:46:53" itemprop="dateCreated datePublished" datetime="2021-01-03T18:46:53+08:00">2021-01-03</time>
+              <time title="Created: 2021-01-03 18:46:53 / Modified: 18:51:40" itemprop="dateCreated datePublished" datetime="2021-01-03T18:46:53+08:00">2021-01-03</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-11-16 08:05:24" itemprop="dateModified" datetime="2020-11-16T08:05:24+08:00">2020-11-16</time>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
               </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Optimization/" itemprop="url" rel="index"><span itemprop="name">Optimization</span></a>
+                </span>
+            </span>
 
           
   
@@ -301,7 +304,8 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="Chapter3-对偶理论与灵敏度分析"><a href="#Chapter3-对偶理论与灵敏度分析" class="headerlink" title="Chapter3 对偶理论与灵敏度分析"></a>Chapter3 对偶理论与灵敏度分析</h1><p>全文共<code>820</code>字，推荐阅读时间<code>7~10</code>分钟。</p>
+        <p>全文共<code>820</code>字，推荐阅读时间<code>7~10</code>分钟。</p>
+<a id="more"></a>
 <h2 id="灵敏度分析"><a href="#灵敏度分析" class="headerlink" title="灵敏度分析"></a>灵敏度分析</h2><h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><ul>
 <li>图形（二维）<ul>
 <li>右端项（约束条件）变化：最优解对<strong>资源的可利用性</strong>的灵敏度<ul>
@@ -399,12 +403,12 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2021/01/03/Optimization-Chapter5-%E7%9B%AE%E6%A0%87%E8%A7%84%E5%88%92/" rel="prev" title="Optimization-Chapter5-目标规划">
-      <i class="fa fa-chevron-left"></i> Optimization-Chapter5-目标规划
+    <a href="/2020/12/04/MATLAB-Chapter6-%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/" rel="prev" title="MATLAB-Chapter6-图像处理">
+      <i class="fa fa-chevron-left"></i> MATLAB-Chapter6-图像处理
     </a></div>
       <div class="post-nav-item">
-    <a href="/2021/01/03/Optimization-Chapter4-%E8%BF%90%E8%BE%93%E9%97%AE%E9%A2%98/" rel="next" title="Optimization-Chapter4-运输问题">
-      Optimization-Chapter4-运输问题 <i class="fa fa-chevron-right"></i>
+    <a href="/2021/01/03/Optimization-Chapter5-%E7%9B%AE%E6%A0%87%E8%A7%84%E5%88%92/" rel="next" title="Optimization-Chapter5-目标规划">
+      Optimization-Chapter5-目标规划 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -534,6 +538,59 @@ if (document.querySelectorAll('pre.mermaid').length) {
   
 
   
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
 
   
 
