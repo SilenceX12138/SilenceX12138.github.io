@@ -22,17 +22,17 @@
     var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Muse","version":"8.0.0-rc.4","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}}};
   </script>
 
-  <meta name="description" content="Chapter7 事务处理技术全文共2870字，推荐阅读时间15~20分钟。 概述 事务(Transaction)：用户定义的数据库操作序列，这些操作要么一起做，要么都不做，是一个不可分割的工作单位。 应用程序可以包含多个事务 事务的开始和结束可以由用户显式控制（DBMS也会缺省定义一部分事务划分），从而保证数据的完整性。   事务是数据库恢复及并发控制的基本单位  特性(ACID) 原子性  基">
+  <meta name="description" content="全文共2870字，推荐阅读时间15~20分钟。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Database-Chapter7-事务处理技术">
 <meta property="og:url" content="http://yoursite.com/2021/01/12/Database-Chapter7-%E4%BA%8B%E5%8A%A1%E5%A4%84%E7%90%86%E6%8A%80%E6%9C%AF/index.html">
 <meta property="og:site_name" content="Silence">
-<meta property="og:description" content="Chapter7 事务处理技术全文共2870字，推荐阅读时间15~20分钟。 概述 事务(Transaction)：用户定义的数据库操作序列，这些操作要么一起做，要么都不做，是一个不可分割的工作单位。 应用程序可以包含多个事务 事务的开始和结束可以由用户显式控制（DBMS也会缺省定义一部分事务划分），从而保证数据的完整性。   事务是数据库恢复及并发控制的基本单位  特性(ACID) 原子性  基">
+<meta property="og:description" content="全文共2870字，推荐阅读时间15~20分钟。">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://i.loli.net/2020/11/20/VgGK16P2QrdtBqf.png">
 <meta property="og:image" content="https://i.loli.net/2020/11/20/8KL7aMQVrhPAmRF.png">
 <meta property="article:published_time" content="2021-01-12T10:09:10.948Z">
-<meta property="article:modified_time" content="2020-11-25T01:52:09.176Z">
+<meta property="article:modified_time" content="2021-01-12T10:12:51.194Z">
 <meta property="article:author" content="Silence">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://i.loli.net/2020/11/20/VgGK16P2QrdtBqf.png">
@@ -179,7 +179,7 @@
 
       <!--noindex-->
       <section class="post-toc-wrap sidebar-panel">
-          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Chapter7-事务处理技术"><span class="nav-number">1.</span> <span class="nav-text">Chapter7 事务处理技术</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#概述"><span class="nav-number">1.1.</span> <span class="nav-text">概述</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#特性-ACID"><span class="nav-number">1.1.1.</span> <span class="nav-text">特性(ACID)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#破坏"><span class="nav-number">1.1.1.1.</span> <span class="nav-text">破坏</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SQL"><span class="nav-number">1.1.2.</span> <span class="nav-text">SQL</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据库恢复技术"><span class="nav-number">1.2.</span> <span class="nav-text">数据库恢复技术</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#故障"><span class="nav-number">1.2.1.</span> <span class="nav-text">故障</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实现"><span class="nav-number">1.2.2.</span> <span class="nav-text">实现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#策略"><span class="nav-number">1.2.3.</span> <span class="nav-text">策略</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#检查点"><span class="nav-number">1.2.4.</span> <span class="nav-text">检查点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#镜像"><span class="nav-number">1.2.5.</span> <span class="nav-text">镜像</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#并发控制"><span class="nav-number">1.3.</span> <span class="nav-text">并发控制</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#问题"><span class="nav-number">1.3.1.</span> <span class="nav-text">问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#基本思想"><span class="nav-number">1.3.2.</span> <span class="nav-text">基本思想</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#基本手段"><span class="nav-number">1.3.3.</span> <span class="nav-text">基本手段</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#活锁和死锁"><span class="nav-number">1.3.4.</span> <span class="nav-text">活锁和死锁</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#可串行化调度"><span class="nav-number">1.3.5.</span> <span class="nav-text">可串行化调度</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reference"><span class="nav-number">1.4.</span> <span class="nav-text">Reference</span></a></li></ol></li></ol></div>
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#概述"><span class="nav-number">1.</span> <span class="nav-text">概述</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#特性-ACID"><span class="nav-number">1.1.</span> <span class="nav-text">特性(ACID)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#破坏"><span class="nav-number">1.1.1.</span> <span class="nav-text">破坏</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SQL"><span class="nav-number">1.2.</span> <span class="nav-text">SQL</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据库恢复技术"><span class="nav-number">2.</span> <span class="nav-text">数据库恢复技术</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#故障"><span class="nav-number">2.1.</span> <span class="nav-text">故障</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实现"><span class="nav-number">2.2.</span> <span class="nav-text">实现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#策略"><span class="nav-number">2.3.</span> <span class="nav-text">策略</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#检查点"><span class="nav-number">2.4.</span> <span class="nav-text">检查点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#镜像"><span class="nav-number">2.5.</span> <span class="nav-text">镜像</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#并发控制"><span class="nav-number">3.</span> <span class="nav-text">并发控制</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#问题"><span class="nav-number">3.1.</span> <span class="nav-text">问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#基本思想"><span class="nav-number">3.2.</span> <span class="nav-text">基本思想</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#基本手段"><span class="nav-number">3.3.</span> <span class="nav-text">基本手段</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#活锁和死锁"><span class="nav-number">3.4.</span> <span class="nav-text">活锁和死锁</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#可串行化调度"><span class="nav-number">3.5.</span> <span class="nav-text">可串行化调度</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reference"><span class="nav-number">4.</span> <span class="nav-text">Reference</span></a></li></ol></div>
       </section>
       <!--/noindex-->
 
@@ -201,7 +201,7 @@
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-count">14</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
   </nav>
@@ -268,16 +268,23 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
+              
 
-              <time title="Created: 2021-01-12 18:09:10" itemprop="dateCreated datePublished" datetime="2021-01-12T18:09:10+08:00">2021-01-12</time>
+              <time title="Created: 2021-01-12 18:09:10 / Modified: 18:12:51" itemprop="dateCreated datePublished" datetime="2021-01-12T18:09:10+08:00">2021-01-12</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-11-25 09:52:09" itemprop="dateModified" datetime="2020-11-25T09:52:09+08:00">2020-11-25</time>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
               </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Database/" itemprop="url" rel="index"><span itemprop="name">Database</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Web/" itemprop="url" rel="index"><span itemprop="name">Web</span></a>
+                </span>
+            </span>
 
           
   
@@ -304,7 +311,8 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="Chapter7-事务处理技术"><a href="#Chapter7-事务处理技术" class="headerlink" title="Chapter7 事务处理技术"></a>Chapter7 事务处理技术</h1><p>全文共<code>2870</code>字，推荐阅读时间<code>15~20</code>分钟。</p>
+        <p>全文共<code>2870</code>字，推荐阅读时间<code>15~20</code>分钟。</p>
+<a id="more"></a>
 <h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><ul>
 <li>事务(Transaction)：用户定义的数据库操作序列，这些操作要么一起做，要么都不做，是一个不可分割的<strong>工作单位</strong>。<ul>
 <li>应用程序可以包含<strong>多个</strong>事务</li>
@@ -860,6 +868,59 @@ if (document.querySelectorAll('pre.mermaid').length) {
   
 
   
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
 
   
 

@@ -22,15 +22,15 @@
     var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Muse","version":"8.0.0-rc.4","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}}};
   </script>
 
-  <meta name="description" content="Chapter8 数据库保护全文共732字，推荐阅读时间7~10分钟。 安全性定义 安全性(security)：防止不合法的使用造成的数据泄露、更改、破坏。  控制 用户标识和认证（最外层）  常用：用户名和密码（口令）   存取控制  权限定义  权限检查  方法  自主(DAC)：用户可以将权限转授  权限&#x3D;数据对象+操作类型  SQL  用户级：操作数据库，例如创建外模式、创建会话、创建表等">
+  <meta name="description" content="全文共732字，推荐阅读时间7~10分钟。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Database-Chapter8-数据库保护">
 <meta property="og:url" content="http://yoursite.com/2021/01/12/Database-Chapter8-%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BF%9D%E6%8A%A4/index.html">
 <meta property="og:site_name" content="Silence">
-<meta property="og:description" content="Chapter8 数据库保护全文共732字，推荐阅读时间7~10分钟。 安全性定义 安全性(security)：防止不合法的使用造成的数据泄露、更改、破坏。  控制 用户标识和认证（最外层）  常用：用户名和密码（口令）   存取控制  权限定义  权限检查  方法  自主(DAC)：用户可以将权限转授  权限&#x3D;数据对象+操作类型  SQL  用户级：操作数据库，例如创建外模式、创建会话、创建表等">
+<meta property="og:description" content="全文共732字，推荐阅读时间7~10分钟。">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2021-01-12T10:09:10.950Z">
-<meta property="article:modified_time" content="2020-11-27T03:27:15.376Z">
+<meta property="article:modified_time" content="2021-01-12T10:12:54.182Z">
 <meta property="article:author" content="Silence">
 <meta name="twitter:card" content="summary">
 
@@ -176,7 +176,7 @@
 
       <!--noindex-->
       <section class="post-toc-wrap sidebar-panel">
-          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Chapter8-数据库保护"><span class="nav-number">1.</span> <span class="nav-text">Chapter8 数据库保护</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#安全性"><span class="nav-number">1.1.</span> <span class="nav-text">安全性</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#定义"><span class="nav-number">1.1.1.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#控制"><span class="nav-number">1.1.2.</span> <span class="nav-text">控制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#可信系统评测"><span class="nav-number">1.1.3.</span> <span class="nav-text">可信系统评测</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#完整性"><span class="nav-number">1.2.</span> <span class="nav-text">完整性</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#定义-1"><span class="nav-number">1.2.1.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#约束条件"><span class="nav-number">1.2.2.</span> <span class="nav-text">约束条件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#控制-1"><span class="nav-number">1.2.3.</span> <span class="nav-text">控制</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reference"><span class="nav-number">1.3.</span> <span class="nav-text">Reference</span></a></li></ol></li></ol></div>
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#安全性"><span class="nav-number">1.</span> <span class="nav-text">安全性</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#定义"><span class="nav-number">1.1.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#控制"><span class="nav-number">1.2.</span> <span class="nav-text">控制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#可信系统评测"><span class="nav-number">1.3.</span> <span class="nav-text">可信系统评测</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#完整性"><span class="nav-number">2.</span> <span class="nav-text">完整性</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#定义-1"><span class="nav-number">2.1.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#约束条件"><span class="nav-number">2.2.</span> <span class="nav-text">约束条件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#控制-1"><span class="nav-number">2.3.</span> <span class="nav-text">控制</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reference"><span class="nav-number">3.</span> <span class="nav-text">Reference</span></a></li></ol></div>
       </section>
       <!--/noindex-->
 
@@ -198,7 +198,7 @@
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-count">14</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
   </nav>
@@ -265,16 +265,23 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
+              
 
-              <time title="Created: 2021-01-12 18:09:10" itemprop="dateCreated datePublished" datetime="2021-01-12T18:09:10+08:00">2021-01-12</time>
+              <time title="Created: 2021-01-12 18:09:10 / Modified: 18:12:54" itemprop="dateCreated datePublished" datetime="2021-01-12T18:09:10+08:00">2021-01-12</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-11-27 11:27:15" itemprop="dateModified" datetime="2020-11-27T11:27:15+08:00">2020-11-27</time>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
               </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Database/" itemprop="url" rel="index"><span itemprop="name">Database</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Web/" itemprop="url" rel="index"><span itemprop="name">Web</span></a>
+                </span>
+            </span>
 
           
   
@@ -301,7 +308,8 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="Chapter8-数据库保护"><a href="#Chapter8-数据库保护" class="headerlink" title="Chapter8 数据库保护"></a>Chapter8 数据库保护</h1><p>全文共<code>732</code>字，推荐阅读时间<code>7~10</code>分钟。</p>
+        <p>全文共<code>732</code>字，推荐阅读时间<code>7~10</code>分钟。</p>
+<a id="more"></a>
 <h2 id="安全性"><a href="#安全性" class="headerlink" title="安全性"></a>安全性</h2><h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><ul>
 <li>安全性(<code>security</code>)：防止不合法的使用造成的<strong>数据泄露</strong>、<strong>更改</strong>、<strong>破坏</strong>。</li>
 </ul>
@@ -579,6 +587,59 @@ if (document.querySelectorAll('pre.mermaid').length) {
   
 
   
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
 
   
 
