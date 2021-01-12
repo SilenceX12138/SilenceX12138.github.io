@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  
+  <link rel="stylesheet" href="/lib/animate-css/animate.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Muse","version":"8.0.0-rc.4","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}}};
+  </script>
+
+  <meta name="description" content="Chapter9-数据库新技术全文共2031字，推荐阅读时间10~15分钟。 数据仓库(Data Warehouse) 支持管理决策过程  不同于数据库提供的日常业务查询服务   面向主题  从大量的历史数据中提取   持久数据集合  业务  OLAP：数据仓库联机分析处理 OLTP：数据库联机事务处理   数据仓库系统  数据源  数据库 数据文件   数据仓库管理工具  数据建模工具：根据主题">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Database-Chapter9-数据库新技术">
+<meta property="og:url" content="http://yoursite.com/2021/01/12/Database-Chapter9-%E6%95%B0%E6%8D%AE%E5%BA%93%E6%96%B0%E6%8A%80%E6%9C%AF/index.html">
+<meta property="og:site_name" content="Silence">
+<meta property="og:description" content="Chapter9-数据库新技术全文共2031字，推荐阅读时间10~15分钟。 数据仓库(Data Warehouse) 支持管理决策过程  不同于数据库提供的日常业务查询服务   面向主题  从大量的历史数据中提取   持久数据集合  业务  OLAP：数据仓库联机分析处理 OLTP：数据库联机事务处理   数据仓库系统  数据源  数据库 数据文件   数据仓库管理工具  数据建模工具：根据主题">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://pic4.zhimg.com/80/v2-bdc235fbdd1825c1b67ef7d609f81adb_1440w.jpg?source=1940ef5c">
+<meta property="og:image" content="https://pic4.zhimg.com/80/v2-ccefb7a678de237560cc4df80c11cca3_1440w.jpg?source=1940ef5c">
+<meta property="article:published_time" content="2021-01-12T10:09:10.953Z">
+<meta property="article:modified_time" content="2020-12-06T02:08:44.562Z">
+<meta property="article:author" content="Silence">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://pic4.zhimg.com/80/v2-bdc235fbdd1825c1b67ef7d609f81adb_1440w.jpg?source=1940ef5c">
+
+<link rel="canonical" href="http://yoursite.com/2021/01/12/Database-Chapter9-%E6%95%B0%E6%8D%AE%E5%BA%93%E6%96%B0%E6%8A%80%E6%9C%AF/">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>Database-Chapter9-数据库新技术 | Silence</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="Silence" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <main class="main">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+        <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+        <span class="toggle-line toggle-line-first"></span>
+        <span class="toggle-line toggle-line-middle"></span>
+        <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">Silence</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-lover">
+
+    <a href="/lover/" rel="section"><i class="fa fa-heart fa-fw"></i>lover</a>
+
+  </li>
+        <li class="menu-item menu-item-schedule">
+
+    <a href="/schedule/" rel="section"><i class="fa fa-calendar fa-fw"></i>Schedule</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <section class="post-toc-wrap sidebar-panel">
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Chapter9-数据库新技术"><span class="nav-number">1.</span> <span class="nav-text">Chapter9-数据库新技术</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#数据仓库-Data-Warehouse"><span class="nav-number">1.1.</span> <span class="nav-text">数据仓库(Data Warehouse)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#分布式数据库系统"><span class="nav-number">1.2.</span> <span class="nav-text">分布式数据库系统</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#概念"><span class="nav-number">1.2.1.</span> <span class="nav-text">概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#特点"><span class="nav-number">1.2.2.</span> <span class="nav-text">特点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#体系结构"><span class="nav-number">1.2.3.</span> <span class="nav-text">体系结构</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#模式结构"><span class="nav-number">1.2.3.1.</span> <span class="nav-text">模式结构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#分片"><span class="nav-number">1.2.3.2.</span> <span class="nav-text">分片</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#约束"><span class="nav-number">1.2.3.2.1.</span> <span class="nav-text">约束</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#分布透明性"><span class="nav-number">1.2.3.3.</span> <span class="nav-text">分布透明性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#DDBMS"><span class="nav-number">1.2.3.4.</span> <span class="nav-text">DDBMS</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#分类"><span class="nav-number">1.2.3.4.1.</span> <span class="nav-text">分类</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#主要技术"><span class="nav-number">1.2.4.</span> <span class="nav-text">主要技术</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#查询"><span class="nav-number">1.2.4.1.</span> <span class="nav-text">查询</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#分类-1"><span class="nav-number">1.2.4.1.1.</span> <span class="nav-text">分类</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#处理"><span class="nav-number">1.2.4.1.2.</span> <span class="nav-text">处理</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#优化"><span class="nav-number">1.2.4.1.3.</span> <span class="nav-text">优化</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reference"><span class="nav-number">1.3.</span> <span class="nav-text">Reference</span></a></li></ol></li></ol></div>
+      </section>
+      <!--/noindex-->
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Silence"
+      src="https://i.loli.net/2020/07/05/Ml7X4UshoCJgn52.jpg">
+  <p class="site-author-name" itemprop="name">Silence</p>
+  <div class="site-description" itemprop="description">I'm right here waiting for you.</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">68</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/SilenceX12138" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;SilenceX12138" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.instagram.com/silencejiang12138" title="Instagram → https:&#x2F;&#x2F;www.instagram.com&#x2F;silencejiang12138" rel="noopener" target="_blank"><i class="fab fa-instagram fa-fw"></i>Instagram</a>
+      </span>
+  </div>
+
+
+
+      </section>
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </header>
+
+      
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div id="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+      <div class="main-inner">
+        
+
+        <div class="content post posts-expand">
+          
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/01/12/Database-Chapter9-%E6%95%B0%E6%8D%AE%E5%BA%93%E6%96%B0%E6%8A%80%E6%9C%AF/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://i.loli.net/2020/07/05/Ml7X4UshoCJgn52.jpg">
+      <meta itemprop="name" content="Silence">
+      <meta itemprop="description" content="I'm right here waiting for you.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Silence">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Database-Chapter9-数据库新技术
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2021-01-12 18:09:10" itemprop="dateCreated datePublished" datetime="2021-01-12T18:09:10+08:00">2021-01-12</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-12-06 10:08:44" itemprop="dateModified" datetime="2020-12-06T10:08:44+08:00">2020-12-06</time>
+              </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2021/01/12/Database-Chapter9-%E6%95%B0%E6%8D%AE%E5%BA%93%E6%96%B0%E6%8A%80%E6%9C%AF/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/01/12/Database-Chapter9-%E6%95%B0%E6%8D%AE%E5%BA%93%E6%96%B0%E6%8A%80%E6%9C%AF/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="Chapter9-数据库新技术"><a href="#Chapter9-数据库新技术" class="headerlink" title="Chapter9-数据库新技术"></a>Chapter9-数据库新技术</h1><p>全文共<code>2031</code>字，推荐阅读时间<code>10~15</code>分钟。</p>
+<h2 id="数据仓库-Data-Warehouse"><a href="#数据仓库-Data-Warehouse" class="headerlink" title="数据仓库(Data Warehouse)"></a>数据仓库(<code>Data Warehouse</code>)</h2><ul>
+<li><p>支持管理决策过程</p>
+<blockquote>
+<p>不同于数据库提供的<strong>日常业务查询</strong>服务</p>
+</blockquote>
+</li>
+<li><p>面向主题</p>
+<ul>
+<li>从大量的历史数据中提取</li>
+</ul>
+</li>
+<li><p>持久数据集合</p>
+</li>
+<li><p>业务</p>
+<ul>
+<li>OLAP：数据<strong>仓库</strong>联机<strong>分析</strong>处理</li>
+<li>OLTP：数据<strong>库</strong>联机<strong>事务</strong>处理</li>
+</ul>
+</li>
+<li><p>数据仓库系统</p>
+<ul>
+<li><p>数据源</p>
+<ul>
+<li>数据库</li>
+<li>数据文件</li>
+</ul>
+</li>
+<li><p>数据仓库管理工具</p>
+<ul>
+<li><p>数据建模工具：根据主题确定，例如学生就业情况。</p>
+</li>
+<li><p>抽取、转换、装载(<code>ETL</code>)</p>
+</li>
+<li><p>元数据库：描述数据的数据</p>
+<blockquote>
+<p>类似数据库中的数据字典</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li><p>数据仓库</p>
+<ul>
+<li>高度综合数据：准决策数据</li>
+<li>轻度综合数据：来自近期基本数据</li>
+<li>当前数据：最近时期业务数据</li>
+<li>历史数据：早期基本数据</li>
+</ul>
+</li>
+<li><p>分析工具</p>
+<ul>
+<li>用户查询工具</li>
+<li>OLAP工具</li>
+<li>DM工具</li>
+</ul>
+</li>
+<li><p>比较</p>
+<ul>
+<li><p>数据库</p>
+<p><img src="https://pic4.zhimg.com/80/v2-bdc235fbdd1825c1b67ef7d609f81adb_1440w.jpg?source=1940ef5c" alt="img" style="zoom: 33%;" /></p>
+<ul>
+<li>一种事务处理技术</li>
+<li>表格结构复杂，存储结构紧致，冗余数据少。</li>
+<li>读写均进行优化</li>
+<li>查询要求较简单，单次作用的数据量小。</li>
+<li>常见：MySQL, Oracle, SqlServer.</li>
+</ul>
+</li>
+<li><p>数据仓库</p>
+<p><img src="https://pic4.zhimg.com/80/v2-ccefb7a678de237560cc4df80c11cca3_1440w.jpg?source=1940ef5c" alt="img" style="zoom:33%;" /></p>
+<ul>
+<li>一种体系结构</li>
+<li>表格结构简单，存储结构松散，冗余数据多。</li>
+<li>通常只优化读</li>
+<li>查询要求较复杂，单次作用的数据量大。</li>
+<li>常见：AWS Redshift, Hive.</li>
+</ul>
+<blockquote>
+<ul>
+<li>数据仓库是为某种特定的查询而设置的，是对数据库中多张表的整合，因此可以承担相应的分析工作。</li>
+<li>数据仓库来自于“分析型数据库”，但也因此不满足数据库的一些规范，所以被改叫“数据仓库”。</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="分布式数据库系统"><a href="#分布式数据库系统" class="headerlink" title="分布式数据库系统"></a>分布式数据库系统</h2><h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><ul>
+<li><p>基础：网络+数据库</p>
+</li>
+<li><p>结构</p>
+<ul>
+<li>全局应用=局部应用+网络，操作<strong>两个及以上</strong>节点中的数据库。</li>
+<li>局部应用=数据库+服务器，操作<strong>一个</strong>节点中的数据库。</li>
+</ul>
+<blockquote>
+<p>结构必须完整，缺一不可。</p>
+</blockquote>
+</li>
+<li><p>前提：数据分布存储</p>
+<ul>
+<li>场地自治性</li>
+<li>场地协作性</li>
+</ul>
+</li>
+</ul>
+<h3 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h3><ul>
+<li>数据独立性<ul>
+<li>逻辑</li>
+<li>物理</li>
+<li><strong>分布</strong>（分布透明性）：数据的存储特征（分片、位置等）和用户/应用程序无关</li>
+</ul>
+</li>
+<li>控制结构：集中和自治相结合<ul>
+<li>共享<ul>
+<li>局部</li>
+<li>全局</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>适当增加数据冗余：在不同节点存储同一数据的多个副本<ul>
+<li>提高系统可靠性、可用性</li>
+<li>提高系统性能</li>
+<li>不利于更新，增大了系统维护代价。</li>
+</ul>
+</li>
+<li>全局一致性、可串行性、可恢复性</li>
+</ul>
+<h3 id="体系结构"><a href="#体系结构" class="headerlink" title="体系结构"></a>体系结构</h3><h4 id="模式结构"><a href="#模式结构" class="headerlink" title="模式结构"></a>模式结构</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">graph TD</span><br><span class="line"></span><br><span class="line">全局外模式--&gt;|映象1|全局概念模式</span><br><span class="line">全局概念模式--&gt;|映象2|分片模式</span><br><span class="line">分片模式--&gt;|映象3|分布模式</span><br><span class="line">分布模式--&gt;|映象4|局部概念模式</span><br></pre></td></tr></table></figure>
+<ul>
+<li>全局概念模式定义了数据库的整体逻辑结构</li>
+<li>分片模式定义了数据库关系的全局关系的分片方式</li>
+<li>分布模式定义了各片段的存储位置，进而决定了数据库是否冗余。</li>
+<li>各级映像中存储了上级模式到下级模式的映射关系</li>
+</ul>
+<blockquote>
+<p>映象的作用类似虚拟地址和物理地址的转换。例如，映象1为外模式在概念模式中选取合适的部分进行构造；映象2的作用就是为每个关系指定合适的分片方式；映象3则是为每个分片方式确定合适的存储位置（虚拟，类似数据库1、2、3…）；映象4将分布模式中的虚拟存储位置映射到现实中的物理存储位置。</p>
+<p>综上，模式是<strong>“原则/方法/定义”</strong>的集合，映象是集合间的映射关系，通常是在下级映象中进行选择，然后返回结果由上级映象使用。</p>
+</blockquote>
+<h4 id="分片"><a href="#分片" class="headerlink" title="分片"></a>分片</h4><ul>
+<li><p>水平：关系模式不变，将元组进行分割。</p>
+</li>
+<li><p>垂直：对属性集合进行划分</p>
+<blockquote>
+<p>为了具有可复原性，<strong>通常</strong>让各个片段都具有原关系的码。（不是必要条件）</p>
+</blockquote>
+</li>
+<li><p>导出：利用其他关系模式的属性对某一关系进行水平分片。</p>
+<blockquote>
+<p>连表后选择，然后再去掉多余属性。</p>
+</blockquote>
+</li>
+<li><p>混合</p>
+</li>
+</ul>
+<h5 id="约束"><a href="#约束" class="headerlink" title="约束"></a>约束</h5><ul>
+<li>完全性：各个片段的并需要涵盖全局关系的所有信息</li>
+<li>不相交性</li>
+<li>可重构性：片段可以重构全局关系<ul>
+<li>水平：并</li>
+<li>垂直：自然连接</li>
+</ul>
+</li>
+</ul>
+<h4 id="分布透明性"><a href="#分布透明性" class="headerlink" title="分布透明性"></a>分布透明性</h4><ul>
+<li><strong>分片</strong>透明性（分片模式）</li>
+<li><strong>位置</strong>透明性（分布模式）</li>
+<li>局部数据模型透明性（局部概念模式）：用户/应用程序不关心节点的DBMS类型（使用统一的查询语言）</li>
+</ul>
+<h4 id="DDBMS"><a href="#DDBMS" class="headerlink" title="DDBMS"></a>DDBMS</h4><ul>
+<li>LDBMS：场地自治，执行局部应用及全局查询的<strong>子查询</strong></li>
+<li>GDBMS：提供分布透明性，保证数据库的全局一致性。<ul>
+<li>协调全局事务的执行</li>
+<li>协调局部DBMS</li>
+<li>并发控制</li>
+<li>更新同步</li>
+<li>全局恢复</li>
+</ul>
+</li>
+<li>GDD<ul>
+<li>全局概念模式、分片模式、分布模式、各级映象</li>
+<li>用户权限定义</li>
+<li>完整性约束条件</li>
+</ul>
+</li>
+<li>CM：通信管理</li>
+</ul>
+<h5 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h5><ul>
+<li>全局控制<strong>集中</strong>：GDD和GDBMS集成在一起<ul>
+<li>控制简单</li>
+<li>易形成<strong>性能</strong>瓶颈</li>
+<li>可靠性低</li>
+</ul>
+</li>
+<li>全局控制<strong>分散</strong><ul>
+<li>完全：GDBMS和GDD分布在<strong>每个</strong>节点上<ul>
+<li>节点独立</li>
+<li>自治性强</li>
+<li>控制复杂</li>
+</ul>
+</li>
+<li>部分：GDBMS和GDD分布在<strong>某些</strong>节点上</li>
+</ul>
+</li>
+<li>同构型：各个节点的DBMS相同</li>
+<li>异构型：各个节点的DBMS不同</li>
+</ul>
+<h3 id="主要技术"><a href="#主要技术" class="headerlink" title="主要技术"></a>主要技术</h3><h4 id="查询"><a href="#查询" class="headerlink" title="查询"></a>查询</h4><h5 id="分类-1"><a href="#分类-1" class="headerlink" title="分类"></a>分类</h5><ul>
+<li>局部</li>
+<li>远程</li>
+<li>全局</li>
+</ul>
+<blockquote>
+<p>局部和远程查询<strong>只</strong>涉及<strong>单个</strong>节点，全局查询涉及<strong>多个</strong>节点。</p>
+</blockquote>
+<h5 id="处理"><a href="#处理" class="headerlink" title="处理"></a>处理</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">graph LR</span><br><span class="line"></span><br><span class="line">查询分解--&gt;确定操作次序</span><br><span class="line">确定操作次序--&gt;选择操作执行方法</span><br></pre></td></tr></table></figure>
+<h5 id="优化"><a href="#优化" class="headerlink" title="优化"></a>优化</h5><p>查询开销=I/O代价+CPU代价+通信代价（主要）</p>
+<ul>
+<li><p>分类</p>
+<ul>
+<li><p>分布优化（<strong>更重要</strong>）</p>
+<ul>
+<li><p>传送时间T=总传输延迟（由网络本身决定）+总数据量/传输速度</p>
+<blockquote>
+<p>问答方式中通常会<strong>忽略</strong>传送时间而<strong>只考虑</strong>传输延迟</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li><p>局部优化</p>
+</li>
+</ul>
+</li>
+<li><p>目标：减小通信代价</p>
+<blockquote>
+<p>通信代价通常来自于不同节点间的<strong>连接和并</strong>操作</p>
+</blockquote>
+</li>
+<li><p>技术</p>
+<ul>
+<li><p>半连接：在连接之前，先对其中某个关系进行所需属性的投影，然后再进行连接。</p>
+<p>$R_3=R_1{\ltimes}_{A=B} R_2=R_1{\bowtie}_{A=B}(\Pi_B(R_2))$</p>
+<ul>
+<li><p>得到的结果是<strong>没有投影</strong>的关系$R_1$的子集</p>
+<blockquote>
+<p>从$R_1$中提取出了<strong>有用</strong>的元组</p>
+</blockquote>
+</li>
+<li><p>$R_1\bowtie R_2=(R_1\ltimes R_2)\bowtie R_2$</p>
+<blockquote>
+<p>连接=半连接+连接=投影+连接+连接</p>
+</blockquote>
+</li>
+<li><p>在使用优化技术之前，需要进行估算。</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>分布事务处理</p>
+<ul>
+<li><p><code>NewSQL</code></p>
+</li>
+<li><p>原子性：全局事务的子事务要么一起提交，要么全部回滚。</p>
+</li>
+<li><p>可串行性：多用户系统</p>
+</li>
+<li><p>恢复：两段提交协议</p>
+<ul>
+<li>局部事务管理<ul>
+<li>协调者（一个）</li>
+<li>参与者（多个）</li>
+</ul>
+</li>
+<li>第一阶段：协调者征求意见做决定</li>
+<li>第二阶段：参与者执行决定</li>
+</ul>
+</li>
+<li><p>并发控制：封锁技术</p>
+<ul>
+<li><p>写操作需要申请<strong>所有</strong>副本的<code>X</code>锁，读操作<strong>只要</strong>申请一个副本的<code>S</code>锁。</p>
+</li>
+<li><p>读/写操作均对<strong>大多数</strong>副本申请<code>X</code>和<code>S</code>锁</p>
+<blockquote>
+<p>大多数指“<strong>大于</strong>一半”，所以上锁时一定会出现相交情况。</p>
+</blockquote>
+</li>
+<li><p>设置主副本，所有读/写都需要对主副本上锁。</p>
+</li>
+<li><p>全局死锁解决（<strong>两个及以上</strong>场地发生死锁）</p>
+<ul>
+<li>检测及解除</li>
+<li>预防</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ul>
+<li>BUAA Database Theory Lecture, Autumn of 2020.</li>
+<li>Shan Wang, Shixuan Sa, Database System Syllabus(5th Edition), Advanced Education Express.</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/01/12/Database-Chapter8-%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BF%9D%E6%8A%A4/" rel="prev" title="Database-Chapter8-数据库保护">
+      <i class="fa fa-chevron-left"></i> Database-Chapter8-数据库保护
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+        </div>
+        
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Silence</span>
+</div>
+
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  Visitors: <span id="busuanzi_value_site_pv"></span>
+</span>
+</div>
+
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">|   total: 115.5k words</span>
+</div>
+  <div class="powered-by">
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+if (document.querySelectorAll('pre.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
+    mermaid.initialize({
+      theme    : 'forest',
+      logLevel : 3,
+      flowchart: { curve     : 'linear' },
+      gantt    : { axisFormat: '%m/%d/%Y' },
+      sequence : { actorMargin: 50 }
+    });
+  }, window.mermaid);
+}
+</script>
+
+
+  
+
+  
+
+  
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/valine@1/dist/Valine.min.js', () => {
+    new Valine(Object.assign({
+      el  : '#valine-comments',
+      path: location.pathname,
+    }, {"enable":true,"appId":"GMneVEFPu4TwpvejAPqllWGc-gzGzoHsz","appKey":"5eNvc7SV1dxRT000WSXjRDuD","placeholder":"Just write what you'd like to write.","avatar":"mm","meta":["nick","mail"],"pageSize":10,"language":"en","visitor":false,"comment_count":true,"recordIP":false,"serverURLs":null}
+    ));
+  }, window.Valine);
+});
+</script>
+
+</body>
+</html>

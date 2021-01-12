@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  
+  <link rel="stylesheet" href="/lib/animate-css/animate.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Muse","version":"8.0.0-rc.4","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}}};
+  </script>
+
+  <meta name="description" content="Chapter1 概述全文共2102字，推荐阅读时间15~20分钟。 数据管理技术发展 人工管理  数据不在计算机上保存  程序决定数据的逻辑结构和物理结构，数据与程序之间不具有独立性。  要改变数据的结构就要改变程序   数据面向应用，程序之间不能共享数据。    文件系统  存取方法作为中介出现  数据以文件形式保存在外存上  数据的存取以记录为单位  程序和数据具有一定的独立性  缺点：">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Database-Chapter1-概述">
+<meta property="og:url" content="http://yoursite.com/2021/01/12/Database-Chapter1-%E6%A6%82%E8%BF%B0/index.html">
+<meta property="og:site_name" content="Silence">
+<meta property="og:description" content="Chapter1 概述全文共2102字，推荐阅读时间15~20分钟。 数据管理技术发展 人工管理  数据不在计算机上保存  程序决定数据的逻辑结构和物理结构，数据与程序之间不具有独立性。  要改变数据的结构就要改变程序   数据面向应用，程序之间不能共享数据。    文件系统  存取方法作为中介出现  数据以文件形式保存在外存上  数据的存取以记录为单位  程序和数据具有一定的独立性  缺点：">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2021-01-12T10:09:10.935Z">
+<meta property="article:modified_time" content="2020-11-13T03:39:07.210Z">
+<meta property="article:author" content="Silence">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://yoursite.com/2021/01/12/Database-Chapter1-%E6%A6%82%E8%BF%B0/">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>Database-Chapter1-概述 | Silence</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="Silence" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <main class="main">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+        <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+        <span class="toggle-line toggle-line-first"></span>
+        <span class="toggle-line toggle-line-middle"></span>
+        <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">Silence</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-lover">
+
+    <a href="/lover/" rel="section"><i class="fa fa-heart fa-fw"></i>lover</a>
+
+  </li>
+        <li class="menu-item menu-item-schedule">
+
+    <a href="/schedule/" rel="section"><i class="fa fa-calendar fa-fw"></i>Schedule</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <section class="post-toc-wrap sidebar-panel">
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Chapter1-概述"><span class="nav-number">1.</span> <span class="nav-text">Chapter1 概述</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#数据管理技术发展"><span class="nav-number">1.1.</span> <span class="nav-text">数据管理技术发展</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据库系统组成"><span class="nav-number">1.2.</span> <span class="nav-text">数据库系统组成</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#数据库"><span class="nav-number">1.2.1.</span> <span class="nav-text">数据库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#软件"><span class="nav-number">1.2.2.</span> <span class="nav-text">软件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#硬件"><span class="nav-number">1.2.3.</span> <span class="nav-text">硬件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#用户"><span class="nav-number">1.2.4.</span> <span class="nav-text">用户</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据模型"><span class="nav-number">1.3.</span> <span class="nav-text">数据模型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#层次"><span class="nav-number">1.3.1.</span> <span class="nav-text">层次</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#概念模型"><span class="nav-number">1.3.2.</span> <span class="nav-text">概念模型</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#基本概念"><span class="nav-number">1.3.2.1.</span> <span class="nav-text">基本概念</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#E-R"><span class="nav-number">1.3.2.2.</span> <span class="nav-text">E-R</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#组成"><span class="nav-number">1.3.2.2.1.</span> <span class="nav-text">组成</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#语义"><span class="nav-number">1.3.2.2.2.</span> <span class="nav-text">语义</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据模型-1"><span class="nav-number">1.3.3.</span> <span class="nav-text">数据模型</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#数据结构"><span class="nav-number">1.3.3.1.</span> <span class="nav-text">数据结构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#数据操作"><span class="nav-number">1.3.3.2.</span> <span class="nav-text">数据操作</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#约束条件"><span class="nav-number">1.3.3.3.</span> <span class="nav-text">约束条件</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分类"><span class="nav-number">1.3.4.</span> <span class="nav-text">分类</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据库系统结构"><span class="nav-number">1.4.</span> <span class="nav-text">数据库系统结构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#模式"><span class="nav-number">1.4.1.</span> <span class="nav-text">模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#外模式"><span class="nav-number">1.4.2.</span> <span class="nav-text">外模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#内模式"><span class="nav-number">1.4.3.</span> <span class="nav-text">内模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#两级映象"><span class="nav-number">1.4.4.</span> <span class="nav-text">两级映象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DBMS"><span class="nav-number">1.4.5.</span> <span class="nav-text">DBMS</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#主要功能"><span class="nav-number">1.4.5.1.</span> <span class="nav-text">主要功能</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#组成-1"><span class="nav-number">1.4.5.2.</span> <span class="nav-text">组成</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DBA"><span class="nav-number">1.4.6.</span> <span class="nav-text">DBA</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reference"><span class="nav-number">1.5.</span> <span class="nav-text">Reference</span></a></li></ol></li></ol></div>
+      </section>
+      <!--/noindex-->
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Silence"
+      src="https://i.loli.net/2020/07/05/Ml7X4UshoCJgn52.jpg">
+  <p class="site-author-name" itemprop="name">Silence</p>
+  <div class="site-description" itemprop="description">I'm right here waiting for you.</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">68</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/SilenceX12138" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;SilenceX12138" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.instagram.com/silencejiang12138" title="Instagram → https:&#x2F;&#x2F;www.instagram.com&#x2F;silencejiang12138" rel="noopener" target="_blank"><i class="fab fa-instagram fa-fw"></i>Instagram</a>
+      </span>
+  </div>
+
+
+
+      </section>
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </header>
+
+      
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div id="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+      <div class="main-inner">
+        
+
+        <div class="content post posts-expand">
+          
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/01/12/Database-Chapter1-%E6%A6%82%E8%BF%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://i.loli.net/2020/07/05/Ml7X4UshoCJgn52.jpg">
+      <meta itemprop="name" content="Silence">
+      <meta itemprop="description" content="I'm right here waiting for you.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Silence">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Database-Chapter1-概述
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2021-01-12 18:09:10" itemprop="dateCreated datePublished" datetime="2021-01-12T18:09:10+08:00">2021-01-12</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-11-13 11:39:07" itemprop="dateModified" datetime="2020-11-13T11:39:07+08:00">2020-11-13</time>
+              </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2021/01/12/Database-Chapter1-%E6%A6%82%E8%BF%B0/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/01/12/Database-Chapter1-%E6%A6%82%E8%BF%B0/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="Chapter1-概述"><a href="#Chapter1-概述" class="headerlink" title="Chapter1 概述"></a>Chapter1 概述</h1><p>全文共<code>2102</code>字，推荐阅读时间<code>15~20</code>分钟。</p>
+<h2 id="数据管理技术发展"><a href="#数据管理技术发展" class="headerlink" title="数据管理技术发展"></a>数据管理技术发展</h2><ul>
+<li><p>人工管理</p>
+<ul>
+<li><p>数据<strong>不在</strong>计算机上保存</p>
+</li>
+<li><p>程序决定数据的逻辑结构和物理结构，数据与程序之间<strong>不具有独立性</strong>。</p>
+<blockquote>
+<p>要改变数据的结构就要改变程序</p>
+</blockquote>
+</li>
+<li><p>数据面向应用，程序之间<strong>不能共享</strong>数据。</p>
+</li>
+</ul>
+</li>
+<li><p>文件系统</p>
+<ul>
+<li><p>存取方法作为中介出现</p>
+</li>
+<li><p>数据以<strong>文件形式</strong>保存在<strong>外存</strong>上</p>
+</li>
+<li><p>数据的存取以<strong>记录</strong>为单位</p>
+</li>
+<li><p>程序和数据具有<strong>一定的独立性</strong></p>
+</li>
+<li><p>缺点：</p>
+<ul>
+<li>数据冗余度大（因为数据<strong>不能</strong>被程序共享，即不能够同时进行操作，必须创建多个副本），可能带来数据的不一致性。</li>
+<li>数据和程序之间的独立性依然<strong>不</strong>明显，缺乏<strong>逻辑独立性</strong>。（改文件逻辑结构时还要修改程序）</li>
+</ul>
+<blockquote>
+<p>文件系统是<strong>不具弹性</strong>的<strong>无结构</strong>的数据集合，<strong>数据之间</strong>（<strong>不是</strong>程序和数据）是孤立的，不能反映现实世界事物之间的内在联系。</p>
+<ul>
+<li>不具弹性：改变数据的结构就得改程序</li>
+<li>无结构：数据之间孤立</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+</li>
+<li><p>数据库系统</p>
+<ul>
+<li><p>数据结构化：描述数据时，不仅描述数据本身，还要描述数据之间的联系。</p>
+<blockquote>
+<p><strong>数据结构化</strong>是数据库与文件系统的<strong>根本区别</strong></p>
+</blockquote>
+</li>
+<li><p>数据冗余度小，易扩充。</p>
+</li>
+<li><p>数据和程序的独立性<strong>较高</strong></p>
+<ul>
+<li><p>数据独立性</p>
+<ul>
+<li>物理：数据的物理结构改变时，数据的逻辑结构可以不变，从而程序也不用改变。</li>
+<li>逻辑：数据的逻辑结构改变时，程序不用改变。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">graph TD</span><br><span class="line"></span><br><span class="line">应用程序--&gt;局部逻辑结构</span><br><span class="line">局部逻辑结构--&gt;全局逻辑结构</span><br><span class="line">全局逻辑结构--&gt;物理结构</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>数据库映象：不同结构之间数据的<strong>转换关系</strong></p>
+<p>物理结构发生变化时，可以通过调整数据库映象来确保逻辑结构不变。</p>
+</li>
+<li><p>统一的数据控制功能</p>
+<ul>
+<li><p>安全性控制</p>
+</li>
+<li><p>完整性控制：数据的正确性和相容性</p>
+<blockquote>
+<p>相容性：同一条数据在不同的程序应该是相同的</p>
+</blockquote>
+</li>
+<li><p>并发控制</p>
+</li>
+<li><p>恢复</p>
+</li>
+<li><p>存取单位是数据项</p>
+<p>可以存取一组记录，也可以取一组数据项。</p>
+<blockquote>
+<p>数据项的粒度小于文件</p>
+<p>Q：数据项和记录的区别</p>
+<p>A：数据项是列，记录是行。</p>
+</blockquote>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="数据库系统组成"><a href="#数据库系统组成" class="headerlink" title="数据库系统组成"></a>数据库系统组成</h2><h3 id="数据库"><a href="#数据库" class="headerlink" title="数据库"></a>数据库</h3><ul>
+<li>集成：本质是数据结构化</li>
+<li>共享</li>
+</ul>
+<h3 id="软件"><a href="#软件" class="headerlink" title="软件"></a>软件</h3><ul>
+<li>DBMS</li>
+<li>应用系统</li>
+</ul>
+<h3 id="硬件"><a href="#硬件" class="headerlink" title="硬件"></a>硬件</h3><ul>
+<li>存储数据</li>
+<li>运行系统</li>
+</ul>
+<h3 id="用户"><a href="#用户" class="headerlink" title="用户"></a>用户</h3><ul>
+<li>终端用户</li>
+<li>应用程序员</li>
+<li>数据库管理员</li>
+</ul>
+<h2 id="数据模型"><a href="#数据模型" class="headerlink" title="数据模型"></a>数据模型</h2><ul>
+<li>用于抽象和表示现实世界中的<strong>数据和信息</strong></li>
+<li>层次<ul>
+<li>概念模型（信息模型）</li>
+<li>数据模型（层次、网状、关系模型）</li>
+</ul>
+</li>
+</ul>
+<h3 id="层次"><a href="#层次" class="headerlink" title="层次"></a>层次</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">graph TD</span><br><span class="line"></span><br><span class="line">现实世界--&gt;信息世界</span><br><span class="line">信息世界--&gt;机器世界</span><br></pre></td></tr></table></figure>
+<ul>
+<li>信息世界就是<strong>概念</strong>模型：E-R图</li>
+<li>机器世界就是<strong>数据</strong>模型：数据表</li>
+</ul>
+<h3 id="概念模型"><a href="#概念模型" class="headerlink" title="概念模型"></a>概念模型</h3><ul>
+<li>基于信息世界的主要概念，表达语义。</li>
+<li>语义表达能力强</li>
+<li>清晰</li>
+<li>最常用的表示方法：E-R法(Entity-Relation)</li>
+</ul>
+<h4 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h4><ul>
+<li><p>实体(Entity)：客观存在并可以<strong>相互区分</strong>的食物，在E-R图中为<strong>矩形</strong>。</p>
+</li>
+<li><p>属性(Attribute)：实体具有的某一<strong>特性</strong>，在E-R图中为<strong>椭圆形</strong>。</p>
+</li>
+<li><p>码(Key)：<strong>唯一</strong>的标识实体的<strong>属性集</strong>（至少一个，最多由属性集大小确定）</p>
+</li>
+<li><p>域(Domain)：某些属性的<strong>取值范围</strong></p>
+</li>
+<li><p>实体型(Entity Type)：表示一类实体(Class)</p>
+<ul>
+<li>用名称和属性集表示</li>
+</ul>
+</li>
+<li><p>联系(Relation)：实体型之间的联系，在E-R图中为<strong>菱形</strong>。</p>
+<ul>
+<li>名称：产品<strong>由</strong>若干零件<strong>构成</strong></li>
+<li>类型<ul>
+<li>一对一(1:1)</li>
+<li>一对多(1:n)</li>
+<li>多对多(m:n)</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<ul>
+<li>联系可以具有<strong>属性</strong>，例如产品-组装-零件中，组装可以有<strong>零件数</strong>属性。</li>
+<li>联系是有方向的，一对多<strong>不等价于反向</strong>的多对一。</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+<h4 id="E-R"><a href="#E-R" class="headerlink" title="E-R"></a>E-R</h4><ul>
+<li>用E-R图描述现实世界</li>
+<li>将E-R图转换为数据模型</li>
+</ul>
+<h5 id="组成"><a href="#组成" class="headerlink" title="组成"></a>组成</h5><ul>
+<li>实体</li>
+<li>属性<ul>
+<li>作为Key的属性<ul>
+<li>在属性下画线，多个属性就都画。</li>
+<li>在无向边上画两条杠</li>
+<li>组合属性作为Key：在两条无向边之间画一条弧之后，在弧上画两条杠。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>联系：无向边旁需要标注联系的类型（三选一）<ul>
+<li>可能存在<strong>自相联</strong>关系</li>
+<li>三个或多个实体可能通过<strong>一个联系</strong>建立关系</li>
+<li>两个实体之间可能存在多种联系<ul>
+<li>工人使用/维修仪器</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h5 id="语义"><a href="#语义" class="headerlink" title="语义"></a>语义</h5><ul>
+<li>存在依赖：<strong>有向边</strong>指向<strong>弱实体</strong>（依赖于其他实体的实体）<ul>
+<li>弱实体是双层框</li>
+</ul>
+</li>
+<li>标识依赖：<strong>有向边</strong>指向<strong>被标识实体</strong>（不能由自己的属性来唯一标识，需要和其他实体的属性组合起来作为Key）</li>
+<li>实体的子类：<strong>无向边</strong>上画一个圆<ul>
+<li>子类是外侧框加两条竖线</li>
+<li>子类的交<strong>不一定</strong>为空</li>
+</ul>
+</li>
+</ul>
+<h3 id="数据模型-1"><a href="#数据模型-1" class="headerlink" title="数据模型"></a>数据模型</h3><ul>
+<li>数据结构</li>
+<li>数据操作</li>
+<li>完整性约束</li>
+</ul>
+<h4 id="数据结构"><a href="#数据结构" class="headerlink" title="数据结构"></a>数据结构</h4><ul>
+<li>描述对象的相关性质</li>
+<li>描述对象之间的联系，如关系模型中的关系。</li>
+<li>数据<strong>静态特征</strong>的描述</li>
+<li>三要素中<strong>最重要</strong>的方面</li>
+</ul>
+<h4 id="数据操作"><a href="#数据操作" class="headerlink" title="数据操作"></a>数据操作</h4><ul>
+<li><p>操作及操作规则</p>
+</li>
+<li><p>操作符号、操作规则、操作语言</p>
+<blockquote>
+<p>SQL就是一种操作语言</p>
+</blockquote>
+</li>
+<li><p>数据<strong>动态特征</strong>的描述</p>
+</li>
+<li><p>数据库中主要有<strong>检索和更新</strong>两大类操作</p>
+</li>
+</ul>
+<h4 id="约束条件"><a href="#约束条件" class="headerlink" title="约束条件"></a>约束条件</h4><ul>
+<li>完整性规则的集合</li>
+<li>模型通用的完整性约束条件</li>
+<li>针对具体数据的特定语义的约束条件</li>
+</ul>
+<h3 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h3><ul>
+<li>层次模型：树<ul>
+<li>最早出现</li>
+<li>有向树，连线表示一对多的联系（包含一对一）。</li>
+<li>结构简单，效率高，但是支持的联系的种类太少（只能直接表示<strong>二元一对多</strong>联系）</li>
+</ul>
+</li>
+<li>网状模型：图<ul>
+<li>有向图，连线表示一对多的联系（包含一对一）。</li>
+<li>结构复杂，效率高。</li>
+</ul>
+</li>
+<li>关系模型：二维表<ul>
+<li>用二维表格表示实体及实体之间的联系</li>
+<li><strong>规范化关系</strong>：每个分量（域）是<strong>不可分割</strong>的数据项，并且不能出现表中套表的情况。</li>
+<li>有数学基础</li>
+</ul>
+</li>
+</ul>
+<h2 id="数据库系统结构"><a href="#数据库系统结构" class="headerlink" title="数据库系统结构"></a>数据库系统结构</h2><ul>
+<li>三级模式<ul>
+<li>外模式</li>
+<li>模式</li>
+<li>内模式</li>
+</ul>
+</li>
+<li>两级映象<ul>
+<li>外模式/模式映象</li>
+<li>模式/内模式映象</li>
+</ul>
+</li>
+<li>优点<ul>
+<li>数据独立性</li>
+<li>简化用户接口</li>
+<li>有利于数据共享（外模式可以相互覆盖）</li>
+<li>利于数据的安全保密</li>
+</ul>
+</li>
+</ul>
+<h3 id="模式"><a href="#模式" class="headerlink" title="模式"></a>模式</h3><ul>
+<li><strong>逻辑模式/概念模式</strong></li>
+<li><strong>全体数据</strong>的逻辑结构和特性的描述，例如所有关系模式构成的集合。</li>
+<li><strong>三级模式的核心</strong></li>
+<li>模式描述语言(DDL, Data Description Language)</li>
+</ul>
+<h3 id="外模式"><a href="#外模式" class="headerlink" title="外模式"></a>外模式</h3><ul>
+<li><p>个别用户的数据<strong>视图</strong>（与某一应用有关的数据逻辑表示）</p>
+</li>
+<li><p>通常是<strong>模式的子集</strong>（子模式）</p>
+</li>
+<li><p>不同的外模式可以相互覆盖，<strong>一个</strong>应用只能启用<strong>一个</strong>外模式。</p>
+<blockquote>
+<p>外模式和应用是<strong>一对多</strong>的关系</p>
+</blockquote>
+</li>
+<li><p>外模式DDL，通常和应用具有相同的语法。</p>
+</li>
+</ul>
+<h3 id="内模式"><a href="#内模式" class="headerlink" title="内模式"></a>内模式</h3><ul>
+<li>存储模式，数据的物理结构和存储方式的描述。</li>
+<li>内模式DDL</li>
+</ul>
+<h3 id="两级映象"><a href="#两级映象" class="headerlink" title="两级映象"></a>两级映象</h3><ul>
+<li>数据<strong>逻辑</strong>独立性：外模式/模式映象</li>
+<li>数据<strong>物理</strong>独立性：模式/内模式映象</li>
+</ul>
+<h3 id="DBMS"><a href="#DBMS" class="headerlink" title="DBMS"></a>DBMS</h3><h4 id="主要功能"><a href="#主要功能" class="headerlink" title="主要功能"></a>主要功能</h4><ul>
+<li>数据库的定义功能<ul>
+<li>使用DDL语言描述外模式、模式、内模式（源模式）</li>
+</ul>
+</li>
+<li>数据存取功能<ul>
+<li>提供DML(Data Manipulation Language)语言进行CRUD</li>
+</ul>
+</li>
+<li>数据库运行管理<ul>
+<li>并发控制</li>
+<li>存取控制</li>
+<li>完整性</li>
+<li>日志组织和管理</li>
+<li>事务管理</li>
+<li>自动恢复</li>
+</ul>
+</li>
+</ul>
+<h4 id="组成-1"><a href="#组成-1" class="headerlink" title="组成"></a>组成</h4><ul>
+<li>语言编译处理程序</li>
+<li>系统运行控制程序</li>
+<li>系统建立和维护</li>
+<li>数据字典（数据目录）：由若干个表组成</li>
+</ul>
+<h3 id="DBA"><a href="#DBA" class="headerlink" title="DBA"></a>DBA</h3><p>数据库管理员</p>
+<ul>
+<li>建库</li>
+<li>用库</li>
+</ul>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ul>
+<li>BUAA Database Theory Lecture, Autumn of 2020.</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/01/12/Database-Chapter0-%E6%A6%82%E8%AE%BA/" rel="prev" title="Database-Chapter0-概论">
+      <i class="fa fa-chevron-left"></i> Database-Chapter0-概论
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2021/01/12/Database-Chapter2-%E5%85%B3%E7%B3%BB%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="next" title="Database-Chapter2-关系数据库">
+      Database-Chapter2-关系数据库 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+        </div>
+        
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Silence</span>
+</div>
+
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  Visitors: <span id="busuanzi_value_site_pv"></span>
+</span>
+</div>
+
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">|   total: 115.5k words</span>
+</div>
+  <div class="powered-by">
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+if (document.querySelectorAll('pre.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
+    mermaid.initialize({
+      theme    : 'forest',
+      logLevel : 3,
+      flowchart: { curve     : 'linear' },
+      gantt    : { axisFormat: '%m/%d/%Y' },
+      sequence : { actorMargin: 50 }
+    });
+  }, window.mermaid);
+}
+</script>
+
+
+  
+
+  
+
+  
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/valine@1/dist/Valine.min.js', () => {
+    new Valine(Object.assign({
+      el  : '#valine-comments',
+      path: location.pathname,
+    }, {"enable":true,"appId":"GMneVEFPu4TwpvejAPqllWGc-gzGzoHsz","appKey":"5eNvc7SV1dxRT000WSXjRDuD","placeholder":"Just write what you'd like to write.","avatar":"mm","meta":["nick","mail"],"pageSize":10,"language":"en","visitor":false,"comment_count":true,"recordIP":false,"serverURLs":null}
+    ));
+  }, window.Valine);
+});
+</script>
+
+</body>
+</html>
