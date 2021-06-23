@@ -1,0 +1,1602 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  
+  <link rel="stylesheet" href="/lib/animate-css/animate.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Muse","version":"8.0.0-rc.4","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}}};
+  </script>
+
+  <meta name="description" content="Chapter0 IntroductionTotal Count: 161 words Preferred Reading Time: 3~5 minutes Syllabus Basics Divide and Conquer DP Greedy Graph Hard Problems  Content Design Analyze  Concept Computational Problem">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Algorithm Course Note">
+<meta property="og:url" content="http://yoursite.com/2021/06/23/Algorithm%20Course%20Note/index.html">
+<meta property="og:site_name" content="Silence">
+<meta property="og:description" content="Chapter0 IntroductionTotal Count: 161 words Preferred Reading Time: 3~5 minutes Syllabus Basics Divide and Conquer DP Greedy Graph Hard Problems  Content Design Analyze  Concept Computational Problem">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2021-06-23T12:31:27.612Z">
+<meta property="article:modified_time" content="2021-06-23T12:31:27.612Z">
+<meta property="article:author" content="Silence">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://yoursite.com/2021/06/23/Algorithm%20Course%20Note/">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>Algorithm Course Note | Silence</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="Silence" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <main class="main">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+        <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+        <span class="toggle-line toggle-line-first"></span>
+        <span class="toggle-line toggle-line-middle"></span>
+        <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">Silence</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-lover">
+
+    <a href="/lover/" rel="section"><i class="fa fa-heart fa-fw"></i>lover</a>
+
+  </li>
+        <li class="menu-item menu-item-schedule">
+
+    <a href="/schedule/" rel="section"><i class="fa fa-calendar fa-fw"></i>Schedule</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <section class="post-toc-wrap sidebar-panel">
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Chapter0-Introduction"><span class="nav-number">1.</span> <span class="nav-text">Chapter0 Introduction</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Syllabus"><span class="nav-number">1.1.</span> <span class="nav-text">Syllabus</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Content"><span class="nav-number">1.2.</span> <span class="nav-text">Content</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Concept"><span class="nav-number">1.3.</span> <span class="nav-text">Concept</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Analyze"><span class="nav-number">1.4.</span> <span class="nav-text">Analyze</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Machine-independent-running-time"><span class="nav-number">1.4.1.</span> <span class="nav-text">Machine-independent running time</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Example"><span class="nav-number">1.4.2.</span> <span class="nav-text">Example</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reference"><span class="nav-number">1.5.</span> <span class="nav-text">Reference</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Chapter1-Asymptotic-Notations-And-Recurrence"><span class="nav-number">2.</span> <span class="nav-text">Chapter1 Asymptotic Notations And Recurrence</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Notation"><span class="nav-number">2.1.</span> <span class="nav-text">Notation</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Big-Oh"><span class="nav-number">2.1.1.</span> <span class="nav-text">Big-Oh</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Big-Omega"><span class="nav-number">2.1.2.</span> <span class="nav-text">Big-Omega</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Big-Theta"><span class="nav-number">2.1.3.</span> <span class="nav-text">Big-Theta</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Recurrence"><span class="nav-number">2.2.</span> <span class="nav-text">Recurrence</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Recursion-tree-Method"><span class="nav-number">2.2.1.</span> <span class="nav-text">Recursion-tree Method</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Substitution-Method"><span class="nav-number">2.2.2.</span> <span class="nav-text">Substitution Method</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Master-Method-and-Master-Theorem"><span class="nav-number">2.2.3.</span> <span class="nav-text">Master Method and Master Theorem</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reference-1"><span class="nav-number">2.3.</span> <span class="nav-text">Reference</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Chapter2-Divide-and-Conquer"><span class="nav-number">3.</span> <span class="nav-text">Chapter2 Divide and Conquer</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#MCS"><span class="nav-number">3.1.</span> <span class="nav-text">MCS</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Exhaustive-Search"><span class="nav-number">3.1.1.</span> <span class="nav-text">Exhaustive Search</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Data-Reuse"><span class="nav-number">3.1.2.</span> <span class="nav-text">Data-Reuse</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Divide-and-Conquer"><span class="nav-number">3.1.3.</span> <span class="nav-text">Divide and Conquer</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Greedy"><span class="nav-number">3.1.4.</span> <span class="nav-text">Greedy</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Counting-inversions"><span class="nav-number">3.2.</span> <span class="nav-text">Counting inversions</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Brute-Force"><span class="nav-number">3.2.1.</span> <span class="nav-text">Brute Force</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Merge-Sort-Idea"><span class="nav-number">3.2.2.</span> <span class="nav-text">Merge Sort Idea</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Polynomial-Multiplication"><span class="nav-number">3.3.</span> <span class="nav-text">Polynomial Multiplication</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Brute-Force-1"><span class="nav-number">3.3.1.</span> <span class="nav-text">Brute Force</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Divide-and-Conquer-1"><span class="nav-number">3.3.2.</span> <span class="nav-text">Divide and Conquer</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Improve"><span class="nav-number">3.3.2.1.</span> <span class="nav-text">Improve</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Quicksort"><span class="nav-number">3.4.</span> <span class="nav-text">Quicksort</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Improve-1"><span class="nav-number">3.4.1.</span> <span class="nav-text">Improve</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Expected-Case"><span class="nav-number">3.4.1.1.</span> <span class="nav-text">Expected Case</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reference-2"><span class="nav-number">3.5.</span> <span class="nav-text">Reference</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Chapter3-Dynamic-Programming"><span class="nav-number">4.</span> <span class="nav-text">Chapter3 Dynamic Programming</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Introduction"><span class="nav-number">4.1.</span> <span class="nav-text">Introduction</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Step"><span class="nav-number">4.1.1.</span> <span class="nav-text">Step</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0-1-knapsack"><span class="nav-number">4.2.</span> <span class="nav-text">0-1 knapsack</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#brute-force"><span class="nav-number">4.2.1.</span> <span class="nav-text">brute force</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Simple-Recursion"><span class="nav-number">4.2.1.1.</span> <span class="nav-text">Simple Recursion</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DP"><span class="nav-number">4.2.2.</span> <span class="nav-text">DP</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Analysis"><span class="nav-number">4.2.2.1.</span> <span class="nav-text">Analysis</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Rod-Cutting"><span class="nav-number">4.3.</span> <span class="nav-text">Rod Cutting</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#brute-force-1"><span class="nav-number">4.3.1.</span> <span class="nav-text">brute force</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DP-1"><span class="nav-number">4.3.2.</span> <span class="nav-text">DP</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Analysis-1"><span class="nav-number">4.3.2.1.</span> <span class="nav-text">Analysis</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Chain-Matrix-Multiplication"><span class="nav-number">4.4.</span> <span class="nav-text">Chain Matrix Multiplication</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Basic-Concepts"><span class="nav-number">4.4.1.</span> <span class="nav-text">Basic Concepts</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Exhaustive-Search-1"><span class="nav-number">4.4.2.</span> <span class="nav-text">Exhaustive Search</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DP-2"><span class="nav-number">4.4.3.</span> <span class="nav-text">DP</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Analysis-2"><span class="nav-number">4.4.4.</span> <span class="nav-text">Analysis</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Longest-Common-Subsequence-Problem"><span class="nav-number">4.5.</span> <span class="nav-text">Longest Common Subsequence Problem</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Basic-Concepts-1"><span class="nav-number">4.5.1.</span> <span class="nav-text">Basic Concepts</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DP-3"><span class="nav-number">4.5.2.</span> <span class="nav-text">DP</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Analysis-3"><span class="nav-number">4.5.3.</span> <span class="nav-text">Analysis</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Longest-Common-Substring-Problem"><span class="nav-number">4.6.</span> <span class="nav-text">Longest Common Substring Problem</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Basic-Concepts-2"><span class="nav-number">4.6.1.</span> <span class="nav-text">Basic Concepts</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DP-4"><span class="nav-number">4.6.2.</span> <span class="nav-text">DP</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Analysis-4"><span class="nav-number">4.6.3.</span> <span class="nav-text">Analysis</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Minimum-Edit-Distance"><span class="nav-number">4.7.</span> <span class="nav-text">Minimum Edit Distance</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Basic-Concepts-3"><span class="nav-number">4.7.1.</span> <span class="nav-text">Basic Concepts</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Motivation"><span class="nav-number">4.7.1.1.</span> <span class="nav-text">Motivation</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Definition"><span class="nav-number">4.7.1.2.</span> <span class="nav-text">Definition</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DP-5"><span class="nav-number">4.7.2.</span> <span class="nav-text">DP</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Analysis-5"><span class="nav-number">4.7.3.</span> <span class="nav-text">Analysis</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Summary"><span class="nav-number">4.8.</span> <span class="nav-text">Summary</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reference-3"><span class="nav-number">4.9.</span> <span class="nav-text">Reference</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Chapter4-Mid-term-Review"><span class="nav-number">5.</span> <span class="nav-text">Chapter4 Mid-term Review</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Counting-Sort"><span class="nav-number">5.1.</span> <span class="nav-text">Counting Sort</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Objective"><span class="nav-number">5.1.1.</span> <span class="nav-text">Objective</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Solution"><span class="nav-number">5.1.2.</span> <span class="nav-text">Solution</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Analysis-6"><span class="nav-number">5.1.3.</span> <span class="nav-text">Analysis</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Randomized-Selection-Problem"><span class="nav-number">5.2.</span> <span class="nav-text">Randomized Selection Problem</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Basic-Concepts-4"><span class="nav-number">5.2.1.</span> <span class="nav-text">Basic Concepts</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#brute-force-2"><span class="nav-number">5.2.2.</span> <span class="nav-text">brute force</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Partition-and-Selection"><span class="nav-number">5.2.3.</span> <span class="nav-text">Partition and Selection</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Analysis-7"><span class="nav-number">5.2.4.</span> <span class="nav-text">Analysis</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Optimal-Binary-Search-Tree"><span class="nav-number">5.3.</span> <span class="nav-text">Optimal Binary Search Tree</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Basic-Concepts-5"><span class="nav-number">5.3.1.</span> <span class="nav-text">Basic Concepts</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DP-6"><span class="nav-number">5.3.2.</span> <span class="nav-text">DP</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Analysis-8"><span class="nav-number">5.3.3.</span> <span class="nav-text">Analysis</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reference-4"><span class="nav-number">5.4.</span> <span class="nav-text">Reference</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Chapter5-Greedy-Algorithms"><span class="nav-number">6.</span> <span class="nav-text">Chapter5 Greedy Algorithms</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Abstract"><span class="nav-number">6.1.</span> <span class="nav-text">Abstract</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Fraction-Knapsack-Problem"><span class="nav-number">6.2.</span> <span class="nav-text">Fraction Knapsack Problem</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Definition-1"><span class="nav-number">6.2.1.</span> <span class="nav-text">Definition</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Solution-1"><span class="nav-number">6.2.2.</span> <span class="nav-text">Solution</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Analysis-9"><span class="nav-number">6.2.3.</span> <span class="nav-text">Analysis</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Huffman-Coding-Problem"><span class="nav-number">6.3.</span> <span class="nav-text">Huffman Coding Problem</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Definition-2"><span class="nav-number">6.3.1.</span> <span class="nav-text">Definition</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Solution-2"><span class="nav-number">6.3.2.</span> <span class="nav-text">Solution</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Analysis-10"><span class="nav-number">6.3.3.</span> <span class="nav-text">Analysis</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Activity-Selection-Problem"><span class="nav-number">6.4.</span> <span class="nav-text">Activity Selection Problem</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Definition-3"><span class="nav-number">6.4.1.</span> <span class="nav-text">Definition</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Solution-3"><span class="nav-number">6.4.2.</span> <span class="nav-text">Solution</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Analysis-11"><span class="nav-number">6.4.3.</span> <span class="nav-text">Analysis</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Weighted-Activity-Selection-Problem"><span class="nav-number">6.5.</span> <span class="nav-text">Weighted Activity Selection Problem</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Definition-4"><span class="nav-number">6.5.1.</span> <span class="nav-text">Definition</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Solution-4"><span class="nav-number">6.5.2.</span> <span class="nav-text">Solution</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Analysis-12"><span class="nav-number">6.5.3.</span> <span class="nav-text">Analysis</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reference-5"><span class="nav-number">6.6.</span> <span class="nav-text">Reference</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Chapter6-Graph-Algorithms"><span class="nav-number">7.</span> <span class="nav-text">Chapter6 Graph Algorithms</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Basic-Concepts-6"><span class="nav-number">7.1.</span> <span class="nav-text">Basic Concepts</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Display"><span class="nav-number">7.2.</span> <span class="nav-text">Display</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Search"><span class="nav-number">7.3.</span> <span class="nav-text">Search</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#BFS"><span class="nav-number">7.3.1.</span> <span class="nav-text">BFS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DFS"><span class="nav-number">7.3.2.</span> <span class="nav-text">DFS</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Topological-Sort"><span class="nav-number">7.4.</span> <span class="nav-text">Topological Sort</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Definition-5"><span class="nav-number">7.4.1.</span> <span class="nav-text">Definition</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Solution-5"><span class="nav-number">7.4.2.</span> <span class="nav-text">Solution</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Analysis-13"><span class="nav-number">7.4.3.</span> <span class="nav-text">Analysis</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Strongly-Connected-Components"><span class="nav-number">7.5.</span> <span class="nav-text">Strongly Connected Components</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Definition-6"><span class="nav-number">7.5.1.</span> <span class="nav-text">Definition</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Solution-6"><span class="nav-number">7.5.2.</span> <span class="nav-text">Solution</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Analysis-14"><span class="nav-number">7.5.3.</span> <span class="nav-text">Analysis</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Spanning-Tree"><span class="nav-number">7.6.</span> <span class="nav-text">Spanning Tree</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Definition-7"><span class="nav-number">7.6.1.</span> <span class="nav-text">Definition</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Solution-7"><span class="nav-number">7.6.2.</span> <span class="nav-text">Solution</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Prim"><span class="nav-number">7.6.2.1.</span> <span class="nav-text">Prim</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Kruskal"><span class="nav-number">7.6.2.2.</span> <span class="nav-text">Kruskal</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Analysis-15"><span class="nav-number">7.6.3.</span> <span class="nav-text">Analysis</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Shortest-Path"><span class="nav-number">7.7.</span> <span class="nav-text">Shortest Path</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Definition-8"><span class="nav-number">7.7.1.</span> <span class="nav-text">Definition</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Solution-8"><span class="nav-number">7.7.2.</span> <span class="nav-text">Solution</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Dijkstra"><span class="nav-number">7.7.2.1.</span> <span class="nav-text">Dijkstra</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Bellman-Ford"><span class="nav-number">7.7.2.2.</span> <span class="nav-text">Bellman-Ford</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Floyd-Warshall"><span class="nav-number">7.7.2.3.</span> <span class="nav-text">Floyd-Warshall</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Analysis-16"><span class="nav-number">7.7.3.</span> <span class="nav-text">Analysis</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Maximum-Flow-amp-Minimum-Cut"><span class="nav-number">7.8.</span> <span class="nav-text">Maximum Flow &amp; Minimum Cut</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Definition-9"><span class="nav-number">7.8.1.</span> <span class="nav-text">Definition</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Solution-9"><span class="nav-number">7.8.2.</span> <span class="nav-text">Solution</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Heuristic-Algorithm"><span class="nav-number">7.8.2.1.</span> <span class="nav-text">Heuristic Algorithm</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Ford-Fulkerson-Method"><span class="nav-number">7.8.2.2.</span> <span class="nav-text">Ford-Fulkerson Method</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Analysis-17"><span class="nav-number">7.8.3.</span> <span class="nav-text">Analysis</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reference-6"><span class="nav-number">7.9.</span> <span class="nav-text">Reference</span></a></li></ol></li></ol></div>
+      </section>
+      <!--/noindex-->
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Silence"
+      src="https://i.loli.net/2020/07/05/Ml7X4UshoCJgn52.jpg">
+  <p class="site-author-name" itemprop="name">Silence</p>
+  <div class="site-description" itemprop="description">I'm right here waiting for you.</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">1</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/SilenceX12138" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;SilenceX12138" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.instagram.com/silencejiang12138" title="Instagram → https:&#x2F;&#x2F;www.instagram.com&#x2F;silencejiang12138" rel="noopener" target="_blank"><i class="fab fa-instagram fa-fw"></i>Instagram</a>
+      </span>
+  </div>
+
+
+
+      </section>
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </header>
+
+      
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div id="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+      <div class="main-inner">
+        
+
+        <div class="content post posts-expand">
+          
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/06/23/Algorithm%20Course%20Note/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://i.loli.net/2020/07/05/Ml7X4UshoCJgn52.jpg">
+      <meta itemprop="name" content="Silence">
+      <meta itemprop="description" content="I'm right here waiting for you.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Silence">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Algorithm Course Note
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2021-06-23 20:31:27" itemprop="dateCreated datePublished" datetime="2021-06-23T20:31:27+08:00">2021-06-23</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Algorithm/" itemprop="url" rel="index"><span itemprop="name">Algorithm</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Code/" itemprop="url" rel="index"><span itemprop="name">Code</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2021/06/23/Algorithm%20Course%20Note/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/06/23/Algorithm%20Course%20Note/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <a id="more"></a>
+<h1 id="Chapter0-Introduction"><a href="#Chapter0-Introduction" class="headerlink" title="Chapter0 Introduction"></a>Chapter0 Introduction</h1><p>Total Count: <code>161</code> words</p>
+<p>Preferred Reading Time: <code>3~5</code> minutes</p>
+<h2 id="Syllabus"><a href="#Syllabus" class="headerlink" title="Syllabus"></a>Syllabus</h2><ul>
+<li>Basics</li>
+<li>Divide and Conquer</li>
+<li>DP</li>
+<li>Greedy</li>
+<li>Graph</li>
+<li>Hard Problems</li>
+</ul>
+<h2 id="Content"><a href="#Content" class="headerlink" title="Content"></a>Content</h2><ul>
+<li>Design</li>
+<li>Analyze</li>
+</ul>
+<h2 id="Concept"><a href="#Concept" class="headerlink" title="Concept"></a>Concept</h2><ul>
+<li>Computational Problem</li>
+<li>Instance</li>
+<li>Algorithm</li>
+</ul>
+<h2 id="Analyze"><a href="#Analyze" class="headerlink" title="Analyze"></a>Analyze</h2><ul>
+<li>Memory</li>
+<li>Running time(focus of course)<ul>
+<li>computer</li>
+<li>implementation details</li>
+<li>input(size etc.)</li>
+</ul>
+</li>
+</ul>
+<h3 id="Machine-independent-running-time"><a href="#Machine-independent-running-time" class="headerlink" title="Machine-independent running time"></a>Machine-independent running time</h3><ul>
+<li>depend on quantity of <strong>primitive operations</strong><ul>
+<li>addition</li>
+<li>multiplication</li>
+<li>comparison</li>
+</ul>
+</li>
+<li>$T(n)$:denote the running time of n-size input<ul>
+<li>n<ul>
+<li>sorting: items to be sorted</li>
+<li>graph: vertices and edges</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Best Case: an instance for given size <code>n</code> results in the most efficient situation<ul>
+<li>eg. A sorted list for insertion sort</li>
+</ul>
+</li>
+<li>Worst Case<strong>(Mostly Used)</strong>: opposite to Best Case<ul>
+<li>eg. A rev-sorted list for insertion sort</li>
+</ul>
+</li>
+<li>Average Case: based on probability of all situations </li>
+</ul>
+<h3 id="Example"><a href="#Example" class="headerlink" title="Example"></a>Example</h3><ul>
+<li><p>$Θ(n)$ notation</p>
+<ul>
+<li><p>a supplement of <code>T(n)</code> notation</p>
+<blockquote>
+<p>$T(n)$ is exact while $Θ(n)$ is approximate</p>
+</blockquote>
+</li>
+<li><p>eg. Mergesort</p>
+<p>$T(n) = 2T(n/2) + Θ(n)\ (n&gt;1)$</p>
+<p>$T(n)=Θ(1)\ (n=1)$</p>
+<blockquote>
+<p>Recursive notation</p>
+</blockquote>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ul>
+<li>BUAA Algorithm Lecture, Autumn of 2020.</li>
+</ul>
+<h1 id="Chapter1-Asymptotic-Notations-And-Recurrence"><a href="#Chapter1-Asymptotic-Notations-And-Recurrence" class="headerlink" title="Chapter1 Asymptotic Notations And Recurrence"></a>Chapter1 Asymptotic Notations And Recurrence</h1><p>Total Count: <code>291</code> words</p>
+<p>Preferred Reading Time: <code>5~10</code> minutes</p>
+<h2 id="Notation"><a href="#Notation" class="headerlink" title="Notation"></a>Notation</h2><h3 id="Big-Oh"><a href="#Big-Oh" class="headerlink" title="Big-Oh"></a>Big-Oh</h3><ul>
+<li><p><strong>Upper</strong> bounds</p>
+</li>
+<li><p>$f(n)=O(g(n))$ and <strong>exists</strong> <code>c, n0</code> satisfying $f(n)\leq{c*g(n)}\ (c&gt;0, n&gt;n0)$</p>
+</li>
+<li><p>Example</p>
+<ul>
+<li>$sin(n)=O(1)$</li>
+<li>$log(n!)=O(nlog(n))$</li>
+<li>$\sum{1/n}=O(log(n))$</li>
+</ul>
+</li>
+<li><p>$log_{b_1}(n)=O(log_{b_2}(n))$</p>
+<blockquote>
+<p>Bases in <code>O</code> notation are usually omitted.</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="Big-Omega"><a href="#Big-Omega" class="headerlink" title="Big-Omega"></a>Big-Omega</h3><ul>
+<li><p><strong>Lower</strong> bounds</p>
+</li>
+<li><p>$f(n)=Ω(g(n))$ and <strong>exists</strong> <code>c, n0</code> satisfying $f(n)\geq{c*g(n)}\ (c&gt;0,n&gt;n0)$</p>
+</li>
+<li><p>Example</p>
+<ul>
+<li><p>$\sum{1/n}=Ω(log(n))$</p>
+<blockquote>
+<p><code>log(n)</code> is both bounds above and below, the difference is coefficient.</p>
+</blockquote>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="Big-Theta"><a href="#Big-Theta" class="headerlink" title="Big-Theta"></a>Big-Theta</h3><ul>
+<li><strong>Tight</strong> bounds</li>
+<li>$f(n)=Θ(g(n))$ when $f(n)=O(g(n))$ and $f(n)=Ω(g(n))$</li>
+</ul>
+<h2 id="Recurrence"><a href="#Recurrence" class="headerlink" title="Recurrence"></a>Recurrence</h2><script type="math/tex; mode=display">\begin{cases} T(n)=3T(n/4)+n^2&(n>1) \\ 1&(n=1) \tag{1} \end{cases}</script><ul>
+<li>$n^2$ is workload of first level</li>
+</ul>
+<h3 id="Recursion-tree-Method"><a href="#Recursion-tree-Method" class="headerlink" title="Recursion-tree Method"></a>Recursion-tree Method</h3><p>$T(n) \leq n^2+3/16n^2+(3/16)^2n^2 + … =O(n^2)$</p>
+<h3 id="Substitution-Method"><a href="#Substitution-Method" class="headerlink" title="Substitution Method"></a>Substitution Method</h3><p>Prove $T(n) \leq cn^2$.</p>
+<p>$T(n)=3T(n/4)+n^2 \le3c(n/4)^2 =cn^2-(13c/16-1)n^2 \leq cn^2 (c\geq16/13)$</p>
+<p>So when $c\geq16/13$, we can prove $T(n)\leq cn^2$.</p>
+<blockquote>
+<p>Since $T(n) \geq n^2$, then $Θ(n)=Ω(n)=O(n)$.</p>
+</blockquote>
+<h3 id="Master-Method-and-Master-Theorem"><a href="#Master-Method-and-Master-Theorem" class="headerlink" title="Master Method and Master Theorem"></a>Master Method and Master Theorem</h3><p>If $T(n)=aT(upper(\frac{n}{b}))+O(n^d)(a&gt;0,b&gt;1,d\geq0)$, then</p>
+<script type="math/tex; mode=display">T(n)=\begin{cases} O(n^d)&d>lob_ba,b^d>a \\ O(n^dlogn)&d=lob_ba,b^d=a \\ O(n^{log_b{a}})&d<lob_ba,b^d<a \end{cases}</script><h2 id="Reference-1"><a href="#Reference-1" class="headerlink" title="Reference"></a>Reference</h2><ul>
+<li>BUAA Algorithm Lecture, Autumn of 2020.</li>
+</ul>
+<h1 id="Chapter2-Divide-and-Conquer"><a href="#Chapter2-Divide-and-Conquer" class="headerlink" title="Chapter2 Divide and Conquer"></a>Chapter2 Divide and Conquer</h1><p>Total Count: <code>559</code> words</p>
+<p>Preferred Reading Time: <code>10~15</code> minutes</p>
+<h2 id="MCS"><a href="#MCS" class="headerlink" title="MCS"></a>MCS</h2><ul>
+<li>Maximum Contiguous Subarray<ul>
+<li>Find the span of years in which the company earned most</li>
+</ul>
+</li>
+</ul>
+<h3 id="Exhaustive-Search"><a href="#Exhaustive-Search" class="headerlink" title="Exhaustive Search"></a>Exhaustive Search</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(n):</span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> range(i, n):</span><br><span class="line">        <span class="comment"># calculate V(i, j)</span></span><br><span class="line">        <span class="comment"># update max_Val</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>$O(n^3)$</li>
+</ul>
+<h3 id="Data-Reuse"><a href="#Data-Reuse" class="headerlink" title="Data-Reuse"></a>Data-Reuse</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(n):</span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> range(i, n):</span><br><span class="line">        <span class="comment"># calculate V(i, j)</span></span><br><span class="line">        <span class="comment"># update max_val</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>$V(i,j)=V(i,j-1)+A[j]$</li>
+<li>$O(n^2)$</li>
+</ul>
+<h3 id="Divide-and-Conquer"><a href="#Divide-and-Conquer" class="headerlink" title="Divide and Conquer"></a>Divide and Conquer</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># input A[s...t]</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> s == t:</span><br><span class="line">    retun A[s] <span class="comment"># O(1)</span></span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    MCS(A, s, mid) <span class="comment"># T(n/2)</span></span><br><span class="line">    MCS(A, mid, t) <span class="comment"># T(n/2)</span></span><br><span class="line">    <span class="comment"># find the max_val of cut position containing A[mid] and A[mid+1]</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>Be cautious the array may be at the cut position.</li>
+<li>When finding the <code>max_val</code> containing <code>A[mid]</code> and <code>A[mid+1]</code>, we can do it from <code>mid</code> to <code>0</code>.</li>
+<li>$T(n)=2T([n/2])+n$</li>
+<li>$O(nlogn)$</li>
+</ul>
+<h3 id="Greedy"><a href="#Greedy" class="headerlink" title="Greedy"></a>Greedy</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n, temp, ans, temp_sum;</span><br><span class="line">    <span class="built_in">cin</span> &gt;&gt; n &gt;&gt; ans;</span><br><span class="line">    temp_sum = ans;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; n; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// When temp_sum &lt; 0, it means last temp &lt; 0, and last temp has already been compared with ans to decide whether to update the start point of the sub-array.</span></span><br><span class="line">        temp_sum = max(<span class="number">0</span>, temp_sum); </span><br><span class="line">        <span class="built_in">cin</span> &gt;&gt; temp;</span><br><span class="line">        temp_sum += temp;</span><br><span class="line">        ans = max(temp_sum, ans);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; ans &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="Counting-inversions"><a href="#Counting-inversions" class="headerlink" title="Counting inversions"></a>Counting inversions</h2><h3 id="Brute-Force"><a href="#Brute-Force" class="headerlink" title="Brute Force"></a>Brute Force</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(n):</span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> range(i+<span class="number">1</span>, n):</span><br><span class="line">        <span class="comment"># count inversion</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>$O(n^2)$</li>
+</ul>
+<h3 id="Merge-Sort-Idea"><a href="#Merge-Sort-Idea" class="headerlink" title="Merge Sort Idea"></a>Merge Sort Idea</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> len(L) == <span class="number">0</span>:</span><br><span class="line">    reutrn <span class="number">0</span>, L</span><br><span class="line">cnt_a, A = sort_and_count(L[l, mid])</span><br><span class="line">cnt_b, B = sort_and_count(L[mid+<span class="number">1</span>, r])</span><br><span class="line">cnt_c, L = merge_and_count(L[l, mid], L[mid+<span class="number">1</span>, r])</span><br><span class="line"><span class="keyword">return</span> cnt_a + cnt_b + cnt_c, L</span><br></pre></td></tr></table></figure>
+<ul>
+<li>Increase inversion count when merging sorted two list.</li>
+<li>$O(nlogn)$</li>
+</ul>
+<h2 id="Polynomial-Multiplication"><a href="#Polynomial-Multiplication" class="headerlink" title="Polynomial Multiplication"></a>Polynomial Multiplication</h2><h3 id="Brute-Force-1"><a href="#Brute-Force-1" class="headerlink" title="Brute Force"></a>Brute Force</h3><ul>
+<li>compute all coefficients and merge them at last<ul>
+<li>multiplications:$O(n^2)$</li>
+<li>addition:$O(n^2)$</li>
+<li>complexity:$O(n^2)$</li>
+</ul>
+</li>
+</ul>
+<h3 id="Divide-and-Conquer-1"><a href="#Divide-and-Conquer-1" class="headerlink" title="Divide and Conquer"></a>Divide and Conquer</h3><ul>
+<li>extract $x^{\frac{n}{2}}$ to make size <code>n</code> problem into $2*2$ problem</li>
+<li>$O(n^2)$</li>
+</ul>
+<h4 id="Improve"><a href="#Improve" class="headerlink" title="Improve"></a>Improve</h4><ul>
+<li>We need $A_0B_1+A_1B_0$ instead of $A_0B_1$and$A_1B_0$.<ul>
+<li>$\begin{cases} U=A_0B_0 \\ V=A_0B_1 \\ W=A_1B_0 \\ Z=A_1B_1\end{cases}$</li>
+<li>Take $Y=(A_0+A_1)(B_0+B_1)$, then we can get $A_0B_1+A_1B_0=Y-U-Z$.</li>
+<li>$T(n)=\begin{cases} 3T(n/2) + n&amp;(n&gt;1) \\ 1&amp;(n=1) \end{cases}$</li>
+</ul>
+</li>
+</ul>
+<h2 id="Quicksort"><a href="#Quicksort" class="headerlink" title="Quicksort"></a>Quicksort</h2><ul>
+<li>partition with pivot as a benchmark</li>
+<li>place pivot into right place</li>
+<li>above can be a recursive process</li>
+<li>$O(nlogn)$: the average complexity</li>
+</ul>
+<h3 id="Improve-1"><a href="#Improve-1" class="headerlink" title="Improve"></a>Improve</h3><ul>
+<li><p>The normal complexity of quicksort is $O(n^2)$ because the array may be partially sorted.</p>
+<p>$T(n)=T(0)+T(n-1)+O(n)$</p>
+<blockquote>
+<ul>
+<li>The complexity of quick sort is $O(n^2)$ instead of $O(nlogn)$.</li>
+<li>$O(n)$ comes from the count of key comparisons.</li>
+</ul>
+</blockquote>
+</li>
+<li><p>Adopt random pivot to get randomized partition</p>
+<ul>
+<li>Swap random position with the last position for reuse the partition function</li>
+<li>This action can validly lower the probability to encounter unlucky array partition</li>
+</ul>
+</li>
+</ul>
+<h4 id="Expected-Case"><a href="#Expected-Case" class="headerlink" title="Expected Case"></a>Expected Case</h4><ul>
+<li>Analysis for randomization algorithm</li>
+</ul>
+<h2 id="Reference-2"><a href="#Reference-2" class="headerlink" title="Reference"></a>Reference</h2><ul>
+<li>BUAA Algorithm Lecture, Autumn of 2020.</li>
+</ul>
+<h1 id="Chapter3-Dynamic-Programming"><a href="#Chapter3-Dynamic-Programming" class="headerlink" title="Chapter3 Dynamic Programming"></a>Chapter3 Dynamic Programming</h1><p>Total Count: <code>906</code> words</p>
+<p>Preferred Reading Time: <code>20~25</code> minutes</p>
+<h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><ul>
+<li><p>Similar to Divide and Conquer, but when subproblems overlap, DP is preferred.</p>
+<blockquote>
+<ul>
+<li>Recurrence is from top to bottom, while DP is from bottom to top.</li>
+<li>Recurrence is efficient when subproblems are independent, while DP requires overlapped subproblems.</li>
+<li>DP trades space for time.</li>
+</ul>
+</blockquote>
+</li>
+<li><p>DP is used for <strong>optimization</strong> problems</p>
+</li>
+<li><p><strong>Core: As long as all subproblems are optimized, the merged problem can be optimized.</strong></p>
+<blockquote>
+<p>Prerequisite: All subproblems cannot be completely individual, and in other words,  they have to affect each other’s solution.</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="Step"><a href="#Step" class="headerlink" title="Step"></a>Step</h3><ul>
+<li>model subproblems</li>
+<li>establish value connections between subproblems</li>
+<li>bottom-up computation to get result</li>
+<li>trace to get format answer</li>
+</ul>
+<h2 id="0-1-knapsack"><a href="#0-1-knapsack" class="headerlink" title="0-1 knapsack"></a>0-1 knapsack</h2><h3 id="brute-force"><a href="#brute-force" class="headerlink" title="brute force"></a>brute force</h3><ul>
+<li>try all $2^n$ methods and compare them.</li>
+</ul>
+<h4 id="Simple-Recursion"><a href="#Simple-Recursion" class="headerlink" title="Simple Recursion"></a>Simple Recursion</h4><ul>
+<li><p>$V[i,w]=max(V[i-1,w], v_i+V[i-1,w-w_i])$</p>
+<ul>
+<li><p>$V[i,w]$ denote any subset of items $\{1, 2, 3, …i\}$ value sum with <strong>at most</strong> weight $w$.</p>
+<blockquote>
+<p>Real weight may be smaller than $w$.</p>
+</blockquote>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="DP"><a href="#DP" class="headerlink" title="DP"></a>DP</h3><ul>
+<li>State of subproblems<ul>
+<li>establish formal description for problem requirements</li>
+</ul>
+</li>
+<li><p>Relate a problem to its subproblems</p>
+<ul>
+<li>establish recurrence equation</li>
+<li>set boundary cases</li>
+</ul>
+</li>
+<li><strong>Bottom-up</strong> computation of $V[i,w]$</li>
+<li>initialize boundary cases<ul>
+<li>Save trace when calculating $V[i,j]$, and till the end we can use recorded result to get $V[i,w]$.</li>
+</ul>
+</li>
+<li>Add <code>keep[i,w]</code> to record for a specific w, whether an item is taken.</li>
+</ul>
+<h4 id="Analysis"><a href="#Analysis" class="headerlink" title="Analysis"></a>Analysis</h4><ul>
+<li>DP save duplicate computation.</li>
+<li>DP trades space for time.</li>
+<li>Strategy<ul>
+<li>Structure</li>
+<li>Recursion</li>
+<li>Bottom-up computation</li>
+<li>Construct optimal solution: trace the table</li>
+</ul>
+</li>
+</ul>
+<h2 id="Rod-Cutting"><a href="#Rod-Cutting" class="headerlink" title="Rod Cutting"></a>Rod Cutting</h2><h3 id="brute-force-1"><a href="#brute-force-1" class="headerlink" title="brute force"></a>brute force</h3><ul>
+<li>$r_n=max(p_n,r_1+r_{n-1},…,r_{n-1}+r_1)$<ul>
+<li>$r_n$ is the optimal revenue of length <code>n</code> rod.</li>
+<li>$p_n$ is the price of length <code>n</code> rod.</li>
+<li>simpler definition:  $r_n=max_{1\leq i \leq n}(p_i+r_{n-i})$</li>
+</ul>
+</li>
+<li>Even recurrence equation is established, the recursive method still contains duplicate computation.</li>
+</ul>
+<h3 id="DP-1"><a href="#DP-1" class="headerlink" title="DP"></a>DP</h3><ul>
+<li>one-dimension array <code>r[]</code> to store max revenue of length from 0 to n.</li>
+<li><code>r[i] = max(r[i], p[j] + r[i - j])</code></li>
+</ul>
+<h4 id="Analysis-1"><a href="#Analysis-1" class="headerlink" title="Analysis"></a>Analysis</h4><ul>
+<li>$O(n^2)$</li>
+</ul>
+<h2 id="Chain-Matrix-Multiplication"><a href="#Chain-Matrix-Multiplication" class="headerlink" title="Chain Matrix Multiplication"></a>Chain Matrix Multiplication</h2><h3 id="Basic-Concepts"><a href="#Basic-Concepts" class="headerlink" title="Basic Concepts"></a>Basic Concepts</h3><ul>
+<li><p>C(<code>p*q</code> and <code>q*r</code> matrix to multiply, each entry takes $O(q)$ to calculate): $O(pqr)$</p>
+</li>
+<li><p>$A_1A_2A_3=(A_1A_2)A_3=A_1(A_2A_3)$</p>
+<blockquote>
+<p>cause of different complexity</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="Exhaustive-Search-1"><a href="#Exhaustive-Search-1" class="headerlink" title="Exhaustive Search"></a>Exhaustive Search</h3><ul>
+<li>$\Omega(\frac{4^n}{n^{\frac{3}{2}}})$</li>
+</ul>
+<h3 id="DP-2"><a href="#DP-2" class="headerlink" title="DP"></a>DP</h3><p>for matrix $A_i$, it has dimension of $p_{i-1}*p_i$.</p>
+<ul>
+<li><p>model subproblems</p>
+</li>
+<li><p>establish <strong>value</strong> connection between subproblems</p>
+<p>$m[i,j]=\begin{cases}0, &amp; i=j\\min_{i\leq k&lt;j}(m[i,k]+m[k+1,j])+p_{i-1}p_kp_j, &amp; i&lt;j\end{cases}$</p>
+</li>
+</ul>
+<h3 id="Analysis-2"><a href="#Analysis-2" class="headerlink" title="Analysis"></a>Analysis</h3><ul>
+<li>time: $O(n^3)$<ul>
+<li>Outlying loop layer is for traverse multiply-array’s length from 2 to n.</li>
+</ul>
+</li>
+<li>space: $O(n^2)$</li>
+</ul>
+<h2 id="Longest-Common-Subsequence-Problem"><a href="#Longest-Common-Subsequence-Problem" class="headerlink" title="Longest Common Subsequence Problem"></a>Longest Common Subsequence Problem</h2><h3 id="Basic-Concepts-1"><a href="#Basic-Concepts-1" class="headerlink" title="Basic Concepts"></a>Basic Concepts</h3><ul>
+<li>subsequence: not necessarily continuous</li>
+<li>substring: <strong>must</strong> be continuous</li>
+</ul>
+<h3 id="DP-3"><a href="#DP-3" class="headerlink" title="DP"></a>DP</h3><p>define $d_{i,j}$ the length of LCS in $A[1..i]$ of $A[1..m]$ and $B[1..j]$ of $B[1..n]$</p>
+<ul>
+<li>$d_{i,j}=\begin{cases} 0, &amp; i,j=0 \\ d_{i-1,j-1}+1, &amp; x_i=y_j \\ max(d_{i-1.j},d_{i,j-1}), &amp; x_i\neq y_j\end{cases}$</li>
+</ul>
+<h3 id="Analysis-3"><a href="#Analysis-3" class="headerlink" title="Analysis"></a>Analysis</h3><ul>
+<li><p>time: $O(mn)$</p>
+</li>
+<li><p>space: $O(n^2)$</p>
+<ul>
+<li><p>optimization for solution matrix: only save two rows</p>
+<blockquote>
+<p>The trace matrix needs totally preserving.</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li><p>Different trace may lead to different subsequence.</p>
+</li>
+</ul>
+<h2 id="Longest-Common-Substring-Problem"><a href="#Longest-Common-Substring-Problem" class="headerlink" title="Longest Common Substring Problem"></a>Longest Common Substring Problem</h2><h3 id="Basic-Concepts-2"><a href="#Basic-Concepts-2" class="headerlink" title="Basic Concepts"></a>Basic Concepts</h3><ul>
+<li>Different from subsequence, substring must be contiguous.</li>
+</ul>
+<h3 id="DP-4"><a href="#DP-4" class="headerlink" title="DP"></a>DP</h3><p>define $d_{i,j}$ to be the length of the longest common substring of $X[1..i]$ and $Y[1..j]$</p>
+<ul>
+<li>$d_{i,j}=\begin{cases} d_{i-1,j-1}+1, &amp;x_i=y_j\\ 0, &amp;x_i\neq y_j\end{cases}$</li>
+<li>$maxSubstring(X,Y)=max(d_{i,j})$</li>
+</ul>
+<h3 id="Analysis-4"><a href="#Analysis-4" class="headerlink" title="Analysis"></a>Analysis</h3><ul>
+<li>Without saving DP direction, we can still trace the whole substring by knowing the <strong>end index</strong> of substring $(X_i|Y_j)$ and its length $d_{i,j}$.</li>
+<li>time: $O(mn)$</li>
+<li>Subsequence algorithm can be used to solve this problem by only outputting diagonal $LU$ elements.</li>
+</ul>
+<h2 id="Minimum-Edit-Distance"><a href="#Minimum-Edit-Distance" class="headerlink" title="Minimum Edit Distance"></a>Minimum Edit Distance</h2><h3 id="Basic-Concepts-3"><a href="#Basic-Concepts-3" class="headerlink" title="Basic Concepts"></a>Basic Concepts</h3><h4 id="Motivation"><a href="#Motivation" class="headerlink" title="Motivation"></a>Motivation</h4><ul>
+<li>“Spell Correction” in search engine</li>
+<li>Computational Biology such as comparing DNA</li>
+<li>Machine Translation, Information Extraction, Speech Recognition etc.</li>
+</ul>
+<h4 id="Definition"><a href="#Definition" class="headerlink" title="Definition"></a>Definition</h4><p>calculate the smallest number of edit operations</p>
+<ul>
+<li><p>edit operations</p>
+<ul>
+<li>insertion: add a letter</li>
+<li>deletion: delete a letter</li>
+<li>substitution: replace a character</li>
+</ul>
+<blockquote>
+<p>All operations’ cost is usually (throughout the course) counted as <code>1</code>, but the cost can be adjusted.</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="DP-5"><a href="#DP-5" class="headerlink" title="DP"></a>DP</h3><p>define $D[i,j]$ the edit distance of $X[1..i]$ and $Y[1..j]$</p>
+<ul>
+<li>$D[i,j]=min\begin{cases} D[i-1,j]+1, &amp;delete\ X[i] \\ D[i,j-1]+1, &amp;insert\ Y[j] \\ D[i-1,j-1] +0, &amp;X[i]=Y[j] \\ D[i-1,j-1]+1, &amp;X[i] \neq Y[j] \end{cases}$</li>
+</ul>
+<blockquote>
+<ul>
+<li>All edit operations take place on $X[1..i]$.</li>
+<li>When operation cost changes, the constant in equation will be changed as well.</li>
+<li>When the problem can be depicted as a state graph, <strong>shortest path algorithm</strong> can be used to solve the problem. In other words, the problems degrades to shortest path problem.</li>
+</ul>
+</blockquote>
+<h3 id="Analysis-5"><a href="#Analysis-5" class="headerlink" title="Analysis"></a>Analysis</h3><ul>
+<li>When tracing the edit process, <code>L</code>/<code>U</code>/<code>LR</code> stand for four different operations(<strong>including doing nothing</strong>).</li>
+<li>time: $O(mn)$</li>
+</ul>
+<h2 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h2><ul>
+<li>multi-stage strategy problem</li>
+<li>DP is not a specific method but a way of thinking.</li>
+<li>Key to DP: basic equations and boundary conditions</li>
+<li>DP’s effect is also called Markova effect for there’s no effect on future events. </li>
+</ul>
+<h2 id="Reference-3"><a href="#Reference-3" class="headerlink" title="Reference"></a>Reference</h2><ul>
+<li>BUAA Algorithm Lecture, Autumn of 2020.</li>
+</ul>
+<h1 id="Chapter4-Mid-term-Review"><a href="#Chapter4-Mid-term-Review" class="headerlink" title="Chapter4 Mid-term Review"></a>Chapter4 Mid-term Review</h1><p>Total Count: <code>413</code> words</p>
+<p>Preferred Reading Time: <code>15~20</code> minutes</p>
+<h2 id="Counting-Sort"><a href="#Counting-Sort" class="headerlink" title="Counting Sort"></a>Counting Sort</h2><h3 id="Objective"><a href="#Objective" class="headerlink" title="Objective"></a>Objective</h3><ul>
+<li><p>Any comparison-based sorting algorithm requires $\Omega(nlogn)$ comparisons.</p>
+<blockquote>
+<p>proved by binary decision tree</p>
+</blockquote>
+</li>
+<li><p>Thus, in order to break the lower bound, we should take other methods except comparison.</p>
+</li>
+<li><p>counting sort isn’t based on comparison.</p>
+</li>
+</ul>
+<h3 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h3><ul>
+<li><p>When inputting numbers, count occurrences of all numbers.</p>
+<blockquote>
+<p>counting array’s length is based on boundary value of inputting array.</p>
+</blockquote>
+</li>
+<li><p>Fill sorted array with the counting array.</p>
+</li>
+</ul>
+<h3 id="Analysis-6"><a href="#Analysis-6" class="headerlink" title="Analysis"></a>Analysis</h3><ul>
+<li>time: $O(n)$</li>
+<li>counting sort is a <strong>stable</strong> sort as long as the final filling loop is from raw array’s <strong>end</strong> to its <strong>head</strong>.</li>
+</ul>
+<h2 id="Randomized-Selection-Problem"><a href="#Randomized-Selection-Problem" class="headerlink" title="Randomized Selection Problem"></a>Randomized Selection Problem</h2><h3 id="Basic-Concepts-4"><a href="#Basic-Concepts-4" class="headerlink" title="Basic Concepts"></a>Basic Concepts</h3><ul>
+<li>find the <code>i-th</code> smallest element in a given array</li>
+</ul>
+<h3 id="brute-force-2"><a href="#brute-force-2" class="headerlink" title="brute force"></a>brute force</h3><ul>
+<li>sort the array and index specific element</li>
+</ul>
+<h3 id="Partition-and-Selection"><a href="#Partition-and-Selection" class="headerlink" title="Partition and Selection"></a>Partition and Selection</h3><ul>
+<li>The same as quick sort, part the array into two subarrays, and then make sure the index of selected separator number.</li>
+<li>When the index is greater than <code>i</code>, handle another branch and abandon this one, vice versa.</li>
+</ul>
+<h3 id="Analysis-7"><a href="#Analysis-7" class="headerlink" title="Analysis"></a>Analysis</h3><ul>
+<li><p>time: $O(n)$</p>
+<blockquote>
+<p>Different from quick sort’s $O(nlogn)$, this algorithm only deals with one branch of subproblems, while quick sort handles both branches.</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="Optimal-Binary-Search-Tree"><a href="#Optimal-Binary-Search-Tree" class="headerlink" title="Optimal Binary Search Tree"></a>Optimal Binary Search Tree</h2><h3 id="Basic-Concepts-5"><a href="#Basic-Concepts-5" class="headerlink" title="Basic Concepts"></a>Basic Concepts</h3><ul>
+<li><p>construct a BST with smallest search cost</p>
+</li>
+<li><p>height</p>
+<ul>
+<li>$node_height=max(children_height + 1)$</li>
+<li>$leave_ height=0$</li>
+<li>$tree_height=root_height$</li>
+<li>$empty_tree_height = -1$</li>
+</ul>
+<blockquote>
+<p><code>root_height</code> is the <strong>biggest</strong> one.</p>
+</blockquote>
+</li>
+<li><p>$depth=H(root)-H(n)+1$</p>
+<ul>
+<li>$root_depth=1$</li>
+</ul>
+</li>
+<li><p>balanced binary tree: the height difference of two subtrees cannot go beyond 1.</p>
+<ul>
+<li>$balance_factor = H(right)-H(left)$</li>
+</ul>
+</li>
+<li><p>AVL tree: besides balanced binary tree, every node will store the height of two subtrees.</p>
+</li>
+</ul>
+<h3 id="DP-6"><a href="#DP-6" class="headerlink" title="DP"></a>DP</h3><ul>
+<li><p>subproblem: find an optimal BST containing $keys<a href="1 \leq i \leq j \leq n">i..j</a>$</p>
+</li>
+<li><p>$e[i,j]$: the expected search cost of a subtree with $k[i..j]$.</p>
+<ul>
+<li>$e[i, j] =\begin{cases} q_{i-1}, &amp;j=i-1 \\ min_{i\leq r\leq j}(e[i, r-1]+e[r+1, j]+w[i, j]), &amp;i\leq j\end{cases}$</li>
+<li>$w[i,j]=E_r=w[i,r-1]+p_r+w[r+1,j]=w[i,j-1]+p_j+q_j$</li>
+</ul>
+</li>
+<li><p>diagonal traverse template</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> l <span class="keyword">in</span> range(<span class="number">1</span>, n+<span class="number">1</span>): <span class="comment"># length of fixed diagnals</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>, n-l+<span class="number">1</span>):</span><br><span class="line">        j = i + l - <span class="number">1</span> <span class="comment"># (n-l+1, n) is always on f(i, j)</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>Due to $i\leq j$, then the traverse should be diagonal.</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="Analysis-8"><a href="#Analysis-8" class="headerlink" title="Analysis"></a>Analysis</h3><ul>
+<li>time: $O(n^3)$</li>
+<li>space: $O(n^2)$</li>
+</ul>
+<h2 id="Reference-4"><a href="#Reference-4" class="headerlink" title="Reference"></a>Reference</h2><ul>
+<li>BUAA Algorithm Lecture, Autumn of 2020.</li>
+</ul>
+<h1 id="Chapter5-Greedy-Algorithms"><a href="#Chapter5-Greedy-Algorithms" class="headerlink" title="Chapter5 Greedy Algorithms"></a>Chapter5 Greedy Algorithms</h1><p>Total Count: <code>522</code> words</p>
+<p>Preferred Reading Time: <code>10~15</code> minutes</p>
+<h2 id="Abstract"><a href="#Abstract" class="headerlink" title="Abstract"></a>Abstract</h2><ul>
+<li><p>Greedy algorithms don’t always produce the optimal solution.</p>
+</li>
+<li><p>As a result, if the result is optimal, we need to prove its correctness.</p>
+<blockquote>
+<p>The usual way is to prove that any other optimal solution can be converted into the greedy one.</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="Fraction-Knapsack-Problem"><a href="#Fraction-Knapsack-Problem" class="headerlink" title="Fraction Knapsack Problem"></a>Fraction Knapsack Problem</h2><h3 id="Definition-1"><a href="#Definition-1" class="headerlink" title="Definition"></a>Definition</h3><ul>
+<li>Different from 0-1 problem, knapsack can take only a fraction of an item.</li>
+</ul>
+<h3 id="Solution-1"><a href="#Solution-1" class="headerlink" title="Solution"></a>Solution</h3><ul>
+<li>calculate value-per-pound of every item</li>
+<li>sort items by <strong>decreasing</strong> value-per-pound</li>
+<li>put as much as possible weight of an item into knapsack from the starting point to the end of the sorted array</li>
+</ul>
+<h3 id="Analysis-9"><a href="#Analysis-9" class="headerlink" title="Analysis"></a>Analysis</h3><ul>
+<li>Time: $O(nlogn)$, the time complexity of sort process.</li>
+<li>Different from DP, all subproblems of greedy algorithms are optimal no matter whether they are connected with each other.</li>
+</ul>
+<h2 id="Huffman-Coding-Problem"><a href="#Huffman-Coding-Problem" class="headerlink" title="Huffman Coding Problem"></a>Huffman Coding Problem</h2><h3 id="Definition-2"><a href="#Definition-2" class="headerlink" title="Definition"></a>Definition</h3><ul>
+<li><p>Encode characters according to its frequency so that the variable length can save the memory space compared with fixed length.</p>
+<blockquote>
+<p>especially useful when storing images</p>
+</blockquote>
+</li>
+<li><p>Uniquely Decodable: In order to decode correctly, the encoding method should avoid one character’s code being the prefix of another character, and then the code can be named after <strong>prefix (free) code</strong>.</p>
+</li>
+<li><p>Huffman coding targets at the <strong>minimized binary prefix code</strong>.</p>
+</li>
+</ul>
+<h3 id="Solution-2"><a href="#Solution-2" class="headerlink" title="Solution"></a>Solution</h3><ul>
+<li>pick two least-occur characters from alphabet and build a subtree</li>
+<li>the subtree’s frequency is the sum of its sub-subtrees</li>
+<li><strong>note that the Huffman tree can be a complete binary tree as well</strong></li>
+</ul>
+<h3 id="Analysis-10"><a href="#Analysis-10" class="headerlink" title="Analysis"></a>Analysis</h3><ul>
+<li>Time: $O(nlogn)$<ul>
+<li>Every update of the priority queue is $O(logn)$ and the total operation count is $n$.</li>
+</ul>
+</li>
+</ul>
+<h2 id="Activity-Selection-Problem"><a href="#Activity-Selection-Problem" class="headerlink" title="Activity Selection Problem"></a>Activity Selection Problem</h2><h3 id="Definition-3"><a href="#Definition-3" class="headerlink" title="Definition"></a>Definition</h3><ul>
+<li>Given activities that may overlap with each other, take part in as many activities as possible.</li>
+<li>core: find a maximized compatible activity set</li>
+</ul>
+<h3 id="Solution-3"><a href="#Solution-3" class="headerlink" title="Solution"></a>Solution</h3><ul>
+<li><p>sort activities list in ascending order of finishing time</p>
+</li>
+<li><p>select the first activity: the one <strong>finishes at the earliest time</strong></p>
+<blockquote>
+<p>not the one starting earliest or the shortest one</p>
+</blockquote>
+</li>
+<li><p>advance the time and update sort activities until the head activity’s starting time is still valid</p>
+</li>
+<li><p>select next activity</p>
+</li>
+</ul>
+<h3 id="Analysis-11"><a href="#Analysis-11" class="headerlink" title="Analysis"></a>Analysis</h3><ul>
+<li><p>Time: $O(nlogn)$ to sort activity list.</p>
+</li>
+<li><p>The correctness can be proved that greedy algorithms produce the optimal solution of this problem.</p>
+<blockquote>
+<p>Proof: we can convert any other optimal solution($P’$) to the greedy algorithm solution($P$) by replacing different elements in $P’$ with corresponding elements in $P$.</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="Weighted-Activity-Selection-Problem"><a href="#Weighted-Activity-Selection-Problem" class="headerlink" title="Weighted Activity Selection Problem"></a>Weighted Activity Selection Problem</h2><h3 id="Definition-4"><a href="#Definition-4" class="headerlink" title="Definition"></a>Definition</h3><ul>
+<li>Every activity is given a weight, and the goal is to construct the set with maximized weight sum.</li>
+</ul>
+<h3 id="Solution-4"><a href="#Solution-4" class="headerlink" title="Solution"></a>Solution</h3><ul>
+<li><p>Greedy algorithm is correct when weight are all equal.</p>
+</li>
+<li><p>DP can still work in this weight-varied scenario.</p>
+<ul>
+<li><p><strong>First of all, sort activity with its finishing time.</strong></p>
+</li>
+<li><p>$p(j)$ : the largest index $i&lt;j$ guaranteeing $a_i$ compatible with $a_j$.</p>
+<blockquote>
+<p><strong>index</strong> is the one of <strong>sorted</strong> activity array.</p>
+</blockquote>
+</li>
+<li><p>$OPT(j)$: the max weight sum of any subset in $a[1..j]$</p>
+<script type="math/tex; mode=display">OPT(j)=\begin{cases} 0,& j=0 \\ max(OPT(i-1), w_j+OPT(p(j)), & j>0\end{cases}</script></li>
+</ul>
+</li>
+</ul>
+<h3 id="Analysis-12"><a href="#Analysis-12" class="headerlink" title="Analysis"></a>Analysis</h3><ul>
+<li>Time: $O(nlogn)$ to sort the activity list</li>
+<li>Greedy algorithms never reconsider its previous choices, while DP construct its solution by comparing all possible previous choices.</li>
+</ul>
+<h2 id="Reference-5"><a href="#Reference-5" class="headerlink" title="Reference"></a>Reference</h2><ul>
+<li>BUAA Algorithm Lecture, Autumn of 2020.</li>
+</ul>
+<h1 id="Chapter6-Graph-Algorithms"><a href="#Chapter6-Graph-Algorithms" class="headerlink" title="Chapter6 Graph Algorithms"></a>Chapter6 Graph Algorithms</h1><p>Total Count: <code>1887</code> words</p>
+<p>Preferred Reading Time: <code>30~45</code> minutes</p>
+<h2 id="Basic-Concepts-6"><a href="#Basic-Concepts-6" class="headerlink" title="Basic Concepts"></a>Basic Concepts</h2><ul>
+<li><p>complete graph</p>
+<ul>
+<li>undirected: $|E|=n(n-1)/2$</li>
+<li>directed: $|E|=n(n-1)$</li>
+</ul>
+</li>
+<li><p>dense &amp; sparse graph: not quantitative defined</p>
+</li>
+<li><p>degree: number of edges incident on a vertex</p>
+<ul>
+<li>degree of a graph is the sum of degrees of all vertices</li>
+</ul>
+</li>
+<li><p>leave node</p>
+<ul>
+<li>directed graph: no out degree</li>
+<li>undirected graph: degree is <code>1</code></li>
+</ul>
+</li>
+<li><p>path length: <strong>edges’</strong> count(not vertex)</p>
+</li>
+<li><p>simple path: all <strong>vertices</strong> are distinct on the path(no cycle, acyclic)</p>
+</li>
+<li><p>cycle: requires all <strong>edges</strong> are distinct with multi-exist vertices</p>
+<blockquote>
+<ul>
+<li><p>an edge cannot be used twice in a cycle</p>
+</li>
+<li><p>Q: self-to-self edge can produce cycle?</p>
+<p>A: Yes, that’s why a legal tree <strong>cannot</strong> have self-to-self edge.</p>
+</li>
+</ul>
+</blockquote>
+</li>
+<li><p>connected component</p>
+<ul>
+<li><p><strong>disconnected</strong> graph’s biggest connected subgraph</p>
+<blockquote>
+<p>a disconnected graph can have <strong>more than one</strong> connected components</p>
+</blockquote>
+</li>
+<li><p>connected graph itself</p>
+</li>
+</ul>
+</li>
+<li><p>included subgraph: As long as <strong>both</strong> endpoints are preserved, the edges should be preserved.</p>
+</li>
+<li><p>leaf</p>
+<ul>
+<li>directed graph: out-degree is zero</li>
+<li>undirected graph: degree is one</li>
+</ul>
+</li>
+</ul>
+<h2 id="Display"><a href="#Display" class="headerlink" title="Display"></a>Display</h2><ul>
+<li>Adjacency List<ul>
+<li>space complexity: $O(V+E)$</li>
+<li>$adj[u]$: hold all vertices adjacent to $u$, usually a linked list.</li>
+<li>mostly for sparse graph</li>
+</ul>
+</li>
+<li>Adjacency Matrix<ul>
+<li>space complexity: $O(V^2)$</li>
+<li>undirected graphs always have <strong>symmetric</strong> adjacency matrix</li>
+<li>mostly for dense graph</li>
+</ul>
+</li>
+</ul>
+<h2 id="Search"><a href="#Search" class="headerlink" title="Search"></a>Search</h2><h3 id="BFS"><a href="#BFS" class="headerlink" title="BFS"></a>BFS</h3><ul>
+<li><p>data structure</p>
+<ul>
+<li><code>color[u]</code>: state of vertex <code>u</code><ul>
+<li><code>undiscovered</code></li>
+<li><code>discovered but not finishing processing</code></li>
+<li><code>finished processing</code></li>
+</ul>
+</li>
+<li><code>pred[u]</code>: the predecessor of vertex <code>u</code></li>
+<li><code>d[u]</code>: distance from starting point to <code>u</code></li>
+</ul>
+</li>
+<li><p>end-loop condition: the vertex queue is empty</p>
+</li>
+<li><p>time: $O(V+E)=\sum_{u \in V}(O(1+degree(u)))$</p>
+<blockquote>
+<p>Prerequisite: adjacency <strong>list</strong> is used to store the graph.</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="DFS"><a href="#DFS" class="headerlink" title="DFS"></a>DFS</h3><ul>
+<li><p>tree-like traverse process</p>
+</li>
+<li><p>data structure</p>
+<ul>
+<li><code>color[u]</code></li>
+<li><code>pred[u]</code></li>
+<li><code>d[u]</code>: discovery time of vertex <code>u</code></li>
+<li><code>f[u]</code>: finishing time of vertex <code>u</code></li>
+</ul>
+</li>
+<li><p><code>u</code> is a descendant of <code>v</code> if and only if $[d[u],f[u]]\subset[d[v],f[v]]$</p>
+<ul>
+<li><p>tree edge$(u,v)$: $u$ is the predecessor in a DFS path</p>
+</li>
+<li><p>back edge$(u,v)$: $v$ is the predecessor in a DFS path</p>
+<blockquote>
+<p>As long as the graph is acyclic, there is no back edge.</p>
+</blockquote>
+</li>
+<li><p>cross edge$(u,v)$: both vertices are endpoints of a DFS path</p>
+</li>
+</ul>
+</li>
+<li><p>time: $O(V+E)=\sum_{u \in V}(O(1+degree(u)))$</p>
+<ul>
+<li>Different from normal complexity calculation, we can think it in this way: as for each vertex, $O(1)$ is needed to update the timestamp, and $O(degree(u))$ is required to run the for loop. Therefore, the total time complexity is the sum of every single time complexity.</li>
+</ul>
+<blockquote>
+<ul>
+<li>Prerequisite: adjacency <strong>list</strong> is used to store the graph.</li>
+<li>The time complexity is the same as the one of BFS under adjacency list.</li>
+</ul>
+</blockquote>
+</li>
+<li><p>White-path theorem: As long as $v$ is a descendant(direct or indirect) of $u$, then there is a white path between them in DFS algorithm.</p>
+</li>
+</ul>
+<h2 id="Topological-Sort"><a href="#Topological-Sort" class="headerlink" title="Topological Sort"></a>Topological Sort</h2><h3 id="Definition-5"><a href="#Definition-5" class="headerlink" title="Definition"></a>Definition</h3><ul>
+<li>Topological sort is adopted for <strong>directed acyclic graph(DAG)</strong>.<ul>
+<li>$G$ doesn’t need to be connected, for the order of disconnected parts won’t break the rule.</li>
+</ul>
+</li>
+<li>find a sequence based on edge $(u,v)$ that $u$ must be ahead of $v$</li>
+<li>If no “zero in-degree” vertex is found, the graph must contain cycle.</li>
+</ul>
+<h3 id="Solution-5"><a href="#Solution-5" class="headerlink" title="Solution"></a>Solution</h3><ul>
+<li>BFS<ul>
+<li>find all vertices with in-degree as 0</li>
+<li>delete them and their outgoing edges(decrease in-degree of its direct descendants)</li>
+<li>repeat above steps</li>
+</ul>
+</li>
+<li>DFS<ul>
+<li>traverse all vertices and build a DFS tree</li>
+<li>Once a vertex cannot span the tree anymore, add it into $L$.<ul>
+<li>all direct descendants are added into $L$</li>
+<li>no direct descendant exists</li>
+</ul>
+</li>
+<li>next DFS tree traverse won’t reach vertices in $L$</li>
+<li>Tasks with <strong>later</strong> finishing time should be down <strong>earlier</strong>, so $L$ needs reversing to be correct order.</li>
+</ul>
+</li>
+</ul>
+<h3 id="Analysis-13"><a href="#Analysis-13" class="headerlink" title="Analysis"></a>Analysis</h3><ul>
+<li>BFS<ul>
+<li>time: $O(|V|+|E|)$</li>
+</ul>
+</li>
+<li>DFS<ul>
+<li>time: $O(|V|+|E|)$</li>
+</ul>
+</li>
+</ul>
+<h2 id="Strongly-Connected-Components"><a href="#Strongly-Connected-Components" class="headerlink" title="Strongly Connected Components"></a>Strongly Connected Components</h2><h3 id="Definition-6"><a href="#Definition-6" class="headerlink" title="Definition"></a>Definition</h3><ul>
+<li><p>SCC is a subset of a <strong>directed</strong> graph, in which all vertices can reach each other, <strong>and</strong> the subset should be <strong>maximal</strong>(no more vertex can be added).</p>
+<ul>
+<li>SCC can contain <strong>only one</strong> vertex.</li>
+</ul>
+</li>
+<li><p>Theorem: Suppose $S_1$ and $S_2$ are both SCCs of $G$, then the intersection must be $\Phi$.</p>
+<blockquote>
+<p>Proof: Any vertex in intersection can make $S_1\cup S_2$ a bigger SCC.</p>
+<ul>
+<li>After finding a SCC, all vertices within can be taken as a single vertex.</li>
+</ul>
+</blockquote>
+</li>
+<li><p>Finding all SCC of $G$ is to find a partition with all subset are SCC.</p>
+</li>
+<li><p>Sink SCC: SCC with no outgoing edge</p>
+<ul>
+<li><p>$G^{SCC}$ is a graph taking all SCC as a single vertex.</p>
+</li>
+<li><p>$G^{SCC}$ is a DAG</p>
+<blockquote>
+<p>Proof: As long as there is a cycle, the element of $SCC$ can be merged.</p>
+</blockquote>
+</li>
+<li><p>$G^{SCC}$ must contain at least one <strong>SSCC</strong>.</p>
+<blockquote>
+<p>Proof: The DAG graph can be topological sorted, so the last vertex in the topological order has no outgoing edge, which means the vertex is a SSCC.</p>
+</blockquote>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="Solution-6"><a href="#Solution-6" class="headerlink" title="Solution"></a>Solution</h3><ul>
+<li>generate reverse graph $G^R$</li>
+<li>Operate topological sort on $G^R$, and the result is $L^R$.</li>
+<li>reverse $L^R$ to get $L$</li>
+<li>execute DFS on $G$ with starting point as white ones in $L$</li>
+<li>Every DFS on $G$ can produce a SCC, and corresponding vertices should be marked black.<ul>
+<li>Starting from a SSCC, then the component won’t contain vertices of other SCC.</li>
+</ul>
+</li>
+</ul>
+<h3 id="Analysis-14"><a href="#Analysis-14" class="headerlink" title="Analysis"></a>Analysis</h3><ul>
+<li>time: $O(V+E)$</li>
+</ul>
+<h2 id="Spanning-Tree"><a href="#Spanning-Tree" class="headerlink" title="Spanning Tree"></a>Spanning Tree</h2><h3 id="Definition-7"><a href="#Definition-7" class="headerlink" title="Definition"></a>Definition</h3><ul>
+<li><p>An <strong>undirected</strong> graph’s subgraph containing all vertices.</p>
+<blockquote>
+<p>Q: Can spanning tree has cycle?</p>
+<p>A: No,  tree is an <strong>acyclic</strong> graph.</p>
+</blockquote>
+</li>
+<li><p>Every connected graph has at least one spanning tree.</p>
+</li>
+<li><p>Minimum Spanning Tree: the subgraph with smallest weight sum in a weighted undirected graph</p>
+<ul>
+<li><p>minimum spanning tree may <strong>not</strong> be unique</p>
+<blockquote>
+<p>Only when weight varies from one to another, the minimum spanning tree is unique.</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li><p>safe edge: After adding safe edge to a subset of MST, the new set is still a subset of MST.</p>
+<ul>
+<li><p>Find the light edge of a cut respecting subset A, and then the light edge is the sage edge.</p>
+<blockquote>
+<p>Subset contains only edges, which means <strong>not all</strong> edges needs selecting even though their endpoints are with in the subset.</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li><p>min heap</p>
+<ul>
+<li>root has min value</li>
+<li>any vertex’s sons have <strong>greater</strong> value than its own value.</li>
+</ul>
+</li>
+</ul>
+<h3 id="Solution-7"><a href="#Solution-7" class="headerlink" title="Solution"></a>Solution</h3><h4 id="Prim"><a href="#Prim" class="headerlink" title="Prim"></a>Prim</h4><ul>
+<li><p><strong>focus on vertex</strong></p>
+</li>
+<li><p>start with a randomly picked up <strong>vertex</strong></p>
+</li>
+<li><p>iterate to find the <strong>lightest</strong> edge outside the tree and add it (and its <strong>endpoint</strong>) into tree</p>
+<ul>
+<li><p>priority queue</p>
+<ul>
+<li><p>insert: insert at tail and <strong>reverse up</strong></p>
+</li>
+<li><p>extract min</p>
+<ul>
+<li><p>After extracting the first element, the last element needs swapping to the first.</p>
+<blockquote>
+<p>Only the last element won’t influence the tree structure.</p>
+</blockquote>
+</li>
+<li><p><strong>roll down</strong> new first element to construct a new heap</p>
+</li>
+<li><p>time complexity is $O(logn)$</p>
+</li>
+</ul>
+</li>
+<li><p>update value: <strong>reverse up</strong> to respect the heap</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>When adding an new edge and its vertex into SMT, loop over its adjacent vertices to update key values.</p>
+</li>
+</ul>
+<h4 id="Kruskal"><a href="#Kruskal" class="headerlink" title="Kruskal"></a>Kruskal</h4><ul>
+<li><strong>focus on edges</strong></li>
+<li>Construct many forests, and finally they will be merged.<ul>
+<li>When selecting edges, be cautious there cannot be cycles.<ul>
+<li>disjoint set</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="Analysis-15"><a href="#Analysis-15" class="headerlink" title="Analysis"></a>Analysis</h3><ul>
+<li><p>time</p>
+<ul>
+<li><p>Prim: $O(VlogV+ElogV)=O(ElogV)$</p>
+<ul>
+<li>Usually, $E$ is greater than $V$ and sometimes may be $V^2$, which means $E=O(V^2)$.</li>
+</ul>
+<blockquote>
+<p>As for loops like <code>while Q.size() &gt; 0</code>, and <code>Q</code> is changed within, we can consider it based on every single operation instead of every loop.</p>
+</blockquote>
+</li>
+<li><p>Kruskal: $O(ElogE)=O(ElogV)$</p>
+<blockquote>
+<p>$logE\leq logV^2 \leq 2logV \leq O(logV)$</p>
+<ul>
+<li>Usually place $E$ outside $log$, and $V$ is placed inside.</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="Shortest-Path"><a href="#Shortest-Path" class="headerlink" title="Shortest Path"></a>Shortest Path</h2><h3 id="Definition-8"><a href="#Definition-8" class="headerlink" title="Definition"></a>Definition</h3><ul>
+<li>distance is the <strong>minimal</strong> length between two vertices</li>
+<li>lemma: Any sub-path of a shortest path must also be a shortest path.</li>
+</ul>
+<h3 id="Solution-8"><a href="#Solution-8" class="headerlink" title="Solution"></a>Solution</h3><h4 id="Dijkstra"><a href="#Dijkstra" class="headerlink" title="Dijkstra"></a>Dijkstra</h4><ul>
+<li><p>single source problem</p>
+</li>
+<li><p>can only handle <strong>no-negative-edge</strong> graph</p>
+</li>
+<li><p>greedy algorithm</p>
+</li>
+<li><p>maintain <code>d[v]</code> and <code>S</code></p>
+<ul>
+<li><p><code>d[v]</code>: upper bound of length <code>l(source, v)</code></p>
+<ul>
+<li><p>can be optimized by priority queue</p>
+</li>
+<li><p>relax</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">d[v] &lt;- min(d[v], d[u] + w(u, v));</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p><code>S</code>: set of distance-settled vertices</p>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="Bellman-Ford"><a href="#Bellman-Ford" class="headerlink" title="Bellman-Ford"></a>Bellman-Ford</h4><ul>
+<li><p>single source problem</p>
+</li>
+<li><p>relax according to <strong>edges</strong></p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> i &lt;- <span class="number">1</span> to <span class="params">|V|</span> - <span class="number">1</span> <span class="keyword">do</span></span><br><span class="line">    <span class="keyword">for</span> e <span class="keyword">in</span> E <span class="keyword">do</span></span><br><span class="line">        relax(e.p1, e.p2, e.w);</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>Every iteration will settle an edge in the shortest paths.</p>
+</li>
+<li><p>The shortest path can at <strong>most</strong> contain <code>(|V|-1)</code> edges.</p>
+</li>
+<li><p>Iteration at most runs for <code>(|V|-1)</code> times.</p>
+<blockquote>
+<p><code>ith</code> iteration settle the paths containing <code>i</code> edges</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li><p>If relaxation still happens after <code>(|V|-1)</code> iterations, there must be negative cycles in graph.</p>
+</li>
+</ul>
+<h4 id="Floyd-Warshall"><a href="#Floyd-Warshall" class="headerlink" title="Floyd-Warshall"></a>Floyd-Warshall</h4><ul>
+<li><p>all-pairs problem</p>
+</li>
+<li><p>dynamic programming algorithm</p>
+<ul>
+<li><p>$f[k][i][j]=min\{f[k-1][i][j],f[k-1][i][k]+f[k-1][k][j]\}$</p>
+<ul>
+<li><p>using rolling array to optimize</p>
+<p>$f[i][j]=min\{f[i][j],f[i][k]+f[k][j]\}$</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>The sequence to traverse <code>k</code>(intermediate vertex) isn’t important.</p>
+<blockquote>
+<p>Proof: Mathematics Induction(<a href="https://blog.csdn.net/dypdypdyp123/article/details/50492894" target="_blank" rel="noopener">https://blog.csdn.net/dypdypdyp123/article/details/50492894</a>)</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="Analysis-16"><a href="#Analysis-16" class="headerlink" title="Analysis"></a>Analysis</h3><p>time</p>
+<ul>
+<li><p>Dijkstra: $O(VlogV+ElogV)=O(ElogV)$</p>
+</li>
+<li><p>Bellman-Ford: $O(EV)$</p>
+</li>
+<li><p>Floyd-Warshall: $O(V^3)$</p>
+<blockquote>
+<p>Apart from data structure, Floyd’s traversal decides the $n^3$ complexity.</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="Maximum-Flow-amp-Minimum-Cut"><a href="#Maximum-Flow-amp-Minimum-Cut" class="headerlink" title="Maximum Flow &amp; Minimum Cut"></a>Maximum Flow &amp; Minimum Cut</h2><h3 id="Definition-9"><a href="#Definition-9" class="headerlink" title="Definition"></a>Definition</h3><ul>
+<li><p>a flow network <code>G</code> with source <code>s</code>, sink <code>t</code> and no parallel edges.</p>
+</li>
+<li><p>capacity is nonnegative: $c(e) \geq 0$</p>
+</li>
+<li><p>cut’s capacity: $cap(A, B)=\sum_{e\ out\ of\ A}c(e)$</p>
+<ul>
+<li>a cut requires $s \in A$ and $t \in B$</li>
+</ul>
+</li>
+<li><p>minimum cut: output a cut of minimum capacity</p>
+</li>
+<li><p>maximum flow: output a flow of maximum value</p>
+</li>
+<li><p>Except <code>s</code> and <code>t</code>, every vertex’s <code>out</code> equals <code>in</code>, which means it cannot store any water.</p>
+</li>
+<li><p>flow value: $val(f)=\sum_{e\ out\ of\ s}f(e)$, and <code>s</code> is the source.</p>
+<blockquote>
+<p><code>value</code> may not be the sum of capacity</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="Solution-9"><a href="#Solution-9" class="headerlink" title="Solution"></a>Solution</h3><h4 id="Heuristic-Algorithm"><a href="#Heuristic-Algorithm" class="headerlink" title="Heuristic Algorithm"></a>Heuristic Algorithm</h4><ul>
+<li>initialize all <code>f(e)</code> to zero</li>
+<li>find a <code>s-t</code> path where each edge meets $f(e)&lt;c(e)$</li>
+<li>augment flow along <code>s-t</code> path</li>
+<li>iterate above steps until no <code>s-t</code> path can be found</li>
+</ul>
+<blockquote>
+<p><code>Heuristic Algorithm</code> <strong>cannot</strong> guarantee the optimal answer</p>
+</blockquote>
+<h4 id="Ford-Fulkerson-Method"><a href="#Ford-Fulkerson-Method" class="headerlink" title="Ford-Fulkerson Method"></a>Ford-Fulkerson Method</h4><ul>
+<li><p>residual network: add reverse edges to dynamically adjust the flow of an edge</p>
+<ul>
+<li>residual capacity: $c_f(e)=\begin{cases} c(e)-f(e), &amp; c(e)&gt;f(e) \\ f(e), &amp;f(e)&gt;0 \end{cases}$</li>
+</ul>
+<blockquote>
+<p>Once and residual capacity is zero, there is <strong>only one</strong> edge between two vertices.(even no edge at all)</p>
+</blockquote>
+</li>
+<li><p>augment(ing) path: a simple <code>s-t</code> path in $G_f$</p>
+<ul>
+<li><p>bottleneck capacity: minimum residual capacity of any edge in augment path</p>
+</li>
+<li><p>key property: $val(f’)=val(f)+bottoleneck(G_f, P)$</p>
+<ul>
+<li>As for specific edge, the flow may decrease. However, the overall flow will increase.</li>
+</ul>
+</li>
+<li><p>$val(f’)&gt;val(f)$</p>
+<blockquote>
+<p>the out edges of <code>s</code> must have the <strong>same</strong> direction as that in augment path</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li><p>Process</p>
+<ul>
+<li>start with all <code>f(u, v) = 0</code></li>
+<li>randomly choose an augment path to update <code>f</code> and $G_f$.</li>
+<li>iterate until there is <strong>no</strong> augment path $\Leftrightarrow$ no <code>s-t</code> path in $G_f$</li>
+</ul>
+</li>
+</ul>
+<h3 id="Analysis-17"><a href="#Analysis-17" class="headerlink" title="Analysis"></a>Analysis</h3><ul>
+<li><p>time: $O(|E||f^<em>|)$, $f^</em>$ is the max flow of graph $G$.</p>
+<ul>
+<li><p>BFS/DFS: $O(|V| + 2|E|)=O(|E|)$</p>
+<blockquote>
+<p>the worst case: one edge in $G$ has two corresponding edges in $G_f$</p>
+</blockquote>
+</li>
+<li><p>The time complexity is determined by $|f^*|$, so the method to pick up an augment path is important.</p>
+<ul>
+<li>EK Algorithm: ignore all edges’ weight and find a shortest path</li>
+<li>In a flow network, EK’s time complexity is $O(|V||E|)$.<ul>
+<li>an edge <strong>at most</strong> can be critical for $|V|/2$ times</li>
+</ul>
+</li>
+<li>new time complexity of Ford-Fulkerson Algorithm: $O(|V||E|^2)$</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Augmenting Path Theorem: A flow of $f$ is a max-flow $\Leftrightarrow$ <strong>no</strong> augment path in $G_f$</p>
+</li>
+<li><p>Max Flow &amp; Min Cut Theorem</p>
+<ul>
+<li>$val(f)=cap(min_cut)$</li>
+<li>$f$ is the max flow</li>
+<li>$f$ has no augmenting path</li>
+</ul>
+</li>
+</ul>
+<h2 id="Reference-6"><a href="#Reference-6" class="headerlink" title="Reference"></a>Reference</h2><ul>
+<li>BUAA Algorithm Lecture, Autumn of 2020.</li>
+<li>BUAA Algorithm MOOC, Autumn of 2020.</li>
+<li>OI Wiki</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+        </div>
+        
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Silence</span>
+</div>
+
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  Visitors: <span id="busuanzi_value_site_pv"></span>
+</span>
+</div>
+
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">|   total: 452 words</span>
+</div>
+  <div class="powered-by">
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+if (document.querySelectorAll('pre.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
+    mermaid.initialize({
+      theme    : 'forest',
+      logLevel : 3,
+      flowchart: { curve     : 'linear' },
+      gantt    : { axisFormat: '%m/%d/%Y' },
+      sequence : { actorMargin: 50 }
+    });
+  }, window.mermaid);
+}
+</script>
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/valine@1/dist/Valine.min.js', () => {
+    new Valine(Object.assign({
+      el  : '#valine-comments',
+      path: location.pathname,
+    }, {"enable":true,"appId":"GMneVEFPu4TwpvejAPqllWGc-gzGzoHsz","appKey":"5eNvc7SV1dxRT000WSXjRDuD","placeholder":"Just write what you'd like to write.","avatar":"mm","meta":["nick","mail"],"pageSize":10,"language":"en","visitor":false,"comment_count":true,"recordIP":false,"serverURLs":null}
+    ));
+  }, window.Valine);
+});
+</script>
+
+</body>
+</html>
