@@ -22,15 +22,15 @@
     var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Muse","version":"8.0.0-rc.4","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}}};
   </script>
 
-  <meta name="description" content="This is a file.">
+  <meta name="description" content="This is a Big Data Analysis Report, code is available on GitHub">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Airbnb Data Analysis">
 <meta property="og:url" content="http://yoursite.com/2021/06/23/Airbnb-Data-Analysis/index.html">
 <meta property="og:site_name" content="Silence">
-<meta property="og:description" content="This is a file.">
+<meta property="og:description" content="This is a Big Data Analysis Report, code is available on GitHub">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2021-06-23T13:08:53.000Z">
-<meta property="article:modified_time" content="2021-06-23T13:17:46.326Z">
+<meta property="article:published_time" content="2021-06-23T13:08:53.911Z">
+<meta property="article:modified_time" content="2021-06-23T13:34:52.770Z">
 <meta property="article:author" content="Silence">
 <meta name="twitter:card" content="summary">
 
@@ -266,7 +266,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2021-06-23 21:08:53 / Modified: 21:17:46" itemprop="dateCreated datePublished" datetime="2021-06-23T21:08:53+08:00">2021-06-23</time>
+              <time title="Created: 2021-06-23 21:08:53 / Modified: 21:34:52" itemprop="dateCreated datePublished" datetime="2021-06-23T21:08:53+08:00">2021-06-23</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -303,9 +303,8 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>This is a file.</p>
-<object data="./Airbnb-Data-Analysis/report.pdf" type="application/pdf" width="100%" height="877px">
-
+        <p><strong>This is a Big Data Analysis Report, code is available on <a href="https://github.com/SilenceX12138/Airbnb-Data-Mining" target="_blank" rel="noopener">GitHub</a></strong></p>
+<a id="more"></a>
 <div class="pdfobject-container" data-target="report.pdf" data-height="500px"></div>
     </div>
 
@@ -433,6 +432,26 @@
 
 
 
+<script>
+document.querySelectorAll('.pdfobject-container').forEach(element => {
+  let url = element.dataset.target;
+  let pdfOpenParams = {
+    navpanes : 0,
+    toolbar  : 0,
+    statusbar: 0,
+    pagemode : 'thumbs',
+    view     : 'FitH'
+  };
+  let pdfOpenFragment = '#' + Object.entries(pdfOpenParams).map(([key, value]) => `${key}=${encodeURIComponent(value)}`).join('&');
+  let fullURL = `/lib/pdf/web/viewer.html?file=${encodeURIComponent(url)}${pdfOpenFragment}`;
+
+  if (NexT.utils.supportsPDFs()) {
+    element.innerHTML = `<embed class="pdfobject" src="${url + pdfOpenFragment}" type="application/pdf" style="height: ${element.dataset.height};">`;
+  } else {
+    element.innerHTML = `<iframe src="${fullURL}" style="height: ${element.dataset.height};" frameborder="0"></iframe>`;
+  }
+});
+</script>
 
 
 <script>
