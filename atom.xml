@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2021-06-23T13:03:31.380Z</updated>
+  <updated>2021-06-23T13:05:18.499Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -21,15 +21,15 @@
     <link href="http://yoursite.com/2021/06/23/Airbnb%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E6%8A%A5%E5%91%8A/"/>
     <id>http://yoursite.com/2021/06/23/Airbnb%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E6%8A%A5%E5%91%8A/</id>
     <published>2021-06-23T13:02:00.920Z</published>
-    <updated>2021-06-23T13:03:31.380Z</updated>
+    <updated>2021-06-23T13:05:18.499Z</updated>
     
-    <content type="html"><![CDATA[<div class="pdfobject-container" data-target="\about\analysis" data-height="report.pdf.pdf"></div>]]></content>
+    <content type="html"><![CDATA[<div class="pdfobject-container" data-target="\pdf\analysis" data-height="report.pdf.pdf"></div>]]></content>
     
     <summary type="html">
     
       
       
-        &lt;div class=&quot;pdfobject-container&quot; data-target=&quot;\about\analysis&quot; data-height=&quot;report.pdf.pdf&quot;&gt;&lt;/div&gt;
+        &lt;div class=&quot;pdfobject-container&quot; data-target=&quot;\pdf\analysis&quot; data-height=&quot;report.pdf.pdf&quot;&gt;&lt;/div&gt;
       
     
     </summary>
