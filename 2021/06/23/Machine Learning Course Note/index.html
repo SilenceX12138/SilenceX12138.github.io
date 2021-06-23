@@ -29,9 +29,8 @@
 <meta property="og:site_name" content="Silence">
 <meta property="og:description" content="Learning note of 2021 NTU Machine Learning Course.">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://img-blog.csdn.net/20160823161538236">
-<meta property="og:image" content="https://www.zhihu.com/equation?tex=(x_2)%253D(x_1)-%5Ceta+%5Cnabla+f(x_1)%253D(6)-0.2%5Ctimes(12)+%253D+(3.6)%5C%5C">
-<meta property="og:image" content="https://img-blog.csdn.net/20180206150941131?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvQ2hhb2xlaTM=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="https://i.loli.net/2021/06/23/5vVFz2KRG7rIny3.png">
+<meta property="og:image" content="https://i.loli.net/2021/06/23/o3AQOKPEci6wWHC.png">
 <meta property="og:image" content="https://pic2.zhimg.com/80/v2-d3ccd01453f215cf3357192debd14489_1440w.png">
 <meta property="og:image" content="https://pic3.zhimg.com/80/v2-083ca0bcd0749fd0f236a690b50442e6_1440w.png">
 <meta property="og:image" content="https://i.loli.net/2021/05/18/1VFZxoh5P6EGjBN.png">
@@ -39,10 +38,10 @@
 <meta property="og:image" content="https://i.loli.net/2021/05/18/cq1yjMaveILkTzd.png">
 <meta property="og:image" content="https://i.loli.net/2021/05/18/WXJ4PCbVIctwEsS.png">
 <meta property="article:published_time" content="2021-06-23T12:49:05.050Z">
-<meta property="article:modified_time" content="2021-06-23T12:49:57.733Z">
+<meta property="article:modified_time" content="2021-06-23T12:54:37.595Z">
 <meta property="article:author" content="Silence">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://img-blog.csdn.net/20160823161538236">
+<meta name="twitter:image" content="https://i.loli.net/2021/06/23/5vVFz2KRG7rIny3.png">
 
 <link rel="canonical" href="http://yoursite.com/2021/06/23/Machine%20Learning%20Course%20Note/">
 
@@ -277,7 +276,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2021-06-23 20:49:05 / Modified: 20:49:57" itemprop="dateCreated datePublished" datetime="2021-06-23T20:49:05+08:00">2021-06-23</time>
+              <time title="Created: 2021-06-23 20:49:05 / Modified: 20:54:37" itemprop="dateCreated datePublished" datetime="2021-06-23T20:49:05+08:00">2021-06-23</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -400,13 +399,12 @@
 </blockquote>
 </li>
 <li><p>softmax的作用：将不同类别的预测值归一化，同时将差异<strong>放大</strong>。</p>
-<p><img src="https://img-blog.csdn.net/20160823161538236" alt="img" style="zoom: 50%;" /></p>
+<p><img src="https://i.loli.net/2021/06/23/5vVFz2KRG7rIny3.png" alt="img" style="zoom: 50%;" /></p>
 <blockquote>
 <p>同时将<strong>负</strong>预测值转换为<strong>正值</strong></p>
 </blockquote>
 </li>
-<li><p>梯度下降方法是<strong>提前</strong>将偏微分公式求出，然后带入实际的参数（权值、偏置）进行计算得到梯度值，然后更新参数，例子如下。</p>
-<p><img src="https://www.zhihu.com/equation?tex=%28x_2%29%3D%28x_1%29-%5Ceta+%5Cnabla+f%28x_1%29%3D%286%29-0.2%5Ctimes%2812%29+%3D+%283.6%29%5C%5C" alt="[公式]"></p>
+<li><p>梯度下降方法是<strong>提前</strong>将偏微分公式求出，然后带入实际的参数（权值、偏置）进行计算得到梯度值，然后更新参数，例子如下：$\left(x_{2}\right)=\left(x_{1}\right)-\eta \nabla f\left(x_{1}\right)=(6)-0.2 \times(12)=(3.6)$.</p>
 </li>
 </ul>
 <h2 id="Backpropagation"><a href="#Backpropagation" class="headerlink" title="Backpropagation"></a>Backpropagation</h2><ul>
@@ -508,7 +506,7 @@
 <li><p>及时停止训练：根据<strong>验证集</strong>确定时机</p>
 <ul>
 <li><p>验证集(fold 5)&amp;测试集</p>
-<p><img src="https://img-blog.csdn.net/20180206150941131?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvQ2hhb2xlaTM=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="img"></p>
+<p><img src="https://i.loli.net/2021/06/23/o3AQOKPEci6wWHC.png" alt="img"></p>
 <ul>
 <li>验证集用于模型筛选、调优和消融实验</li>
 </ul>
@@ -897,7 +895,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">|   total: 100.4k words</span>
+  <span class="post-count">|   total: 100.5k words</span>
 </div>
   <div class="powered-by">
   </div>
