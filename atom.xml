@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2021-06-24T00:29:18.966Z</updated>
+  <updated>2021-06-24T01:27:23.417Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -21,13 +21,14 @@
     <link href="http://yoursite.com/2021/06/23/Airbnb-Data-Analysis/"/>
     <id>http://yoursite.com/2021/06/23/Airbnb-Data-Analysis/</id>
     <published>2021-06-23T13:08:53.911Z</published>
-    <updated>2021-06-24T00:29:18.966Z</updated>
+    <updated>2021-06-24T01:27:23.417Z</updated>
     
-    <content type="html"><![CDATA[<p><strong>This is a Big Data Analysis Report, code is available on <a href="https://github.com/SilenceX12138/Airbnb-Data-Mining" target="_blank" rel="noopener">GitHub</a></strong></p><a id="more"></a><div class="pdfobject-container" data-target="report.pdf" data-height="500px"></div><!-- <object data="./Airbnb-Data-Analysis/report.pdf" type="application/pdf" width="100%" height="1000px"> -->]]></content>
+    <content type="html"><![CDATA[<p><strong>This is a Big Data Analysis Report, code is available on <a href="https://github.com/SilenceX12138/Airbnb-Data-Mining" target="_blank" rel="noopener">GitHub</a>.</strong></p><p><img src="https://www.smdp.com/wp-content/uploads/2017/04/Airbnb.jpeg" alt="Report: AirBnb, hosts make millions in Santa Monica from illegal listings -  Santa Monica Daily Press"></p><a id="more"></a><div class="pdfobject-container" data-target="report.pdf" data-height="500px"></div><!-- <object data="./Airbnb-Data-Analysis/report.pdf" type="application/pdf" width="100%" height="1000px"> -->]]></content>
     
     <summary type="html">
     
-      &lt;p&gt;&lt;strong&gt;This is a Big Data Analysis Report, code is available on &lt;a href=&quot;https://github.com/SilenceX12138/Airbnb-Data-Mining&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;GitHub&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
+      &lt;p&gt;&lt;strong&gt;This is a Big Data Analysis Report, code is available on &lt;a href=&quot;https://github.com/SilenceX12138/Airbnb-Data-Mining&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;GitHub&lt;/a&gt;.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.smdp.com/wp-content/uploads/2017/04/Airbnb.jpeg&quot; alt=&quot;Report: AirBnb, hosts make millions in Santa Monica from illegal listings -  Santa Monica Daily Press&quot;&gt;&lt;/p&gt;
     
     </summary>
     
