@@ -194,9 +194,9 @@
     </summary>
     
     
-      <category term="MATLAB" scheme="http://yoursite.com/categories/MATLAB/"/>
-    
       <category term="AI" scheme="http://yoursite.com/categories/AI/"/>
+    
+      <category term="MATLAB" scheme="http://yoursite.com/categories/MATLAB/"/>
     
     
   </entry>
