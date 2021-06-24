@@ -29,15 +29,16 @@
 <meta property="og:site_name" content="Silence Jiang&#39;s Cite">
 <meta property="og:description" content="Learning note of 2020 BUAA MATLAB course.">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://xcorr.files.wordpress.com/2020/02/kisspng-matlab-vector-graphics-computer-icons-portable-net-matlab-icons-5be9c5300da3e8.4883756315420470240559.png?w=500">
 <meta property="og:image" content="https://i.loli.net/2020/10/15/bPF6VulXij3ZUrz.png">
 <meta property="og:image" content="https://i.loli.net/2020/10/15/8k6I7hp54mGlRDT.png">
 <meta property="og:image" content="https://i.loli.net/2020/10/15/zQwahvJC9MHmbLs.png">
 <meta property="og:image" content="https://i.loli.net/2020/11/19/E5Sm6GgzvuiwZOn.png">
 <meta property="article:published_time" content="2021-06-23T12:42:44.702Z">
-<meta property="article:modified_time" content="2021-06-24T00:26:16.053Z">
+<meta property="article:modified_time" content="2021-06-24T01:34:59.408Z">
 <meta property="article:author" content="Silence Jiang">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://i.loli.net/2020/10/15/bPF6VulXij3ZUrz.png">
+<meta name="twitter:image" content="https://xcorr.files.wordpress.com/2020/02/kisspng-matlab-vector-graphics-computer-icons-portable-net-matlab-icons-5be9c5300da3e8.4883756315420470240559.png?w=500">
 
 <link rel="canonical" href="http://yoursite.com/2021/06/23/MATLAB-Course-Note/">
 
@@ -286,7 +287,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-06-24 08:26:16" itemprop="dateModified" datetime="2021-06-24T08:26:16+08:00">2021-06-24</time>
+                <time title="Modified: 2021-06-24 09:34:59" itemprop="dateModified" datetime="2021-06-24T09:34:59+08:00">2021-06-24</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -328,6 +329,7 @@
 
       
         <p><strong>Learning note of 2020 BUAA MATLAB course.</strong></p>
+<p><img src="https://xcorr.files.wordpress.com/2020/02/kisspng-matlab-vector-graphics-computer-icons-portable-net-matlab-icons-5be9c5300da3e8.4883756315420470240559.png?w=500" alt="Transitioning away from Matlab – xcorr: comp neuro" style="zoom:67%;" /></p>
 <a id="more"></a>
 <h1 id="Chapter0-概论"><a href="#Chapter0-概论" class="headerlink" title="Chapter0 概论"></a>Chapter0 概论</h1><p>全文<code>135</code>字，推荐阅读时间<code>3~5</code>分钟。</p>
 <h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><ul>
@@ -1446,7 +1448,7 @@
 <li><p><code>Y1</code>默认在左侧，<code>Y2</code>默认在右侧。</p>
 </li>
 <li><p><code>plotyy</code><strong>不能够</strong>直接对曲线属性进行设置，需要使用<strong>句柄图形</strong>控制完成。</p>
-<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">  x = <span class="number">0</span>:<span class="number">0.01</span>:<span class="number">20</span>;</span><br><span class="line">  y1 = <span class="number">200</span> * <span class="built_in">exp</span>(<span class="number">-0.05</span> * x) .* <span class="built_in">sin</span>(x);</span><br><span class="line">y2 = <span class="number">0.8</span> * <span class="built_in">exp</span>(<span class="number">-0.5</span> * x) .* <span class="built_in">sin</span>(<span class="number">10</span> * x);</span><br><span class="line">  [AX, H1, H2] = plotyy(x, y1, x, y2, <span class="string">'plot'</span>);</span><br><span class="line">pause;</span><br><span class="line">  set(H1, <span class="string">'LineStyle'</span>, <span class="string">'--'</span>);</span><br></pre></td></tr></table></figure>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">x = <span class="number">0</span>:<span class="number">0.01</span>:<span class="number">20</span>;</span><br><span class="line">y1 = <span class="number">200</span> * <span class="built_in">exp</span>(<span class="number">-0.05</span> * x) .* <span class="built_in">sin</span>(x);</span><br><span class="line">y2 = <span class="number">0.8</span> * <span class="built_in">exp</span>(<span class="number">-0.5</span> * x) .* <span class="built_in">sin</span>(<span class="number">10</span> * x);</span><br><span class="line">[AX, H1, H2] = plotyy(x, y1, x, y2, <span class="string">'plot'</span>);</span><br><span class="line">pause;</span><br><span class="line">set(H1, <span class="string">'LineStyle'</span>, <span class="string">'--'</span>);</span><br></pre></td></tr></table></figure>
 <ul>
 <li><p><code>AX(1)</code>和<code>AX(2)</code>对应两侧坐标轴的句柄，表示坐标轴属性。</p>
 </li>
@@ -1920,14 +1922,12 @@
 <ul>
 <li><p>指定区域</p>
 <figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">p = imread(<span class="string">'liftingbody.png'</span>);</span><br><span class="line">pc = imcrop(p,[<span class="number">80</span> <span class="number">180</span> <span class="number">260</span> <span class="number">220</span>]); <span class="comment">%输入矩形尺度进行选取</span></span><br><span class="line">subplot(<span class="number">1</span>,<span class="number">2</span>,<span class="number">1</span>); imshow(p);</span><br><span class="line">subplot(<span class="number">1</span>,<span class="number">2</span>,<span class="number">2</span>); imshow(pc);</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-</ul>
 <blockquote>
 <p>参数格式：<code>[left, bottom, width, height]</code></p>
 </blockquote>
-<ul>
+</li>
+</ul>
+</li>
 <li><p><code>roipoly</code>：多边形裁剪</p>
 <ul>
 <li><p>人工选区</p>
