@@ -31,6 +31,9 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://wordstream-files-prod.s3.amazonaws.com/s3fs-public/styles/simple_image/public/images/machine-learning1.png?SnePeroHk5B9yZaLY7peFkULrfW8Gtaf&amp;itok=yjEJbEKD">
 <meta property="og:image" content="https://i.loli.net/2021/06/23/5vVFz2KRG7rIny3.png">
+<meta property="og:image" content="https://i.loli.net/2021/06/26/MSwKBUlqZ3hIjYA.png">
+<meta property="og:image" content="https://i.loli.net/2021/06/26/IG1Lnh7UoTf98aB.png">
+<meta property="og:image" content="https://i.loli.net/2021/06/26/28HCo634VscIPGu.png">
 <meta property="og:image" content="https://i.loli.net/2021/06/23/o3AQOKPEci6wWHC.png">
 <meta property="og:image" content="https://pic2.zhimg.com/80/v2-d3ccd01453f215cf3357192debd14489_1440w.png">
 <meta property="og:image" content="https://pic3.zhimg.com/80/v2-083ca0bcd0749fd0f236a690b50442e6_1440w.png">
@@ -42,7 +45,7 @@
 <meta property="og:image" content="https://i.loli.net/2021/05/18/cq1yjMaveILkTzd.png">
 <meta property="og:image" content="https://i.loli.net/2021/05/18/WXJ4PCbVIctwEsS.png">
 <meta property="article:published_time" content="2021-06-23T12:49:05.050Z">
-<meta property="article:modified_time" content="2021-06-25T12:29:52.592Z">
+<meta property="article:modified_time" content="2021-06-26T12:59:09.674Z">
 <meta property="article:author" content="Silence Jiang">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://wordstream-files-prod.s3.amazonaws.com/s3fs-public/styles/simple_image/public/images/machine-learning1.png?SnePeroHk5B9yZaLY7peFkULrfW8Gtaf&amp;itok=yjEJbEKD">
@@ -298,7 +301,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-06-25 20:29:52" itemprop="dateModified" datetime="2021-06-25T20:29:52+08:00">2021-06-25</time>
+                <time title="Modified: 2021-06-26 20:59:09" itemprop="dateModified" datetime="2021-06-26T20:59:09+08:00">2021-06-26</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -334,14 +337,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>8.1k</span>
+              <span>8.4k</span>
             </span>
             <span class="post-meta-item" title="Reading time">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>7 mins.</span>
+              <span>8 mins.</span>
             </span>
 
         </div>
@@ -472,6 +475,22 @@
 </li>
 <li><p><code>Sigmoid</code>函数可能导致梯度消失：<strong>输出端</strong>参数收敛，<strong>输入端</strong>参数依然处在随机态。</p>
 </li>
+<li><p>一个神经元 = 一组权值门 + 一个偏置值（ <strong>+ 一个激活函数</strong>） </p>
+<p><img src="https://i.loli.net/2021/06/26/MSwKBUlqZ3hIjYA.png" alt="image-20210626204839498" style="zoom:33%;" /></p>
+<blockquote>
+<ul>
+<li>可以没有激活函数，例如回归问题中最后的输出神经元。</li>
+<li>激活函数是为了引入非线性因素，增强网络的表达能力。</li>
+</ul>
+</blockquote>
+</li>
+<li><p>反向传播中，每个神经元存储$\frac{\partial C}{\partial z}$即损失值对当前神经元输入值的微分，然后反向计算前一层神经元的$\frac{\partial C}{\partial z}$，最后与前一层网络权值对应的输入特征相乘即可得到$\frac{\partial C}{\partial w_n}$.</p>
+<p><img src="https://i.loli.net/2021/06/26/IG1Lnh7UoTf98aB.png" alt="image-20210626205358640" style="zoom: 50%;" /></p>
+<blockquote>
+<p><strong>反向传播的起点</strong>：输出端的初始值$\frac{\partial C}{\partial y}$</p>
+<p><img src="https://i.loli.net/2021/06/26/28HCo634VscIPGu.png" alt="image-20210626205609655" style="zoom:50%;" /></p>
+</blockquote>
+</li>
 </ul>
 <h2 id="Support-Vector-Machine"><a href="#Support-Vector-Machine" class="headerlink" title="Support Vector Machine"></a>Support Vector Machine</h2><ul>
 <li><p>SVM对噪声敏感</p>
@@ -600,7 +619,7 @@
 <li>卷积层之后的神经元<strong>共享</strong>权重</li>
 </ul>
 </li>
-<li>卷积核的叠加：10个$1<em>3</em>3$的卷积核将图像升维到后，下一个卷积核实际上是<strong>三维</strong>的，即$10<em>3</em>3$.此时如果再将图像升维，则需要<strong>多个</strong>三维卷积核。</li>
+<li>卷积核的叠加：10个1*3*3的卷积核将图像升维到后，下一个卷积核实际上是<strong>三维</strong>的，即10*3*3.此时如果再将图像升维，则需要<strong>多个</strong>三维卷积核。</li>
 <li>特征图中的<strong>一个像素</strong>实际上就是<strong>一个神经元</strong>（<strong>不包括</strong>激活函数）</li>
 <li>二维卷积&amp;三维卷积<ul>
 <li><code>conv2D</code>：可以具有多个通道，但是每个通道是<strong>二维</strong>的，例如图像处理。</li>
@@ -970,7 +989,7 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="Symbols count total">100.8k</span>
+    <span title="Symbols count total">100.9k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
