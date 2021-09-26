@@ -290,9 +290,9 @@
     </summary>
     
     
-      <category term="Algorithm" scheme="http://yoursite.com/categories/Algorithm/"/>
-    
       <category term="Code" scheme="http://yoursite.com/categories/Code/"/>
+    
+      <category term="Algorithm" scheme="http://yoursite.com/categories/Algorithm/"/>
     
     
   </entry>
