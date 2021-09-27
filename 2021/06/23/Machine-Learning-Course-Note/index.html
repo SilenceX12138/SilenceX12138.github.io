@@ -55,12 +55,15 @@
 <meta property="og:image" content="https://i.loli.net/2021/09/26/LTdKt569WPwsICS.png">
 <meta property="og:image" content="https://i.loli.net/2021/09/26/HOf8FMW3zad7Rls.png">
 <meta property="og:image" content="https://i.loli.net/2021/09/26/jlTisyeYgDR7zKX.png">
+<meta property="og:image" content="https://pic1.zhimg.com/80/v2-06c9787f9cd9a71d92ce0bbeb871af60_1440w.jpg">
 <meta property="og:image" content="https://i.loli.net/2021/09/26/LMkBrs8V5odmIeR.png">
 <meta property="og:image" content="https://i.loli.net/2021/09/26/X2xyT9Kgl51uDkf.png">
+<meta property="og:image" content="https://i.loli.net/2021/09/27/59KtQxDNSeaohrT.png">
+<meta property="og:image" content="https://i.loli.net/2021/09/27/Jqp8LzmX5kIMPn3.png">
 <meta property="og:image" content="https://i.loli.net/2021/05/18/cq1yjMaveILkTzd.png">
 <meta property="og:image" content="https://i.loli.net/2021/05/18/WXJ4PCbVIctwEsS.png">
 <meta property="article:published_time" content="2021-06-23T12:49:05.050Z">
-<meta property="article:modified_time" content="2021-09-26T13:06:49.786Z">
+<meta property="article:modified_time" content="2021-09-27T11:29:28.998Z">
 <meta property="article:author" content="Silence Jiang">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://wordstream-files-prod.s3.amazonaws.com/s3fs-public/styles/simple_image/public/images/machine-learning1.png?SnePeroHk5B9yZaLY7peFkULrfW8Gtaf&amp;itok=yjEJbEKD">
@@ -317,7 +320,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-09-26 21:06:49" itemprop="dateModified" datetime="2021-09-26T21:06:49+08:00">2021-09-26</time>
+                <time title="Modified: 2021-09-27 19:29:28" itemprop="dateModified" datetime="2021-09-27T19:29:28+08:00">2021-09-27</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -353,14 +356,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>16k</span>
+              <span>17k</span>
             </span>
             <span class="post-meta-item" title="Reading time">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>15 mins.</span>
+              <span>16 mins.</span>
             </span>
 
         </div>
@@ -1151,7 +1154,7 @@
 <li><p>核心概念</p>
 <p><img src="https://i.loli.net/2021/09/26/LTdKt569WPwsICS.png" alt="image-20210926195502290" style="zoom:50%;" /></p>
 <ul>
-<li><p>Actor/Agent/Policy Network：被训练的用于预测的核心模型，输出各个action的分数，本质上是<strong>分类器</strong>。</p>
+<li><p>Actor/Agent/Policy Network：被训练的用于预测的核心模型，输出各个action的概率，本质上是<strong>分类器</strong>。</p>
 </li>
 <li><p>action：通过随机sample得到的输出。实践时训练使用<strong>随机</strong>策略，推断使用均值或概率最大的动作。</p>
 <ul>
@@ -1170,32 +1173,49 @@
 </li>
 </ul>
 </li>
-<li><p>Policy Gradient：根据不同的情况输出下一步动作的优化策略</p>
+<li><p>Policy Gradient：根据不同的情况输出下一步动作的优化策略，<strong>不考虑$Q$和$V$.</strong></p>
 <p><img src="https://i.loli.net/2021/09/26/HOf8FMW3zad7Rls.png" alt="image-20210926202234409" style="zoom:50%;" /></p>
 <p><img src="https://i.loli.net/2021/09/26/jlTisyeYgDR7zKX.png" alt="image-20210926202645066" style="zoom:50%;" /></p>
 <ul>
 <li>$e_n$衡量输出$a_n$和标签$\hat{a_n}$的差异（交叉熵），通过调整$A_n$来表示对该动作的评估。<ul>
 <li>$A_n$越大，说明需要<strong>最小化</strong>$e_n$，即增大该动作出现的概率，否则减小。</li>
+<li>$e_n$还可以表示采取当前动作的“吃惊程度”，由$-log(prob)$表示，当采取该措施的概率<strong>越小</strong>，则$e_n$<strong>越大</strong>，若此时reward大，则$A_n$就大，从而对<strong>参数更新的影响</strong>就大。</li>
 </ul>
 </li>
 <li>训练过程中每一次更新参数都需要用<strong>最新的$\theta$重新交互获取训练数据</strong><ul>
 <li>新参数可能会在某一步$s_n$之后采取和$a_n$<strong>完全不同</strong>的策略，使用旧参数可能会导致不能发现更好的reward：<a href="https://www.jianshu.com/p/2ccbab48414b" target="_blank" rel="noopener">https://www.jianshu.com/p/2ccbab48414b</a></li>
+<li>参数的更新只需要通过$e_n$和$A_n$计算loss即可，环境、<strong>动作序列信息</strong>都已经被归纳。</li>
 </ul>
 </li>
 <li>On-policy and Off policy<ul>
-<li>On：更新的模型和交互的模型使同一个，通常效果更好。</li>
-<li>Off：减小每个episode收集数据的工作量，从而一直使用一组数据进行训练。</li>
+<li>On：更新的模型和交互的模型是同一个，通常效果更好。</li>
+<li>Off：减小每个episode收集数据的工作量，从而一直使用<strong>一组数据</strong>进行训练。</li>
 </ul>
 </li>
 <li>Version 0：$A_n=r_n$，此时模型只关注当前的状态$s_n$、当前动作$a_n$和能够获得的奖励$r_n$.</li>
 <li>Version 1：$A_n=G_n=\Sigma^N_{i=n}r_i$，即当前步到最后的奖励之和，又称Cumulated Reward。</li>
 <li>Version 2：$A_n=G_n’=\Sigma^N_{i=n}\gamma^{i-n}r_i$，通过$\gamma^{i-n}$使距离远的reward效果下降，又称Discounted Cumulated Reward。</li>
-<li>Version 3：$A_n=G_n’-b$，通过减去baseline从而标准化奖励的“相对好坏”，其中$b$是$G_n’$的最小值。</li>
-<li>Version 3.5：$A_n=G_n’-b_n$，其中$b_n=V^\theta(s_n)$.</li>
-<li>Version 4(Advantage Actor-Critic)：$A_n=r_n+V^\theta(s_{n+1})-V^\theta(s_t)$，即考虑$a_t$后直接对其reward进行标准化，从而评估$a_t$的好坏。</li>
+<li>Version 3：$A_n=G_n’-b$，通过减去baseline从而标准化奖励的“相对好坏”<strong>（有正有负）</strong>，其中$b$是$G_n’$的最小值。</li>
+</ul>
+<blockquote>
+<p>此后的Version实际上<strong>并不属于</strong>PG</p>
+</blockquote>
+<ul>
+<li><p>Version 3.5：$A_n=G_n’-b_n$，其中$b_n=V^\theta(s_n)$.</p>
+</li>
+<li><p>Version 4(Advantage Actor-Critic)：$A_n=TD-error=r_n+V^\theta(s_{n+1})-V^\theta(s_t)$，即考虑$a_t$后直接对其reward进行标准化，从而评估$a_t$的好坏。</p>
+<p><img src="https://pic1.zhimg.com/80/v2-06c9787f9cd9a71d92ce0bbeb871af60_1440w.jpg" alt="img" style="zoom:50%;" /></p>
+</li>
 </ul>
 </li>
-<li><p>Actor-Critic：评估actor采取某个动作后能够获得的reward，记为$V^\theta(s)$.</p>
+<li><p>Actor-Critic：评估actor从某个状态<strong>到终点</strong>能够获得的reward的<strong>期望</strong>，记为$V^\theta(s)$，衡量<strong>状态的好坏</strong>。</p>
+<blockquote>
+<p>Q评估actor采取某个动作后走到终点能够获得的reward的期望，衡量<strong>动作的好坏</strong>。</p>
+<ul>
+<li>$Q\rightarrow V$：$v_{\pi}(s)=\sum_{a \in A} \pi(a \mid s) q_{\pi}(s, a)$</li>
+<li>$V\rightarrow Q$：$q_{\pi}(s, a)=R_{s}^{a}+\gamma \sum_{s^{\prime}} P_{ss’}^{a} v_{\pi}\left(s^{\prime}\right)$</li>
+</ul>
+</blockquote>
 <p><img src="https://i.loli.net/2021/09/26/LMkBrs8V5odmIeR.png" alt="image-20210926204751057" style="zoom:50%;" /></p>
 <ul>
 <li><p>Monte-Carlo(MC)：将Discounted Cumulated Reward的<strong>期望值</strong>作为$V^\theta(s)$</p>
@@ -1203,11 +1223,42 @@
 <li><p>Tempered-different(TD)：根据$s_t,a_t,r_t,s_{t+1}$计算$V^\theta(s)$</p>
 <p>$V^{\theta}\left(s_{t}\right)=r_{t}+\gamma r_{t+1}+\gamma^{2} r_{t+1} \ldots$<br>$V^{\theta}\left(s_{t+1}\right)=r_{t+1}+\gamma r_{t+2}+\cdots$<br>$V^{\theta}\left(s_{t}\right)=\gamma V^{\theta}\left(s_{t+1}\right)+r_{t} \Rightarrow V^{\theta}\left(s_{t}\right)-\gamma V^{\theta}\left(s_{t+1}\right) \leftrightarrow r_{t}$</p>
 <blockquote>
-<p>$r_t$和$s_t$和$a_t$强相关，但<strong>不是决定</strong>。（还与$t$前的动作有关）</p>
+<ul>
+<li>$r_t$和$s_t$和$a_t$强相关，但<strong>不是决定</strong>。（还与$t$前的动作有关）</li>
+<li><a href="https://zhuanlan.zhihu.com/p/110998399" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/110998399</a></li>
+</ul>
 </blockquote>
 </li>
 <li><p>实现时，因为Policy Network和Actor-Critic都以<strong>状态$s$</strong>作为输入，因此可以共享参数(Feature Extractor)。</p>
 <p><img src="https://i.loli.net/2021/09/26/X2xyT9Kgl51uDkf.png" alt="image-20210926205527054" style="zoom: 50%;" /></p>
+</li>
+<li><p>Sparse Reward：多数时候的reward为0，导致$A_n$基本相同，各个动作的好坏难以区分。</p>
+</li>
+<li><p>reward shaping：使用domain knowledge自定义extra reward，解决sparse reward问题。</p>
+<ul>
+<li>Curiosity策略：让actor必须探索新的事物，且这个新需要<strong>有意义</strong>。</li>
+</ul>
+</li>
+<li><p>Imitation Learning：模仿人在真实环境的行为(expert)，从而解决真实世界难以定义reward的情况。</p>
+<ul>
+<li>监督学习：完全模仿，即Behavior Cloning，在面对未知情况时表现可能不好。</li>
+</ul>
+</li>
+<li><p>Inverse RL(IRL)：让机器自己定义reward，可以通过环境和expert<strong>反推出</strong>reward function.</p>
+<p><img src="https://i.loli.net/2021/09/27/59KtQxDNSeaohrT.png" alt="image-20210927102153539" style="zoom:50%;" /></p>
+<ul>
+<li><p>首要原则：expert的reward高于agent，即$\sum_{n=1}^{K} R\left(\hat{\tau}_{n}\right)&gt;\sum_{n=1}^{K} R(\tau)$.</p>
+</li>
+<li><p>IRL和GAN本质上是一样的</p>
+<p><img src="https://i.loli.net/2021/09/27/Jqp8LzmX5kIMPn3.png" alt="image-20210927102500622" style="zoom:50%;" /></p>
+<ul>
+<li>此时actor和reward function<strong>互为</strong>对方的environment</li>
+<li>reward高低的衡量方式与score类似，可以有多种。</li>
+<li>IRL中reward function是从<strong>专家数据</strong>中学到奖励的规律，但是critic的$V^\theta(s)$是在<strong>actor与环境的交互</strong>中学到的奖励规律：<a href="https://zhuanlan.zhihu.com/p/59649635" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/59649635</a></li>
+<li>从IRL看到，强化学习中也可以有宽泛的“标签”（并非人为标记），因此GAN可以理解成RL的一种<strong>自监督训练方式</strong>，一种<strong>双向强化学习</strong>。</li>
+</ul>
+</li>
+</ul>
 </li>
 </ul>
 </li>
@@ -1358,12 +1409,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="Symbols count total">104.8k</span>
+    <span title="Symbols count total">105.3k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">3:22</span>
+    <span title="Reading time total">3:23</span>
   <div class="powered-by"></div>
 </div>
   <div class="powered-by">
