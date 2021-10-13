@@ -20,12 +20,12 @@
     var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Gemini","version":"8.0.0-rc.4","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}}};
   </script>
 
-  <meta name="description" content="Learning note of 2021 NTU Machine Learning Course.">
+  <meta name="description" content="Learning note of 2021 Hung-yi Lee Machine Learning Course.">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Machine Learning Course Note">
 <meta property="og:url" content="http://yoursite.com/2021/06/23/Machine-Learning-Course-Note/index.html">
 <meta property="og:site_name" content="Silence Jiang&#39;s Cite">
-<meta property="og:description" content="Learning note of 2021 NTU Machine Learning Course.">
+<meta property="og:description" content="Learning note of 2021 Hung-yi Lee Machine Learning Course.">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://wordstream-files-prod.s3.amazonaws.com/s3fs-public/styles/simple_image/public/images/machine-learning1.png?SnePeroHk5B9yZaLY7peFkULrfW8Gtaf&amp;itok=yjEJbEKD">
 <meta property="og:image" content="https://i.loli.net/2021/06/23/5vVFz2KRG7rIny3.png">
@@ -66,7 +66,7 @@
 <meta property="og:image" content="https://i.loli.net/2021/05/18/cq1yjMaveILkTzd.png">
 <meta property="og:image" content="https://i.loli.net/2021/05/18/WXJ4PCbVIctwEsS.png">
 <meta property="article:published_time" content="2021-06-23T12:49:05.050Z">
-<meta property="article:modified_time" content="2021-10-09T12:34:27.815Z">
+<meta property="article:modified_time" content="2021-10-13T05:40:20.927Z">
 <meta property="article:author" content="Silence Jiang">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://wordstream-files-prod.s3.amazonaws.com/s3fs-public/styles/simple_image/public/images/machine-learning1.png?SnePeroHk5B9yZaLY7peFkULrfW8Gtaf&amp;itok=yjEJbEKD">
@@ -323,7 +323,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-10-09 20:34:27" itemprop="dateModified" datetime="2021-10-09T20:34:27+08:00">2021-10-09</time>
+                <time title="Modified: 2021-10-13 13:40:20" itemprop="dateModified" datetime="2021-10-13T13:40:20+08:00">2021-10-13</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -359,7 +359,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>18k</span>
+              <span>19k</span>
             </span>
             <span class="post-meta-item" title="Reading time">
               <span class="post-meta-item-icon">
@@ -378,7 +378,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p><strong>Learning note of 2021 NTU Machine Learning Course.</strong></p>
+        <p><strong>Learning note of 2021 Hung-yi Lee Machine Learning Course.</strong></p>
 <p><img src="https://wordstream-files-prod.s3.amazonaws.com/s3fs-public/styles/simple_image/public/images/machine-learning1.png?SnePeroHk5B9yZaLY7peFkULrfW8Gtaf&amp;itok=yjEJbEKD" alt="10 Companies Using Machine Learning in Cool Ways | WordStream"></p>
 <a id="more"></a>
 <blockquote>
@@ -701,7 +701,7 @@
 <li>卷积层之后的神经元<strong>共享</strong>权重</li>
 </ul>
 </li>
-<li><p>卷积核的叠加：10个1*3*3的卷积核将图像升维到后，下一个卷积核实际上是<strong>三维</strong>的，即10*3*3.此时如果再将图像升维，则需要<strong>多个</strong>三维卷积核。</p>
+<li><p>卷积核的叠加：10个1*3*3的卷积核将图像从1升维到10后，下一个卷积核实际上是<strong>三维</strong>的，即10*3*3.此时如果再将图像升维，则需要<strong>多个</strong>三维卷积核。</p>
 </li>
 <li><p>特征图中的<strong>一个像素</strong>实际上就是<strong>一个神经元</strong>（<strong>不包括</strong>激活函数）</p>
 </li>
@@ -710,17 +710,27 @@
 <p>通道数是把<strong>一组</strong>神经元进行多次<strong>复制堆叠</strong>，而维度则是摊开变成<strong>一组</strong>神经元。（有时一层神经元也可指考虑维度后得到的多组神经元的集合）</p>
 </blockquote>
 <ul>
-<li><code>conv1D</code>：可以具有多个通道，但是每个通道是<strong>一维</strong>的，其中通道又被称为<code>embedding</code>，例如自然语言处理。<ul>
-<li>eg. $8<em>16$​​的数据表示$8$个单词（时间戳etc.）且每个单词有$16$个维度，此时滤波器（卷积核）大小为$K</em>16$​​，最终的结果依然只有<strong>一维</strong>，仅由$8$和$K$​决定。</li>
-<li>PyTorch输入输出格式<ul>
-<li>input: $(N, C_{\text{in}}, L)$​</li>
-<li>output: $\left(N, C_{\text {out }}, L_{\text {out }}\right)$</li>
-</ul>
+<li><p><code>conv1D</code>：可以具有多个通道，但是每个通道是<strong>一维</strong>的，其中通道又被称为<code>embedding</code>，例如自然语言处理。</p>
+<ul>
+<li><p>eg. $8<em>16$的数据表示$8$个单词（时间戳etc.）且每个单词有$16$个维度，此时滤波器（卷积核）大小为$8</em>K$，最终的结果依然只有<strong>一维</strong>。</p>
+</li>
+<li><p><strong>一维</strong>卷积的<strong>卷积核</strong>是<strong>二维</strong>的，每个通道是<strong>一维</strong>的。</p>
+</li>
+<li><p>PyTorch输入输出格式</p>
+<ul>
+<li><p>input: $(N, C_{\text{in}}, L)$​</p>
+</li>
+<li><p>output: $\left(N, C_{\text {out }}, L_{\text {out }}\right)$</p>
+<p>$L_{o u t}=\lfloor\frac{L_{i n}+2 \times \text { padding }-\text { dilation } \times(\text { kernel_size }-1)-1}{\text { stride }}+1\rfloor$</p>
 </li>
 </ul>
 </li>
-<li><code>conv2D</code>：可以具有多个通道，但是每个通道是<strong>二维</strong>的，例如图像处理。<ul>
-<li>每个通道的卷积计算结果最后相加作为输出的结果，即$C<em>H</em>W$的图像经过$C<em>K</em>K$的卷积核扫描后产生$1<em>H’</em>W’$​​的结果，<strong>有几个卷积核则最终结果就有几个通道</strong>。</li>
+</ul>
+</li>
+<li><p><code>conv2D</code>：可以具有多个通道，但是每个通道是<strong>二维</strong>的，例如图像处理。</p>
+<ul>
+<li>每个通道的卷积计算结果<strong>最后相加</strong>作为输出的结果，即$C<em>H</em>W$的图像经过$C<em>K</em>K$的卷积核扫描后产生$1<em>H’</em>W’$​​的结果，<strong>有几个卷积核则最终结果就有几个通道</strong>。</li>
+<li><strong>二维</strong>卷积的<strong>卷积核</strong>是<strong>三维</strong>的，每个通道是<strong>二维</strong>的。</li>
 <li>PyTorch输入输出格式<ul>
 <li><strong>input:</strong> $\left(N, C_{\mathrm{in}}, H, W\right)$​</li>
 <li><strong>output:</strong> $\left(N, C_{\text {out }}, H_{\text {out }}, W_{\text {out }}\right)$​</li>
@@ -728,7 +738,9 @@
 </li>
 </ul>
 </li>
-<li><code>conv3D</code>：每个通道是<strong>三维</strong>的，例如CT影像和视频处理。<ul>
+<li><p><code>conv3D</code>：每个通道是<strong>三维</strong>的，例如CT影像和视频处理。</p>
+<ul>
+<li><strong>三维</strong>卷积的<strong>卷积核</strong>是<strong>四维</strong>的，每个通道是<strong>三维</strong>的。</li>
 <li>PyTorch输入输出格式：<ul>
 <li><strong>input:</strong> $\left(N, C_{i n}, D, H, W\right)$​</li>
 <li><strong>output:</strong> $\left(N, C_{\text {out }}, D_{\text {out }}, H_{\text {out }}, W_{\text {out }}\right)$​</li>
@@ -1319,23 +1331,28 @@
 </li>
 </ul>
 <h2 id="Network-Compression"><a href="#Network-Compression" class="headerlink" title="Network Compression"></a>Network Compression</h2><ul>
-<li><p>网络剪枝：在给定数据集上将模型计算过程中多次为0的权值和神经元进行删除，然后将小网络再次训练。（以上过程可迭代）</p>
+<li><p>压缩目的：latency&amp;privacy</p>
+</li>
+<li><p>网络剪枝：在给定数据集上将模型计算过程中绝对值较小的参数<strong>或</strong>多次为0的神经元进行删除，然后将小网络再次训练。（以上过程可迭代）</p>
 <ul>
 <li>实践中，“删除”操作通过将其置为恒0实现。</li>
+<li>神经元是<strong>一组</strong>参数，故修剪神经元通常比修建参数更易实现。</li>
+<li>参数的重要性也可以通过Life-long learning方法衡量</li>
 </ul>
 <blockquote>
 <p><strong>Q：为什么不直接训练较小的网络？</strong></p>
 <p>A：</p>
 <ul>
 <li>剪枝后的网络结构通常不规则，很难直接构造。</li>
-<li>工程经验表明：小网络很难通过优化取得和大网络剪枝相同的效果。</li>
+<li>工程经验表明：小网络很难通过优化取得和大网络剪枝相同的效果。（大乐透假说：大网络可以理解成多个小网络的组合，“开奖”几率<strong>更大</strong>）</li>
 </ul>
 </blockquote>
 </li>
 <li><p>知识蒸馏：用小网络去学习大网络的<strong>完整输出</strong>（eg. 各个label的概率分布），和直接用数据训练小网络不同。</p>
 <ul>
 <li>使用<strong>集成学习模型</strong>作为大网络可以有效提高小网络的性能</li>
-<li>在输入softmax层前将概率值除以$T(Temperature)$，避免大网络的输出变为one-hot，即需要和正确标签保持一定的差异。</li>
+<li>Temperature for Softmax：在输入softmax层前将概率值除以超参数$T(Temperature)$，避免大网络的输出变为one-hot，即需要和正确标签保持一定的差异。</li>
+<li>在student（小网络）和teacher（大网络）差异过大时，可以添加中介网络过渡。</li>
 </ul>
 </li>
 <li><p>参数量化</p>
@@ -1347,12 +1364,16 @@
 </li>
 </ul>
 </li>
-<li><p>调整网络结构（最有效）</p>
+<li><p>调整网络结构<strong>（最有效）</strong></p>
 <ul>
 <li><p>在隐层间插入含$K$个神经元的全连接层，通过控制$K$来减少参数量。</p>
 <p><img src="https://i.loli.net/2021/05/18/cq1yjMaveILkTzd.png" alt="image-20210518105034732" style="zoom:50%;" /></p>
 </li>
 <li><p>卷积分解：depthwise+pointerwise</p>
+<ul>
+<li>depthwise捕捉<strong>各个通道内</strong>的模式</li>
+<li>pointwise捕捉<strong>跨通道</strong>的模式</li>
+</ul>
 <p><img src="https://i.loli.net/2021/05/18/WXJ4PCbVIctwEsS.png" alt="image-20210518105117502" style="zoom:50%;" /></p>
 <blockquote>
 <p><a href="https://medium.com/@zurister/depth-wise-convolution-and-depth-wise-separable-convolution-37346565d4ec" target="_blank" rel="noopener">https://medium.com/@zurister/depth-wise-convolution-and-depth-wise-separable-convolution-37346565d4ec</a></p>
@@ -1362,7 +1383,7 @@
 <ul>
 <li><p>根据环境限制从存储的多个model中选择（内存开销大）</p>
 </li>
-<li><p>在中间层增加分类器直接进行预测（也可以是其他操作）</p>
+<li><p>在中间层增加分类器，根据实际情况选择从哪一层直接进行预测（也可以是其他操作）。</p>
 <blockquote>
 <p>要求<strong>浅层</strong>网络也要提取<strong>深层</strong>信息，可能对<strong>模型整体性能</strong>造成影响。</p>
 </blockquote>
@@ -1373,7 +1394,7 @@
 </li>
 </ul>
 <h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ul>
-<li><a href="https://speech.ee.ntu.edu.tw/~hylee/ml/2021-spring.html" target="_blank" rel="noopener">NTU Machine Learning Course, Spring 2021.</a></li>
+<li><a href="https://speech.ee.ntu.edu.tw/~hylee/ml/2021-spring.html" target="_blank" rel="noopener">Hung-yi Lee Machine Learning Course, Spring 2021.</a></li>
 </ul>
 
     </div>
@@ -1464,7 +1485,7 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="Symbols count total">105.9k</span>
+    <span title="Symbols count total">106.1k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
