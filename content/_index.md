@@ -86,6 +86,13 @@ sections:
         #   title: Neural Networks and Deep Learning
         #   url: ''
         - date_end: ''
+          date_start: '2023-10-13'
+          description: ''
+          organization: Cambridge Computer Laboratory
+          organization_url: https://www.cst.cam.ac.uk/
+          title: I am co-supervising an MPhil project with Prof Mateja Jamnik and Andrei Margeloiu for 2023-2024. Have a look at the [proposal](https://www.cl.cam.ac.uk/~mj201/teaching/student-projects.html) and reach out!
+          url: ''
+        - date_end: ''
           date_start: '2023-08-21'
           description: ''
           organization: St Edmund's College
