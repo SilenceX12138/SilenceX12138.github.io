@@ -1,0 +1,1391 @@
+<!DOCTYPE html>
+<!-- This site was created with Wowchemy. https://www.wowchemy.com -->
+<!-- Last Published: October 13, 2023 --><html lang="en-us" >
+
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  
+  
+  
+    <meta name="generator" content="Wowchemy 5.7.0 for Hugo" />
+  
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+  
+  
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  
+
+  
+  
+  
+    
+      
+      <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto+Mono&family=Roboto:wght@400;700&display=swap">
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto+Mono&family=Roboto:wght@400;700&display=swap" media="print" onload="this.media='all'">
+    
+  
+
+  
+  
+
+  
+  
+
+  
+
+  <link rel="stylesheet" href="/css/vendor-bundle.min.047268c6dd09ad74ba54a0ba71837064.css" media="print" onload="this.media='all'">
+
+  
+  
+  
+    
+    
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1.9.4/css/academicons.min.css" integrity="sha512-IW0nhlW5MgNydsXJO40En2EoCkTTjZhI3yuODrZIc8cQ4h1XcF53PsqDHa09NqnkXuIe0Oiyyj171BqZFwISBw==" crossorigin="anonymous" media="print" onload="this.media='all'">
+    
+
+    
+    
+    
+    
+      
+      
+    
+    
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+        
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+  
+
+  
+  
+  
+  
+  
+  
+  <link rel="stylesheet" href="/css/wowchemy.042e26407c9e383d96a1f26d6787c686.css" />
+
+  
+  
+  
+
+  
+  
+  
+  
+  
+  
+  
+    
+    
+    <link rel="stylesheet" href="/css/libs/chroma/github-light.min.css" title="hl-light" media="print" onload="this.media='all'" >
+    <link rel="stylesheet" href="/css/libs/chroma/dracula.min.css" title="hl-dark" media="print" onload="this.media='all'" disabled>
+  
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+
+
+
+
+
+
+  <meta name="author" content="Xiangjian Jiang" />
+
+
+
+
+
+  
+
+<meta name="description" content="Existing methods for human mesh recovery mainly focus on single-view frameworks, but they often fail to produce accurate results due to the ill-posed setup. Considering the maturity of the multi-view motion capture system, in this paper, we propose to solve the prior ill-posed problem by leveraging multiple images from different views, thus significantly enhancing the quality of recovered meshes. In particular, we present a novel \textbf{M}ulti-view human body \textbf{M}esh \textbf{T}ranslator (MMT) model for estimating human body mesh with the help of vision transformer. Specifically, MMT takes multi-view images as input and translates them to targeted meshes in a single-forward manner. MMT fuses features of different views in both encoding and decoding phases, leading to representations embedded with global information. Additionally, to ensure the tokens are intensively focused on the human pose and shape, MMT conducts cross-view alignment at the feature level by projecting 3D keypoint positions to each view and enforcing their consistency in geometry constraints. Comprehensive experiments demonstrate that MMT outperforms existing single or multi-view models by a large margin for human mesh recovery task, notably, 28.8\% improvement in MPVE over the current state-of-the-art method on the challenging HUMBI dataset. Qualitative evaluation also verifies the effectiveness of MMT in reconstructing high-quality human mesh. Codes will be made available upon acceptance." />
+
+
+
+<link rel="alternate" hreflang="en-us" href="https://silencex12138.github.io/publication/jiang2022multi/" />
+<link rel="canonical" href="https://silencex12138.github.io/publication/jiang2022multi/" />
+
+
+
+  <link rel="manifest" href="/manifest.webmanifest" />
+
+
+
+<link rel="icon" type="image/png" href="/media/icon_hu62e7a8248b559cbdc5f69c33d35243a2_185288_32x32_fill_lanczos_center_3.png" />
+<link rel="apple-touch-icon" type="image/png" href="/media/icon_hu62e7a8248b559cbdc5f69c33d35243a2_185288_180x180_fill_lanczos_center_3.png" />
+
+<meta name="theme-color" content="#1565c0" />
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+<meta property="twitter:card" content="summary_large_image" />
+<meta property="twitter:image" content="https://silencex12138.github.io/publication/jiang2022multi/featured.png" />
+<meta property="og:site_name" content="Xiangjian Jiang" />
+<meta property="og:url" content="https://silencex12138.github.io/publication/jiang2022multi/" />
+<meta property="og:title" content="Multi-view Human Body Mesh Translator | Xiangjian Jiang" />
+<meta property="og:description" content="Existing methods for human mesh recovery mainly focus on single-view frameworks, but they often fail to produce accurate results due to the ill-posed setup. Considering the maturity of the multi-view motion capture system, in this paper, we propose to solve the prior ill-posed problem by leveraging multiple images from different views, thus significantly enhancing the quality of recovered meshes. In particular, we present a novel \textbf{M}ulti-view human body \textbf{M}esh \textbf{T}ranslator (MMT) model for estimating human body mesh with the help of vision transformer. Specifically, MMT takes multi-view images as input and translates them to targeted meshes in a single-forward manner. MMT fuses features of different views in both encoding and decoding phases, leading to representations embedded with global information. Additionally, to ensure the tokens are intensively focused on the human pose and shape, MMT conducts cross-view alignment at the feature level by projecting 3D keypoint positions to each view and enforcing their consistency in geometry constraints. Comprehensive experiments demonstrate that MMT outperforms existing single or multi-view models by a large margin for human mesh recovery task, notably, 28.8\% improvement in MPVE over the current state-of-the-art method on the challenging HUMBI dataset. Qualitative evaluation also verifies the effectiveness of MMT in reconstructing high-quality human mesh. Codes will be made available upon acceptance." /><meta property="og:image" content="https://silencex12138.github.io/publication/jiang2022multi/featured.png" /><meta property="og:locale" content="en-us" />
+
+  
+    <meta
+      property="article:published_time"
+      content="2022-10-04T00:00:00&#43;00:00"
+    />
+  
+  
+    <meta property="article:modified_time" content="2022-10-04T00:00:00&#43;00:00">
+  
+
+
+
+
+
+
+    
+
+
+
+
+
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://silencex12138.github.io/publication/jiang2022multi/"
+  },
+  "headline": "Multi-view Human Body Mesh Translator",
+  
+  "image": [
+    "https://silencex12138.github.io/publication/jiang2022multi/featured.png"
+  ],
+  
+  "datePublished": "2022-10-04T00:00:00Z",
+  "dateModified": "2022-10-04T00:00:00Z",
+  
+  "author": {
+    "@type": "Person",
+    "name": "Xiangjian Jiang"
+  },
+  
+  "publisher": {
+    "@type": "Organization",
+    "name": "Xiangjian Jiang",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://silencex12138.github.io/media/icon_hu62e7a8248b559cbdc5f69c33d35243a2_185288_192x192_fill_lanczos_center_3.png"
+    }
+  },
+  "description": "Existing methods for human mesh recovery mainly focus on single-view frameworks, but they often fail to produce accurate results due to the ill-posed setup. Considering the maturity of the multi-view motion capture system, in this paper, we propose to solve the prior ill-posed problem by leveraging multiple images from different views, thus significantly enhancing the quality of recovered meshes. In particular, we present a novel \\textbf{M}ulti-view human body \\textbf{M}esh \\textbf{T}ranslator (MMT) model for estimating human body mesh with the help of vision transformer. Specifically, MMT takes multi-view images as input and translates them to targeted meshes in a single-forward manner. MMT fuses features of different views in both encoding and decoding phases, leading to representations embedded with global information. Additionally, to ensure the tokens are intensively focused on the human pose and shape, MMT conducts cross-view alignment at the feature level by projecting 3D keypoint positions to each view and enforcing their consistency in geometry constraints. Comprehensive experiments demonstrate that MMT outperforms existing single or multi-view models by a large margin for human mesh recovery task, notably, 28.8\\% improvement in MPVE over the current state-of-the-art method on the challenging HUMBI dataset. Qualitative evaluation also verifies the effectiveness of MMT in reconstructing high-quality human mesh. Codes will be made available upon acceptance."
+}
+</script>
+
+  
+
+  
+
+
+
+
+  
+  
+  
+
+  
+  
+
+  
+
+
+  
+  <title>Multi-view Human Body Mesh Translator | Xiangjian Jiang</title>
+
+  
+  
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+
+<body id="top" data-spy="scroll" data-offset="70" data-target="#TableOfContents" class="page-wrapper   " data-wc-page-id="67cde3a8a4dcf03144d69d8bad8f8320" >
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <script src="/js/wowchemy-init.min.ec9d49ca50e4b80bdb08f0417a28ed84.js"></script>
+
+  
+
+
+<aside class="search-modal" id="search">
+  <div class="container">
+    <section class="search-header">
+
+      <div class="row no-gutters justify-content-between mb-3">
+        <div class="col-6">
+          <h1>Search</h1>
+        </div>
+        <div class="col-6 col-search-close">
+          <a class="js-search" href="#" aria-label="Close"><i class="fas fa-times-circle text-muted" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+      <div id="search-box">
+        
+        <input name="q" id="search-query" placeholder="Search..." autocapitalize="off"
+        autocomplete="off" autocorrect="off" spellcheck="false" type="search" class="form-control"
+        aria-label="Search...">
+        
+      </div>
+
+      
+      
+
+      
+
+    </section>
+    <section class="section-search-results">
+
+      <div id="search-hits">
+        
+      </div>
+
+    </section>
+  </div>
+</aside>
+
+
+
+  <div class="page-header header--fixed">
+  
+  
+  
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+<header>
+  <nav class="navbar navbar-expand-lg navbar-light compensate-for-scrollbar" id="navbar-main">
+    <div class="container-xl">
+
+      
+      <div class="d-none d-lg-inline-flex">
+        <a class="navbar-brand" href="/">Xiangjian Jiang</a>
+      </div>
+      
+
+      
+      <button type="button" class="navbar-toggler" data-toggle="collapse"
+              data-target="#navbar-content" aria-controls="navbar-content" aria-expanded="false" aria-label="Toggle navigation">
+      <span><i class="fas fa-bars"></i></span>
+      </button>
+      
+
+      
+      <div class="navbar-brand-mobile-wrapper d-inline-flex d-lg-none">
+        <a class="navbar-brand" href="/">Xiangjian Jiang</a>
+      </div>
+      
+
+      
+      
+      <div class="navbar-collapse main-menu-item collapse justify-content-start" id="navbar-content">
+
+        
+        <ul class="navbar-nav d-md-inline-flex">
+          
+
+          
+
+          
+          
+          
+            
+          
+
+          
+
+          
+          
+          
+          
+
+          
+            
+              
+              
+            
+            
+              
+              
+              
+                
+              
+              
+            
+          
+
+          <li class="nav-item">
+            <a class="nav-link " href="/#about"><span>Home</span></a>
+          </li>
+
+          
+          
+
+          
+
+          
+          
+          
+            
+          
+
+          
+
+          
+          
+          
+          
+
+          
+            
+              
+              
+            
+            
+              
+              
+              
+                
+              
+              
+            
+          
+
+          <li class="nav-item">
+            <a class="nav-link " href="/#news"><span>News</span></a>
+          </li>
+
+          
+          
+
+          
+
+          
+          
+          
+            
+          
+
+          
+
+          
+          
+          
+          
+
+          
+            
+              
+              
+            
+            
+              
+              
+              
+                
+              
+              
+            
+          
+
+          <li class="nav-item">
+            <a class="nav-link " href="/#publications"><span>Publications</span></a>
+          </li>
+
+          
+          
+
+          
+
+          
+          
+          
+            
+          
+
+          
+
+          
+          
+          
+          
+
+          
+            
+              
+              
+            
+            
+          
+
+          <li class="nav-item">
+            <a class="nav-link " href="/uploads/CV.pdf"><span>CV</span></a>
+          </li>
+
+          
+          
+
+        
+
+          
+        </ul>
+      </div>
+
+      <ul class="nav-icons navbar-nav flex-row ml-auto d-flex pl-md-2">
+
+        
+        
+          
+        
+
+        
+        
+        
+        <li class="nav-item">
+          <a class="nav-link js-search" href="#" aria-label="Search"><i class="fas fa-search" aria-hidden="true"></i></a>
+        </li>
+        
+
+        
+        
+        
+        <li class="nav-item dropdown theme-dropdown">
+          <a href="#" class="nav-link" data-toggle="dropdown" aria-haspopup="true" aria-label="Display preferences">
+            <i class="fas fa-moon" aria-hidden="true"></i>
+          </a>
+          <div class="dropdown-menu">
+            <a href="#" class="dropdown-item js-set-theme-light">
+              <span>Light</span>
+            </a>
+            <a href="#" class="dropdown-item js-set-theme-dark">
+              <span>Dark</span>
+            </a>
+            <a href="#" class="dropdown-item js-set-theme-auto">
+              <span>Automatic</span>
+            </a>
+          </div>
+        </li>
+        
+
+        
+        
+
+      </ul>
+
+    </div>
+  </nav>
+</header>
+
+
+  </div>
+
+  <div class="page-body">
+    
+    
+    
+
+    
+
+
+  
+    
+    
+  
+
+
+<div class="pub">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+<div class="article-container pt-3">
+  <h1>Multi-view Human Body Mesh Translator</h1>
+
+  
+
+  
+
+
+<div class="article-metadata">
+
+  
+  
+  
+  
+  <div>
+    
+
+  <span class="author-highlighted">
+      Xiangjian Jiang</span><i class="author-notes fas fa-info-circle" data-toggle="tooltip" title="Equal contribution"></i>, <span >
+      Xuecheng Nie</span><i class="author-notes fas fa-info-circle" data-toggle="tooltip" title="Equal contribution"></i>, <span >
+      Zitian Wang</span>, <span >
+      Luoqi Liu</span>, <span >
+      Si Liu</span>
+  </div>
+  
+  
+
+  
+  <span class="article-date">
+    
+    
+      
+    
+    October, 2022
+  </span>
+  
+
+  
+
+  
+
+  
+  
+  
+  
+
+  
+  
+
+</div>
+
+  
+
+
+
+
+<div class="btn-links mb-3">
+  
+  
+
+
+
+
+
+
+
+
+  
+    
+  
+
+
+
+<a class="btn btn-outline-primary btn-page-header" href="https://arxiv.org/abs/2210.01886" target="_blank" rel="noopener">
+  PDF
+</a>
+
+
+
+<a href="#" class="btn btn-outline-primary btn-page-header js-cite-modal"
+        data-filename="/publication/jiang2022multi/cite.bib">
+  Cite
+</a>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+
+
+</div>
+
+
+<div class="article-header article-container featured-image-wrapper mt-4 mb-4" style="max-width: 720px; max-height: 287px;">
+  <div style="position: relative">
+    <img src="/publication/jiang2022multi/featured_hu1d770dc9143b4ebf9aafb9ca861374fb_636619_720x2500_fit_q75_h2_lanczos_3.webp" width="720" height="287" alt="" class="featured-image">
+    
+  </div>
+</div>
+
+
+
+  <div class="article-container">
+
+    
+    <h3>Abstract</h3>
+    <p class="pub-abstract">Existing methods for human mesh recovery mainly focus on single-view frameworks, but they often fail to produce accurate results due to the ill-posed setup. Considering the maturity of the multi-view motion capture system, in this paper, we propose to solve the prior ill-posed problem by leveraging multiple images from different views, thus significantly enhancing the quality of recovered meshes. In particular, we present a novel \textbf{M}ulti-view human body \textbf{M}esh \textbf{T}ranslator (MMT) model for estimating human body mesh with the help of vision transformer. Specifically, MMT takes multi-view images as input and translates them to targeted meshes in a single-forward manner. MMT fuses features of different views in both encoding and decoding phases, leading to representations embedded with global information. Additionally, to ensure the tokens are intensively focused on the human pose and shape, MMT conducts cross-view alignment at the feature level by projecting 3D keypoint positions to each view and enforcing their consistency in geometry constraints. Comprehensive experiments demonstrate that MMT outperforms existing single or multi-view models by a large margin for human mesh recovery task, notably, 28.8% improvement in MPVE over the current state-of-the-art method on the challenging HUMBI dataset. Qualitative evaluation also verifies the effectiveness of MMT in reconstructing high-quality human mesh. Codes will be made available upon acceptance.</p>
+    
+
+    
+    
+    <div class="row">
+      <div class="col-md-1"></div>
+      <div class="col-md-10">
+        <div class="row">
+          <div class="col-12 col-md-3 pub-row-heading">Type</div>
+          <div class="col-12 col-md-9">
+            <a href="/publication/#article">
+              Preprint
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-1"></div>
+    </div>
+    <div class="d-md-none space-below"></div>
+    
+
+    
+
+    <div class="space-below"></div>
+
+    <div class="article-style"><!-- 
+
+<div class="alert alert-note">
+  <div>
+    Click the <em>Cite</em> button above to demo the feature to enable visitors to import publication metadata into their reference management software.
+  </div>
+</div>
+
+
+
+
+<div class="alert alert-note">
+  <div>
+    Create your slides in Markdown - click the <em>Slides</em> button to check out the example.
+  </div>
+</div>
+ -->
+<!-- Add the publication's **full text** or **supplementary notes** here. You can use rich formatting such as including [code, math, and images](https://wowchemy.com/docs/content/writing-markdown-latex/). -->
+</div>
+
+    
+
+
+
+
+
+
+
+<div class="share-box">
+  <ul class="share">
+    
+      
+      
+      
+        
+      
+      
+      
+      
+      
+      
+      
+      <li>
+        <a href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fsilencex12138.github.io%2Fpublication%2Fjiang2022multi%2F&amp;text=Multi-view&#43;Human&#43;Body&#43;Mesh&#43;Translator" target="_blank" rel="noopener" class="share-btn-twitter" aria-label="twitter">
+          <i class="fab fa-twitter"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      
+      
+      
+      
+      <li>
+        <a href="https://www.facebook.com/sharer.php?u=https%3A%2F%2Fsilencex12138.github.io%2Fpublication%2Fjiang2022multi%2F&amp;t=Multi-view&#43;Human&#43;Body&#43;Mesh&#43;Translator" target="_blank" rel="noopener" class="share-btn-facebook" aria-label="facebook">
+          <i class="fab fa-facebook"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      
+      
+      
+      
+        
+      
+      <li>
+        <a href="mailto:?subject=Multi-view%20Human%20Body%20Mesh%20Translator&amp;body=https%3A%2F%2Fsilencex12138.github.io%2Fpublication%2Fjiang2022multi%2F" target="_blank" rel="noopener" class="share-btn-email" aria-label="envelope">
+          <i class="fas fa-envelope"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      
+      
+      
+      
+      <li>
+        <a href="https://www.linkedin.com/shareArticle?url=https%3A%2F%2Fsilencex12138.github.io%2Fpublication%2Fjiang2022multi%2F&amp;title=Multi-view&#43;Human&#43;Body&#43;Mesh&#43;Translator" target="_blank" rel="noopener" class="share-btn-linkedin" aria-label="linkedin-in">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      
+      
+      
+      
+      <li>
+        <a href="whatsapp://send?text=Multi-view&#43;Human&#43;Body&#43;Mesh&#43;Translator%20https%3A%2F%2Fsilencex12138.github.io%2Fpublication%2Fjiang2022multi%2F" target="_blank" rel="noopener" class="share-btn-whatsapp" aria-label="whatsapp">
+          <i class="fab fa-whatsapp"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      
+      
+      
+      
+      <li>
+        <a href="https://service.weibo.com/share/share.php?url=https%3A%2F%2Fsilencex12138.github.io%2Fpublication%2Fjiang2022multi%2F&amp;title=Multi-view&#43;Human&#43;Body&#43;Mesh&#43;Translator" target="_blank" rel="noopener" class="share-btn-weibo" aria-label="weibo">
+          <i class="fab fa-weibo"></i>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+
+
+
+  
+  
+  
+    
+  
+  
+  
+  <div class="media author-card content-widget-hr">
+    
+      
+      <a href="https://silencex12138.github.io/"><img class="avatar mr-3 avatar-circle" src="/authors/admin/avatar_hu1760f1ec99ccaa0ed12131ded28c8b8e_3155549_270x270_fill_q75_lanczos_center.jpeg" alt="Xiangjian Jiang"></a>
+    
+
+    <div class="media-body">
+      <h5 class="card-title"><a href="https://silencex12138.github.io/">Xiangjian Jiang</a></h5>
+      <h6 class="card-subtitle">PhD Student in Computer Science</h6>
+      <p class="card-text">My research interests include explainable AI and data mining, with a particular focus on low-sample-size regimes.</p>
+      <ul class="network-icon" aria-hidden="true">
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://scholar.google.com/citations?user=1y8DKBYAAAAJ&amp;hl=en" target="_blank" rel="noopener">
+        <i class="fas fa-graduation-cap"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://github.com/SilenceX12138" target="_blank" rel="noopener">
+        <i class="fab fa-github"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://www.linkedin.com/in/xiangjian-jiang-034b1a222/" target="_blank" rel="noopener">
+        <i class="fab fa-linkedin"></i>
+      </a>
+    </li>
+  
+</ul>
+
+    </div>
+  </div>
+
+
+  
+    
+
+
+
+
+  
+    
+
+
+
+
+  
+    
+
+
+
+
+  
+    
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+</div>
+  </div>
+
+  <div class="page-footer">
+    
+    
+    <div class="container">
+      <footer class="site-footer">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  <p class="powered-by">
+    
+    
+    
+      
+      
+      
+      
+      
+      
+      Published with <a href="https://wowchemy.com/?utm_campaign=poweredby" target="_blank" rel="noopener">Wowchemy</a> — the free, <a href="https://github.com/wowchemy/wowchemy-hugo-themes" target="_blank" rel="noopener">open source</a> website builder that empowers creators.
+    
+  </p>
+</footer>
+
+    </div>
+    
+  </div>
+
+  
+
+
+<script src="/js/vendor-bundle.min.f64289d8217e08e3afcd597d60836062.js"></script>
+
+
+
+
+  
+
+  
+  
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script id="search-hit-fuse-template" type="text/x-template">
+    <div class="search-hit" id="summary-{{key}}">
+      <div class="search-hit-content">
+        <div class="search-hit-name">
+          <a href="{{relpermalink}}">{{title}}</a>
+          <div class="article-metadata search-hit-type">{{type}}</div>
+          <p class="search-hit-description">{{snippet}}</p>
+        </div>
+      </div>
+    </div>
+  </script>
+  
+    <script src="https://cdn.jsdelivr.net/gh/krisk/Fuse@v3.2.1/dist/fuse.min.js" integrity="sha512-o38bmzBGX+hD3JHWUFCDA09btWaqrNmoJ3RXLlrysA7PP01Kgs4UlE4MhelE1v5dJR3+cxlR4qQlotsW7jKsnw==" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/gh/julmot/mark.js@8.11.1/dist/jquery.mark.min.js" integrity="sha512-mhbv5DqBMgrWL+32MmsDOt/OAvqr/cHimk6B8y/bx/xS88MVkYGPiVv2ixKVrkywF2qHplNRUvFsAHUdxZ3Krg==" crossorigin="anonymous"></script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script id="page-data" type="application/json">{"use_headroom":true}</script>
+
+
+  <script src="/js/wowchemy-headroom.db4755770454eb63685f8de785c0a172.js" type="module"></script>
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+<script src="/en/js/wowchemy.min.3322c0d94f0e691b0b24c63f4c41064b.js"></script>
+
+
+
+
+
+
+
+  
+<div id="modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Cite</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        
+        <pre><code></code></pre>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
+          <i class="fas fa-copy"></i> Copy
+        </a>
+        <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
+          <i class="fas fa-download"></i> Download
+        </a>
+        <div id="modal-error"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+  <script src="/js/wowchemy-publication.9137013a66774049159934c29c3f0205.js" type="module"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
