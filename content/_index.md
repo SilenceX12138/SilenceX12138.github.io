@@ -86,6 +86,12 @@ sections:
         #   title: Neural Networks and Deep Learning
         #   url: ''
         - date_end: ''
+          date_start: '2023-11-22'
+          description: ''
+          organization: NeurIPS 2023
+          organization_url: https://sites.google.com/view/tglworkshop-2023/home
+          title: One paper accepted by NeurIPS 2023 workshop on Temporal Graph Learning
+        - date_end: ''
           date_start: '2023-10-13'
           description: ''
           organization: Cambridge Computer Laboratory
