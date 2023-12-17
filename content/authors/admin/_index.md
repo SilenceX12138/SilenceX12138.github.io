@@ -66,6 +66,9 @@ social:
   - icon: linkedin
     icon_pack: fab
     link: https://www.linkedin.com/in/xiangjian-jiang-034b1a222/
+  - icon: blog
+    icon_pack: fas
+    link: https://silencejiang.notion.site/037edfed7a704aeab80572fb3e716648?v=cfe514b4c00044fd8f9db10d0523ca86
   # Link to a PDF of your resume/CV.
   # To use: copy your resume to `static/uploads/resume.pdf`, enable `ai` icons in `params.yaml`,
   # and uncomment the lines below.
