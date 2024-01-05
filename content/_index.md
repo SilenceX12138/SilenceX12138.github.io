@@ -103,7 +103,7 @@ sections:
           description: ''
           organization: St Edmund's College
           organization_url: https://www.st-edmunds.cam.ac.uk/
-          title: College Prize for Acadamic Excellence 
+          title: College Prize for Academic Excellence 
           url: ''
         - date_end: ''
           date_start: '2023-08-07'
