@@ -86,6 +86,12 @@ sections:
         #   title: Neural Networks and Deep Learning
         #   url: ''
         - date_end: ''
+          date_start: '2024-05-02'
+          description: ''
+          organization: ICML 2024
+          organization_url: https://icml.cc/
+          title: One paper accepted by ICML 2024
+        - date_end: ''
           date_start: '2023-11-22'
           description: ''
           organization: NeurIPS 2023
