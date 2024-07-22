@@ -83,7 +83,7 @@ email: ''
 highlight_name: true
 ---
 
-I am currently a first-year PhD student in Computer Science at the [Cambridge Computer Laboratory](https://www.cst.cam.ac.uk/), supervised by [Prof. Mateja Jamnik](https://www.cl.cam.ac.uk/~mj201/index.html). My research interest primarily lies in the explainability of artificial intelligence (XAI), and my current research projects mainly focus on developing interpretable machine learning models for healthcare purposes, especially in the low-sample-size regimes.
+I am currently a first-year PhD student in Computer Science at the [Cambridge Computer Laboratory](https://www.cst.cam.ac.uk/), supervised by [Prof. Mateja Jamnik](https://www.cl.cam.ac.uk/~mj201/index.html). My research interest primarily lies in the explainability of artificial intelligence (XAI), and my current research projects mainly focus on developing interpretable foundation models for structured tabulr data, especially for real-world healthcare application.
 
 Before joining Cambridge, I received my BEng in Computer Science and Technology from [Beihang University](https://ev.buaa.edu.cn/), where I was fortunate to work as a research intern under the supervision of [Prof. Si Liu](https://sites.google.com/site/siliuhome/) at [Cola Laboratory](https://colalab.net/).
 
