@@ -11,6 +11,8 @@ sections:
       title: About me
       # Choose a user profile to display (a folder name within `content/authors/`)
       username: admin
+    design:
+      css_style: '{style="text-align: right;"}'
   # - block: features
   #   content:
   #     title: Skills
@@ -71,11 +73,6 @@ sections:
       subtitle:
       # Date format: https://wowchemy.com/docs/customization/#date-format
       date_format: Jan 2006
-      # Accomplishments.
-      #   Add/remove as many `item` blocks below as you like.
-      #   `title`, `organization`, and `date_start` are the required parameters.
-      #   Leave other parameters empty if not required.
-      #   Begin multi-line descriptions with YAML's `|2-` multi-line prefix.
       items:
         # - certificate_url: https://www.coursera.org
         #   date_end: ''
@@ -85,48 +82,114 @@ sections:
         #   organization_url: https://www.coursera.org
         #   title: Neural Networks and Deep Learning
         #   url: ''
-        - date_end: ''
-          date_start: '2024-05-02'
-          description: ''
-          organization: ICML 2024
-          organization_url: https://icml.cc/
-          title: One paper accepted by ICML 2024
-        - date_end: ''
-          date_start: '2023-11-22'
-          description: ''
-          organization: NeurIPS 2023
-          organization_url: https://sites.google.com/view/tglworkshop-2023/home
-          title: One paper accepted by NeurIPS 2023 workshop on Temporal Graph Learning
-        - date_end: ''
-          date_start: '2023-10-13'
-          description: ''
+        - date_start: "2024-09-25"
           organization: Cambridge Computer Laboratory
           organization_url: https://www.cst.cam.ac.uk/
-          title: I am co-supervising an MPhil project with Prof Mateja Jamnik and Andrei Margeloiu for 2023-2024. Have a look at the [proposal](https://www.cl.cam.ac.uk/~mj201/teaching/student-projects.html) and reach out!
-          url: ''
-        - date_end: ''
-          date_start: '2023-08-21'
-          description: ''
-          organization: St Edmund's College
-          organization_url: https://www.st-edmunds.cam.ac.uk/
-          title: College Prize for Academic Excellence 
-          url: ''
-        - date_end: ''
-          date_start: '2023-08-07'
-          description: ''
+          title: 🌟 Please checkout our recent work on [data augmentation for tabular data](https://arxiv.org/abs/2409.16118)
+        - date_start: "2024-09-10"
+          organization: Cambridge Computer Laboratory
+          organization_url: https://www.cst.cam.ac.uk/
+          title: 📝 I will co-supervise a Part III/MPhil project with Prof Mateja Jamnik for the upcoming academic year (2024-2025). Please checkout the [proposal](https://www.cl.cam.ac.uk/~mj201/teaching/student-projects.html) and reach out!
+        - date_start: "2024-07-23"
+          organization: ICML 2024
+          organization_url: https://icml.cc/
+          title: 🌟 Please checkout our recent work on [interpretable machine learning for healthcare](https://icml.cc/virtual/2023/27785) (presented at ICML 2024 in Vienna)
+        # - date_start: "2024-05-02"
+        #   organization: ICML 2024
+        #   organization_url: https://icml.cc/
+        #   title: 🌟 One [paper](https://arxiv.org/abs/2306.12330) accepted by ICML 2024 (with an acceptance rate of 27.03%)
+        # - date_start: "2023-11-22"
+        #   organization: NeurIPS 2023
+        #   organization_url: https://sites.google.com/view/tglworkshop-2023/home
+        #   title: 🌟 One [paper](https://arxiv.org/abs/2311.12255) accepted by NeurIPS 2023 workshop on Temporal Graph Learning
+        - date_end: ""
+          date_start: "2023-08-07"
+          description: ""
           organization: University of Cambridge
           organization_url: https://www.cam.ac.uk/
-          title: Pass with Distinction for MPhil in Advanced Computer Science 
-          url: ''
-        - date_end: ''
-          date_start: '2023-06-21'
-          description: ''
-          organization: ICML 2023
-          organization_url: https://sites.google.com/view/imlh2023/home?authuser=0
-          title: One paper accepted by ICML 2023 workshop on Interpretable Machine Learning in Healthcare
-          url: ''
+          title: 🎓 Pass with Distinction for MPhil in Advanced Computer Science (awarded with College Prize for Academic Excellence)
     design:
-      columns: '2'
+      columns: "2"
+      # spacing:
+      #   # Customize the section spacing. Order is top, right, bottom, left.
+      #   padding: ["20px", "0", "20px", "0"]
+  - block: collection
+    id: publications
+    content:
+      title: Selected Publications & Preprints
+      # text: |-
+      #   {{% callout note %}}
+      #   Quickly discover relevant content by [filtering publications](./publication/).
+      #   {{% /callout %}}
+      filters:
+        folders:
+          - publication
+        exclude_featured: false
+    design:
+      columns: "2"
+      view: Compact
+  # - block: collection
+  #   id: talks
+  #   content:
+  #     title: Recent & Upcoming Talks
+  #     filters:
+  #       folders:
+  #         - event
+  #   design:
+  #     columns: '2'
+  #     view: compact
+  # - block: tag_cloud
+  #   content:
+  #     title: Popular Topics
+  #   design:
+  #     columns: '2'
+  # - block: contact
+  #   id: contact
+  #   content:
+  #     title: Contact
+  #     subtitle:
+  #     text: |-
+  #       Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam mi diam, venenatis ut magna et, vehicula efficitur enim.
+  #     # Contact (add or remove contact options as necessary)
+  #     email: test@example.org
+  #     phone: 888 888 88 88
+  #     appointment_url: 'https://calendly.com'
+  #     address:
+  #       street: 450 Serra Mall
+  #       city: Stanford
+  #       region: CA
+  #       postcode: '94305'
+  #       country: United States
+  #       country_code: US
+  #     directions: Enter Building 1 and take the stairs to Office 200 on Floor 2
+  #     office_hours:
+  #       - 'Monday 10:00 to 13:00'
+  #       - 'Wednesday 09:00 to 10:00'
+  #     contact_links:
+  #       - icon: twitter
+  #         icon_pack: fab
+  #         name: DM Me
+  #         link: 'https://twitter.com/Twitter'
+  #       - icon: skype
+  #         icon_pack: fab
+  #         name: Skype Me
+  #         link: 'skype:echo123?call'
+  #       - icon: video
+  #         icon_pack: fas
+  #         name: Zoom Me
+  #         link: 'https://zoom.com'
+  #     # Automatically link email and phone or display as text?
+  #     autolink: true
+  #     # Email form provider
+  #     form:
+  #       provider: netlify
+  #       formspree:
+  #         id:
+  #       netlify:
+  #         # Enable CAPTCHA challenge to reduce spam?
+  #         captcha: false
+  # design:
+  #   columns: '2'
   # - block: collection
   #   id: posts
   #   content:
@@ -200,81 +263,4 @@ sections:
   #   design:
   #     columns: '2'
   #     view: card
-  - block: collection
-    id: publications
-    content:
-      title: Publications
-      # text: |-
-      #   {{% callout note %}}
-      #   Quickly discover relevant content by [filtering publications](./publication/).
-      #   {{% /callout %}}
-      filters:
-        folders:
-          - publication
-        exclude_featured: false
-    design:
-      columns: '2'
-      view: citation
-  # - block: collection
-  #   id: talks
-  #   content:
-  #     title: Recent & Upcoming Talks
-  #     filters:
-  #       folders:
-  #         - event
-  #   design:
-  #     columns: '2'
-  #     view: compact
-  # - block: tag_cloud
-  #   content:
-  #     title: Popular Topics
-  #   design:
-  #     columns: '2'
-  # - block: contact
-  #   id: contact
-  #   content:
-  #     title: Contact
-  #     subtitle:
-  #     text: |-
-  #       Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam mi diam, venenatis ut magna et, vehicula efficitur enim.
-  #     # Contact (add or remove contact options as necessary)
-  #     email: test@example.org
-  #     phone: 888 888 88 88
-  #     appointment_url: 'https://calendly.com'
-  #     address:
-  #       street: 450 Serra Mall
-  #       city: Stanford
-  #       region: CA
-  #       postcode: '94305'
-  #       country: United States
-  #       country_code: US
-  #     directions: Enter Building 1 and take the stairs to Office 200 on Floor 2
-  #     office_hours:
-  #       - 'Monday 10:00 to 13:00'
-  #       - 'Wednesday 09:00 to 10:00'
-  #     contact_links:
-  #       - icon: twitter
-  #         icon_pack: fab
-  #         name: DM Me
-  #         link: 'https://twitter.com/Twitter'
-  #       - icon: skype
-  #         icon_pack: fab
-  #         name: Skype Me
-  #         link: 'skype:echo123?call'
-  #       - icon: video
-  #         icon_pack: fas
-  #         name: Zoom Me
-  #         link: 'https://zoom.com'
-  #     # Automatically link email and phone or display as text?
-  #     autolink: true
-  #     # Email form provider
-  #     form:
-  #       provider: netlify
-  #       formspree:
-  #         id:
-  #       netlify:
-  #         # Enable CAPTCHA challenge to reduce spam?
-  #         captcha: false
-    # design:
-    #   columns: '2'
 ---

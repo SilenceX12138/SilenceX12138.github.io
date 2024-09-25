@@ -22,11 +22,11 @@ organizations:
     url: https://www.cam.ac.uk/
 
 # Short bio (displayed in user profile at end of posts)
-bio: My research interests include explainable AI and data mining, with a particular focus on low-sample-size regimes.
+bio: My research interests include explainable AI and data mining, with a particular focus on data-centric tabular foundation models.
 
 # Interests to show in About widget
 # interests:
-#   - Explainable AI (XAI) 
+#   - Explainable AI (XAI)
 #   - Data Mining
 #   - Few-shot Learning
 
@@ -65,8 +65,8 @@ social:
     link: https://github.com/SilenceX12138
   - icon: linkedin
     icon_pack: fab
-    link: https://www.linkedin.com/in/xiangjian-jiang-034b1a222/
-  - icon: blog
+    link: https://www.linkedin.com/in/xiangjian-jiang/
+  - icon: pen
     icon_pack: fas
     link: https://silencejiang.notion.site/037edfed7a704aeab80572fb3e716648?v=cfe514b4c00044fd8f9db10d0523ca86
   # Link to a PDF of your resume/CV.
@@ -77,18 +77,26 @@ social:
   #   link: uploads/CV.pdf
 
 # Enter email to display Gravatar (if Gravatar enabled in Config)
-email: ''
+email: ""
 
 # Highlight the author in author lists? (true/false)
 highlight_name: true
 ---
 
-I am currently a first-year PhD student in Computer Science at the [Cambridge Computer Laboratory](https://www.cst.cam.ac.uk/), supervised by [Prof. Mateja Jamnik](https://www.cl.cam.ac.uk/~mj201/index.html). My research interest primarily lies in the explainability of artificial intelligence (XAI), and my current research projects mainly focus on developing interpretable foundation models for structured tabular data, especially for real-world healthcare applications.
+<div style="text-align: justify;">
+
+I am currently a second-year PhD student in Computer Science at the [Cambridge Computer Laboratory](https://www.cst.cam.ac.uk/), supervised by [Prof. Mateja Jamnik](https://www.cl.cam.ac.uk/~mj201/index.html) and <nobr>[Dr.Nikola Simidjievski](https://simidjievskin.github.io/)</nobr>. My research interest primarily lies in the explainability of artificial intelligence (XAI), and my current research projects mainly focus on developing data-centric foundation models for structured tabular data, especially for real-world healthcare applications.
 
 Before joining Cambridge, I received my BEng in Computer Science and Technology from [Beihang University](https://ev.buaa.edu.cn/), where I was fortunate to work as a research intern under the supervision of [Prof. Si Liu](https://sites.google.com/site/siliuhome/) at [Cola Laboratory](https://colalab.net/).
 
-If you are also passionate about XAI or you would like to discuss anything interesting, please feel free to reach out via: **silencejiang12138 \[at\] gmail \[dot\] com**
+🙌 If you would like to discuss anything interesting on XAI, please feel free to reach out via: `silencejiang12138 [at] gmail [dot] com`
 
-*Last updated: July, 2024*
+</div>
 
-{style="text-align: justify;"}
+<div style="text-align: right;">
+
+<br/>
+
+_Last updated: Sept, 2024_
+
+</div>
