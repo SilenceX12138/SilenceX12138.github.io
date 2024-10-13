@@ -1,5 +1,5 @@
 ---
-title: "ProtoGate: Prototype-based Neural Networks with Local Feature Selection for Tabular Biomedical Data"
+title: "Prototype-based Neural Networks for Tabular Biomedical Data"
 
 # Authors
 # If you created a profile for a user (e.g. the default `admin` user), write the username (folder name) here
