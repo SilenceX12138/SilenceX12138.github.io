@@ -112,9 +112,9 @@ sections:
           title: 🎓 Pass with Distinction for MPhil in Advanced Computer Science (awarded with College Prize for Academic Excellence)
     design:
       columns: "2"
-      # spacing:
-      #   # Customize the section spacing. Order is top, right, bottom, left.
-      #   padding: ["20px", "0", "20px", "0"]
+      spacing:
+        #   # Customize the section spacing. Order is top, right, bottom, left.
+        padding: ["20px", "0", "20px", "0"]
   - block: collection
     id: publications
     content:
@@ -129,7 +129,7 @@ sections:
         exclude_featured: false
     design:
       columns: "2"
-      view: Compact
+      view: Citation
   # - block: collection
   #   id: talks
   #   content:

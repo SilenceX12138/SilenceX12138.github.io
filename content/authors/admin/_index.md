@@ -97,6 +97,6 @@ Before joining Cambridge, I received my BEng in Computer Science and Technology 
 
 <br/>
 
-_Last updated: Sept, 2024_
+_Last updated: Oct, 2024_
 
 </div>
