@@ -97,6 +97,6 @@ Before joining Cambridge, I was fortunate to work as a research intern at [Meitu
 
 <br/>
 
-_Last updated: Oct, 2024_
+_Last updated: Nov, 2024_
 
 </div>
