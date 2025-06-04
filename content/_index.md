@@ -84,14 +84,18 @@ sections:
         #   organization: Cambridge Computer Laboratory
         #   organization_url: https://www.cst.cam.ac.uk/
         #   title: 🌟 Please checkout our recent work on [data augmentation for tabular data](https://arxiv.org/abs/2409.16118)
+        - date_start: "2025-02-28"
+          organization: ICLR 2025
+          organization_url: https://iclr.cc/
+          title: 🌟 One first author [paper](https://arxiv.org/abs/2503.09453) accepted by DeLTa & SynthData@ICLR 2025, and awarded with "Early Career Scholar Award" (only 6 recipients worldwide)
         - date_start: "2024-09-25"
           organization: NeurIPS 2024
           organization_url: https://neurips.cc/
-          title: 🌟 One co-first author [paper](https://arxiv.org/abs/2409.16118) accepted by NeurIPS 2024 (with an acceptance rate of 25.8%)
-        - date_start: "2024-09-10"
-          organization: Cambridge Computer Laboratory
-          organization_url: https://www.cst.cam.ac.uk/
-          title: 📝 I will co-supervise a Part III/MPhil project with Prof Mateja Jamnik for the upcoming academic year (2024-2025). Please checkout the [proposal](https://www.cl.cam.ac.uk/~mj201/teaching/student-projects.html) and reach out!
+          title: 🌟 One co-first author [paper](https://arxiv.org/abs/2409.16118) accepted by NeurIPS 2024 (with an acceptance rate of 25.8%), and awarded with "NeurIPS 2024 Scholar Award"
+        # - date_start: "2024-09-10"
+        #   organization: Cambridge Computer Laboratory
+        #   organization_url: https://www.cst.cam.ac.uk/
+        #   title: 📝 I will co-supervise a Part III/MPhil project with Prof Mateja Jamnik for the upcoming academic year (2024-2025). Please checkout the [proposal](https://www.cl.cam.ac.uk/~mj201/teaching/student-projects.html) and reach out!
         # - date_start: "2024-07-23"
         #   organization: ICML 2024
         #   organization_url: https://icml.cc/
@@ -109,7 +113,7 @@ sections:
           description: ""
           organization: University of Cambridge
           organization_url: https://www.cam.ac.uk/
-          title: 🎓 Pass with Distinction for MPhil in Advanced Computer Science (awarded with College Prize for Academic Excellence)
+          title: 🎓 Pass with Distinction for MPhil in Advanced Computer Science, and awarded with "College Prize for Academic Excellence"
     design:
       columns: "2"
       spacing:
