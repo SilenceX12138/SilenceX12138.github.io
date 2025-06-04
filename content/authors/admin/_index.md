@@ -22,7 +22,7 @@ organizations:
     url: https://www.cam.ac.uk/
 
 # Short bio (displayed in user profile at end of posts)
-bio: My research interests include explainable AI and data mining, with a particular focus on data-centric tabular foundation models.
+bio: My research interests include explainable AI and structured data, with a particular focus on tabular foundation models.
 
 # Interests to show in About widget
 # interests:
@@ -85,11 +85,15 @@ highlight_name: true
 
 <div style="text-align: justify;">
 
-I am currently a second-year PhD student in Computer Science at the [Cambridge Computer Laboratory](https://www.cst.cam.ac.uk/), supervised by [Prof. Mateja Jamnik](https://www.cl.cam.ac.uk/~mj201/index.html) and <nobr>[Dr.Nikola Simidjievski](https://simidjievskin.github.io/)</nobr>. My research interest primarily lies in the explainability of artificial intelligence (XAI), and my current research projects mainly focus on developing data-centric foundation models for structured tabular data, especially for real-world healthcare applications.
+I am currently a PhD student in Computer Science at the [Cambridge Computer Laboratory](https://www.cst.cam.ac.uk/), supervised by [Prof. Mateja Jamnik](https://www.cl.cam.ac.uk/~mj201/index.html) and <nobr>[Prof. Nikola Simidjievski](https://simidjievskin.github.io/)</nobr>. My research interest primarily lies in the structured tabular data and explainability of artificial intelligence (XAI), where my research projects mainly focus on:
 
-Before joining Cambridge, I was fortunate to work as a research intern at [Meitu MT Lab](https://mtlab.meitu.com/en/?lang=en) and [Cola Laboratory](https://colalab.net/) under the supervision of [Prof. Si Liu](https://sites.google.com/site/siliuhome/).
+* tabular foundation models
+* tabular generative modelling
+* trustworthy AI solutions for scientific applications
 
-🙌 If you would like to discuss anything interesting on XAI, please feel free to reach out via: `silencejiang12138 [at] gmail [dot] com`
+Before joining Cambridge, I was fortunate to work as a research intern on embodied AI at [MT Lab](https://mtlab.meitu.com/en/?lang=en) and [Cola Laboratory](https://colalab.net/) under the supervision of [Prof. Si Liu](https://sites.google.com/site/siliuhome/).
+
+🙌 If you would like to discuss anything related to XAI, please feel free to reach out via: `silencejiang12138 [at] gmail [dot] com`.
 
 </div>
 
@@ -97,6 +101,6 @@ Before joining Cambridge, I was fortunate to work as a research intern at [Meitu
 
 <br/>
 
-_Last updated: Nov, 2024_
+_Last updated: June, 2025_
 
 </div>
