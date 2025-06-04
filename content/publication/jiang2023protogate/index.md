@@ -46,10 +46,10 @@ featured: true
 #   url: http://example.org
 
 url_pdf: "https://arxiv.org/abs/2306.12330"
-url_code: ""
+url_code: "https://github.com/SilenceX12138/ProtoGate"
 url_dataset: ""
 url_poster: ""
-url_project: ""
+url_project: "https://github.com/SilenceX12138/ProtoGate"
 url_slides: ""
 url_source: ""
 url_video: ""

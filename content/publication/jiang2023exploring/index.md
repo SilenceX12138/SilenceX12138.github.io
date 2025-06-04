@@ -53,9 +53,9 @@ url_code: "https://github.com/SilenceX12138/Time-Granularity-on-Temporal-Graphs"
 url_dataset: "https://github.com/SilenceX12138/Time-Granularity-on-Temporal-Graphs"
 url_poster: ""
 url_project: ""
-url_slides: "https://recorder-v3.slideslive.com/?share=90377&s=36047afe-b665-4262-b8cf-f74a2d06802e"
+url_slides: ""
 url_source: ""
-url_video: "https://recorder-v3.slideslive.com/?share=90377&s=36047afe-b665-4262-b8cf-f74a2d06802e"
+url_video: ""
 
 # Featured image
 # To use, add an image named `featured.jpg/png` to your page's folder.

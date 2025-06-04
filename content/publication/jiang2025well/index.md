@@ -1,25 +1,24 @@
 ---
-title: "TabEBM: A Tabular Data Augmentation Method with Distinct Class-Specific Energy-Based Models"
+title: "How Well Does Your Tabular Generator Learn the Structure of Tabular Data?"
 
 # Authors
 # If you created a profile for a user (e.g. the default `admin` user), write the username (folder name) here
 # and it will be replaced with their full name and linked to their profile.
 authors:
-  - Andrei Margeloiu
   - admin
   - Nikola Simidjievski
   - Mateja Jamnik
 
 # Author notes (optional)
-author_notes:
-  - "Equal contribution"
-  - "Equal contribution"
+# author_notes:
+#   - 'Equal contribution'
+#   - 'Equal contribution'
 
 # date: '2013-07-01T00:00:00Z'
 # doi: ''
 
 # Schedule page publish date (NOT publication's date).
-publishDate: "2024-09-25T00:00:00Z"
+publishDate: "2025-03-12T00:00:00Z"
 
 # Publication type.
 # Accepts a single type but formatted as a YAML list (for Hugo requirements).
@@ -27,10 +26,10 @@ publishDate: "2024-09-25T00:00:00Z"
 publication_types: ["paper-conference"]
 
 # Publication name and optional abbreviated publication name.
-publication: "Thirty-Eighth Annual Conference on Neural Information Processing Systems"
-publication_short: "NeurIPS 2024"
+publication: ICLR 2025 Workshop on Deep Generative Model in Machine Learning Theory, Principle and Efficacy
+publication_short: ICLR 2025 Workshop 
 
-abstract: Data collection is often difficult in critical fields such as medicine, physics, and chemistry. As a result, classification methods usually perform poorly with these small datasets, leading to weak predictive performance. Increasing the training set with additional synthetic data, similar to data augmentation in images, is commonly believed to improve downstream classification performance. However, current tabular generative methods that learn either the joint distribution p(x,y) or the class-conditional distribution p(x∣y) often overfit on small datasets, resulting in poor-quality synthetic data, usually worsening classification performance compared to using real data alone. To solve these challenges, we introduce TabEBM, a novel class-conditional generative method using Energy-Based Models (EBMs). Unlike existing methods that use a shared model to approximate all class-conditional densities, our key innovation is to create distinct EBM generative models for each class, each modelling its class-specific data distribution individually. This approach creates robust energy landscapes, even in ambiguous class distributions. Our experiments show that TabEBM generates synthetic data with higher quality and better statistical fidelity than existing methods. When used for data augmentation, our synthetic data consistently improves the classification performance across diverse datasets of various sizes, especially small ones.
+abstract: Heterogeneous tabular data poses unique challenges in generative modelling due to its fundamentally different underlying data structure compared to homogeneous modalities, such as images and text. Although previous research has sought to adapt the successes of generative modelling in homogeneous modalities to the tabular domain, defining an effective generator for tabular data remains an open problem. One major reason is that the evaluation criteria inherited from other modalities often fail to adequately assess whether tabular generative models effectively capture or utilise the unique structural information encoded in tabular data. In this paper, we carefully examine the limitations of the prevailing evaluation framework and introduce TabStruct, a novel evaluation benchmark that positions structural fidelity as a core evaluation dimension. Specifically, TabStruct evaluates the alignment of causal structures in real and synthetic data, providing a direct measure of how effectively tabular generative models learn the structure of tabular data. Through extensive experiments using generators from eight categories on seven datasets with expert-validated causal graphical structures, we show that structural fidelity offers a task-independent, domain-agnostic evaluation dimension. Our findings highlight the importance of tabular data structure and offer practical guidance for developing more effective and robust tabular generative models.
 
 # Summary. An optional shortened abstract.
 # summary: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis posuere tellus ac convallis placerat. Proin tincidunt magna sed ex sollicitudin condimentum.
@@ -45,14 +44,14 @@ featured: true
 # - name: Custom Link
 #   url: http://example.org
 
-url_pdf: "https://arxiv.org/abs/2409.16118"
-url_code: "https://github.com/andreimargeloiu/TabEBM"
+url_pdf: "https://openreview.net/forum?id=gCCSogAJtO"
+url_code: "https://github.com/SilenceX12138/TabStruct"
 url_dataset: ""
-url_poster: "https://neurips.cc/media/PosterPDFs/NeurIPS%202024/103143.png?t=1731278908.4883428"
-url_project: "https://github.com/andreimargeloiu/TabEBM"
-url_slides: "https://nips.cc/media/neurips-2024/Slides/95948.pdf"
+url_poster: ""
+url_project: "https://github.com/SilenceX12138/TabStruct"
+url_slides: ""
 url_source: ""
-url_video: "https://nips.cc/virtual/2024/poster/95948"
+url_video: ""
 
 # Featured image
 # To use, add an image named `featured.jpg/png` to your page's folder.
