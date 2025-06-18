@@ -85,7 +85,7 @@ highlight_name: true
 
 <div style="text-align: justify;">
 
-I am currently a PhD student in Computer Science at the [Cambridge Computer Laboratory](https://www.cst.cam.ac.uk/), supervised by [Prof. Mateja Jamnik](https://www.cl.cam.ac.uk/~mj201/index.html) and <nobr>[Prof. Nikola Simidjievski](https://simidjievskin.github.io/)</nobr>. My research interest primarily lies in the structured tabular data and explainability of artificial intelligence (XAI), where my research projects mainly focus on:
+I am currently a PhD student in Computer Science at the [Cambridge Computer Laboratory](https://www.cst.cam.ac.uk/), supervised by [Prof. Mateja Jamnik](https://www.cl.cam.ac.uk/~mj201/index.html). My research interest primarily lies in the structured tabular data and explainability of artificial intelligence (XAI), where my research projects mainly focus on:
 
 * tabular foundation models
 * tabular generative modelling
