@@ -101,6 +101,6 @@ Before joining Cambridge, I was fortunate to work as a research intern on embodi
 
 <br/>
 
-_Last updated: June, 2025_
+_Last updated: October, 2025_
 
 </div>
