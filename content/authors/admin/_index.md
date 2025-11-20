@@ -85,7 +85,9 @@ highlight_name: true
 
 <div style="text-align: justify;">
 
-I am currently a PhD student in Computer Science at the [Cambridge Computer Laboratory](https://www.cst.cam.ac.uk/), supervised by [Prof. Mateja Jamnik](https://www.cl.cam.ac.uk/~mj201/index.html). My research interest primarily lies in the structured tabular data and explainability of artificial intelligence (XAI), where my research projects mainly focus on:
+I am currently a PhD student in Computer Science at the [Cambridge Computer Laboratory](https://www.cst.cam.ac.uk/), supervised by [Prof. Mateja Jamnik](https://www.cl.cam.ac.uk/~mj201/index.html). My research is generously supported by the [Google PhD Fellowship](https://research.google/programs-and-events/phd-fellowship/recipients/).
+
+My research interest primarily lies at the intersection of structured tabular data and explainable artificial intelligence (XAI). In particular, my work focuses on:
 
 * tabular foundation models
 * tabular generative modelling
@@ -101,6 +103,6 @@ Before joining Cambridge, I was fortunate to work as a research intern on embodi
 
 <br/>
 
-_Last updated: October, 2025_
+_Last updated: November, 2025_
 
 </div>
