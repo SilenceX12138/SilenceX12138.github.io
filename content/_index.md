@@ -84,10 +84,14 @@ sections:
         #   organization: Cambridge Computer Laboratory
         #   organization_url: https://www.cst.cam.ac.uk/
         #   title: 🌟 Please checkout our recent work on [data augmentation for tabular data](https://arxiv.org/abs/2409.16118)
+        - date_start: "2026-01-26"
+          organization: ICLR 2026
+          organization_url: https://iclr.cc/
+          title: 🌟 One first author [paper](https://arxiv.org/abs/2509.11950) accepted by ICLR 2026 (with an acceptance rate of ~28%)
         - date_start: "2025-10-23"
           organization: Google
           organization_url: https://blog.google/outreach-initiatives/google-org/phd-fellowship-program-2025/
-          title: 🎊 Awarded with ["Google PhD Fellowship"](https://blog.google/outreach-initiatives/google-org/phd-fellowship-program-2025/) in the branch of Machine Learning and ML Foundations (1st recipient of the CST at University of Cambridge)
+          title: 🎊 Awarded with ["Google PhD Fellowship"](https://blog.google/outreach-initiatives/google-org/phd-fellowship-program-2025/) in the branch of Machine Learning and ML Foundations (first recipient of the CST at University of Cambridge)
         - date_start: "2025-02-28"
           organization: ICLR 2025
           organization_url: https://iclr.cc/
