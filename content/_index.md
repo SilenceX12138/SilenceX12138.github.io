@@ -87,7 +87,7 @@ sections:
         - date_start: "2026-01-26"
           organization: ICLR 2026
           organization_url: https://iclr.cc/
-          title: 🌟 One first author [paper](https://arxiv.org/abs/2509.11950) accepted by ICLR 2026 (with an acceptance rate of ~28%)
+          title: 🌟 One first author [paper](https://arxiv.org/abs/2509.11950) accepted by ICLR 2026 with an [Oral](https://openreview.net/forum?id=XOPH34Extq) presentation (with an acceptance rate of 1.18%)
         - date_start: "2025-10-23"
           organization: Google
           organization_url: https://blog.google/outreach-initiatives/google-org/phd-fellowship-program-2025/
