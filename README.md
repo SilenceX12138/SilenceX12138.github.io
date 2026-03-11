@@ -1,8 +1,5 @@
-# Xiangjian's Personal Webpage
+Run the following command in the root directory of the repository:
 
-> This project is adapted from [Hugo Academic Theme](https://bootstrap.hugoblox.com/getting-started/). Credit to those excellent developers!
-
-* run the server for webpage
-  ```bash
-    hugo server
-  ```
+```bash
+bundle exec jekyll serve
+```
