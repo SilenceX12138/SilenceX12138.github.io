@@ -26,8 +26,8 @@ short_bio: >-
     My research interest primarily lies at the intersection of structured tabular data and explainable artificial intelligence (XAI). In particular, my work focuses on:
   </p>
   <ul>
-    <li>tabular foundation models</li>
-    <li>tabular generative modelling</li>
+    <li>foundation models for structured data</li>
+    <li>generative modelling for tabular data</li>
     <li>trustworthy AI solutions for scientific applications</li>
   </ul>
   <p>
