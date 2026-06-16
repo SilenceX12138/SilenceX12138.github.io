@@ -63,6 +63,8 @@ education:
 #   position: Research Intern (Embodied AI)
 
 awards:
+- name: ICLR 2026 Scholar Award
+  date: 2026
 - name: Google PhD Fellowship
   date: 2025
 - name: ICLR 2025 Early Career Scholar Award for SynthData
